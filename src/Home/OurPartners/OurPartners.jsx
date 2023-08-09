@@ -31,7 +31,7 @@ const OurPartners = () => {
       };
     
     return (
-        <div className='px-5 md:px-10'>
+        <div className=''>
             <h2 className="section-title">Our Partners</h2>
             <hr className='bg-black' />
             <Marquee className='my-10' > {/* pauseOnHover */}
