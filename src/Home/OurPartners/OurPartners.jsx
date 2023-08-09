@@ -4,15 +4,23 @@ import Partner from './Partner';
 const OurPartners = () => {
     const [activeIndex, setActiveIndex] = useState(null);
     const partners = [
-        {pic: "https://i.ibb.co/frq3xhh/daraz.webp"},
-        {pic: "https://i.ibb.co/mJY0sKM/Unimart-Logo.webp"},
-        {pic: "https://i.ibb.co/CwYcZCC/togu-mogu.webp"},
-        {pic: "https://i.ibb.co/pdsq93w/shwapno.webp"},
-        {pic: "https://i.ibb.co/XDJpYD0/rokomari.webp"},
-        {pic: "https://i.ibb.co/BGzmB3P/panda-mart.webp"},
-        {pic: "https://i.ibb.co/z28WMQp/kids-mom.webp"},
-        {pic: "https://i.ibb.co/1vG4NQZ/lavander.webp"}
+        {pic: "https://i.ibb.co/ScQyB8R/partner-8.png"},
+        {pic: "https://i.ibb.co/K61rVW0/partner-7.png"},
+        {pic: "https://i.ibb.co/pzy6SkD/partner-6.png"},
+        {pic: "https://i.ibb.co/y6Yq3KH/partner-5.png"},
+        {pic: "https://i.ibb.co/yhKGKVz/partner-3.png"},
+        {pic: "https://i.ibb.co/1sn5Sd4/partner-4.png"},
+        {pic: "https://i.ibb.co/gFfQwt3/partner-2.png"},
+        {pic: "https://i.ibb.co/0ngdnmV/partner-1.png"},
     ]
+
+
+
+
+
+
+
+
 
     const handleMouseEnter = (index) => {
         setActiveIndex(index);
@@ -33,10 +41,8 @@ const OurPartners = () => {
                     key={index} 
                     onMouseEnter={() => handleMouseEnter(index)}
           onMouseLeave={handleMouseLeave}
-                    className='w-44 h-24 mx-3'>
-                        {
-                            console.log(partner.pic)
-                        }
+                    className=' w-1/2 mx-auto'>
+                     
                             <Partner src={partner.pic}  isActive={index === activeIndex} />
                         </div>
                     )
