@@ -1,3 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.montserrat{
+    font-family: 'Montserrat', sans-serif;
+}
+.primary-color{
+    color: #00ffc3;
+}
+.secondary-color{
+    color: #fff;
+}
+
+
+
+/* Section title  */
+.section-title {
+    background-image: linear-gradient(to left, #00ffc3, #308b75, #08ffc1);
+    background-size: 400%;
+    animation: sectionAnimation 3s ease-in-out infinite alternate-reverse;
+    @apply tracking-wide font-bold text-center text-transparent bg-clip-text text-4xl md:text-5xl py-5 montserrat
+}
+
+
+@keyframes sectionAnimation {
+    0% {
+      background-position: 100%;
+     
+    }
+    100% {
+      background-position: 0%;
+    }
+  }
+  
+  *{
+    scroll-behavior: smooth;
+    
+  }
+  body{
+    overflow-x: hidden;
+  }
+  .logo {
+   
+  }
+  
