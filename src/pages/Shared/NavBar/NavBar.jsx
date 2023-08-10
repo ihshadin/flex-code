@@ -1,6 +1,7 @@
-import React from 'react';
+import React from "react";
 import { useContext, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,36 +24,36 @@ const NavBar = () => {
   return (
     <nav className="bg-[#6fb9b9] py-4 md:flex justify-between items-center px-4 lg:px-8">
       <div className="flex items-center justify-between">
-          <Link to="/" className="text-white text-xl font-semibold">
-            <div className="flex items-center gap-1">
-              <img className="w-10 md:w-12" src="/logoStudy2.png" alt="logo" />
-              <h3>CampusEase</h3>
-            </div>
-          </Link>
-          <div className="ml-3 lg:hidden">
-            <button
-              onClick={handleMenuToggle}
-              className="text-white p-2 focus:outline-none"
-              aria-controls="mobile-menu"
-              aria-expanded={isMenuOpen}
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16m-7 6h7"
-                />
-              </svg>
-            </button>
+        <Link to="/" className="text-white text-xl font-semibold">
+          <div className="flex items-center gap-1">
+            <img className="w-10 md:w-12" src="/logoStudy2.png" alt="logo" />
+            <h3>CampusEase</h3>
           </div>
+        </Link>
+        <div className="ml-3 lg:hidden">
+          <button
+            onClick={handleMenuToggle}
+            className="text-white p-2 focus:outline-none"
+            aria-controls="mobile-menu"
+            aria-expanded={isMenuOpen}
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              />
+            </svg>
+          </button>
         </div>
+      </div>
       <div className="flex items-center">
         <div
           className={`${
