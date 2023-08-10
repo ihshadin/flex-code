@@ -22,12 +22,11 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="bg-[#6fb9b9] py-4 md:flex justify-between items-center px-4 lg:px-8">
+    <nav className="bg-inherit py-4 md:flex justify-between items-center px-4 lg:px-8">
       <div className="flex items-center justify-between">
         <Link to="/" className="text-white text-xl font-semibold">
           <div className="flex items-center gap-1">
-            <img className="w-10 md:w-12" src="/logoStudy2.png" alt="logo" />
-            <h3>CampusEase</h3>
+            <img className="w-10 md:w-[10rem]" src="/flex-codelogo.png" alt="logo" />
           </div>
         </Link>
         <div className="ml-3 lg:hidden">
@@ -67,7 +66,7 @@ const NavBar = () => {
                 to="/"
                 onClick={closeMenu}
                 className={`text-white hover:text-gray-300 ${
-                  isActiveRoute("/") ? "font-bold" : ""
+                  isActiveRoute("/") ? "font-bold md:border-b-2 border-[#00ffc3]" : ""
                 }`}
               >
                 Home
@@ -77,11 +76,11 @@ const NavBar = () => {
               <Link
                 to="/collages"
                 onClick={closeMenu}
-                className={`text-white hover:text-gray-300 ${
+                className={`text-white hover:text-gray-300 hover:border-b-2${
                   isActiveRoute("/collages") ? "font-bold" : ""
                 }`}
               >
-                Collages
+                Problems
               </Link>
             </li>
             <li>
@@ -92,7 +91,7 @@ const NavBar = () => {
                   isActiveRoute("/admission") ? "font-bold" : ""
                 }`}
               >
-                Admission
+                About
               </Link>
             </li>
             <li>
@@ -103,7 +102,7 @@ const NavBar = () => {
                   isActiveRoute("/myCollages") ? "font-bold" : ""
                 }`}
               >
-                My Collages
+                Dashboard
               </Link>
             </li>
             {user?.email ? (
