@@ -4,6 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
+::selection{
+  background-color: #00ffc333;
+}
 body {
   background-color: #17181b;
 }
@@ -17,9 +20,6 @@ body {
   color: #fff;
 }
 
-body {
-  background: #17181b;
-}
 
 /* Section title  */
 .section-title {
@@ -35,6 +35,9 @@ body {
   }
   100% {
     background-position: 0%;
+  }
+  body{
+    overflow-x: hidden;
   }
 }
 

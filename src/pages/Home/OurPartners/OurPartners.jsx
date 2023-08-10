@@ -28,7 +28,7 @@ const OurPartners = () => {
       <Container>
         <h2 className="section-title">Our Partners</h2>
         <hr className="bg-black" />
-        <Marquee className="my-10">
+        <Marquee className="mt-10 mb-40">
           {" "}
           {/* pauseOnHover */}
           {partners?.map((partner, index) => (
