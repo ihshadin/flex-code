@@ -14,7 +14,9 @@
     color: #fff;
 }
 
-
+body {
+  background:  #17181b;
+}
 
 /* Section title  */
 .section-title {
