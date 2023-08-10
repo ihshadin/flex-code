@@ -120,7 +120,7 @@ const Footer = () => {
                     </div>
                 </div>
             </footer>
-            <div class="flex bg-[#1e2d40] flex-col-reverse justify-between pt-5 pb-10 border-t lg:flex-row">
+            <div class="flex bg-[#1e2d40] flex-col-reverse justify-between pt-5 pb-10 border-t lg:flex-row border-[#00ffc3]">
                 <p class="text-sm text-gray-300 md:pl-10 px-10">© Copyright 2023 Company. All rights reserved.</p>
                 <ul class="flex flex-col mb-3 space-y-2 lg:mb-0 sm:space-y-0 sm:space-x-5 sm:flex-row md:pr-16 px-10">
                     <li>
