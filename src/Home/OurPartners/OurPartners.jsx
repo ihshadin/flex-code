@@ -36,7 +36,7 @@ const OurPartners = () => {
               key={index}
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={handleMouseLeave}
-              className=" w-1/2 mx-auto"
+              className=" w-1/2 mx-auto "
             >
               <Partner src={partner.pic} isActive={index === activeIndex} />
             </div>
