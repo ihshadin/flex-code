@@ -1,5 +1,5 @@
 import CountUp from "react-countup";
-import Container from "../../pages/Shared/Container/Container";
+import Container from "../../Shared/Container/Container";
 
 const UserCount = () => {
   return (

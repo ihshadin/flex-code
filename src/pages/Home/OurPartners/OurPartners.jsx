@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Marquee from "react-fast-marquee";
 import Partner from "./Partner";
-import Container from "../../pages/Shared/Container/Container";
+import Container from "../../Shared/Container/Container";
 const OurPartners = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const partners = [
@@ -28,7 +28,7 @@ const OurPartners = () => {
       <Container>
         <h2 className="section-title">Our Partners</h2>
         <hr className="bg-black" />
-        <Marquee className="my-10">
+        <Marquee className="mt-10 mb-40">
           {" "}
           {/* pauseOnHover */}
           {partners?.map((partner, index) => (
