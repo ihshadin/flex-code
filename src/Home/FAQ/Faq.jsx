@@ -1,8 +1,10 @@
 import React from 'react';
+import Container from '../../pages/Shared/Container/Container';
 
 const Faq = () => {
     return (
         <div className='w-full'>
+            <Container>
             <div
                 class="relative w-full bg-[#17181b]  pt-10 pb-8 my-8 ring-1 ring-gray-900/5  text-white">
                 <div class="">
@@ -112,6 +114,8 @@ const Faq = () => {
                     </div>
                 </div>
             </div>
+            </Container>
+           
         </div>
     );
 };

@@ -13,25 +13,25 @@ const Slider = () => {
       <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
         <SwiperSlide>
           <div className="relative">
-            <img className="h-[600px] w-full" src={image1} alt="" />
+            <img className="h-[600px] w-full object-cover" src={image1} alt="" />
             <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-              <h2 className="text-white text-6xl font-extrabold text-center">Feel like coding in your <br/> own environment</h2>
+              <h2 className="text-white text-6xl font-extrabold text-center">Feel like <span className="text-[#00ffc3]">coding</span> in your <br/> own environment</h2>
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className="relative">
-            <img className="h-[600px] w-full" src={image2} alt="" />
+            <img className="h-[600px] w-full object-cover" src={image2} alt="" />
             <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-            <h2 className="text-white text-6xl font-extrabold text-center">Feel like coding in your <br/> own environment</h2>
+            <h2 className="text-white text-6xl font-extrabold text-center">Feel like <span className="text-[#00ffc3]">coding</span> in your <br/> own environment</h2>
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className="relative">
-            <img className="h-[600px] w-full" src={image3} alt="" />
+            <img className="h-[600px] w-full object-cover" src={image3} alt="" />
             <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-            <h2 className="text-white text-6xl font-extrabold text-center">Feel like coding in your <br/> own environment</h2>
+            <h2 className="text-white text-6xl font-extrabold text-center">Feel like <span className="text-[#00ffc3]">coding</span> in your <br/> own environment</h2>
             </div>
           </div>
         </SwiperSlide>
