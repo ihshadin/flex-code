@@ -1,48 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.montserrat{
-    font-family: 'Montserrat', sans-serif;
+body {
+  background-color: #17181b;
 }
-.primary-color{
-    color: #00ffc3;
+.montserrat {
+  font-family: "Montserrat", sans-serif;
 }
-.secondary-color{
-    color: #fff;
+.primary-color {
+  color: #00ffc3;
+}
+.secondary-color {
+  color: #fff;
 }
 
 body {
-  background:  #17181b;
+  background: #17181b;
 }
 
 /* Section title  */
 .section-title {
-    background-image: linear-gradient(to left, #00ffc3, #308b75, #08ffc1);
-    background-size: 400%;
-    animation: sectionAnimation 3s ease-in-out infinite alternate-reverse;
-    @apply tracking-wide font-bold text-center text-transparent bg-clip-text text-4xl md:text-5xl py-5 montserrat
+  background-image: linear-gradient(to left, #00ffc3, #308b75, #08ffc1);
+  background-size: 400%;
+  animation: sectionAnimation 3s ease-in-out infinite alternate-reverse;
+  @apply tracking-wide font-bold text-center text-transparent bg-clip-text text-4xl md:text-5xl py-5 montserrat;
 }
 
-
 @keyframes sectionAnimation {
-    0% {
-      background-position: 100%;
-     
-    }
-    100% {
-      background-position: 0%;
-    }
+  0% {
+    background-position: 100%;
   }
-  
-  *{
-    scroll-behavior: smooth;
-    
+  100% {
+    background-position: 0%;
   }
-  body{
-    overflow-x: hidden;
-  }
-  
-  
+}
+
+* {
+  scroll-behavior: smooth;
+}
+body {
+  overflow-x: hidden;
+}
