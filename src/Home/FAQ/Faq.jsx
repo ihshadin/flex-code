@@ -1,8 +1,10 @@
 import React from 'react';
+import Container from '../../pages/Shared/Container/Container';
 
 const Faq = () => {
     return (
         <div className='w-full'>
+            <Container>
             <div
                 class="relative w-full bg-[#17181b]  pt-10 pb-8 my-8 ring-1 ring-gray-900/5  text-white">
                 <div class="">
@@ -13,7 +15,7 @@ const Faq = () => {
                         </p>
                     </div>
                     <div class="mx-auto mt-8 grid  divide-y divide-[#00ffc3]">
-                        <div class="py-5 px-2 px-2">
+                        <div class="py-5 px-2">
                             <details class="group">
                                 <summary class="flex cursor-pointer list-none items-center justify-between font-medium">
                                     <span>What is FlexCode?</span>
@@ -112,6 +114,8 @@ const Faq = () => {
                     </div>
                 </div>
             </div>
+            </Container>
+           
         </div>
     );
 };

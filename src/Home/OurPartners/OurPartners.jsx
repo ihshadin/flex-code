@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Marquee from "react-fast-marquee";
 import Partner from "./Partner";
+import Container from "../../pages/Shared/Container/Container";
 const OurPartners = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const partners = [
@@ -23,23 +24,25 @@ const OurPartners = () => {
   };
 
   return (
-    <div className="">
-      <h2 className="section-title">Our Partners</h2>
-      <hr className="bg-black" />
-      <Marquee className="my-10">
-        {" "}
-        {/* pauseOnHover */}
-        {partners?.map((partner, index) => (
-          <div
-            key={index}
-            onMouseEnter={() => handleMouseEnter(index)}
-            onMouseLeave={handleMouseLeave}
-            className=" w-1/2 mx-auto"
-          >
-            <Partner src={partner.pic} isActive={index === activeIndex} />
-          </div>
-        ))}
-      </Marquee>
+    <div>
+      <Container>
+        <h2 className="section-title">Our Partners</h2>
+        <hr className="bg-black" />
+        <Marquee className="mt-10 mb-40">
+          {" "}
+          {/* pauseOnHover */}
+          {partners?.map((partner, index) => (
+            <div
+              key={index}
+              onMouseEnter={() => handleMouseEnter(index)}
+              onMouseLeave={handleMouseLeave}
+              className=" w-1/2 mx-auto"
+            >
+              <Partner src={partner.pic} isActive={index === activeIndex} />
+            </div>
+          ))}
+        </Marquee>
+      </Container>
     </div>
   );
 };
