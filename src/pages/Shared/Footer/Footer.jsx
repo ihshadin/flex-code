@@ -75,7 +75,7 @@ const Footer = () => {
                                     name="name"
                                     placeholder="Your name"
                                     required
-                                    className="border text-neutral border-[#00ffc3] p-2 w-full rounded-md"
+                                    className="border-2 text-neutral  p-2 w-full rounded-md focus:outline-none focus:border-[#00ffc3]"
                                 />
                             </div>
                             <div>
@@ -91,7 +91,7 @@ const Footer = () => {
                                     name="email"
                                     placeholder="Your Email"
                                     required
-                                    className="border text-neutral border-[#00ffc3] p-2 w-full rounded-md"
+                                    className="border-2 text-neutral  p-2 w-full rounded-md focus:outline-none focus:border-[#00ffc3]"
                                 />
                             </div>
                             <div className="col-span-2">
@@ -106,8 +106,7 @@ const Footer = () => {
                                     name="message"
                                     placeholder="Your Message"
                                     required
-                                    className="border text-neutral border-[#00ffc3] h-[3rem] p-2 w-full rounded-md"
-                                    rows="5"
+                                    className="border-2 text-neutral  p-2 w-full rounded-md focus:outline-none focus:border-[#00ffc3]"
                                 ></textarea>
                             </div>
                             <div className="col-span-2">
