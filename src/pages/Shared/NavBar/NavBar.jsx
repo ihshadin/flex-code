@@ -1,6 +1,7 @@
-import React from 'react';
+import React from "react";
 import { useContext, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,21 +22,41 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="bg-[#6fb9b9] py-4 md:flex justify-between items-center px-4 lg:px-8">
+    <nav className="bg-inherit py-4 lg:flex justify-between items-center px-4 lg:px-8">
       <div className="flex items-center justify-between">
-          <Link to="/" className="text-white text-xl font-semibold">
-            <div className="flex items-center gap-1">
-              <img className="w-10 md:w-12" src="/logoStudy2.png" alt="logo" />
-              <h3>CampusEase</h3>
-            </div>
-          </Link>
-          <div className="ml-3 lg:hidden">
-            <button
-              onClick={handleMenuToggle}
-              className="text-white p-2 focus:outline-none"
-              aria-controls="mobile-menu"
-              aria-expanded={isMenuOpen}
-            >
+        <Link to="/" className="text-white text-xl font-semibold">
+          <div className="flex items-center gap-1">
+            <img
+              className="w-[8rem] md:w-[10rem]"
+              src="/flex-codelogo.png"
+              alt="logo"
+            />
+          </div>
+        </Link>
+        <div className="ml-3 lg:hidden">
+          <button
+            onClick={handleMenuToggle}
+            className="text-white p-2 focus:outline-none transition-opacity duration-300 ease-in-out"
+            aria-controls="mobile-menu"
+            aria-expanded={isMenuOpen}
+            style={{ opacity: isMenuOpen ? 0.5 : 1 }}
+          >
+            {isMenuOpen ? (
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            ) : (
               <svg
                 className="w-6 h-6"
                 fill="none"
@@ -50,9 +71,10 @@ const NavBar = () => {
                   d="M4 6h16M4 12h16m-7 6h7"
                 />
               </svg>
-            </button>
-          </div>
+            )}
+          </button>
         </div>
+      </div>
       <div className="flex items-center">
         <div
           className={`${
@@ -60,13 +82,15 @@ const NavBar = () => {
           } lg:flex lg:w-auto mt-4 lg:mt-0`}
           id="mobile-menu"
         >
-          <ul className="flex flex-col gap-2 md:gap-0  lg:text-left lg:flex-row lg:space-x-8 lg:items-center">
+          <ul className="flex flex-col gap-3 md:gap-0  lg:text-left lg:flex-row lg:space-x-8 lg:items-center">
             <li>
               <Link
                 to="/"
                 onClick={closeMenu}
-                className={`text-white hover:text-gray-300 ${
-                  isActiveRoute("/") ? "font-bold" : ""
+                className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${
+                  isActiveRoute("/")
+                    ? "font-bold border-b-2 pb-1 border-[#00ffc3]"
+                    : ""
                 }`}
               >
                 Home
@@ -76,33 +100,39 @@ const NavBar = () => {
               <Link
                 to="/collages"
                 onClick={closeMenu}
-                className={`text-white hover:text-gray-300 ${
-                  isActiveRoute("/collages") ? "font-bold" : ""
+                className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${
+                  isActiveRoute("/collages")
+                    ? "font-bold md:border-b-2 pb-1 border-[#00ffc3]"
+                    : ""
                 }`}
               >
-                Collages
+                Problems
               </Link>
             </li>
             <li>
               <Link
                 to="/admission"
                 onClick={closeMenu}
-                className={`text-white hover:text-gray-300 ${
-                  isActiveRoute("/admission") ? "font-bold" : ""
+                className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${
+                  isActiveRoute("/admission")
+                    ? "font-bold md:border-b-2 pb-1 border-[#00ffc3]"
+                    : ""
                 }`}
               >
-                Admission
+                About
               </Link>
             </li>
             <li>
               <Link
                 to="/myCollages"
                 onClick={closeMenu}
-                className={`text-white hover:text-gray-300 ${
-                  isActiveRoute("/myCollages") ? "font-bold" : ""
+                className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${
+                  isActiveRoute("/myCollages")
+                    ? "font-bold md:border-b-2 pb-1 border-[#00ffc3]"
+                    : ""
                 }`}
               >
-                My Collages
+                Dashboard
               </Link>
             </li>
             {user?.email ? (
@@ -125,7 +155,7 @@ const NavBar = () => {
                 <li>
                   <button
                     onClick={logOut}
-                    className="text-white font-semibold hover:text-gray-300"
+                    className="text-white font-semibold hover:text-gray-300  pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300"
                   >
                     Log out
                   </button>
@@ -137,7 +167,7 @@ const NavBar = () => {
                   <Link
                     to="/login"
                     onClick={closeMenu}
-                    className="text-white font-semibold hover:text-gray-300"
+                    className="text-white font-semibold hover:text-gray-300  pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300"
                   >
                     Login
                   </Link>
@@ -146,7 +176,7 @@ const NavBar = () => {
                   <Link
                     to="/signup"
                     onClick={closeMenu}
-                    className="text-white font-semibold hover:text-gray-300"
+                    className="text-white font-semibold hover:text-gray-300  pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300"
                   >
                     Sign Up
                   </Link>
