@@ -6,7 +6,7 @@ const Login = () => {
   return (
     <div className="bg-[#1e2d40] shadow-2xl md:w-2/4 max-w-md mx-auto rounded-xl px-7 my-14">
       <>
-        <div className="flex items-center justify-center text-white text-2xl font-bold py-8">
+        <div className="flex items-center justify-center text-white text-2xl  font-bold py-8">
           <img className="w-16 h-16" src="/20230810_125620.png" alt="img" />
           <span className="text-[#00ffc3] mr-1">Flex </span> {} Code
         </div>
@@ -14,23 +14,23 @@ const Login = () => {
           <span className="mr-2">Sign in with GitHub</span>
           <FaGithub className="text-2xl" />
         </div>
-        <div className="max-w-[80px] flex justify-center border-2 border-[#00ffc3] rounded mx-auto my-8"></div>
+        <div className="max-w-[150px] flex justify-center border-2 border-[#00ffc3] rounded mx-auto my-8"></div>
       </>
       <form action="">
-        <div className="flex border-2 border-gray-500 text-gray-400 px-2 font-semibold rounded-md mb-6 py-1 hover:bg-[#17181B] cursor-pointer">
+        <div className="flex items-center border-2 border-gray-500 text-gray-400 px-2 font-semibold rounded-md mb-6 hover:bg-[#17181B] cursor-pointer">
           <FaRegEnvelope className="text-2xl mr-2" />
           <input
-            className="flex-1 bg-[#1e2d40] hover:bg-[#17181B] text-sm outline-none"
+            className="flex-1 bg-[#1e2d40] hover:bg-[#17181B] text-sm outline-none py-2"
             type="email"
             name="email"
             id=""
             placeholder="Email"
           />
         </div>
-        <div className="flex border-2 border-gray-500 text-gray-400 px-2 font-semibold rounded-md mb-3 py-1 hover:bg-[#17181B] cursor-pointer">
+        <div className="flex items-center border-2 border-gray-500 text-gray-400 px-2 font-semibold rounded-md mb-3 hover:bg-[#17181B] cursor-pointer">
           <MdLockOutline className="text-2xl mr-2" />
           <input
-            className="flex-1 bg-[#1e2d40] hover:bg-[#17181B] text-sm outline-none"
+            className="flex-1 bg-[#1e2d40] hover:bg-[#17181B] text-sm outline-none py-2"
             type="password"
             name="password"
             id=""
@@ -49,9 +49,9 @@ const Login = () => {
         />
       </form>
       <div className="text-center text-gray-300 pb-10">
-        <Link>
+        <Link to="/signup">
           {" "}
-          <span className="cursor-pointer link text-gray-300 hover:text-blue-500 text-sm ">
+          <span className="cursor-pointer link text-gray-300 hover:text-blue-500 ">
             Sign up
           </span>
         </Link>{" "}
