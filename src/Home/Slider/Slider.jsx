@@ -9,7 +9,7 @@ import image3 from "../../../public/image-3.jpg";
 
 const Slider = () => {
   return (
-    <div className="mb-16">
+    <div className="mb-15">
       <Swiper spaceBetween={30}
         centeredSlides={true}
         autoplay={{
