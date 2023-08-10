@@ -17,6 +17,10 @@ body {
   color: #fff;
 }
 
+body {
+  background: #17181b;
+}
+
 /* Section title  */
 .section-title {
   background-image: linear-gradient(to left, #00ffc3, #308b75, #08ffc1);
