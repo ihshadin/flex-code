@@ -4,7 +4,9 @@ import { MdLockOutline } from "react-icons/md";
 
 const Login = () => {
   return (
-    <div className="bg-[#1e2d40] shadow-2xl md:w-2/4 max-w-md mx-auto rounded-xl px-7 my-14">
+      
+      <div className="justify-center items-center flex pt-10">
+  <div className="bg-[#1e2d40] shadow-2xl md:w-2/4 max-w-md mx-auto rounded-xl px-7 my-14">
       <>
         <div className="flex items-center justify-center text-white text-2xl  font-bold py-8">
           <img className="w-16 h-16" src="/20230810_125620.png" alt="img" />
@@ -44,7 +46,7 @@ const Login = () => {
         </div>
         <input
           type="submit"
-          className="mt-3 uppercase bg-[#2fb595] px-6 font-bold text-lg rounded-md mb-6 py-1 hover:bg-[#43d1af] cursor-pointer"
+          className="mt-3 uppercase bg-[#2fb595] text-[#1e2d40] px-6 font-bold text-lg rounded-md mb-6 py-1 hover:bg-[#43d1af] cursor-pointer"
           value="Sign in"
         />
       </form>
@@ -58,6 +60,9 @@ const Login = () => {
         if you don't have an account yet.
       </div>
     </div>
+
+    </div>
+  
   );
 };
 
