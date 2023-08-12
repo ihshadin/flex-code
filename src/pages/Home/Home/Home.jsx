@@ -4,6 +4,7 @@ import Faq from "../FAQ/Faq";
 import Slider from "../Slider/Slider";
 import ExploreUs from "../../../components/ExploreUs/ExploreUs";
 import Testimonials from "../../../components/Testimonials/Testimonials";
+import Editor from "../Editor/Editor";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <UserCount />
       <Faq></Faq>
       <Testimonials />
+      <Editor/>
     </div>
   );
 };

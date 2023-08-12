@@ -9,6 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@codemirror/lang-javascript": "^6.1.9",
+    "@uiw/codemirror-theme-vscode": "^4.21.9",
+    "@uiw/react-codemirror": "^4.21.9",
     "firebase": "^10.1.0",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
