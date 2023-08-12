@@ -4,8 +4,15 @@
 @tailwind components;
 @tailwind utilities;
 
+::-moz-selection{
+  background-color: #00ffc333;
+}
+
 ::selection{
   background-color: #00ffc333;
+}
+body {
+  overflow-x: hidden;
 }
 body {
   background-color: #17181b;
@@ -15,6 +22,9 @@ body {
 }
 .primary-color {
   color: #00ffc3;
+}
+.bg-primary-color {
+  background-color: #00ffc3;
 }
 .secondary-color {
   color: #fff;
@@ -27,6 +37,18 @@ body {
   background-size: 400%;
   animation: sectionAnimation 3s ease-in-out infinite alternate-reverse;
   @apply tracking-wide font-bold text-center text-transparent bg-clip-text text-4xl md:text-5xl py-5 montserrat;
+}
+
+@-webkit-keyframes sectionAnimation {
+  0% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: 0%;
+  }
+  body{
+    overflow-x: hidden;
+  }
 }
 
 @keyframes sectionAnimation {
@@ -44,6 +66,4 @@ body {
 * {
   scroll-behavior: smooth;
 }
-body {
-  overflow-x: hidden;
-}
+

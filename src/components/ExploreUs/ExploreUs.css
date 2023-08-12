@@ -1,0 +1,28 @@
+.explore-animation {
+    -webkit-animation: floating 8s infinite;
+            animation: floating 8s infinite
+}
+
+@-webkit-keyframes floating {
+    0% {
+    transform: translateY(0px) rotateY(350deg);
+    }
+    50% {
+        transform: translateY(20px) rotateY(350deg);
+    }
+    100% {
+        transform: translateY(0px) rotateY(350deg);
+    }
+}
+
+@keyframes floating {
+    0% {
+    transform: translateY(0px) rotateY(350deg);
+    }
+    50% {
+        transform: translateY(20px) rotateY(350deg);
+    }
+    100% {
+        transform: translateY(0px) rotateY(350deg);
+    }
+}
