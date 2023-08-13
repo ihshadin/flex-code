@@ -1,8 +1,35 @@
 import { Link } from "react-router-dom";
 import { FaGithub, FaRegEnvelope } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
+import { useForm } from "react-hook-form";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
+  const { signIn } = useContext(AuthContext);
+  const { register, handleSubmit, errors } = useForm();
+  const onSubmit = (data) => {
+    console.log(data.email, data.password);
+    // signIn(data?.email, data?.password)
+    //   .then((result) => {
+    //     const user = result.user;
+    //     // console.log(user);
+
+    //     // console.log(user);
+    //     Swal.fire("Good job Login!", "You clicked the button!", "success");
+
+    //     navigate(from, { replace: true });
+    //   })
+    //   .catch((error) => {
+    //     setError(error.message);
+    //     Swal.fire({
+    //       title: `${error.message}`,
+    //       text: "Do you want to continue",
+    //       icon: "error",
+    //       confirmButtonText: "Ok",
+    //     });
+    //   });
+  };
   return (
     <div className="bg-[#1e2d40] shadow-2xl md:w-2/4 max-w-md mx-auto rounded-xl px-7 my-14">
       <>
@@ -16,16 +43,20 @@ const Login = () => {
         </div>
         <div className="max-w-[150px] flex justify-center border-2 border-[#00ffc3] rounded mx-auto my-8"></div>
       </>
-      <form action="">
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex items-center border-2 border-gray-500 text-gray-400 px-2 font-semibold rounded-md mb-6 hover:bg-[#17181B] cursor-pointer">
           <FaRegEnvelope className="text-2xl mr-2" />
           <input
             className="flex-1 bg-[#1e2d40] hover:bg-[#17181B] text-sm outline-none py-2"
             type="email"
             name="email"
+            {...register("email", { required: true })}
             id=""
             placeholder="Email"
           />
+          {errors?.email && (
+            <span className="text-red-500">Email is required</span>
+          )}
         </div>
         <div className="flex items-center border-2 border-gray-500 text-gray-400 px-2 font-semibold rounded-md mb-3 hover:bg-[#17181B] cursor-pointer">
           <MdLockOutline className="text-2xl mr-2" />
@@ -33,9 +64,13 @@ const Login = () => {
             className="flex-1 bg-[#1e2d40] hover:bg-[#17181B] text-sm outline-none py-2"
             type="password"
             name="password"
+            {...register("password", { required: true })}
             id=""
             placeholder="Password"
           />
+          {errors?.password?.type === "required" && (
+            <p className="text-red-500 text-sm mt-1">Password is required</p>
+          )}
         </div>
         <div className="flex justify-end">
           <p className="text-right inline-block cursor-pointer hover:link text-gray-300 hover:text-blue-500 text-sm">

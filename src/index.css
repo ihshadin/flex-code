@@ -4,11 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
-::selection{
+::selection {
   background-color: #00ffc333;
 }
 body {
-  background-color: #17181b;
+  background-color: #15161a;
 }
 .montserrat {
   font-family: "Montserrat", sans-serif;
@@ -19,7 +19,6 @@ body {
 .secondary-color {
   color: #fff;
 }
-
 
 /* Section title  */
 .section-title {
@@ -36,7 +35,7 @@ body {
   100% {
     background-position: 0%;
   }
-  body{
+  body {
     overflow-x: hidden;
   }
 }
