@@ -167,7 +167,11 @@ const NavBar = () => {
                   <Link
                     to="/login"
                     onClick={closeMenu}
-                    className="text-white font-semibold hover:text-gray-300  pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300"
+                    className={`text-white font-semibold hover:text-gray-300  pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${
+                      isActiveRoute("/login")
+                        ? "font-bold md:border-b-2 pb-1 border-[#00ffc3]"
+                        : ""
+                    }`}
                   >
                     Login
                   </Link>
@@ -176,7 +180,11 @@ const NavBar = () => {
                   <Link
                     to="/signup"
                     onClick={closeMenu}
-                    className="text-white font-semibold hover:text-gray-300  pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300"
+                    className={`text-white font-semibold hover:text-gray-300  pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${
+                      isActiveRoute("/signup")
+                        ? "font-bold md:border-b-2 pb-1 border-[#00ffc3]"
+                        : ""
+                    }`}
                   >
                     Sign Up
                   </Link>
