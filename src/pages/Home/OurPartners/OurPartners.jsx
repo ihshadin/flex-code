@@ -30,7 +30,7 @@ const OurPartners = () => {
         
         <Marquee className="mt-10 mb-40"
          pauseOnClick 
-         speed={200}
+         speed={150}
          gradient={true}
          gradientColor={[23, 24, 27]}>
           {" "}
