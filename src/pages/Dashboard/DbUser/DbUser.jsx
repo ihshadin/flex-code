@@ -11,7 +11,7 @@ const DbUser = () => {
           "rgba(0, 0, 0, 0.08) 0px 2px 4px, rgba(0, 0, 0, 0.08) 0px 4px 8px, rgba(0, 0, 0, 0.08) 0px 6px 12px",
       }}
     >
-      <div className="text-label-2 dark:text-dark-label-2 flex flex-col space-y-4">
+      <div className="text-slate-300  flex flex-col space-y-4">
         <div className="flex space-x-4">
           <div className="relative flex h-20 w-20 shrink-0">
             <img
@@ -22,23 +22,23 @@ const DbUser = () => {
           </div>
           <div className="flex flex-col">
             <div className="flex items-center">
-              <div className="text-label-1 dark:text-dark-label-1 break-all text-base font-semibold">
+              <div className="text-slate-200 break-all text-base text-white font-semibold">
                 {user?.displayName}
               </div>
             </div>
             <div className="flex items-center">
-              <div className="text-label-3 dark:text-dark-label-3 text-xs"></div>
+              <div className="text-slate-400 text-xs"></div>
             </div>
-            <div className="flex flex-1 items-end space-x-[5px] text-base">
-              <span className="text-label-2 dark:text-dark-label-2">Rank</span>
-              <span className="text-label-1 dark:text-dark-label-1 font-medium">
+            <div className="flex flex-1 items-end space-x-[5px] text-base text-white">
+              <span className="text-slate-300 ">Rank</span>
+              <span className="text-slate-200 font-medium">
                 ~5,000,000
               </span>
             </div>
           </div>
         </div>
         <a
-          className="bg-green-0 dark:bg-dark-green-0 text-green-s dark:text-dark-green-s hover:text-green-s dark:hover:text-dark-green-s w-full rounded-lg py-[7px] text-center font-medium"
+          className="bg-[#0fcda1] bg-opacity-50 text-[#b0c9ec] border border-[#0fcda1] border-transparent hover:bg-transparent hover:border hover:border-[#0fcda1] hover:text-[#0fcda1] hover:transition-all hover:duration-500 w-full rounded-lg py-[7px] text-center font-medium"
           href="/profile/"
         >
           Edit Profile
@@ -46,8 +46,8 @@ const DbUser = () => {
       </div>
         {/* Start Community Stats content */}
 
-        <div className="mt-4 mb-4 h-px w-full border-b border-divider-3 dark:border-dark-divider-3"></div>
-        <div className="text-base font-medium leading-6">Community Stats</div>
+        <div className="mt-4 mb-4 h-px w-full border-b border-divider-3"></div>
+        <div className="text-base text-white font-medium leading-6 ">Community Stats</div>
         <div className="mt-4 flex flex-col space-y-4">
           <div className="flex flex-col space-y-1">
             <div className="flex items-center space-x-2 text-[14px]">
@@ -58,7 +58,7 @@ const DbUser = () => {
                   width="1em"
                   height="1em"
                   fill="currentColor"
-                  className="text-blue-s dark:text-dark-blue-s"
+                  className="text-blue-400"
                 >
                   <path
                     fillRule="evenodd"
@@ -67,13 +67,13 @@ const DbUser = () => {
                   ></path>
                 </svg>
               </div>
-              <div className="text-label-2 dark:text-dark-label-2">Views</div>
-              <div>0</div>
+              <div className="text-slate-300 ">Views</div>
+              <div className="text-white">0</div>
             </div>
-            <div className="ml-7 space-x-1 text-xs text-label-3 dark:text-dark-label-3">
+            <div className="ml-7 space-x-1 text-xs text-slate-400">
               <span>Last week</span>
               <span>
-                <span className="text-label-4 dark:text-dark-label-4">0</span>
+                <span className="text-slate-400">0</span>
               </span>
             </div>
           </div>
@@ -86,7 +86,7 @@ const DbUser = () => {
                   width="1em"
                   height="1em"
                   fill="currentColor"
-                  className="text-teal dark:text-dark-teal"
+                  className="text-blue-300"
                 >
                   <path
                     fillRule="evenodd"
@@ -95,15 +95,15 @@ const DbUser = () => {
                   ></path>
                 </svg>
               </div>
-              <div className="text-label-2 dark:text-dark-label-2">
+              <div className="text-slate-300 ">
                 Solution
               </div>
-              <div>0</div>
+              <div className="text-white">0</div>
             </div>
-            <div className="ml-7 space-x-1 text-xs text-label-3 dark:text-dark-label-3">
+            <div className="ml-7 space-x-1 text-xs text-slate-400">
               <span>Last week</span>
               <span>
-                <span className="text-label-4 dark:text-dark-label-4">0</span>
+                <span className="text-slate-400">0</span>
               </span>
             </div>
           </div>
@@ -116,7 +116,7 @@ const DbUser = () => {
                   width="1em"
                   height="1em"
                   fill="currentColor"
-                  className="text-olive dark:text-dark-olive"
+                  className="text-[#0fcda1]"
                 >
                   <path
                     fillRule="evenodd"
@@ -126,13 +126,13 @@ const DbUser = () => {
                   <path d="M1.5 8.251a6.75 6.75 0 013.73-6.036A6.657 6.657 0 018.249 1.5h.401a.75.75 0 01.042.001c2.95.164 5.403 2.265 6.112 5.065.101.402 0 .895-.543.911-.543.016-1.51.023-1.51.023a5.25 5.25 0 00-5.25 5.25s-.048 1.248-.024 1.5c.024.25-.513.64-.914.537a6.653 6.653 0 01-1.33-.502.05.05 0 00-.032-.004l-2.601.498a.75.75 0 01-.878-.877l.498-2.603a.05.05 0 00-.004-.032A6.655 6.655 0 011.5 8.251z"></path>
                 </svg>
               </div>
-              <div className="text-label-2 dark:text-dark-label-2">Discuss</div>
-              <div>0</div>
+              <div className="text-slate-300 ">Discuss</div>
+              <div className="text-white">0</div>
             </div>
-            <div className="ml-7 space-x-1 text-xs text-label-3 dark:text-dark-label-3">
+            <div className="ml-7 space-x-1 text-xs text-slate-400">
               <span>Last week</span>
               <span>
-                <span className="text-label-4 dark:text-dark-label-4">0</span>
+                <span className="text-slate-400">0</span>
               </span>
             </div>
           </div>
@@ -145,7 +145,7 @@ const DbUser = () => {
                   width="1em"
                   height="1em"
                   fill="currentColor"
-                  className="text-brand-orange dark:text-dark-brand-orange"
+                  className="text-orange-400"
                 >
                   <path
                     fillRule="evenodd"
@@ -154,61 +154,61 @@ const DbUser = () => {
                   ></path>
                 </svg>
               </div>
-              <div className="text-label-2 dark:text-dark-label-2">
+              <div className="text-slate-300 ">
                 Reputation
               </div>
-              <div>0</div>
+              <div className="text-white">0</div>
             </div>
-            <div className="ml-7 space-x-1 text-xs text-label-3 dark:text-dark-label-3">
+            <div className="ml-7 space-x-1 text-xs text-slate-400">
               <span>Last week</span>
               <span>
-                <span className="text-label-4 dark:text-dark-label-4">0</span>
+                <span className="text-slate-400">0</span>
               </span>
             </div>
           </div>
         </div>
 
         {/* End Community Stats content */}
-      <div className="mt-4 mb-4 h-px w-full border-b border-divider-3 dark:border-dark-divider-3"></div>
-      <div className="text-base font-medium leading-6">Languages</div>
-      <div className="mt-3 flex items-center justify-center space-y-4 text-xs text-label-4 dark:text-dark-label-4">
+      <div className="mt-4 mb-4 h-px w-full border-b border-divider-3"></div>
+      <div className="text-base text-white font-medium leading-6">Languages</div>
+      <div className="mt-3 flex items-center justify-center space-y-4 text-xs text-slate-400">
         Not enough data
       </div>
       <div>
           {/* Start Skills content */}
-          <div className="mt-4 mb-4 w-full border-b border-divider-3 dark:border-dark-divider-3">
-            <div className="text-base font-medium leading-6">Skills</div>
+          <div className="mt-4 mb-4 w-full border-b border-divider-3">
+            <div className="text-base text-white font-medium leading-6">Skills</div>
             <div className="mt-4 flex flex-col space-y-4">
               <div>
                 <div className="flex items-center text-xs">
                   <span className="mr-1.5 flex">
-                    <span className="inline-block h-1 w-1 rounded-full bg-red-s dark:bg-dark-red-s"></span>
+                    <span className="inline-block h-1 w-1 rounded-full bg-orange-300"></span>
                   </span>
                   <span className="font-medium">Advanced</span>
                 </div>
-                <div className="mt-3 flex items-center justify-center text-xs text-label-4 dark:text-dark-label-4">
+                <div className="mt-3 flex items-center justify-center text-xs text-slate-400">
                   Not enough data
                 </div>
               </div>
               <div>
                 <div className="flex items-center text-xs">
                   <span className="mr-1.5 flex">
-                    <span className="inline-block h-1 w-1 rounded-full bg-yellow dark:bg-dark-yellow"></span>
+                    <span className="inline-block h-1 w-1 rounded-full bg-yellow-300"></span>
                   </span>
                   <span className="font-medium">Intermediate</span>
                 </div>
-                <div className="mt-3 flex items-center justify-center text-xs text-label-4 dark:text-dark-label-4">
+                <div className="mt-3 flex items-center justify-center text-xs text-slate-400">
                   Not enough data
                 </div>
               </div>
               <div className="pb-4">
                 <div className="flex items-center text-xs">
                   <span className="mr-1.5 flex">
-                    <span className="inline-block h-1 w-1 rounded-full bg-green-s dark:bg-dark-green-s"></span>
+                    <span className="inline-block h-1 w-1 rounded-full bg-green-300"></span>
                   </span>
                   <span className="font-medium">Fundamental</span>
                 </div>
-                <div className="mt-3 flex items-center justify-center text-xs text-label-4 dark:text-dark-label-4">
+                <div className="mt-3 flex items-center justify-center text-xs text-slate-400">
                   Not enough data
                 </div>
               </div>
