@@ -140,16 +140,16 @@ const NavBar = () => {
               <>
                 <Link to="/profile">
                   <li className="flex items-center">
-                    {user.photoURL && (
+                    {user?.photoURL && (
                       <img
                         className="h-8 w-8 rounded-full mr-2"
-                        title={user.displayName}
-                        src={user.photoURL}
+                        title={user?.displayName}
+                        src={user?.photoURL}
                         alt=""
                       />
                     )}
                     <span className="text-white hover:text-gray-300">
-                      {user.displayName}
+                      {user?.displayName}
                     </span>
                   </li>
                 </Link>
