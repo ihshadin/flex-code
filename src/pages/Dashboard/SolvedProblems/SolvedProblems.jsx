@@ -22,7 +22,7 @@ const SolvedProblems = () => {
                     </div>
                 </div>
                 <div className="flex w-full flex-col space-y-4 lc-xl:max-w-[228px]">
-                    {/* Easy section */}
+                    {/* Easy section added */}
                     <div className="space-y-2">
                         <div className="flex w-full items-end text-xs">
                             <div className="w-[53px] text-white dark:text-dark-label-3">Easy</div>
