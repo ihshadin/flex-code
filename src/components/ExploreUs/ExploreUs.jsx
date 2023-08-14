@@ -5,6 +5,7 @@ import image1 from '../../../public/image-1.jpg'
 
 // CSS connect
 import './ExploreUs.css'
+import { Link } from 'react-router-dom';
 
 const ExploreUs = () => {
     return (
@@ -18,7 +19,7 @@ const ExploreUs = () => {
                     <p className='mt-2 md:mt-4'>
                         Explore is a well-organized tool that helps you get the most out of LeetCode by providing structure to guide your progress towards the next step in your programming career.
                     </p>
-                    <button className='bg-primary-color text-black py-2 px-5 text-lg rounded-md font-medium mt-3 md:mt-5 ms-auto block'>View Details</button>
+                    <Link to="/explore" className='bg-primary-color text-black py-2 px-5 text-lg rounded-md font-medium mt-3 md:mt-5 ms-auto block'>View Details</Link>
                 </div>
                 <div className='md:w-1/2'>
                     <img className='w-[300px] h-[400px] object-cover rounded-lg mx-auto explore-animation' src={image1} alt="" />
