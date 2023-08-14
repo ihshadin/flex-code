@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+::-moz-selection {
+  background-color: #00ffc333;
+}
+
 ::selection {
   background-color: #00ffc333;
 }
@@ -31,6 +35,9 @@ body {
 .gutter.gutter-vertical {
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=");
   cursor: row-resize;
+}
+::-moz-selection {
+  background-color: #00ffc333;
 }
 ::selection {
   background-color: #00ffc333;
@@ -89,4 +96,7 @@ body {
 
 * {
   scroll-behavior: smooth;
+}
+.flex-container {
+  @apply max-w-[1280px] w-full mx-auto py-12 md:py-16 lg:py-32
 }
