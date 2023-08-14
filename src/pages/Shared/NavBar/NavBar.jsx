@@ -125,7 +125,7 @@ const NavBar = () => {
             </li>
             <li>
               <Link
-                to="/myCollages"
+                to="/dashboard"
                 onClick={closeMenu}
                 className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${
                   isActiveRoute("/myCollages")
@@ -140,16 +140,16 @@ const NavBar = () => {
               <>
                 <Link to="/profile">
                   <li className="flex items-center">
-                    {user.photoURL && (
+                    {user?.photoURL && (
                       <img
                         className="h-8 w-8 rounded-full mr-2"
-                        title={user.displayName}
-                        src={user.photoURL}
+                        title={user?.displayName}
+                        src={user?.photoURL}
                         alt=""
                       />
                     )}
                     <span className="text-white hover:text-gray-300">
-                      {user.displayName}
+                      {user?.displayName}
                     </span>
                   </li>
                 </Link>
