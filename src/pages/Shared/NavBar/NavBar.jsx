@@ -22,7 +22,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className=" fixed backdrop-blur-lg top-0 left-0 z-10 w-full">
+    <nav className=" fixed backdrop-blur-sm top-0 left-0 z-10 w-full">
          <div className="bg-inherit py-4 lg:flex justify-between items-center px-4 lg:px-8">
       <div className="flex items-center justify-between">
         <Link to="/" className="text-white text-xl font-semibold">
