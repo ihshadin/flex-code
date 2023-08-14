@@ -10,9 +10,10 @@
 body {
   background-color: #15161a;
 }
-::-moz-selection {
+::-moz-selection, ::selection {
   background-color: #00ffc333;
 }
+
 .gutter {
   background-color: rgb(26, 26, 26);
   background-repeat: no-repeat;
@@ -36,10 +37,9 @@ body {
 }
 body {
   overflow-x: hidden;
-}
-body {
   background-color: #17181b;
 }
+
 .montserrat {
   font-family: "Montserrat", sans-serif;
 }

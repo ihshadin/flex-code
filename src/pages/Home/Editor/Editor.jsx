@@ -2,6 +2,7 @@
 import CodeMirror from "@uiw/react-codemirror";
 import { vscodeDark } from "@uiw/codemirror-theme-vscode";
 import { javascript } from "@codemirror/lang-javascript";
+import './Editor.css'; 
 import Split from 'react-split'
 const Editor = () => {
     return (
@@ -15,7 +16,7 @@ const Editor = () => {
              dragInterval={1}
              cursor="col-resize">
         <div className=" overflow-auto">
-        <p className="p-5"> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur nisi neque nobis expedita rerum consectetur corporis velit assumenda quidem, earum facilis hic impedit nam culpa natus sequi incidunt nemo nesciunt, maxime ad odit ut animi aut excepturi! Laudantium rerum totam sequi facilis commodi, deleniti ab asperiores voluptas quae inventore magni delectus tempore consequatur dolorum id soluta quo labore reiciendis. Suscipit aperiam voluptatibus quia omnis vero animi, nostrum dignissimos at est? Quo ipsam rem a asperiores? Reiciendis corporis vero quia, natus animi ab sunt molestias architecto necessitatibus ducimus aliquid doloribus. Esse impedit, mollitia eius blanditiis perspiciatis unde expedita. Quisquam, quos aspernatur!</p>
+        <p className="p-5"> !</p>
         </div>
         <div className="overflow-hidden h-full flex flex-col">
            <Split className='flex flex-col h-[calc(90vh-94px)]' direction='vertical' sizes={[70, 30]} minSize={0}
