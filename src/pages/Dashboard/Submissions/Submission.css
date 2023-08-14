@@ -1,0 +1,5 @@
+.rounded-bar:hover .recharts-tooltip-wrapper {
+  /* Apply your Tooltip hover styles here */
+  background-color: red;
+  color: blue;
+}
