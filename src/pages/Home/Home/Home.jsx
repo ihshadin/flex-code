@@ -10,8 +10,8 @@ const Home = () => {
   return (
     <div>
       <Slider />
-      <ExploreUs />
       <OurPartners />
+      <ExploreUs />
       <UserCount />
       <Faq></Faq>
       <Testimonials />
