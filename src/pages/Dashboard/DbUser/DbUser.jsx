@@ -22,11 +22,11 @@ const DbUser = () => {
           </div>
           <div className="flex flex-col">
             <div className="flex items-center">
-              <div className="text-slate-200 break-all text-base text-white font-semibold">
+              <div className="break-all text-base text-white font-semibold">
                 {user?.displayName}
               </div>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center ">
               <div className="text-slate-400 text-xs"></div>
             </div>
             <div className="flex flex-1 items-end space-x-[5px] text-base text-white">
