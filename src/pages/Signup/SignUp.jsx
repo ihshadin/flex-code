@@ -1,8 +1,54 @@
 import { Link } from "react-router-dom";
 import { FaGithub, FaRegEnvelope, FaUser } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
+import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+import SocialLogin from "../Shared/Social/SocialLogin";
 
 const SignUp = () => {
+  const { createUser } = useContext(AuthContext);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  // "You clicked the button!", "success";
+
+  const onSubmit = (data) => {
+    const name = data.name;
+    const email = data.email;
+    const password = data.password;
+    createUser(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        // console.log(user);
+        reset();
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: "SignUp Successfull!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        // Swal.fire("Login Successfull!");
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: `${error.message}`,
+          text: "Do you want to continue",
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
+      });
+    console.log(name, email, password);
+  };
+
   return (
     <div className="justify-center items-center flex pt-10">
       <div className="bg-[#1e2d40] shadow-2xl md:w-2/4 max-w-md mx-auto rounded-xl px-10 my-14">
@@ -11,32 +57,37 @@ const SignUp = () => {
             <img className="w-16 h-16" src="/20230810_125620.png" alt="img" />
             <span className="text-[#00ffc3] mr-1">Flex </span> {} Code
           </div>
-          <div className="flex border-2 border-gray-500 text-gray-300 justify-center font-semibold rounded-md py-1 hover:bg-[#17181B] cursor-pointer">
-            <span className="mr-2">Sign in with GitHub</span>
-            <FaGithub className="text-2xl" />
-          </div>
+          <SocialLogin />
           <div className="max-w-[150px] flex justify-center border-2 border-[#00ffc3] rounded mx-auto my-8"></div>
         </>
-        <form action="">
-          <div className="flex items-center border-2 border-gray-500 text-gray-400 px-2 font-semibold rounded-md mb-6 hover:bg-[#17181B] cursor-pointer">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex items-center border-2 border-gray-500 text-gray-400 px-2 font-semibold rounded-md mb-5 hover:bg-[#17181B] cursor-pointer">
             <FaUser className="text-2xl mr-2 " />
             <input
               className="flex-1 bg-[#1e2d40] hover:bg-[#17181B] text-sm outline-none py-2"
               type="text"
-              name="text"
+              name="name"
+              {...register("name", { required: true })}
               id=""
               placeholder="Your Name"
             />
+            {errors.name && (
+              <span className="text-red-500">Name is required</span>
+            )}
           </div>
-          <div className="flex items-center border-2 border-gray-500 text-gray-400 font-semibold rounded-md mb-6 px-2 hover:bg-[#17181B] cursor-pointer">
+          <div className="flex items-center border-2 border-gray-500 text-gray-400 font-semibold rounded-md mb-5 px-2 hover:bg-[#17181B] cursor-pointer">
             <FaRegEnvelope className="text-2xl mr-2" />
             <input
               className="flex-1 bg-[#1e2d40] hover:bg-[#17181B] text-sm outline-none py-2"
               type="email"
               name="email"
+              {...register("email", { required: true })}
               id=""
               placeholder="Email"
             />
+            {errors.email && (
+              <span className="text-red-500">Email is required</span>
+            )}
           </div>
           <div className="flex items-center border-2 border-gray-500 text-gray-400 font-semibold rounded-md mb-3 px-2 hover:bg-[#17181B] cursor-pointer">
             <MdLockOutline className="text-2xl mr-2" />
@@ -44,10 +95,38 @@ const SignUp = () => {
               className="flex-1 bg-[#1e2d40] hover:bg-[#17181B] text-sm outline-none py-2"
               type="password"
               name="password"
+              {...register("password", {
+                required: true,
+                minLength: 6,
+                maxLength: 20,
+                pattern: /(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z])/,
+              })}
               id=""
               placeholder="Password"
-            />
+            />{" "}
+            {errors.password?.type === "required" && (
+              <p className="text-red-500 text-sm mt-1">Password is required</p>
+            )}
+            {errors.password?.type === "minLength" && (
+              <p className="text-red-500 text-sm mt-1">Must be 6 characters</p>
+            )}
+            {/* {errors.password?.type === "pattern" && (
+              <p className="text-red-500 text-sm mt-1">
+                Must have one Uppercase, one lower case, one number
+              </p>
+            )} */}
           </div>
+          {/* {errors.password?.type === "required" && (
+            <p className="text-red-500 text-sm mt-1">Password is required</p>
+          )} */}
+          {/* {errors.password?.type === "minLength" && (
+            <p className="text-red-500 text-sm mt-1">Must be 6 characters</p>
+          )} */}
+          {errors.password?.type === "pattern" && (
+            <p className="text-red-500 text-sm mt-1 mb-2 text-center">
+              Must have one Uppercase, one lower case, one number
+            </p>
+          )}
           <div className="flex justify-end">
             <p className="text-right inline-block cursor-pointer hover:link text-gray-300 hover:text-blue-500 text-sm">
               Forgot your password?
