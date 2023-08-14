@@ -4,11 +4,35 @@
 @tailwind components;
 @tailwind utilities;
 
-::-moz-selection{
+::selection {
+  background-color: #00ffc333;
+}
+body {
+  background-color: #15161a;
+}
+::-moz-selection, ::selection {
   background-color: #00ffc333;
 }
 
-::selection{
+.gutter {
+  background-color: rgb(26, 26, 26);
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+.gutter:hover {
+  background-color: #0a84ff;
+}
+
+.gutter.gutter-horizontal {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==");
+  cursor: col-resize;
+}
+
+.gutter.gutter-vertical {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=");
+  cursor: row-resize;
+}
+::selection {
   background-color: #00ffc333;
 }
 body {
@@ -22,13 +46,14 @@ body {
 .primary-color {
   color: #00ffc3;
 }
+
 .bg-primary-color {
-  background-color: #00ffc3;
+  color: #00ffc3;
 }
+
 .secondary-color {
   color: #fff;
 }
-
 
 /* Section title  */
 .section-title {
@@ -45,7 +70,7 @@ body {
   100% {
     background-position: 0%;
   }
-  body{
+  body {
     overflow-x: hidden;
   }
 }
@@ -57,7 +82,7 @@ body {
   100% {
     background-position: 0%;
   }
-  body{
+  body {
     overflow-x: hidden;
   }
 }
@@ -65,4 +90,3 @@ body {
 * {
   scroll-behavior: smooth;
 }
-
