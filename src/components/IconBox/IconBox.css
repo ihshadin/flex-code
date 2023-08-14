@@ -1,0 +1,52 @@
+.feature-icon-base .icon {
+    position: relative;
+    margin: 0 20px;
+    width: 56px;
+    height: 87px;
+    border-radius: 10px;
+    display: inline-block;
+    top: 0;
+    transition: all 0.2s ease;
+}
+.feature-icon-base .icon::before, .feature-icon-base .icon::after {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+    background: inherit;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+.feature-icon-base .icon::before {
+    transform: rotate(60deg);
+}
+.feature-icon-base .icon::before, .feature-icon-base .icon::after {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+    background: inherit;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+.feature-icon-base .icon::after {
+    transform: rotate(-60deg);
+}
+.feature-icon-base .icon.teal {
+    background: linear-gradient(to bottom right, #4db6ac 0%, #00796b 100%);
+    color: #34a297;
+}
+.feature-icon-base .icon.silver, 
+.feature-icon-base .icon.white, 
+.feature-icon-base .icon {
+    background: linear-gradient(to bottom right, #e0e0e0 0%, #bdbdbd 100%);
+    color: #9e9e9e;
+}
