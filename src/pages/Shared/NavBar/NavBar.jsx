@@ -22,7 +22,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className=" fixed backdrop-blur-lg top-0 left-0 z-10 w-full">
+    <nav className=" fixed backdrop-blur-sm top-0 left-0 z-10 w-full">
          <div className="bg-inherit py-4 lg:flex justify-between items-center px-4 lg:px-8">
       <div className="flex items-center justify-between">
         <Link to="/" className="text-white text-xl font-semibold">
@@ -125,7 +125,7 @@ const NavBar = () => {
             </li>
             <li>
               <Link
-                to="/myCollages"
+                to="/dashboard"
                 onClick={closeMenu}
                 className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${
                   isActiveRoute("/myCollages")
@@ -140,16 +140,16 @@ const NavBar = () => {
               <>
                 <Link to="/profile">
                   <li className="flex items-center">
-                    {user.photoURL && (
+                    {user?.photoURL && (
                       <img
                         className="h-8 w-8 rounded-full mr-2"
-                        title={user.displayName}
-                        src={user.photoURL}
+                        title={user?.displayName}
+                        src={user?.photoURL}
                         alt=""
                       />
                     )}
                     <span className="text-white hover:text-gray-300">
-                      {user.displayName}
+                      {user?.displayName}
                     </span>
                   </li>
                 </Link>
@@ -168,7 +168,11 @@ const NavBar = () => {
                   <Link
                     to="/login"
                     onClick={closeMenu}
-                    className="text-white font-semibold hover:text-gray-300  pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300"
+                    className={`text-white font-semibold hover:text-gray-300  pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${
+                      isActiveRoute("/login")
+                        ? "font-bold md:border-b-2 pb-1 border-[#00ffc3]"
+                        : ""
+                    }`}
                   >
                     Login
                   </Link>
@@ -177,7 +181,11 @@ const NavBar = () => {
                   <Link
                     to="/signup"
                     onClick={closeMenu}
-                    className="text-white font-semibold hover:text-gray-300  pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300"
+                    className={`text-white font-semibold hover:text-gray-300  pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${
+                      isActiveRoute("/signup")
+                        ? "font-bold md:border-b-2 pb-1 border-[#00ffc3]"
+                        : ""
+                    }`}
                   >
                     Sign Up
                   </Link>
