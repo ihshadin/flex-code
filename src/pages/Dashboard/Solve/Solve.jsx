@@ -8,7 +8,7 @@ import {
 
 const Solve = () => {
   return (
-    <div className="bg-[#1e2d40] md:ml-5 mt-4 rounded-lg h-[300px] text-base-300">
+    <div className="bg-[#1e2d40] md:ml-5 mt-4 rounded-lg h-[255px] text-base-300">
       <div className="flex justify-between px-5 pt-4">
         <div className="flex gap-8">
           <>

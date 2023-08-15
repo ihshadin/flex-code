@@ -6,14 +6,13 @@ import Swal from "sweetalert2";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import SocialLogin from "../Shared/Social/SocialLogin";
-
+import "./Signup.css";
 const SignUp = () => {
   const { createUser } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
     reset,
-    watch,
     formState: { errors },
   } = useForm();
 
@@ -51,7 +50,7 @@ const SignUp = () => {
 
   return (
     <div className="justify-center items-center flex pt-10">
-      <div className="bg-[#1e2d40] shadow-2xl md:w-2/4 max-w-md mx-auto rounded-xl px-10 my-14">
+      <div className="bg-[#1e2d40] shadow-2xl md:w-2/4 max-w-md mx-auto rounded-xl px-7 my-14">
         <>
           <div className="flex items-center justify-center text-white text-2xl font-bold py-8">
             <img className="w-16 h-16" src="/20230810_125620.png" alt="img" />
@@ -64,8 +63,9 @@ const SignUp = () => {
           <div className="flex items-center border-2 border-gray-500 text-gray-400 px-2 font-semibold rounded-md mb-5 hover:bg-[#17181B] cursor-pointer">
             <FaUser className="text-2xl mr-2 " />
             <input
-              class="p-2 border rounded outline-none transition flex-1 bg-[#1e2d40]  focus:bg-[#1e2d40] active:bg-[#1e2d40] pointer-events-auto"
-              // className="flex-1 bg-[#1e2d40] hover:bg-[#17181B] text-sm outline-none py-2"
+              // class="p-2 border rounded outline-none transition flex-1 bg-[#1e2d40]  focus:bg-[#1e2d40] active:bg-[#1e2d40] pointer-events-auto"
+              // class="bg-black text-red p-2 rounded-lg border-none fo"
+              className="flex-1 bg-[#1e2d40] hover:bg-[#17181B] text-sm outline-none py-2"
               type="text"
               name="name"
               {...register("name", { required: true })}
@@ -128,9 +128,19 @@ const SignUp = () => {
               Must have one Uppercase, one lower case, one number
             </p>
           )}
-          <div className="flex justify-end">
-            <p className="text-right inline-block cursor-pointer hover:link text-gray-300 hover:text-blue-500 text-sm">
-              Forgot your password?
+          <div className="flex justify-end text-gray-300 items-center text-sm">
+            <p className="flex items-center gap-x-1">
+              {" "}
+              <input
+                type="checkbox"
+                // checked="checked"
+                defaultChecked={false}
+                className="checkbox h-4 w-4 checkbox-accent"
+              />{" "}
+              <span>I agree to</span>{" "}
+            </p>
+            <p className="text-right inline-block cursor-pointer ml-1 hover:link text-blue-400 ">
+              Terms and conditions?
             </p>
           </div>
           <input

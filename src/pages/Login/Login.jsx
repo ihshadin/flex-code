@@ -2,19 +2,22 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaRegEnvelope } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
 import { useForm } from "react-hook-form";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import SocialLogin from "../Shared/Social/SocialLogin";
 import Swal from "sweetalert2";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
-  const { signIn } = useContext(AuthContext);
+  const { signIn, resetPassword } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
+  const emailRef = useRef(null);
   const from = location.state?.from?.pathname || "/";
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
@@ -44,6 +47,45 @@ const Login = () => {
         });
       });
   };
+
+  const handleReset = async (email) => {
+    try {
+      await resetPassword(email);
+      console.log(email);
+      toast.success("Please check your email for reset link.");
+    } catch (error) {
+      if (error.code === "auth/user-not-found") {
+        toast.error("Please enter a valid email address.");
+      } else {
+        toast.error("Failed to send password reset email. Please try again.");
+      }
+    }
+  };
+
+  // const handleReset = () => {
+  //   const email = emailRef.current?.value;
+  //   console.log(email);
+
+  //   if (!email) {
+  //     toast.error("Please enter a valid email address.");
+  //     return;
+  //   }
+
+  //   resetPassword(email)
+  //     .then(() => {
+  //       toast.success("Please check your email for reset link.");
+  //       setLoading(false);
+  //     })
+  //     .catch((err) => {
+  //       setLoading(false);
+  //       console.log(err.code);
+  //       if (err.code === "auth/user-not-found") {
+  //         toast.error("Please enter a valid email address.");
+  //       } else {
+  //         toast.error("Failed to send password reset email. Please try again.");
+  //       }
+  //     });
+  // };
   return (
     <div className="justify-center items-center flex pt-10">
       <div className="bg-[#1e2d40] shadow-2xl md:w-2/4 max-w-md mx-auto rounded-xl px-7 my-14">
@@ -62,6 +104,12 @@ const Login = () => {
               className="flex-1 bg-[#1e2d40] hover:bg-[#17181B] text-sm outline-none py-2"
               type="email"
               name="email"
+              // ref={(e) => {
+              //   // Bind input to both ref and React Hook Form
+              //   emailRef.current = e; // This is the important part
+              //   register(e); // Use React Hook Form's register function
+              // }}
+              // ref={emailRef}
               {...register("email", { required: true })}
               id=""
               placeholder="Email"
@@ -86,7 +134,12 @@ const Login = () => {
             )}
           </div>
           <div className="flex justify-end">
-            <p className="text-right inline-block cursor-pointer hover:link text-gray-300 hover:text-blue-500 text-sm">
+            <p
+              onClick={() => {
+                handleReset(errors.email ? "" : getValues("email")); // Use getValues from react-hook-form
+              }}
+              className="text-right inline-block cursor-pointer hover:link text-gray-300 hover:text-blue-500 text-sm"
+            >
               Forgot your password?
             </p>
           </div>
@@ -96,6 +149,7 @@ const Login = () => {
             value="Sign in"
           />
         </form>
+
         <div className="text-center text-gray-300 pb-10">
           <Link to="/signup">
             {" "}
