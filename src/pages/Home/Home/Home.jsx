@@ -1,15 +1,15 @@
 import OurPartners from "../OurPartners/OurPartners";
 import UserCount from "../UserCount/UserCount";
 import Faq from "../FAQ/Faq";
-import Slider from "../Slider/Slider";
-import ExploreUs from "../../../components/ExploreUs/ExploreUs";
 import Editor from "../Editor/Editor";
-import Testimonials from "../../Shared/Testimonials/Testimonials";
+import ExploreUs from "../ExploreUs/ExploreUs";
+import Testimonials from "../Testimonials/Testimonials";
+import Banner from "../Banner/Banner";
 
 const Home = () => {
   return (
     <div>
-      <Slider />
+      <Banner />
       <OurPartners />
       <ExploreUs />
       <UserCount />

@@ -1,3 +1,6 @@
-.child{
-    width: 16rem;
-  }
+.marquee-container .initial-child-container {
+  align-items: center;
+}
+.marquee-container .child {
+  width: 200px;
+}
