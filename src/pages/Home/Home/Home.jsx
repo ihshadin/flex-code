@@ -3,8 +3,8 @@ import UserCount from "../UserCount/UserCount";
 import Faq from "../FAQ/Faq";
 import Slider from "../Slider/Slider";
 import ExploreUs from "../../../components/ExploreUs/ExploreUs";
-import Testimonials from "../../../components/Testimonials/Testimonials";
 import Editor from "../Editor/Editor";
+import Testimonials from "../../Shared/Testimonials/Testimonials";
 
 const Home = () => {
   return (
@@ -15,7 +15,7 @@ const Home = () => {
       <UserCount />
       <Faq></Faq>
       <Testimonials />
-      <Editor/>
+      <Editor />
     </div>
   );
 };
