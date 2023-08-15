@@ -4,6 +4,7 @@ import image1 from '../../../public/image-1.jpg'
 
 // CSS connect
 import './ExploreUs.css'
+import { Link } from 'react-router-dom';
 
 const ExploreUs = () => {
     return (
