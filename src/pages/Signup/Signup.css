@@ -1,0 +1,16 @@
+/* Styling autocomplete suggestions
+::-webkit-input-placeholder {
+  background-color: black;
+}
+
+:-ms-input-placeholder {
+  background-color: black;
+}
+
+::-ms-input-placeholder {
+  background-color: black;
+}
+
+::placeholder {
+  background-color: black;
+} */
