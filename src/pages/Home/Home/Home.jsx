@@ -4,6 +4,7 @@ import Faq from "../FAQ/Faq";
 import Editor from "../Editor/Editor";
 import ExploreUs from "../ExploreUs/ExploreUs";
 import Testimonials from "../Testimonials/Testimonials";
+import Banner from "../Banner/Banner";
 
 const Home = () => {
   return (
