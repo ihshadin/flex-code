@@ -15,19 +15,21 @@ import "./Submission.css";
 
 const Submissions = () => {
   const data = [
-    { name: "1", pv: 456 },
-    { name: "2", pv: 230 },
-    { name: "3", pv: 345 },
-    { name: "4", pv: 450 },
-    { name: "5", pv: 321 },
-    { name: "6", pv: 235 },
-    { name: "7", pv: 267 },
-    { name: "8", pv: 378 },
-    { name: "9", pv: 210 },
-    { name: "10", pv: 23 },
+    { name: "Jan", submit: 456 },
+    { name: "Feb", submit: 230 },
+    { name: "Mar", submit: 345 },
+    { name: "Apr", submit: 450 },
+    { name: "May", submit: 321 },
+    { name: "Jun", submit: 235 },
+    { name: "Jul", submit: 267 },
+    { name: "Aug", submit: 378 },
+    { name: "Sep", submit: 210 },
+    { name: "Oct", submit: 200 },
+    { name: "Nov", submit: 150 },
+    { name: "Dec", submit: 500 },
   ];
   return (
-    <div className="bg-[#1e2d40] ml-5 mt-4 rounded-lg ">
+    <div className="bg-[#1e2d40] md:ml-5 mt-4 rounded-lg ">
       <div className="flex justify-between text-base-300 pt-3 px-8">
         <p className="pl-3">0 submissions in the last year</p>
         <div className="flex gap-x-2">
@@ -53,7 +55,7 @@ const Submissions = () => {
           <ReferenceLine y={0} stroke="#000ffc3" />
           <Brush dataKey="name" height={30} stroke="#000" />
           <Bar
-            dataKey="pv"
+            dataKey="submit"
             fill="#00ffc3"
             //   fill="#1e2d40" // Background color
             className="hover:bg-black rounded-bar"
