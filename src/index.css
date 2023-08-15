@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -11,37 +11,11 @@
 ::selection {
   background-color: #00ffc333;
 }
-body {
-  background-color: #15161a;
-}
+
 ::-moz-selection, ::selection {
   background-color: #00ffc333;
 }
 
-.gutter {
-  background-color: rgb(26, 26, 26);
-  background-repeat: no-repeat;
-  background-position: 50%;
-}
-.gutter:hover {
-  background-color: #0a84ff;
-}
-
-.gutter.gutter-horizontal {
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==");
-  cursor: col-resize;
-}
-
-.gutter.gutter-vertical {
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=");
-  cursor: row-resize;
-}
-::-moz-selection {
-  background-color: #00ffc333;
-}
-::selection {
-  background-color: #00ffc333;
-}
 body {
   overflow-x: hidden;
   background-color: #17181b;
