@@ -99,7 +99,7 @@ const NavBar = () => {
             </li>
             <li>
               <Link
-                to="/blog"
+                to="/problems"
                 onClick={closeMenu}
                 className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${
                   isActiveRoute("/blog")
