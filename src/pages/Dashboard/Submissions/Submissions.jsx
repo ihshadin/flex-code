@@ -52,11 +52,11 @@ const Submissions = () => {
           <YAxis />
           <Tooltip labelStyle={{ color: "black" }} />
           <Legend verticalAlign="top" wrapperStyle={{ lineHeight: "10px" }} />
-          <ReferenceLine y={0} stroke="#000ffc3" />
+          <ReferenceLine y={0} stroke="#0fcda1" />
           <Brush dataKey="name" height={30} stroke="#000" />
           <Bar
             dataKey="submit"
-            fill="#00ffc3"
+            fill="#0fcda1"
             //   fill="#1e2d40" // Background color
             className="hover:bg-black rounded-bar"
             barSize={12}
