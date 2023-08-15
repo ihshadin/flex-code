@@ -245,7 +245,7 @@ const Problems = () => {
         }
         // Add more objects like this if needed
     ];
-    
+
     return (
         <div className="flexcode-container ">
             <div className="mb-10 montserrat">
@@ -255,7 +255,7 @@ const Problems = () => {
             <section className=" grid grid-cols-3 montserrat mb-24 mt-16 justify-center rounded-lg w-5/6 mx-auto">
                 {
                     problems?.map((problem, index) => <Link to={`${problem?.language}`} key={index}
-                        className={`${problems.reduce((total, i) => total + index, 0) - 3 <= index ? 'border-b' : ''} ${[9, 10, 11].includes(index) ? "" : "border-b"} ${[1, 4, 7, 10, 13].includes(index) ? "border-x" : ""} cursor-pointer hover:bg-[#00ffc3] hover:text-[#17181b] transition-all flex justify-center items-center`}>
+                        className={`${problems.reduce((total, i) => total + index, 0) - 3 <= index ? 'border-b' : ''} ${[9, 10, 11].includes(index) ? "" : "border-b"} ${[1, 4, 7, 10, 13].includes(index) ? "border-x" : ""} cursor-pointer hover:bg-[#0fcda1] hover:text-[#17181b] transition-all flex justify-center items-center`}>
                         <p className="md:text-2xl font-semibold text-center py-5">{problem.language}</p>
                     </Link>)
                 }
@@ -266,45 +266,45 @@ const Problems = () => {
                 <p className="text-md text-white mt-1 tracking-wider">Our weekly and monthly best problems.</p>
             </div>
             <section className="grid md:grid-cols-2 gap-10 w-5/6 mx-auto md:w-full">
-                <aside className="border hover:border-[#00ffc3] rounded-lg montserrat flex justify-between px-5 items-center">
+                <aside className="border hover:border-[#0fcda1] rounded-lg montserrat flex justify-between px-5 items-center">
                     <div className="flex flex-col gap-3 p-5">
-                    <p className="text-md font-semibold text-white mt-1 tracking-wider"> Problem of the month.</p>
-                    <span className="flex items-center gap-5">
-                        <p className="text-xs text-gray-400 tracking-wider"> Challenges: <span className="text-white">2000</span>.</p>
-                        <p className="text-xs text-gray-400 tracking-wider"> Attempts: <span className="text-white">4000</span>.</p>
-                    </span>
-                    <h1 className="text-3xl mt-2 tracking-wide text-white font-bold"> Two sum</h1>
-                    <span className="flex items-center gap-5">
-                        <p className="text-xs text-gray-400 tracking-wider"> Level: <span className="text-white">Easy</span>.</p>
-                        <p className="text-xs mt-1 text-gray-400 tracking-wider"> Language: <span className="text-white">JavaScript</span>.</p>
-                    </span>
+                        <p className="text-md font-semibold text-white mt-1 tracking-wider"> Problem of the month.</p>
+                        <span className="flex items-center gap-5">
+                            <p className="text-xs text-gray-400 tracking-wider"> Challenges: <span className="text-white">2000</span>.</p>
+                            <p className="text-xs text-gray-400 tracking-wider"> Attempts: <span className="text-white">4000</span>.</p>
+                        </span>
+                        <h1 className="text-3xl mt-2 tracking-wide text-white font-bold"> Two sum</h1>
+                        <span className="flex items-center gap-5">
+                            <p className="text-xs text-gray-400 tracking-wider"> Level: <span className="text-white">Easy</span>.</p>
+                            <p className="text-xs mt-1 text-gray-400 tracking-wider"> Language: <span className="text-white">JavaScript</span>.</p>
+                        </span>
                     </div>
-                <div>
-                  
-                <button className="btn select-none mt-5 md:mt-0 hover:bg-[#1e2d40] hover:border-2 hover:border-[#00ffc3] hover:text-[#00ffc3] text-white"
-                                >Solve Problem</button>
-                </div>
+                    <div>
+
+                        <button className="btn select-none mt-5 md:mt-0 hover:bg-[#1e2d40] hover:border-2 hover:border-[#0fcda1] hover:text-[#0fcda1] text-white"
+                        >Solve Problem</button>
+                    </div>
                 </aside>
-                <aside className="border hover:border-[#00ffc3] rounded-lg montserrat flex justify-between px-5 items-center">
+                <aside className="border hover:border-[#0fcda1] rounded-lg montserrat flex justify-between px-5 items-center">
                     <div className="flex flex-col gap-3 p-5">
-                    <p className="text-md font-semibold text-white mt-1 tracking-wider"> Problem of the month.</p>
-                    <span className="flex items-center gap-5">
-                        <p className="text-xs text-gray-400 tracking-wider"> Challenges: <span className="text-white">2000</span>.</p>
-                        <p className="text-xs text-gray-400 tracking-wider"> Attempts: <span className="text-white">4000</span>.</p>
-                    </span>
-                    <h1 className="text-3xl mt-2 tracking-wide text-white font-bold"> Two sum</h1>
-                    <span className="flex items-center gap-5">
-                        <p className="text-xs text-gray-400 tracking-wider"> Level: <span className="text-white">Easy</span>.</p>
-                        <p className="text-xs mt-1 text-gray-400 tracking-wider"> Language: <span className="text-white">JavaScript</span>.</p>
-                    </span>
+                        <p className="text-md font-semibold text-white mt-1 tracking-wider"> Problem of the month.</p>
+                        <span className="flex items-center gap-5">
+                            <p className="text-xs text-gray-400 tracking-wider"> Challenges: <span className="text-white">2000</span>.</p>
+                            <p className="text-xs text-gray-400 tracking-wider"> Attempts: <span className="text-white">4000</span>.</p>
+                        </span>
+                        <h1 className="text-3xl mt-2 tracking-wide text-white font-bold"> Two sum</h1>
+                        <span className="flex items-center gap-5">
+                            <p className="text-xs text-gray-400 tracking-wider"> Level: <span className="text-white">Easy</span>.</p>
+                            <p className="text-xs mt-1 text-gray-400 tracking-wider"> Language: <span className="text-white">JavaScript</span>.</p>
+                        </span>
                     </div>
-                <div>
-                  
-                <button className="btn select-none mt-5 md:mt-0 hover:bg-[#1e2d40] hover:border-2 hover:border-[#00ffc3] hover:text-[#00ffc3] text-white"
-                                >Solve Problem</button>
-                </div>
+                    <div>
+
+                        <button className="btn select-none mt-5 md:mt-0 hover:bg-[#1e2d40] hover:border-2 hover:border-[#0fcda1] hover:text-[#0fcda1] text-white"
+                        >Solve Problem</button>
+                    </div>
                 </aside>
-               
+
             </section>
         </div>
 

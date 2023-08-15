@@ -7,7 +7,7 @@ import Solve from "../Solve/Solve";
 
 const DashboardHome = () => {
   return (
-    <div className="flex flex-col md:flex-row gap-3 md:gap-0 w-[100%] mt-[5rem] md:p-[2rem] p-[0.5rem]">
+    <div className="flexcode-container flex flex-col md:flex-row gap-3 md:gap-0 w-[100%]">
       <div className="md:w-[30%]">
         <DbUser></DbUser>
       </div>
