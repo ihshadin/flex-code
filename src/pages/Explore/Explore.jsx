@@ -1,5 +1,3 @@
- 
-import Container from "../Shared/Container/Container";
 import ExploreCard from "./ExploreCard";
 
 const Explore = () => {
@@ -55,26 +53,24 @@ const Explore = () => {
             link: 'https://writecreatively.org'
         }
     ];
-    
-return (
-<div>
-<Container>
-    <main className="pt-24 montserrat">
 
-    <h1 className="text-6xl text-white font-bold">Explore</h1>
-    <p className="text-xl text-white mt-5 tracking-wider">The best place for problem solving with exploring smart contracts <br /> from world-class companies problems — unlock the power of problem solving with <span className="text-[#00ffc3]">Flex Code</span>.</p>
-    <section className="mt-16">
-    <h1 className="text-xl text-white font-semibold">Popular</h1>
-    <p className="text-md text-white mt-1 tracking-wider">A collection of most popular problems.</p>
-    <section className="grid grid-cols-3 gap-5 my-10">
-     {
-        exploreCards?.map((explore, index) => <ExploreCard key={index} explore={explore}/>)
-     }
-    </section>
-    </section>
-    </main>
-</Container>
-</div>
-);
+    return (
+        <div>
+            <main className="pt-24 montserrat">
+
+                <h1 className="text-6xl text-white font-bold">Explore</h1>
+                <p className="text-xl text-white mt-5 tracking-wider">The best place for problem solving with exploring smart contracts <br /> from world-class companies problems — unlock the power of problem solving with <span className="text-[#00ffc3]">Flex Code</span>.</p>
+                <section className="mt-16">
+                    <h1 className="text-xl text-white font-semibold">Popular</h1>
+                    <p className="text-md text-white mt-1 tracking-wider">A collection of most popular problems.</p>
+                    <section className="grid grid-cols-3 gap-5 my-10">
+                        {
+                            exploreCards?.map((explore, index) => <ExploreCard key={index} explore={explore} />)
+                        }
+                    </section>
+                </section>
+            </main>
+        </div>
+    );
 };
 export default Explore;

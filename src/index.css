@@ -14,6 +14,9 @@
 body {
   background-color: #15161a;
 }
+::-moz-selection {
+  background-color: #00ffc333;
+}
 ::-moz-selection, ::selection {
   background-color: #00ffc333;
 }
@@ -55,7 +58,10 @@ body {
 }
 
 .bg-primary-color {
-  color: #00ffc3;
+  background-color: #00ffc3;
+}
+.bg-secondary-color {
+  background-color: #1e2d40;
 }
 
 .secondary-color {
@@ -97,6 +103,6 @@ body {
 * {
   scroll-behavior: smooth;
 }
-.flex-container {
-  @apply max-w-[1280px] w-full mx-auto py-12 md:py-16 lg:py-32
+.flexcode-container {
+  @apply max-w-[1280px] w-full mx-auto py-12 md:py-16 lg:py-32 px-3 lg:mx-0
 }

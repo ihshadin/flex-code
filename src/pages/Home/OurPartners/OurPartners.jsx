@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Marquee from "react-fast-marquee";
 import Partner from "./Partner";
 import './Partner.css'
-import Container from "../../Shared/Container/Container";
+
+
 const OurPartners = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const partners = [
@@ -25,7 +26,7 @@ const OurPartners = () => {
   };
 
   return (
-    <div className="flex-container">
+    <div className="flexcode-container">
       <Marquee
         pauseOnClick
         speed={200}
