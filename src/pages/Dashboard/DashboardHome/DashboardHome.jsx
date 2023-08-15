@@ -3,6 +3,7 @@ import DbUser from "../DbUser/DbUser";
 import SolvedProblems from "../SolvedProblems/SolvedProblems";
 import Badges from "../Badges/Badges";
 import Submissions from "../Submissions/Submissions";
+import Solve from "../Solve/Solve";
 
 const DashboardHome = () => {
   return (
@@ -16,6 +17,7 @@ const DashboardHome = () => {
           <Badges></Badges>
         </div>
         <Submissions></Submissions>
+        <Solve />
       </div>
     </div>
   );
