@@ -25,28 +25,25 @@ const OurPartners = () => {
   };
 
   return (
-    <div>
-      <Container>
-        
-        <Marquee className="mt-10 mb-40"
-         pauseOnClick 
-         speed={150}
-         gradient={true}
-         gradientColor={[23, 24, 27]}>
-          {" "}
-          {/* pauseOnHover */}
-          {partners?.map((partner, index) => (
-            <div
-              key={index}
-              onMouseEnter={() => handleMouseEnter(index)}
-              onMouseLeave={handleMouseLeave}
-              className=" "
-            >
-              <Partner src={partner.pic} isActive={index === activeIndex} />
-            </div>
-          ))}
-        </Marquee>
-      </Container>
+    <div className="flex-container">
+      <Marquee
+        pauseOnClick
+        speed={200}
+        gradient={true}
+        gradientColor={[23, 24, 27]}>
+        {" "}
+        {/* pauseOnHover */}
+        {partners?.map((partner, index) => (
+          <div
+            key={index}
+            onMouseEnter={() => handleMouseEnter(index)}
+            onMouseLeave={handleMouseLeave}
+            className=" "
+          >
+            <Partner src={partner.pic} isActive={index === activeIndex} />
+          </div>
+        ))}
+      </Marquee>
     </div>
   );
 };
