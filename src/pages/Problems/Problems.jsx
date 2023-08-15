@@ -247,7 +247,7 @@ const Problems = () => {
     ];
     
     return (
-        <div className="flex-container">
+        <div className="flexcode-container ">
             <div className="mb-10 montserrat">
                 <h1 className="text-3xl text-white font-semibold"> Most Popular languages</h1>
                 <p className="text-md text-white mt-1 tracking-wider">A collection of most popular problems.</p>

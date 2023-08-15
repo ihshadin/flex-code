@@ -4,7 +4,7 @@ const UserCount = () => {
   return (
     <>
       <section>
-        <div className="flexcode-container rounded-xl border-[#00ffc3] border-2 drop-shadow-lg grid px-10 py-16 gap-10 lg:gap-0 lg:grid-cols-3 justify-center text-white montserrat">
+        <div className=" rounded-xl border-[#00ffc3] border-2 drop-shadow-lg grid px-10 py-16 gap-10 lg:gap-0 lg:grid-cols-3 justify-center text-white montserrat">
           <div className="flex flex-col gap-5 justify-center items-center">
             <h2 className="text-7xl">
               <CountUp start={0} end={1000} duration={4} /> &#43;
