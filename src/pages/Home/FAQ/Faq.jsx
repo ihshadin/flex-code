@@ -3,7 +3,7 @@ import React from 'react';
 const Faq = () => {
     return (
         <section className='w-full'>
-            <div class="relative flexcode-container bg-[#17181b]  pt-10 pb-8 my-8 ring-1 ring-gray-900/5  text-white">
+            <div class="flexcode-container relative bg-[#17181b] ring-1 ring-gray-900/5  text-white">
                 <div class="">
                     <div class="flex flex-col items-center">
                         <h2 class="mt-2 text-center text-3xl font-bold tracking-tight md:text-5xl">FAQ</h2>
