@@ -68,5 +68,5 @@ body {
   scroll-behavior: smooth;
 }
 .flexcode-container {
-  @apply max-w-[1280px] w-full mx-auto py-12 md:py-16 lg:py-32 px-3 lg:mx-0
+  @apply max-w-[1280px] w-full mx-auto py-12 md:py-16 lg:py-32 px-3 lg:px-0
 }
