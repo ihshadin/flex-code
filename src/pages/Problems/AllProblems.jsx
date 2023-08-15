@@ -249,7 +249,7 @@ const {languages} = useParams()
 const specificLanguageProblems = problems.filter(problem => problem.language === languages)
 console.log(specificLanguageProblems[0].problems); 
 return (
-<div className="flex-container">
+<div className="flexcode-container">
 <div className="mb-10 montserrat flex flex-col justify-center items-center">
                 <h1 className="text-4xl text-white font-semibold"> All popular <span className="text-[#00ffc3]">{languages}</span> problems</h1>
                 <p className="text-md text-white mt-1 tracking-wider">Give your best to unlock the power of problem solving.</p>
