@@ -58,7 +58,7 @@ const Explore = () => {
         <section>
             <div className="flexcode-container">
                 <h1 className="text-6xl text-white font-bold">Explore</h1>
-                <p className="text-xl text-white mt-5 tracking-wider">The best place for problem solving with exploring smart contracts <br /> from world-class companies problems — unlock the power of problem solving with <span className="text-[#00ffc3]">Flex Code</span>.</p>
+                <p className="text-xl text-white mt-5 tracking-wider">The best place for problem solving with exploring smart contracts <br /> from world-class companies problems — unlock the power of problem solving with <span className="text-[#0fcda1]">Flex Code</span>.</p>
                 <div className="mt-16">
                     <h1 className="text-2xl text-white font-semibold">Popular</h1>
                     <p className="text-md text-white mt-1 tracking-wider">A collection of most popular problems.</p>

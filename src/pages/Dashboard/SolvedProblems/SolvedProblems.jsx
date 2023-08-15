@@ -9,8 +9,8 @@ const SolvedProblems = () => {
                     <div className="shrink-1 relative max-h-[100px] max-w-[100px] z-base">
                         {/* SVG code for the circle */}
                         <svg className="h-full w-full origin-center -rotate-90 transform" viewBox="0 0 100 100">
-                            <circle fill="none" cx="50" cy="50" r="46" strokeWidth="3" strokeLinecap="round" stroke="#00ffc3" className="w-[100px] text-gray-4 dark:text-dark-gray-4"></circle>
-                            <circle fill="none" cx="50" cy="50" r="46" strokeWidth="5" strokeLinecap="round" stroke="#00ffc3" className="cursor-pointer text-brand-orange dark:text-dark-brand-orange drop-shadow-[0_2px_4px_rgba(255,161,22,0.2)]" strokeDasharray="0.10256441594402448 288.92395971431694" strokeDashoffset="0" data-difficulty="ALL">
+                            <circle fill="none" cx="50" cy="50" r="46" strokeWidth="3" strokeLinecap="round" stroke="#0fcda1" className="w-[100px] text-gray-4 dark:text-dark-gray-4"></circle>
+                            <circle fill="none" cx="50" cy="50" r="46" strokeWidth="5" strokeLinecap="round" stroke="#0fcda1" className="cursor-pointer text-brand-orange dark:text-dark-brand-orange drop-shadow-[0_2px_4px_rgba(255,161,22,0.2)]" strokeDasharray="0.10256441594402448 288.92395971431694" strokeDashoffset="0" data-difficulty="ALL">
                             </circle>
                         </svg>
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform cursor-default text-center">
