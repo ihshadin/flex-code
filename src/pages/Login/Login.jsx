@@ -86,7 +86,7 @@ const Login = () => {
             <span className="text-[#00ffc3] mr-1">Flex </span> {} Code
           </div>
           <SocialLogin />
-          <div className="max-w-[150px] flex justify-center border-2 border-[#00ffc3] rounded mx-auto my-8"></div>
+          <div className="max-w-[150px] flex justify-center border-2 border-[#0fcda1] rounded mx-auto my-8"></div>
         </>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex items-center border-2 border-gray-500 text-gray-400 px-2 font-semibold rounded-md mb-5 hover:bg-[#17181B] cursor-pointer">
