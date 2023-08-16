@@ -12,8 +12,8 @@ const Faq = () => {
 
                         </p>
                     </div>
-                    <div className='flex justify-center items-center gap-10'>
-                        <div class="mx-auto w-[50%] mt-8 grid  divide-y divide-[#00ffc3]">
+                    <div className='md:flex justify-center items-center gap-10'>
+                        <div class="mx-auto md:w-[50%] mt-8 grid  divide-y divide-[#00ffc3]">
                             <div class="py-5 px-2">
                                 <details class="group">
                                     <summary class="flex cursor-pointer list-none items-center justify-between font-medium">
@@ -111,7 +111,7 @@ const Faq = () => {
                                 </details>
                             </div>
                         </div>
-                        <div className='w-[40%] mt-8'>
+                        <div className='md:w-[40%] mt-8'>
                             <img className='rounded-lg' src={faqImg} alt="" />
                         </div>
                     </div>
