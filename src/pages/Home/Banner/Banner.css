@@ -1,0 +1,6 @@
+.banner-title {
+    background-image: linear-gradient(to top left, #f57f17, #2196f3, #ffc107, #4caf50);
+    background-size: 400%;
+    animation: sectionAnimation 3s ease-in-out infinite alternate-reverse;
+    @apply tracking-wide font-bold text-center text-transparent bg-clip-text text-4xl md:text-5xl py-5;
+  }

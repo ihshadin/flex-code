@@ -55,8 +55,8 @@ const NavBar = () => {
   }, []);
 
   return (
-    <nav className="sticky top-0 backdrop-blur-sm z-10 w-full">
-      <div className="max-w-[1280px] w-full mx-auto bg-inherit py-4 lg:flex justify-between items-center">
+    <nav className={`top-0 backdrop-blur-sm z-10 w-full ${location.pathname === '/' ? 'fixed' : 'sticky'}`}>
+      <div className="max-w-[1280px] w-full mx-auto bg-inherit py-2 px-3 lg:flex justify-between items-center">
         <div className="flex items-center justify-between">
           <Link to="/" className="text-white text-xl font-semibold">
             <div className="flex items-center gap-1">
@@ -134,7 +134,7 @@ const NavBar = () => {
                 <Link
                   to="/problems"
                   onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#0fcda1] transition-all duration-300 ${isActiveRoute("/blog")
+                  className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#0fcda1] transition-all duration-300 ${isActiveRoute("/problems")
                     ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
                     : ""
                     }`}
@@ -144,15 +144,27 @@ const NavBar = () => {
               </li>
               <li>
                 <Link
-                  to="/admission"
+                  to="/blog"
+                  onClick={closeMenu}
+                  className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#0fcda1] transition-all duration-300 ${isActiveRoute("/blog")
+                    ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
+                    : ""
+                    }`}
+                >
+                  Blogs
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/explore"
                   onClick={closeMenu}
                   className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${
-                    isActiveRoute("/admission")
+                    isActiveRoute("/explore")
                       ? "font-bold md:border-b-2 pb-1 border-[#00ffc3]"
                       : ""
                   }`}
                 >
-                  About
+                  Explore
                 </Link>
               </li>
               <li>
@@ -182,7 +194,7 @@ const NavBar = () => {
                       <img
                         ref={dropdownRef} 
                         // tabIndex={0}
-                        className={`h-9 w-9 rounded-full mr-2 ${
+                        className={`h-9 w-9 rounded-full ${
                           userClicked
                             ? "border-2 border-[#00ffc3]"
                             : "border-2 border-transparent"
