@@ -16,7 +16,7 @@ const Footer = () => {
     return (
         <footer className='bg-secondary-color'>
             <div className='flexcode-container'>
-                <div className="footer p-10 text-white">
+                <div className="footer text-white">
                     <div className="sm:col-span-2">
                         <div>
                             <img src={logo} alt="logo" className="w-[11rem]" />

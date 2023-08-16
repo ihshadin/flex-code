@@ -24,6 +24,7 @@ const githubProvider = new GithubAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [reload, setReload] = useState(null);
 
   console.log("From AuthProvider", user);
   const createUser = (email, password) => {
@@ -72,12 +73,13 @@ const AuthProvider = ({ children }) => {
     return () => {
       return unsubscribe();
     };
-  }, []);
+  }, [reload]);
 
   const authInfo = {
     user,
     loading,
     setLoading,
+    setReload,
     createUser,
     signIn,
     signInWithGoogle,
