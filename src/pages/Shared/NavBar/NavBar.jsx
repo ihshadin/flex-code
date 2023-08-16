@@ -55,8 +55,8 @@ const NavBar = () => {
   }, []);
 
   return (
-    <nav className="fixed backdrop-blur-sm top-0 left-0 z-10 w-full">
-      <div className="bg-inherit py-4 lg:flex justify-between items-center px-4 lg:px-8">
+    <nav className="sticky top-0 backdrop-blur-sm z-10 w-full">
+      <div className="max-w-[1280px] w-full mx-auto bg-inherit py-4 lg:flex justify-between items-center">
         <div className="flex items-center justify-between">
           <Link to="/" className="text-white text-xl font-semibold">
             <div className="flex items-center gap-1">
@@ -132,13 +132,12 @@ const NavBar = () => {
               </li>
               <li>
                 <Link
-                  to="/blog"
+                  to="/problems"
                   onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${
-                    isActiveRoute("/blog")
-                      ? "font-bold md:border-b-2 pb-1 border-[#00ffc3]"
-                      : ""
-                  }`}
+                  className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#0fcda1] transition-all duration-300 ${isActiveRoute("/blog")
+                    ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
+                    : ""
+                    }`}
                 >
                   Problems
                 </Link>

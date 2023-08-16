@@ -1,54 +1,37 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-::selection {
-  background-color: #00ffc333;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,500&display=swap');
+
+::-moz-selection {
+  background-color: #0fcda133;
 }
-body {
-  background-color: #15161a;
-}
+
+
 ::-moz-selection, ::selection {
-  background-color: #00ffc333;
+  background-color: #0fcda133;
+}
+* {
+  scroll-behavior: smooth;
 }
 
-.gutter {
-  background-color: rgb(26, 26, 26);
-  background-repeat: no-repeat;
-  background-position: 50%;
-}
-.gutter:hover {
-  background-color: #0a84ff;
-}
-
-.gutter.gutter-horizontal {
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==");
-  cursor: col-resize;
-}
-
-.gutter.gutter-vertical {
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=");
-  cursor: row-resize;
-}
-::selection {
-  background-color: #00ffc333;
-}
 body {
   overflow-x: hidden;
   background-color: #17181b;
-}
-
-.montserrat {
   font-family: "Montserrat", sans-serif;
 }
+
 .primary-color {
-  color: #00ffc3;
+  color: #0fcda1;
 }
 
 .bg-primary-color {
-  color: #00ffc3;
+  background-color: #0fcda1;
+}
+
+.bg-secondary-color {
+  background-color: #1e2d40;
 }
 
 .secondary-color {
@@ -57,10 +40,10 @@ body {
 
 /* Section title  */
 .section-title {
-  background-image: linear-gradient(to top left, #00ffc3, #e9fffc);
+  background-image: linear-gradient(to top left, #0fcda1, #e9fffc);
   background-size: 400%;
   animation: sectionAnimation 3s ease-in-out infinite alternate-reverse;
-  @apply tracking-wide font-bold text-center text-transparent bg-clip-text text-4xl md:text-5xl py-5 montserrat;
+  @apply tracking-wide font-bold text-center text-transparent bg-clip-text text-4xl md:text-5xl py-5;
 }
 
 @-webkit-keyframes sectionAnimation {
@@ -87,6 +70,6 @@ body {
   }
 }
 
-* {
-  scroll-behavior: smooth;
+.flexcode-container {
+  @apply max-w-[1280px] w-full mx-auto py-6 md:py-8 lg:py-16 px-3 lg:px-0
 }
