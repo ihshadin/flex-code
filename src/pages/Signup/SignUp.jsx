@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FaGithub, FaRegEnvelope, FaUser } from "react-icons/fa";
+import { FaGithub, FaRegEnvelope, FaSpinner, FaUser } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
@@ -7,8 +7,10 @@ import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import SocialLogin from "../Shared/Social/SocialLogin";
 import "./Signup.css";
+import { toast } from "react-hot-toast";
 const SignUp = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, loading, setLoading, updateUserProfile, setReload } =
+    useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -27,23 +29,22 @@ const SignUp = () => {
         const user = result.user;
         console.log(user);
         // console.log(user);
+        updateUserProfile(name)
+          .then(() => {
+            setReload(new Date().getTime());
+          })
+          .catch((error) => {
+            toast.error("Login Failed. " + error.message);
+          });
         reset();
-        Swal.fire({
-          position: "top-center",
-          icon: "success",
-          title: "Signup Successfull!",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        setLoading(false);
+
+        toast.success("Login Successfull!");
         // Swal.fire("Login Successfull!");
       })
       .catch((error) => {
-        Swal.fire({
-          title: `${error.message}`,
-          text: "Do you want to continue",
-          icon: "error",
-          confirmButtonText: "Ok",
-        });
+        setLoading(false);
+        toast.error("Login Failed. " + error.message);
       });
     console.log(name, email, password);
   };
@@ -143,11 +144,21 @@ const SignUp = () => {
               Terms and conditions?
             </p>
           </div>
-          <input
+          {/* <input
             type="submit"
             className="mt-3 uppercase bg-[#2fb595] px-6 font-bold text-lg text-[#1e2d40] rounded-md mb-6 py-1 hover:bg-[#43d1af] cursor-pointer"
             value="Sign up"
-          />
+          /> */}
+          <button
+            type="submit"
+            className="mt-3 uppercase bg-[#2fb595] px-6 font-bold text-lg text-[#1e2d40] rounded-md mb-6 py-1 hover:bg-[#43d1af] cursor-pointer"
+          >
+            {loading ? (
+              <FaSpinner className="m-auto animate-spin" size={24} />
+            ) : (
+              "Sign up"
+            )}
+          </button>
         </form>
         <div className="text-center text-gray-300 pb-10">
           <Link to="/login">
