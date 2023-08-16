@@ -35,7 +35,7 @@ const Testimonials = () => {
                     className="mySwiper"
                 >
                     <SwiperSlide>
-                        <div className='bg-secondary-color p-8 md:p-10 mb-12 rounded-2xl text-white border border-[#1e2d40] hover:border-[#00ffc3] transition-all duration-300 cursor-pointer'>
+                        <div className='bg-secondary-color p-8 md:p-10 mb-12 rounded-2xl text-white border border-[#1e2d40] hover:border-[#0fcda1] transition-all duration-300 cursor-pointer'>
                             <h2 className='text-2xl font-semibold mb-5'>
                                 Excellent
                             </h2>
@@ -48,14 +48,14 @@ const Testimonials = () => {
                             </p>
                             <h3 className='text-xl font-semibold mt-8 mb-2'>~ Omar Faruq</h3>
                             <div
-                                className='w-20 h-20 object-cover rounded-full border-[#00ffc3] bg-secondary-color border absolute'
+                                className='w-20 h-20 object-cover rounded-full border-[#0fcda1] bg-secondary-color border absolute'
                             >
                                 <img src={reviewImg1} alt="" />
                             </div>
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <div className='bg-secondary-color p-8 md:p-10 mb-12 rounded-2xl text-white border border-[#1e2d40] hover:border-[#00ffc3] transition-all duration-300 cursor-pointer'>
+                        <div className='bg-secondary-color p-8 md:p-10 mb-12 rounded-2xl text-white border border-[#1e2d40] hover:border-[#0fcda1] transition-all duration-300 cursor-pointer'>
                             <h2 className='text-2xl font-semibold mb-5'>
                                 Just Wow!
                             </h2>
@@ -68,14 +68,14 @@ const Testimonials = () => {
                             </p>
                             <h3 className='text-xl font-semibold mt-8 mb-2'>~ Nur Mohammad Sakib</h3>
                             <div
-                                className='w-20 h-20 object-cover rounded-full border-[#00ffc3] bg-secondary-color border absolute'
+                                className='w-20 h-20 object-cover rounded-full border-[#0fcda1] bg-secondary-color border absolute'
                             >
                                 <img src={reviewImg1} alt="" />
                             </div>
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <div className='bg-secondary-color p-8 md:p-10 mb-12 rounded-2xl text-white border border-[#1e2d40] hover:border-[#00ffc3] transition-all duration-300 cursor-pointer'>
+                        <div className='bg-secondary-color p-8 md:p-10 mb-12 rounded-2xl text-white border border-[#1e2d40] hover:border-[#0fcda1] transition-all duration-300 cursor-pointer'>
                             <h2 className='text-2xl font-semibold mb-5'>
                                 Beautiful
                             </h2>
@@ -88,14 +88,14 @@ const Testimonials = () => {
                             </p>
                             <h3 className='text-xl font-semibold mt-8 mb-2'>~ Abu Sayeed</h3>
                             <div
-                                className='w-20 h-20 object-cover rounded-full border-[#00ffc3] bg-secondary-color border absolute'
+                                className='w-20 h-20 object-cover rounded-full border-[#0fcda1] bg-secondary-color border absolute'
                             >
                                 <img src={reviewImg1} alt="" />
                             </div>
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <div className='bg-secondary-color p-8 md:p-10 mb-12 rounded-2xl text-white border border-[#1e2d40] hover:border-[#00ffc3] transition-all duration-300 cursor-pointer'>
+                        <div className='bg-secondary-color p-8 md:p-10 mb-12 rounded-2xl text-white border border-[#1e2d40] hover:border-[#0fcda1] transition-all duration-300 cursor-pointer'>
                             <h2 className='text-2xl font-semibold mb-5'>
                                 Excellent
                             </h2>
@@ -108,14 +108,14 @@ const Testimonials = () => {
                             </p>
                             <h3 className='text-xl font-semibold mt-8 mb-2'>~ Mehedi Hasan Foysal</h3>
                             <div
-                                className='w-20 h-20 object-cover rounded-full border-[#00ffc3] bg-secondary-color border absolute'
+                                className='w-20 h-20 object-cover rounded-full border-[#0fcda1] bg-secondary-color border absolute'
                             >
                                 <img src={reviewImg1} alt="" />
                             </div>
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <div className='bg-secondary-color p-8 md:p-10 mb-12 rounded-2xl text-white border border-[#1e2d40] hover:border-[#00ffc3] transition-all duration-300 cursor-pointer'>
+                        <div className='bg-secondary-color p-8 md:p-10 mb-12 rounded-2xl text-white border border-[#1e2d40] hover:border-[#0fcda1] transition-all duration-300 cursor-pointer'>
                             <h2 className='text-2xl font-semibold mb-5'>
                                 Excellent
                             </h2>
@@ -128,7 +128,7 @@ const Testimonials = () => {
                             </p>
                             <h3 className='text-xl font-semibold mt-8 mb-2'>~ Zahid Hasan Zarif</h3>
                             <div
-                                className='w-20 h-20 object-cover rounded-full border-[#00ffc3] bg-secondary-color border absolute'
+                                className='w-20 h-20 object-cover rounded-full border-[#0fcda1] bg-secondary-color border absolute'
                             >
                                 <img src={reviewImg1} alt="" />
                             </div>
