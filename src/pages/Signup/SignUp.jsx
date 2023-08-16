@@ -24,7 +24,7 @@ const SignUp = () => {
     const name = data.name;
     const email = data.email;
     const password = data.password;
-    createUser(data.email, data.password)
+    createUser(email, password)
       .then((result) => {
         const user = result.user;
         console.log(user);
@@ -32,6 +32,7 @@ const SignUp = () => {
         updateUserProfile(name)
           .then(() => {
             setReload(new Date().getTime());
+            toast.success("Login Successfull!");
           })
           .catch((error) => {
             toast.error("Login Failed. " + error.message);
@@ -39,14 +40,14 @@ const SignUp = () => {
         reset();
         setLoading(false);
 
-        toast.success("Login Successfull!");
+        // toast.success("Login Successfull!");
         // Swal.fire("Login Successfull!");
       })
       .catch((error) => {
         setLoading(false);
         toast.error("Login Failed. " + error.message);
       });
-    console.log(name, email, password);
+    // console.log(name, email, password);
   };
 
   return (
@@ -55,7 +56,7 @@ const SignUp = () => {
         <>
           <div className="flex items-center justify-center text-white text-2xl font-bold py-8">
             <img className="w-16 h-16" src="/20230810_125620.png" alt="img" />
-            <span className="text-[#0fcda1] mr-1">Flex </span> { } Code
+            <span className="text-[#0fcda1] mr-1">Flex </span> {} Code
           </div>
           <SocialLogin />
           <div className="max-w-[150px] flex justify-center border-2 border-[#0fcda1] rounded mx-auto my-8"></div>
