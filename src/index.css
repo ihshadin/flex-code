@@ -71,5 +71,5 @@ body {
 }
 
 .flexcode-container {
-  @apply max-w-[1280px] w-full mx-auto py-6 md:py-8 lg:py-16 px-3 lg:px-0
+  @apply max-w-[1280px] w-full mx-auto py-6 md:py-8 lg:py-16 px-3
 }
