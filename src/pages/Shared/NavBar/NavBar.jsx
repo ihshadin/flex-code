@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import Swal from "sweetalert2";
+import { FaUser } from "react-icons/fa";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -55,7 +56,11 @@ const NavBar = () => {
   }, []);
 
   return (
-    <nav className={`top-0 backdrop-blur-sm z-10 w-full ${location.pathname === '/' ? 'fixed' : 'sticky'}`}>
+    <nav
+      className={`top-0 backdrop-blur-sm z-10 w-full ${
+        location.pathname === "/" ? "fixed" : "sticky"
+      }`}
+    >
       <div className="max-w-[1280px] w-full mx-auto bg-inherit py-2 px-3 lg:flex justify-between items-center">
         <div className="flex items-center justify-between">
           <Link to="/" className="text-white text-xl font-semibold">
@@ -134,10 +139,11 @@ const NavBar = () => {
                 <Link
                   to="/problems"
                   onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#0fcda1] transition-all duration-300 ${isActiveRoute("/problems")
-                    ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
-                    : ""
-                    }`}
+                  className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#0fcda1] transition-all duration-300 ${
+                    isActiveRoute("/problems")
+                      ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
+                      : ""
+                  }`}
                 >
                   Problems
                 </Link>
@@ -146,10 +152,11 @@ const NavBar = () => {
                 <Link
                   to="/blog"
                   onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#0fcda1] transition-all duration-300 ${isActiveRoute("/blog")
-                    ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
-                    : ""
-                    }`}
+                  className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#0fcda1] transition-all duration-300 ${
+                    isActiveRoute("/blog")
+                      ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
+                      : ""
+                  }`}
                 >
                   Blogs
                 </Link>
@@ -184,25 +191,36 @@ const NavBar = () => {
               {user?.email ? (
                 <li className="relative">
                   <button
+                  ref={dropdownRef}
                     onClick={handleUserClick}
                     className={`flex items-center ${
                       userClicked ? "text-gray-300" : "text-white"
                     }`}
                   >
-
-                    {user?.photoURL && (
-                      <img
-                        ref={dropdownRef} 
-                        // tabIndex={0}
-                        className={`h-9 w-9 rounded-full ${
+                    {user.photoURL ? (
+                      <>
+                        <img
+                          
+                          className={`h-9 w-9 rounded-full ${
+                            userClicked
+                              ? "border-2 border-[#00ffc3]"
+                              : "border-2 border-transparent"
+                          } `}
+                          title={user?.displayName}
+                          src={user?.photoURL}
+                          alt=""
+                        />
+                      </>
+                    ) : (
+                      <FaUser
+                        // ref={dropdownRef}
+                        className={`h-8 w-8 rounded-full p-1 ${
                           userClicked
                             ? "border-2 border-[#00ffc3]"
-                            : "border-2 border-transparent"
+                            : "border-2 border-white"
                         } `}
                         title={user?.displayName}
-                        src={user?.photoURL}
-                        alt=""
-                      />
+                      ></FaUser>
                     )}
                   </button>
                   {user?.email && (
@@ -211,8 +229,6 @@ const NavBar = () => {
                         userClicked ? "block" : "hidden"
                       }`}
                     >
-
-
                       <div className="bg-white dark:bg-dark-layer-1 w-auto py-2 rounded-md shadow-md">
                         <div className="px-4 py-2">
                           <div className="flex items-center">
