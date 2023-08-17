@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const AllProblems = () => {
     const problems = [
@@ -265,8 +265,12 @@ const AllProblems = () => {
                                 <p className="text-xs text-gray-400 tracking-wider"> Success rate: <span className="text-white">53.42%</span>.</p>
                             </span>
                         </aside>
-                        <button className="btn select-none mt-5 md:mt-0 hover:bg-[#1e2d40] hover:border-2 hover:border-[#0fcda1] hover:text-[#0fcda1] text-white"
+                       <div className="flex flex-col gap-2">
+                       <button className="btn btn-sm  select-none mt-5 md:mt-0 hover:bg-[#1e2d40] hover:border-2 hover:border-[#0fcda1] hover:text-[#0fcda1] text-white"
                         >Solve Problem</button>
+                         <Link to='/feedback' className="btn btn-sm btn-outline hover:bg-transparent select-none mt-5 md:mt-0 hover:bg-[#1e2d40] hover:border-2 hover:border-[#0fcda1] hover:text-[#0fcda1] text-white"
+                        >Feedback</Link>
+                       </div>
                     </div>)
                 }
 
