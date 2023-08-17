@@ -8,6 +8,7 @@ import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 import Explore from "../pages/Explore/Explore";
 import Problems from "../pages/Problems/Problems";
 import AllProblems from "../pages/Problems/AllProblems";
+import SingleBlog from "../pages/Blog/SingleBlog/SingleBlog";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog />,
+      },
+      {
+        path: "/blog:id",
+        element: <SingleBlog />,
       },
       {
         path: "/problems",
