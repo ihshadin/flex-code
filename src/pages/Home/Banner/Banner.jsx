@@ -28,7 +28,7 @@ const Banner = () => {
           </div>
         </div>
 
-        <div className="hidden md:block relative w-full opacity-90 md:w-[25%]">
+        <div className="hidden md:block relative w-full opacity-90 md:w-[30%]">
           <img
             src={banner}
             alt=""
