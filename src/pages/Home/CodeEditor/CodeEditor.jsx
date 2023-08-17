@@ -33,7 +33,7 @@ const CodeEditor = () => {
   };
 
   return (
-    <div className="flexcode-container">
+    <div className="flexcode-container relative md:mb-4">
       <h2 className="text-3xl md:text-5xl text-center text-white font-bold">
         Flex Your Knowledge
       </h2>
@@ -41,7 +41,6 @@ const CodeEditor = () => {
         Unlock the power of problem solving
       </p>
       <div className="relative md:flex gap-5">
-
         {/* start editor  */}
         <div className="md:w-1/2 rounded-lg overflow-hidden border border-gray-500 hover:border-[#0fcda1] transition-all drop-shadow-md">
           <div className="bg-secondary-color flex items-end">
@@ -106,6 +105,14 @@ const CodeEditor = () => {
         </div>
         {/* end preview  */}
       </div>
+      <button onClick={runCode} className="absolute left-1/2 -bottom-2 -translate-x-1/2">
+        <button className="group relative inline-block focus:outline-none focus:ring">
+          <button className="absolute inset-0 translate-x-0 hover:translate-y-0 rounded-md shadow-2xl bg-[#0fcda133] focus:bg-transparent transition-transform group-hover:translate-y-2 group-hover:translate-x-2"></button>
+          <button className="relative inline-block shadow-2xl border-2 rounded-md border-[#0fcda1] focus:border-white px-8 py-3 text-base font-bold uppercase tracking-widest text-white group-active:text-opacity-75">
+            Get Start Now
+          </button>
+        </button>
+      </button>
     </div>
   );
 };
