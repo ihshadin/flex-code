@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
+import { Link } from "react-router-dom";
 
 const DbUser = () => {
   const { user } = useContext(AuthContext);
@@ -37,12 +38,12 @@ const DbUser = () => {
             </div>
           </div>
         </div>
-        <a
+        <Link
           className="bg-[#0fcda1] bg-opacity-50 text-[#b0c9ec] border border-[#0fcda1] border-transparent hover:bg-transparent hover:border hover:border-[#0fcda1] hover:text-[#0fcda1] hover:transition-all hover:duration-500 w-full rounded-lg py-[7px] text-center font-medium"
           href="/profile/"
         >
           Edit Profile
-        </a>
+        </Link>
       </div>
         {/* Start Community Stats content */}
 

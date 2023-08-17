@@ -3,6 +3,7 @@ import { FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
+import { toast } from "react-hot-toast";
 
 const SocialLogin = () => {
   const { signInWithGoogle, signInWithGitHub } = useContext(AuthContext);
@@ -11,25 +12,19 @@ const SocialLogin = () => {
   const from = location.state?.from?.pathname || "/";
 
   const clickSignInWithGitHub = () => {
-    console.log("click");
+    // console.log("click");
     // console.log("click");
     signInWithGitHub()
       .then((result) => {
         const user = result.user;
         console.log(user);
-        Swal.fire({
-          position: "top-center",
-          icon: "success",
-          title: "Login Successfull!",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        toast.success("Login Successfull!");
         navigate(from, { replace: true });
 
         // console.log(saveUser);
       })
       .catch((error) => {
-        // console.log(error.message);
+        toast.error("Login Failed. " + error.message);
       });
   };
   const clickSignInWithGoogle = () => {
@@ -39,19 +34,13 @@ const SocialLogin = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        Swal.fire({
-          position: "top-center",
-          icon: "success",
-          title: "Login Successfull!",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        toast.success("Login Successfull!");
         navigate(from, { replace: true });
 
         // console.log(saveUser);
       })
       .catch((error) => {
-        // console.log(error.message);
+        toast.error("Login Failed. " + error.message);
       });
   };
 
