@@ -1,7 +1,9 @@
 import React from "react";
 import image1 from "../../../public/image-1.jpg";
+import BlogCta from "./BlogCta/BlogCta";
 
-const Blog = () => { 
+const Blog = () => {
+  const user = {role: "admin"};
   return (
     <section>
       <div className="flexcode-container">
@@ -14,6 +16,9 @@ const Blog = () => {
             actionable strategies, and empower you to conquer obstacles with
             confidence.
           </p>
+        </div>
+        <div>
+          <BlogCta/>
         </div>
   
         {/* New Blog Articles */}

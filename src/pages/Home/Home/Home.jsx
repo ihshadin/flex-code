@@ -1,10 +1,10 @@
 import OurPartners from "../OurPartners/OurPartners";
 import UserCount from "../UserCount/UserCount";
 import Faq from "../FAQ/Faq";
-import Editor from "../Editor/Editor";
 import ExploreUs from "../ExploreUs/ExploreUs";
 import Testimonials from "../Testimonials/Testimonials";
 import Banner from "../Banner/Banner";
+import CodeEditor from "../CodeEditor/CodeEditor";
 
 const Home = () => {
   return (
@@ -14,8 +14,8 @@ const Home = () => {
       <ExploreUs />
       <UserCount />
       <Faq></Faq>
+      <CodeEditor></CodeEditor>
       <Testimonials />
-      <Editor />
     </div>
   );
 };
