@@ -1,14 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 // import { Pagination } from "swiper";
-import reviewImg1 from '../../../../public/20230810_120154.png';
+import reviewImg1 from '/20230810_120154.png';
 
 // Import Swiper styles
 import "swiper/css";
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import Rating from 'react-rating';
+import { FaRegStar, FaStar } from 'react-icons/fa';
 
 const Testimonials = () => {
+    const [feedbacks, setFeedbacks] = useState([])
+    useEffect(() => {
+        fetch('http://localhost:5000/feedback')
+            .then(res => res.json())
+            .then(data =>{
+                console.log(data);
+                setFeedbacks(data?.result)})
+    }, [])
+    console.log(feedbacks, 'feedbacks');
     return (
         <section>
             <div className='flexcode-container'>
@@ -34,7 +45,7 @@ const Testimonials = () => {
                     }}
                     className="mySwiper"
                 >
-                    <SwiperSlide>
+                    {/* <SwiperSlide>
                         <div className='bg-secondary-color p-8 md:p-10 mb-12 rounded-2xl text-white border border-[#1e2d40] hover:border-[#0fcda1] transition-all duration-300 cursor-pointer'>
                             <h2 className='text-2xl font-semibold mb-5'>
                                 Excellent
@@ -53,87 +64,31 @@ const Testimonials = () => {
                                 <img src={reviewImg1} alt="" />
                             </div>
                         </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className='bg-secondary-color p-8 md:p-10 mb-12 rounded-2xl text-white border border-[#1e2d40] hover:border-[#0fcda1] transition-all duration-300 cursor-pointer'>
-                            <h2 className='text-2xl font-semibold mb-5'>
-                                Just Wow!
-                            </h2>
-                            <p>
-                                I've been using this carrier service
-                                company for years, and they never disappoint. They always
-                                deliver on time, and my goods arrive in perfect condition.
-                                Their customer service is also top-notch -
-                                they are always friendly and responsive.
-                            </p>
-                            <h3 className='text-xl font-semibold mt-8 mb-2'>~ Nur Mohammad Sakib</h3>
-                            <div
-                                className='w-20 h-20 object-cover rounded-full border-[#0fcda1] bg-secondary-color border absolute'
-                            >
-                                <img src={reviewImg1} alt="" />
+                    </SwiperSlide> */}
+                    {
+                        feedbacks?.map(feedback => <SwiperSlide key={feedback._id}>
+                            <div className='bg-secondary-color p-8 md:p-10 mb-12 rounded-2xl text-white border border-[#1e2d40] hover:border-[#0fcda1] transition-all duration-300 cursor-pointer'>
+                                <h2 className='text-2xl font-semibold mb-5'>
+                                    {feedback.thumbExpression}
+                                </h2>
+                                <p className="min-h-[200px]">
+                                   {feedback.details}
+                                </p>
+                                <span className="flex mt-8 items-center justify-between">
+                                    <h3 className='text-xl font-semibold  mb-2'>~ {feedback.userName}</h3>
+                                    <Rating initialRating={feedback.rating} readonly className="flex items-center justify-center"
+                                        emptySymbol={<FaRegStar className="text-xl mr-3 text-amber-500" />}
+                                        fullSymbol={<FaStar className="text-xl mr-3 text-amber-500" />}
+                                    />
+                                </span>
+                                <div
+                                    className='w-20 h-20 object-cover rounded-full border-[#0fcda1] bg-secondary-color border absolute'
+                                >
+                                    <img src={feedback?.image || reviewImg1} className="rounded-full" alt="" />
+                                </div>
                             </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className='bg-secondary-color p-8 md:p-10 mb-12 rounded-2xl text-white border border-[#1e2d40] hover:border-[#0fcda1] transition-all duration-300 cursor-pointer'>
-                            <h2 className='text-2xl font-semibold mb-5'>
-                                Beautiful
-                            </h2>
-                            <p>
-                                I've been using this carrier service
-                                company for years, and they never disappoint. They always
-                                deliver on time, and my goods arrive in perfect condition.
-                                Their customer service is also top-notch -
-                                they are always friendly and responsive.
-                            </p>
-                            <h3 className='text-xl font-semibold mt-8 mb-2'>~ Abu Sayeed</h3>
-                            <div
-                                className='w-20 h-20 object-cover rounded-full border-[#0fcda1] bg-secondary-color border absolute'
-                            >
-                                <img src={reviewImg1} alt="" />
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className='bg-secondary-color p-8 md:p-10 mb-12 rounded-2xl text-white border border-[#1e2d40] hover:border-[#0fcda1] transition-all duration-300 cursor-pointer'>
-                            <h2 className='text-2xl font-semibold mb-5'>
-                                Excellent
-                            </h2>
-                            <p>
-                                I've been using this carrier service
-                                company for years, and they never disappoint. They always
-                                deliver on time, and my goods arrive in perfect condition.
-                                Their customer service is also top-notch -
-                                they are always friendly and responsive.
-                            </p>
-                            <h3 className='text-xl font-semibold mt-8 mb-2'>~ Mehedi Hasan Foysal</h3>
-                            <div
-                                className='w-20 h-20 object-cover rounded-full border-[#0fcda1] bg-secondary-color border absolute'
-                            >
-                                <img src={reviewImg1} alt="" />
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className='bg-secondary-color p-8 md:p-10 mb-12 rounded-2xl text-white border border-[#1e2d40] hover:border-[#0fcda1] transition-all duration-300 cursor-pointer'>
-                            <h2 className='text-2xl font-semibold mb-5'>
-                                Excellent
-                            </h2>
-                            <p>
-                                I've been using this carrier service
-                                company for years, and they never disappoint. They always
-                                deliver on time, and my goods arrive in perfect condition.
-                                Their customer service is also top-notch -
-                                they are always friendly and responsive.
-                            </p>
-                            <h3 className='text-xl font-semibold mt-8 mb-2'>~ Zahid Hasan Zarif</h3>
-                            <div
-                                className='w-20 h-20 object-cover rounded-full border-[#0fcda1] bg-secondary-color border absolute'
-                            >
-                                <img src={reviewImg1} alt="" />
-                            </div>
-                        </div>
-                    </SwiperSlide>
+                        </SwiperSlide>)
+                    }
                 </Swiper >
             </div>
         </section>
