@@ -8,6 +8,7 @@ import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 import Explore from "../pages/Explore/Explore";
 import Problems from "../pages/Problems/Problems";
 import AllProblems from "../pages/Problems/AllProblems";
+import ProfileEdit from "../pages/Dashboard/ProfileEdit/ProfileEdit";
 import SingleBlog from "../pages/Blog/SingleBlog/SingleBlog";
 
 const router = createBrowserRouter([
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: '/explore',
         element: <Explore/>
+      },
+      {
+        path: '/profile',
+        element: <ProfileEdit></ProfileEdit>
       }
     ],
   },

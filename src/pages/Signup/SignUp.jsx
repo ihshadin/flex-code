@@ -65,8 +65,8 @@ const SignUp = () => {
           <div className="flex items-center border-2 border-gray-500 text-gray-400 px-2 font-semibold rounded-md mb-5 hover:bg-[#17181B] cursor-pointer">
             <FaUser className="text-2xl mr-2 " />
             <input
-              // class="p-2 border rounded outline-none transition flex-1 bg-[#1e2d40]  focus:bg-[#1e2d40] active:bg-[#1e2d40] pointer-events-auto"
-              // class="bg-black text-red p-2 rounded-lg border-none fo"
+              // className="p-2 border rounded outline-none transition flex-1 bg-[#1e2d40]  focus:bg-[#1e2d40] active:bg-[#1e2d40] pointer-events-auto"
+              // className="bg-black text-red p-2 rounded-lg border-none fo"
               className="flex-1 bg-[#1e2d40] hover:bg-[#17181B] text-sm outline-none py-2"
               type="text"
               name="name"

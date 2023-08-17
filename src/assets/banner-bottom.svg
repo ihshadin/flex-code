@@ -7,7 +7,7 @@
 	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_1_);}
 	.st2{fill:url(#SVGID_2_);fill-opacity:0.6;}
 </style>
-<g class="st0">
+<g className="st0">
 	
 		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="1391" y1="66.377" x2="52.5002" y2="66.377" gradientTransform="matrix(1 0 0 -1 0 132)">
 		<stop  offset="0" style="stop-color:#FFFFFF;stop-opacity:0"/>
@@ -15,7 +15,7 @@
 		<stop  offset="0.4792" style="stop-color:#FFFFFF;stop-opacity:0.6"/>
 		<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0"/>
 	</linearGradient>
-	<path class="st1" d="M1283.3,61.2l87.2,46.6l-0.9,1.8l-90.5-48.4h-191.9l84.3,64.6l-1.2,1.6l-86.4-66.2H922.6l52.7,67h393.1v3H2.5
+	<path className="st1" d="M1283.3,61.2l87.2,46.6l-0.9,1.8l-90.5-48.4h-191.9l84.3,64.6l-1.2,1.6l-86.4-66.2H922.6l52.7,67h393.1v3H2.5
 		v-3h190l87-67H75.3L1.5,99l-0.9-1.8l70.4-36H2.5v-2h72.4l111.5-57H2.5v-2h1004.7l0.1-0.2l0.2,0.2h161.2l0.1-0.2l0.5,0.2h199.2v2
 		H1173l106.6,57h88.9v2H1283.3z M1275.3,59.2l-106.6-57h-158.6l74.4,57H1275.3z M1081.2,59.2l-74.4-57H876.2l44.9,57H1081.2z
 		 M918.5,59.2L873.8,2.4l0.2-0.2h-96.6l20.4,57H918.5z M795.7,59.2l-20.4-57H603.8l0.1,0.1l-27.2,56.9H795.7z M796.4,61.2l24,67
@@ -29,5 +29,5 @@
 	<stop  offset="0.6979" style="stop-color:#0FCDA1"/>
 	<stop  offset="1" style="stop-color:#191A1B"/>
 </linearGradient>
-<rect x="221" y="59.7" class="st2" width="931" height="1"/>
+<rect x="221" y="59.7" className="st2" width="931" height="1"/>
 </svg>
