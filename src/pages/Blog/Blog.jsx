@@ -1,7 +1,7 @@
 import React from "react";
 import image1 from "../../../public/image-1.jpg";
 
-const Blog = () => {
+const Blog = () => { 
   return (
     <section>
       <div className="flexcode-container">
