@@ -57,9 +57,8 @@ const NavBar = () => {
 
   return (
     <nav
-      className={`top-0 backdrop-blur-sm z-10 w-full ${
-        location.pathname === "/" ? "fixed" : "sticky"
-      }`}
+      className={`top-0 backdrop-blur-sm z-10 w-full ${location.pathname === "/" ? "fixed" : "sticky"
+        }`}
     >
       <div className="max-w-[1280px] w-full mx-auto bg-inherit py-2 px-3 lg:flex justify-between items-center">
         <div className="flex items-center justify-between">
@@ -116,9 +115,8 @@ const NavBar = () => {
         </div>
         <div className="flex items-center">
           <div
-            className={`${
-              isMenuOpen ? "block" : "hidden"
-            } lg:flex lg:w-auto mt-4 lg:mt-0`}
+            className={`${isMenuOpen ? "block" : "hidden"
+              } lg:flex lg:w-auto mt-4 lg:mt-0`}
             id="mobile-menu"
           >
             <ul className="flex flex-col gap-3 md:gap-0  lg:text-left lg:flex-row lg:space-x-8 lg:items-center">
@@ -126,11 +124,10 @@ const NavBar = () => {
                 <Link
                   to="/"
                   onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${
-                    isActiveRoute("/")
-                      ? "font-bold border-b-2 pb-1 border-[#0fcda1]"
-                      : ""
-                  }`}
+                  className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${isActiveRoute("/")
+                    ? "font-bold border-b-2 pb-1 border-[#0fcda1]"
+                    : ""
+                    }`}
                 >
                   Home
                 </Link>
@@ -139,11 +136,10 @@ const NavBar = () => {
                 <Link
                   to="/problems"
                   onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#0fcda1] transition-all duration-300 ${
-                    isActiveRoute("/problems")
-                      ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
-                      : ""
-                  }`}
+                  className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#0fcda1] transition-all duration-300 ${isActiveRoute("/problems")
+                    ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
+                    : ""
+                    }`}
                 >
                   Problems
                 </Link>
@@ -152,11 +148,10 @@ const NavBar = () => {
                 <Link
                   to="/blog"
                   onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#0fcda1] transition-all duration-300 ${
-                    isActiveRoute("/blog")
-                      ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
-                      : ""
-                  }`}
+                  className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#0fcda1] transition-all duration-300 ${isActiveRoute("/blog")
+                    ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
+                    : ""
+                    }`}
                 >
                   Blogs
                 </Link>
@@ -165,26 +160,12 @@ const NavBar = () => {
                 <Link
                   to="/explore"
                   onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${
-                    isActiveRoute("/explore")
-                      ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
-                      : ""
-                  }`}
+                  className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${isActiveRoute("/explore")
+                    ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
+                    : ""
+                    }`}
                 >
                   Explore
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/dashboard"
-                  onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${
-                    isActiveRoute("/dashboard")
-                      ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
-                      : ""
-                  }`}
-                >
-                  Dashboard
                 </Link>
               </li>
 
@@ -193,18 +174,16 @@ const NavBar = () => {
                   <button
                     ref={dropdownRef}
                     onClick={handleUserClick}
-                    className={`flex items-center ${
-                      userClicked ? "text-gray-300" : "text-white"
-                    }`}
+                    className={`flex items-center ${userClicked ? "text-gray-300" : "text-white"
+                      }`}
                   >
                     {user.photoURL ? (
                       <>
                         <img
-                          className={`h-9 w-9 rounded-full ${
-                            userClicked
-                              ? "border-2 border-[#0fcda1]"
-                              : "border-2 border-transparent"
-                          } `}
+                          className={`h-9 w-9 rounded-full ${userClicked
+                            ? "border-2 border-[#0fcda1]"
+                            : "border-2 border-transparent"
+                            } `}
                           title={user?.displayName}
                           src={user?.photoURL}
                           alt=""
@@ -212,11 +191,10 @@ const NavBar = () => {
                       </>
                     ) : (
                       <FaUser
-                        className={`h-8 w-8 rounded-full p-1 ${
-                          userClicked
-                            ? "border-2 border-[#0fcda1]"
-                            : "border-2 border-white"
-                        } `}
+                        className={`h-8 w-8 rounded-full p-1 ${userClicked
+                          ? "border-2 border-[#0fcda1]"
+                          : "border-2 border-white"
+                          } `}
                         title={user?.displayName}
                       ></FaUser>
                     )}
@@ -225,9 +203,8 @@ const NavBar = () => {
                   {/* start user dropdown  */}
                   {user?.email && (
                     <div
-                      className={`absolute right-0 mt-2 z-10 ${
-                        userClicked ? "block" : "hidden"
-                      }`}
+                      className={`absolute right-0 mt-2 z-10 ${userClicked ? "block" : "hidden"
+                        }`}
                     >
                       <div className="bg-[#1e2d40] bg-opacity-95 transition-all duration-700 w-auto py-2 rounded-md shadow-md">
                         <div className="px-4 py-2">
@@ -255,11 +232,11 @@ const NavBar = () => {
                         </div>
                         <div className="border-t border-[#0fcda1] ">
                           <Link
-                            to="/myplayground"
+                            to="/playground"
                             className="flex items-center px-4 py-2 text-white hover:bg-[#00ffc3] hover:bg-opacity-40 mt-2"
                           >
                             <span className="mr-2  flex">
-                              <span className="inline-block h-2 w-2 rounded-full bg-[#0fcda1]"></span>
+                              <span className="inline-block h-2 w-2 rounded-full bg-orange-400"></span>
                             </span>
                             <span>My PlayGround</span>
                           </Link>
@@ -268,7 +245,7 @@ const NavBar = () => {
                             className="flex items-center px-4 py-2 text-white hover:bg-[#00ffc3] hover:bg-opacity-40"
                           >
                             <span className="mr-2  flex">
-                              <span className="inline-block h-2 w-2 rounded-full bg-[#0fcda1]"></span>
+                              <span className="inline-block h-2 w-2 rounded-full bg-blue-500"></span>
                             </span>
                             <span>Profile</span>
                           </Link>
@@ -277,7 +254,7 @@ const NavBar = () => {
                             className="flex items-center px-4 py-2 text-white hover:bg-[#00ffc3] hover:bg-opacity-40"
                           >
                             <span className="mr-2  flex">
-                              <span className="inline-block h-2 w-2 rounded-full bg-[#0fcda1]"></span>
+                              <span className="inline-block h-2 w-2 rounded-full bg-teal-400"></span>
                             </span>
                             <span>Notbook</span>
                           </Link>
@@ -286,20 +263,20 @@ const NavBar = () => {
                             className="flex items-center px-4 py-2 text-white hover:bg-[#00ffc3] hover:bg-opacity-40"
                           >
                             <span className="mr-2  flex">
-                              <span className="inline-block h-2 w-2 rounded-full bg-[#0fcda1]"></span>
+                              <span className="inline-block h-2 w-2 rounded-full bg-blue-300"></span>
                             </span>
                             <span>Submissions</span>
-                            
+
                           </Link>
                           <Link
                             to="/dashboard"
                             className="flex items-center px-4 py-2 text-white hover:bg-[#00ffc3] hover:bg-opacity-40"
                           >
                             <span className="mr-2  flex">
-                              <span className="inline-block h-2 w-2 rounded-full bg-[#0fcda1]"></span>
+                              <span className="inline-block h-2 w-2 rounded-full bg-red-400"></span>
                             </span>
                             <span>Dashboard</span>
-                            
+
                           </Link>
                           <button
                             onClick={logOut}
@@ -309,7 +286,7 @@ const NavBar = () => {
                               <span className="inline-block h-2 w-2 rounded-full bg-[#0fcda1]"></span>
                             </span>
                             <span>Log Out</span>
-                            
+
                           </button>
                         </div>
                       </div>
@@ -323,11 +300,10 @@ const NavBar = () => {
                     <Link
                       to="/login"
                       onClick={closeMenu}
-                      className={`text-white font-semibold hover:text-gray-300  pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${
-                        isActiveRoute("/login")
-                          ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
-                          : ""
-                      }`}
+                      className={`text-white font-semibold hover:text-gray-300  pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${isActiveRoute("/login")
+                        ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
+                        : ""
+                        }`}
                     >
                       Login
                     </Link>
@@ -336,11 +312,10 @@ const NavBar = () => {
                     <Link
                       to="/signup"
                       onClick={closeMenu}
-                      className={`text-white font-semibold hover:text-gray-300  pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${
-                        isActiveRoute("/signup")
-                          ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
-                          : ""
-                      }`}
+                      className={`text-white font-semibold hover:text-gray-300  pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${isActiveRoute("/signup")
+                        ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
+                        : ""
+                        }`}
                     >
                       Sign Up
                     </Link>
