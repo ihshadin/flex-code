@@ -9,22 +9,26 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import Rating from 'react-rating';
 import { FaRegStar, FaStar } from 'react-icons/fa';
+import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 
 const Testimonials = () => {
     const [feedbacks, setFeedbacks] = useState([])
     useEffect(() => {
         fetch('http://localhost:5000/feedback')
             .then(res => res.json())
-            .then(data =>{
+            .then(data => {
                 console.log(data);
-                setFeedbacks(data?.result)})
+                setFeedbacks(data?.result)
+            })
     }, [])
     console.log(feedbacks, 'feedbacks');
     return (
         <section>
             <div className='flexcode-container'>
-                <h2 className='text-3xl md:text-5xl text-center text-white font-bold'>Inspiring Testimonials</h2>
-                <p className='max-w-xl w-full text-center mx-auto mt-2 mb-10 text-white'>Learn from the best with our highly acclaimed instructors who bring expertise and passion to every class.</p>
+                <SectionTitle
+                    title="Inspiring Testimonials"
+                    descrition="Learn from the best with our highly acclaimed instructors who bring expertise and passion to every class."
+                />
                 <Swiper
                     slidesPerView={1}
                     spaceBetween={10}
@@ -72,7 +76,7 @@ const Testimonials = () => {
                                     {feedback.thumbExpression}
                                 </h2>
                                 <p className="min-h-[200px]">
-                                   {feedback.details}
+                                    {feedback.details}
                                 </p>
                                 <span className="flex mt-8 items-center justify-between">
                                     <h3 className='text-xl font-semibold  mb-2'>~ {feedback.userName}</h3>
