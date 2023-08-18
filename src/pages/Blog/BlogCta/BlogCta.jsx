@@ -1,5 +1,6 @@
 import React from "react";
 import paper from "../../../../public/pen-and-paper.svg";
+import { Link } from "react-router-dom";
 
 const BlogCta = () => {
   return (
@@ -15,6 +16,7 @@ const BlogCta = () => {
             </h1>
           </div>
           <div className="flex flex-col items-center justify-center flex-shrink-0 mt-6 space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4 lg:ml-4 lg:mt-0 lg:justify-end">
+            <Link to='/add-blog' >
             <button className="inline-flex items-center px-5 py-3 rounded-lg bg-[#08ecb8] text-black">
               <img className="w-10" src={paper} alt="" />
               <span className="flex flex-col items-start ml-4 leadi">
@@ -22,6 +24,8 @@ const BlogCta = () => {
                 <span className="font-semibold title-font">Post your blog</span>
               </span>
             </button>
+            </Link>
+           
           </div>
         </div>
       </section>

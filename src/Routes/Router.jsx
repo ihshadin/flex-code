@@ -10,6 +10,7 @@ import Problems from "../pages/Problems/Problems";
 import AllProblems from "../pages/Problems/AllProblems";
 import ProfileEdit from "../pages/Dashboard/ProfileEdit/ProfileEdit";
 import SingleBlog from "../pages/Blog/SingleBlog/SingleBlog";
+import AddBlog from "../pages/Blog/AddBlog/AddBlog";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,11 @@ const router = createBrowserRouter([
       {
         path: "/blog/:id",
         element: <SingleBlog />,
+        loader:({params}) => fetch(`http://localhost:5000/blog/${params.id}`),
+      },
+      {
+        path: "/add-blog",
+        element: <AddBlog />,
       },
       {
         path: "/problems",
