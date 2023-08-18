@@ -6,9 +6,9 @@ import bannerBgBottom from '../../../assets/banner-bottom.png'
 
 const Banner = () => {
   return (
-    <div className="relative flexcode-banner-bg">
+    <div className="relative flexcode-banner-bg bg-gradient-to-t from-[#05040b] to-[#17181b]">
       {/* Background image */}
-      <div className="absolute bottom-0 w-full h-full bg-gradient-to-t from-[#05040b] to-[#17181b]">
+      <div className="absolute bottom-0 w-full h-full">
         <img className="absolute bottom-0 w-full opacity-80" src={bannerBgBottom} alt="" />
       </div>
       <div className="flexcode-container w-full md:h-screen pt-16 flex flex-col-reverse md:flex-row items-center justify-center">
@@ -17,13 +17,10 @@ const Banner = () => {
             Feel like coding<br /> in your own environment
           </h2>
           <div className="mt-10">
-            <Link>
-              <div className="group relative inline-block focus:outline-none focus:ring">
-                <button className="absolute inset-0 translate-x-0 hover:translate-y-0 rounded-md shadow-2xl bg-[#0fcda133] focus:bg-transparent transition-transform group-hover:translate-y-2 group-hover:translate-x-2"></button>
-                <button className="relative inline-block shadow-2xl border-2 rounded-md border-[#0fcda1] focus:border-white px-8 py-3 text-base font-bold uppercase tracking-widest text-white group-active:text-opacity-75">
-                  Get Start Now
-                </button>
-              </div>
+            <Link to='/explore'>
+              <button className="flexcode-button px-8 py-3">
+                Get Start Now
+              </button>
             </Link>
           </div>
         </div>

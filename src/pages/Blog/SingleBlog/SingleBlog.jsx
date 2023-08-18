@@ -1,6 +1,14 @@
 import React from "react";
+import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading";
+import { useNavigation } from "react-router-dom";
 
 const SingleBlog = () => {
+
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return <FlexcodeLoading />;
+  }
+
   return (
     <div className="flexcode-container">
       <section class=" dark:bg-gray-900">
@@ -48,18 +56,18 @@ const SingleBlog = () => {
                   crafting engaging, intuitive, and user-friendly interfaces. In
                   this article, we'll explore the crucial aspects of UI design
                   and development, helping you unravel the mysteries of this
-                  dynamic field. 
-                  <br/>
-                  <br/>
+                  dynamic field.
+                  <br />
+                  <br />
                   1. **UI: Beyond the Surface** UI, or user
                   interface, encompasses the visual and interactive elements
                   that users engage with when interacting with digital products.
                   It's more than just aesthetics; it's the bridge that connects
                   users to the functionality and features of an application.
                   From buttons and menus to layouts and color schemes, UI is the
-                  culmination of design, psychology, and technology. 
-                  <br/>
-                  <br/>
+                  culmination of design, psychology, and technology.
+                  <br />
+                  <br />
                   2.
                   **User-Centered Design** At the core of effective UI lies
                   user-centered design. This approach involves putting the
@@ -67,9 +75,9 @@ const SingleBlog = () => {
                   the design process. Through research, personas, and usability
                   testing, designers gain insights into user expectations,
                   allowing them to create interfaces that align with user goals
-                  and enhance their overall experience. 
-                  <br/>
-                  <br/>
+                  and enhance their overall experience.
+                  <br />
+                  <br />
                   3. **Visual Hierarchy
                   and Layout** Visual hierarchy dictates how elements are
                   organized on a screen to guide users' attention and
@@ -77,9 +85,9 @@ const SingleBlog = () => {
                   importance, ensuring that users can quickly grasp the
                   content's structure. Proper layout and hierarchy facilitate
                   effortless navigation and prevent users from feeling
-                  overwhelmed. 
-                  <br/>
-                  <br/>
+                  overwhelmed.
+                  <br />
+                  <br />
                   4. **Color and Typography** Colors evoke emotions
                   and convey meaning, making them powerful tools in UI design.
                   Understanding color psychology and its impact on user
@@ -88,18 +96,18 @@ const SingleBlog = () => {
                   application's purpose. Typography is equally crucial;
                   selecting fonts that enhance readability while complementing
                   the design aesthetic contributes to a cohesive user
-                  experience. 
-                  <br/>
-                  <br/>
+                  experience.
+                  <br />
+                  <br />
                   5. **Interactive Elements and Feedback** Buttons,
                   links, forms, and other interactive elements form the backbone
                   of UI. These elements should be designed for clarity and ease
                   of use, ensuring users understand their purpose and how to
                   interact with them. Providing instant feedback (e.g., visual
                   changes or notifications) when users interact with these
-                  elements enhances user confidence and reduces confusion. 
-                  <br/>
-                  <br/>
+                  elements enhances user confidence and reduces confusion.
+                  <br />
+                  <br />
                   6.
                   **Responsive and Adaptive Design** In a multi-device world, UI
                   must adapt to various screen sizes and orientations.
@@ -107,9 +115,9 @@ const SingleBlog = () => {
                   across devices, while adaptive design involves tailoring UI
                   elements specifically to different devices. Prioritizing
                   responsive and adaptive design guarantees a consistent and
-                  functional experience for all users. 
-                  <br/>
-                  <br/>
+                  functional experience for all users.
+                  <br />
+                  <br />
                   7. **Accessibility and
                   Inclusivity** UI design should be accessible to all users,
                   including those with disabilities. Incorporating features like
@@ -117,9 +125,9 @@ const SingleBlog = () => {
                   color contrast ensures that the interface can be used by a
                   diverse audience. Inclusivity in UI design reflects a
                   commitment to equal access and a more ethical digital
-                  landscape. 
-                  <br/>
-                  <br/>
+                  landscape.
+                  <br />
+                  <br />
                   8. **Evolution and Trends** UI design is an
                   ever-evolving field, with trends and technologies constantly
                   emerging. Staying up-to-date with the latest design patterns,

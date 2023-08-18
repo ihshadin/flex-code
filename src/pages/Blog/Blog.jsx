@@ -1,9 +1,17 @@
 import React from "react";
 import image1 from "../../../public/image-1.jpg";
 import BlogCta from "./BlogCta/BlogCta";
+import { useNavigation } from "react-router-dom";
+import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
 
 const Blog = () => {
-  const user = {role: "admin"};
+  const user = { role: "admin" };
+
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return <FlexcodeLoading />;
+  }
+
   return (
     <section>
       <div className="flexcode-container">
@@ -18,16 +26,16 @@ const Blog = () => {
           </p>
         </div>
         <div>
-          <BlogCta/>
+          <BlogCta />
         </div>
-  
+
         {/* New Blog Articles */}
 
         <section className=" dark:bg-gray-900">
           <div className="container  mx-auto">
             <div className="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2 xl:grid-cols-3">
 
-               {/* 1s blog card */}
+              {/* 1s blog card */}
               <div className="bg-[#1e2d40] shadow-md shadow-[#111111] rounded-lg">
                 <div className="relative">
                   <img
@@ -172,8 +180,8 @@ const Blog = () => {
                 </div>
               </div>
 
-               {/* 4th blog card */}
-               <div className="bg-[#1e2d40] shadow-md shadow-[#111111] rounded-lg">
+              {/* 4th blog card */}
+              <div className="bg-[#1e2d40] shadow-md shadow-[#111111] rounded-lg">
                 <div className="relative">
                   <img
                     className="object-cover object-center w-full h-64 rounded-lg lg:h-80"
