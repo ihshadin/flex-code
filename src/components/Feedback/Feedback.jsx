@@ -96,7 +96,7 @@ const Feedback = () => {
                             {details === '' ? "Write your experience here..." : details}
                         </p>
                         <span className="flex mt-8 items-center justify-between">
-                            <h3 className='text-xl font-semibold  mb-2'>~ {user?.displayName}</h3>
+                            <h3 className='text-xl font-semibold  mb-2'>~ {user?.displayName || "Your Name"}</h3>
                             <Rating initialRating={rating} readonly className="flex items-center justify-center"
                                 emptySymbol={<FaRegStar className="text-xl mr-3 text-amber-500" />}
                                 fullSymbol={<FaStar className="text-xl mr-3 text-amber-500" />}

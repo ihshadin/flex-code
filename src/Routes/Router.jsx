@@ -10,12 +10,15 @@ import Problems from "../pages/Problems/Problems";
 import AllProblems from "../pages/Problems/AllProblems";
 import ProfileEdit from "../pages/Dashboard/ProfileEdit/ProfileEdit";
 import SingleBlog from "../pages/Blog/SingleBlog/SingleBlog";
+import Feedback from "../components/Feedback/Feedback";
+import ComingSoon from "../components/ComingSoon/ComingSoon";
 import AddBlog from "../pages/Blog/AddBlog/AddBlog";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <ComingSoon />,
     children: [
       {
         path: "/",
@@ -56,11 +59,27 @@ const router = createBrowserRouter([
       },
       {
         path: '/explore',
-        element: <Explore/>
+        element: <Explore />
+      },
+      {
+        path: '/feedback',
+        element: <Feedback />
       },
       {
         path: '/profile',
         element: <ProfileEdit></ProfileEdit>
+      },
+      {
+        path: '/playground',
+        element: <ComingSoon />
+      },
+      {
+        path: '/notebook',
+        element: <ComingSoon />
+      },
+      {
+        path: '/submissions',
+        element: <ComingSoon />
       }
     ],
   },

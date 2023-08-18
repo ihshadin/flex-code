@@ -1,5 +1,5 @@
 import React from 'react';
-import faqImg from '../../../assets/faq.jpg'
+import faqImg from '../../../assets/FAQ.png'
 
 const Faq = () => {
     return (
@@ -12,12 +12,14 @@ const Faq = () => {
 
                         </p>
                     </div>
-                    <div className='md:flex justify-center items-center gap-10'>
+                    <div className='md:flex justify-center items-center gap-20'>
                         <div className="mx-auto md:w-[50%] mt-8 grid  divide-y divide-[#00ffc3]">
                             <div className="py-5 px-2">
                                 <details className="group">
                                     <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
-                                        <span>What is FlexCode?</span>
+                                        <span className='flex items-center gap-2'>
+                                        <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                            What is FlexCode?</span>
                                         <span className="transition group-open:rotate-180">
                                             <svg fill="none" height="24" shapeRendering="geometricPrecision"
                                                 stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
@@ -33,7 +35,10 @@ const Faq = () => {
                             <div className="py-5 px-2">
                                 <details className="group">
                                     <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
-                                        <span>How do I join FlexCode?</span>
+                                        <span className='flex items-center gap-2'> 
+                                        <div className="w-3 h-3 bg-blue-300 rounded-full"></div>
+                                            How do I join FlexCode?
+                                            </span>
                                         <span className="transition group-open:rotate-180">
                                             <svg fill="none" height="24" shapeRendering="geometricPrecision"
                                                 stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
@@ -49,7 +54,9 @@ const Faq = () => {
                             <div className="py-5 px-2">
                                 <details className="group">
                                     <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
-                                        <span>Is FlexCode suitable for beginners?</span>
+                                        <span className='flex items-center gap-2'>
+                                        <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                                            Is FlexCode suitable for beginners?</span>
                                         <span className="transition group-open:rotate-180">
                                             <svg fill="none" height="24" shapeRendering="geometricPrecision"
                                                 stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
@@ -65,7 +72,9 @@ const Faq = () => {
                             <div className="py-5 px-2">
                                 <details className="group">
                                     <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
-                                        <span>Are there any membership fees?</span>
+                                        <span className='flex items-center gap-2'>
+                                        <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+                                            Are there any membership fees?</span>
                                         <span className="transition group-open:rotate-180">
                                             <svg fill="none" height="24" shapeRendering="geometricPrecision"
                                                 stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
@@ -81,7 +90,9 @@ const Faq = () => {
                             <div className="py-5 px-2">
                                 <details className="group">
                                     <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
-                                        <span>How often are new challenges added?</span>
+                                        <span className='flex items-center gap-2'>
+                                        <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                                            How often are new challenges added?</span>
                                         <span className="transition group-open:rotate-180">
                                             <svg fill="none" height="24" shapeRendering="geometricPrecision"
                                                 stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
@@ -97,7 +108,9 @@ const Faq = () => {
                             <div className="py-5 px-2">
                                 <details className="group">
                                     <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
-                                        <span>Can I collaborate with other users on challenges?</span>
+                                        <span className='flex items-center gap-2'>
+                                        <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                                            Can I collaborate with other users on challenges?</span>
                                         <span className="transition group-open:rotate-180">
                                             <svg fill="none" height="24" shapeRendering="geometricPrecision"
                                                 stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
