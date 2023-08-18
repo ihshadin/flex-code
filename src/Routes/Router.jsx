@@ -10,6 +10,7 @@ import Problems from "../pages/Problems/Problems";
 import AllProblems from "../pages/Problems/AllProblems";
 import ProfileEdit from "../pages/Dashboard/ProfileEdit/ProfileEdit";
 import SingleBlog from "../pages/Blog/SingleBlog/SingleBlog";
+import Feedback from "../components/Feedback/Feedback";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: '/explore',
         element: <Explore/>
+      },
+      {
+        path: '/feedback',
+        element: <Feedback/>
       },
       {
         path: '/profile',
