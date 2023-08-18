@@ -14,7 +14,7 @@ const Blog = () => {
 
   const [blogs, setBlogs] = useState([])
   useEffect(() => {
-    fetch('http://localhost:5000/blog')
+    fetch('https://flex-code-server.vercel.app/blog')
       .then(res => res.json())
       .then(data => {
         console.log(data);

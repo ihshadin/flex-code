@@ -15,7 +15,7 @@ const Feedback = () => {
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
         const feedbackDetails = { ...data, rating, image: user?.photoURL, userName: user?.displayName };
-        fetch('http://localhost:5000/feedback', {
+        fetch('https://flex-code-server.vercel.app/feedback', {
             method: "POST",
             headers: {
                 "content-type": "application/json"

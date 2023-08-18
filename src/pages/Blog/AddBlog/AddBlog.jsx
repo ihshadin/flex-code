@@ -14,7 +14,7 @@ const AddBlog = () => {
       userImage: user?.photoURL,
       userName: user?.displayName,
     };
-    fetch("http://localhost:5000/blog", {
+    fetch("https://flex-code-server.vercel.app/blog", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -48,14 +48,14 @@ const AddBlog = () => {
               Write your blog share your experience
             </h1>
           </div>
-          
+
         </div>
       </section>
       <form onSubmit={handleSubmit(onSubmit)} className="w-1/2 mx-auto my-5 ">
         <div className="-mx-3">
           <div className="w-full px-3 mb-5">
             <label htmlFor="" className="text-sm font-semibold px-1">
-             Your Name
+              Your Name
             </label>
             <div className="flex">
               <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">

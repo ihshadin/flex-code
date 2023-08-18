@@ -156,18 +156,22 @@ const NavBar = () => {
                   Blogs
                 </Link>
               </li>
-              <li>
-                <Link
-                  to="/feedback"
-                  onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#0fcda1] transition-all duration-300 ${isActiveRoute("/feedback")
-                    ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
-                    : ""
-                    }`}
-                >
-                  FeedBack
-                </Link>
-              </li>
+              {
+                user && (
+                  <li>
+                    <Link
+                      to="/feedback"
+                      onClick={closeMenu}
+                      className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#0fcda1] transition-all duration-300 ${isActiveRoute("/feedback")
+                        ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
+                        : ""
+                        }`}
+                    >
+                      FeedBack
+                    </Link>
+                  </li>
+                )
+              }
               <li>
                 <Link
                   to="/explore"

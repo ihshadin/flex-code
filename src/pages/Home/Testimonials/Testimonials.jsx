@@ -14,7 +14,7 @@ import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 const Testimonials = () => {
     const [feedbacks, setFeedbacks] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/feedback')
+        fetch('https://flex-code-server.vercel.app/feedback')
             .then(res => res.json())
             .then(data => {
                 console.log(data);

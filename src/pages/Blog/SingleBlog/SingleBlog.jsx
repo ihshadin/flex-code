@@ -15,7 +15,7 @@ const SingleBlog = () => {
   }
 
   useEffect(() => {
-    fetch(`http://localhost:5000/blog/${id}`)
+    fetch(`https://flex-code-server.vercel.app/blog/${id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched data:", data);
@@ -35,7 +35,7 @@ const SingleBlog = () => {
 
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/blog")
+    fetch("https://flex-code-server.vercel.app/blog")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
