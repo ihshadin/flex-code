@@ -75,3 +75,15 @@ body {
 .flexcode-container {
   @apply max-w-[1280px] w-full mx-auto py-6 md:py-8 lg:py-16 px-3
 }
+.flexcode-button {
+  @apply relative inline-block shadow-2xl border-2 rounded-md border-[#0fcda1] font-bold uppercase tracking-widest text-white
+}
+.flexcode-button::after {
+  @apply content-[''] absolute inset-0 rounded-md shadow-2xl bg-[#0fcda133] transition-transform
+}
+.flexcode-button::after:hover {
+  @apply translate-y-2 translate-x-2
+}
+.flexcode-button:focus {
+  @apply border-white
+}

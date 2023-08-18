@@ -16,19 +16,17 @@ const Footer = () => {
     return (
         <footer className='bg-secondary-color'>
             <div className='flexcode-container'>
-                <div className="footer text-white">
-                    <div className="sm:col-span-2">
+                <div className="flex justify-between gap-5 text-white mb-5">
+                    <div className='w-2/6'>
                         <div>
                             <img src={logo} alt="logo" className="w-[11rem]" />
                         </div>
-                        <div className="mt-4 lg:max-w-sm">
-                            <p className="text-sm text-white">
-                                FlexCode is a problem-solving platform that helps coding enthusiasts improve their skills through engaging challenges and interactive learning. Keep an eye on tech news sources and programming blogs, as they might cover new and emerging platforms.
-                            </p>
-                        </div>
+                        <p className="mt-3 text-sm text-white">
+                            FlexCode is a problem-solving platform that helps coding enthusiasts improve their skills through engaging challenges and interactive learning. Keep an eye on tech news sources and programming blogs, as they might cover new and emerging platforms.
+                        </p>
                     </div>
-                    <div>
-                        <span className="footer-title">Services</span>
+                    <div className='w-1/6 flex flex-col'>
+                        <span className="font-semibold text-xl mb-2">Services</span>
                         <a className="link link-hover mb-1">Branding</a>
                         <a className="link link-hover mb-1">Design</a>
                         <a className="link link-hover mb-1">Marketing</a>
@@ -37,8 +35,8 @@ const Footer = () => {
                         <a className="link link-hover mb-1">Consultation</a>
                         <a className="link link-hover mb-1">Client Testimonials</a>
                     </div>
-                    <div>
-                        <span className="footer-title">Company</span>
+                    {/* <div>
+                        <span className="">Company</span>
                         <a className="link link-hover mb-1">About us</a>
                         <a className="link link-hover mb-1">Contact</a>
                         <a className="link link-hover mb-1">Jobs</a>
@@ -46,9 +44,9 @@ const Footer = () => {
                         <a className="link link-hover mb-1">Our Team</a>
                         <a className="link link-hover mb-1">Locations</a>
                         <a className="link link-hover mb-1">FAQs</a>
-                    </div>
-                    <div>
-                        <span className="footer-title">Legal</span>
+                    </div> */}
+                    <div className='w-1/6 flex flex-col gap-1'>
+                        <span className="font-semibold text-xl mb-2">Legal</span>
                         <a className="link link-hover mb-1">Terms of use</a>
                         <a className="link link-hover mb-1">Privacy policy</a>
                         <a className="link link-hover mb-1">Cookie policy</a>
@@ -57,77 +55,37 @@ const Footer = () => {
                         <a className="link link-hover mb-1">Copyright Notice</a>
                         <a className="link link-hover mb-1">GDPR Compliance</a>
                     </div>
-                    <div className="w-full ">
-                        <div className="max-w-4xl">
-                            <h2 className="text-3xl md:text-3xl font-bold mb-3">
-                                Contact Us
-                            </h2>
-                            <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-2">
+                    <div className='w-2/6'>
+                        <h2 className="text-xl md:text-2xl font-semibold mb-3">
+                            Contact Us
+                        </h2>
+                        <form onSubmit={handleSubmit}>
+                            <div className='grid grid-cols-2 gap-3 mb-3'>
                                 <div>
-                                    <label
-                                        htmlFor="name"
-                                        className="block text-[#0fcda1] font-bold mb-2"
-                                    >
-                                        Name
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="name"
-                                        name="name"
-                                        placeholder="Your name"
-                                        required
-                                        className="border-2 text-neutral  p-2 w-full rounded-md focus:outline-none focus:border-[#0fcda1]"
-                                    />
+                                    <label htmlFor="con_name" className="text-sm font-semibold px-1 pb-2 block">Your name</label>
+                                    <input type="text" id='con_name' className="w-full block px-6 py-2 rounded-lg border-2 border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]" placeholder="John doe" />
                                 </div>
                                 <div>
-                                    <label
-                                        htmlFor="email"
-                                        className="block text-[#0fcda1] font-bold mb-2"
-                                    >
-                                        Email
-                                    </label>
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        name="email"
-                                        placeholder="Your Email"
-                                        required
-                                        className="border-2 text-neutral  p-2 w-full rounded-md focus:outline-none focus:border-[#0fcda1]"
-                                    />
+                                    <label htmlFor="con_email" className="text-sm font-semibold px-1 pb-2 block">Your Email</label>
+                                    <input type="text" id='con_email' className="w-full block px-6 py-2 rounded-lg border-2 border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]" placeholder="example@gmail.com" />
                                 </div>
-                                <div className="col-span-2">
-                                    <label
-                                        htmlFor="message"
-                                        className="block text-[#0fcda1] font-bold mb-2"
-                                    >
-                                        Message
-                                    </label>
-                                    <textarea
-                                        id="message"
-                                        name="message"
-                                        placeholder="Your Message"
-                                        required
-                                        className="border-2 text-neutral  p-2 w-full rounded-md focus:outline-none focus:border-[#0fcda1]"
-                                    ></textarea>
-                                </div>
-                                <div className="col-span-2">
-                                    <input
-                                        value="Submit"
-                                        type="submit"
-                                        className="btn bg-[#1e2d40]  hover:bg-[#1e2d40] hover:border-2 hover:border-[#0fcda1] hover:text-[#0fcda1] text-white"
-                                    ></input>
-                                </div>
-                            </form>
-                        </div>
+                            </div>
+                            <div>
+                                <label htmlFor="con_message" className="text-sm font-semibold px-1 pb-2 block">Message</label>
+                                <textarea rows={2} id='con_message' className="w-full block px-6 py-2 rounded-lg border-2 border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]" placeholder="Write you Message" />
+                            </div>
+                            <div className="mt-3 text-right">
+                                <input value="Submit" type="submit" className="flexcode-button py-2 px-4" />
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div className="flex bg-[#1e2d40] flex-col-reverse justify-between pt-5 border-t lg:flex-row border-[#0fcda156]">
                     <p className="text-sm text-gray-300 md:pl-10 px-10">© Copyright 2023 Company. All rights reserved.</p>
                     <ul className="flex flex-col mb-3 space-y-2 lg:mb-0 sm:space-y-0 sm:space-x-5 sm:flex-row md:pr-16 px-10">
                         <li>
-                            <a href="#"
-                                className="text-sm text-gray-300 transition-colors duration-300 hover:text-deep-purple-accent-400">Privacy
-                                &amp; Cookies Policy
+                            <a href="#" className="text-sm text-gray-300 transition-colors duration-300 hover:text-deep-purple-accent-400">
+                                Privacy &amp; Cookies Policy
                             </a>
                         </li>
                         <li>

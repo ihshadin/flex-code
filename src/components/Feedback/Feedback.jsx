@@ -11,7 +11,7 @@ const Feedback = () => {
     const [exp, setExp] = useState('')
     const [details, setDetails] = useState('')
     const { user } = useContext(AuthContext)
- 
+
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
         const feedbackDetails = { ...data, rating, image: user?.photoURL, userName: user?.displayName };
@@ -22,24 +22,23 @@ const Feedback = () => {
             },
             body: JSON.stringify(feedbackDetails)
         }).then(res => res.json())
-        .then(data => {
-            if (data.message === 'success') {
-                console.log(feedbackDetails);
-                Swal.fire({
-                    title: "Success Your Submit!",
-                    text: "Do you want to continue",
-                    icon: "success",
-                    confirmButtonText: "OK",
-                });
-                reset()
-            }
-        })
+            .then(data => {
+                if (data.message === 'success') {
+                    console.log(feedbackDetails);
+                    Swal.fire({
+                        title: "Success Your Submit!",
+                        text: "Do you want to continue",
+                        icon: "success",
+                        confirmButtonText: "OK",
+                    });
+                    reset()
+                }
+            })
 
     };
     return (
-        <>
-            <div className="w-full px-5 md:px-10 flex gap-10 items-center">
-
+        <section>
+            <div className="flexcode-container flex gap-10 items-center">
                 <form onSubmit={handleSubmit(onSubmit)} className="w-1/2">
                     <div className="flex -mx-3">
                         <div className="w-full px-3 mb-5">
@@ -49,7 +48,6 @@ const Feedback = () => {
                                 <input defaultValue={user?.displayName} readOnly type="text" className="w-full -ml-10 pl-10 pr-3 bg-[#1e2d40] py-2 rounded-lg border-2 border-gray-500 outline-none focus:border-[#00ffc3]" placeholder="John doe" />
                             </div>
                         </div>
-
                     </div>
                     <div className="flex -mx-3">
                         <div className="w-full px-3 mb-5">
@@ -61,12 +59,11 @@ const Feedback = () => {
                         </div>
                     </div>
                     <div className="flex -mx-3">
-                        <div className="w-full px-3 mb-12">
+                        <div className="w-full px-3 mb-5">
                             <label htmlFor="" className="text-sm font-semibold px-1">Give your full expression</label>
                             <div className="flex">
                                 <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i className="mdi mdi-lock-outline text-gray-400 text-lg"></i></div>
                                 <textarea onKeyUp={(e) => setDetails(e.target.value)} rows={5} className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]" placeholder="Write details about your experience" {...register("details", { required: true })} />
-
                             </div>
                         </div>
                     </div>
@@ -82,12 +79,14 @@ const Feedback = () => {
                         </div>
                     </div>
                     <div className="flex -mx-3">
-                        <div className="w-full px-3 mb-5">
-                            <button type="submit" className="block w-full max-w-xs mx-auto bg-[#1da888] hover:bg-[#2bd1aa] hover:btn-outline focus:bg-[#2c3533] text-white rounded-lg px-3 py-3 font-semibold">DONE</button>
+                        <div className="text-center w-full px-3 mb-5">
+                            <button type="submit" className="flexcode-button py-3 px-28">
+                                Submit
+                            </button>
                         </div>
                     </div>
                 </form>
-                <section className="w-1/2 -mt-44">
+                <div className="w-1/2 -mt-44">
                     <div className='bg-secondary-color p-8 md:p-10 mb-12 rounded-2xl text-white border border-[#1e2d40] hover:border-[#0fcda1] transition-all duration-300 cursor-pointer'>
                         <h2 className='text-2xl font-semibold mb-5'>
                             {exp === '' ? "Your expression" : exp}
@@ -108,9 +107,9 @@ const Feedback = () => {
                             <img src={user?.photoURL || reviewImg1} className="rounded-full" alt="" />
                         </div>
                     </div>
-                </section>
+                </div>
             </div>
-        </>
+        </section>
     );
 };
 export default Feedback;

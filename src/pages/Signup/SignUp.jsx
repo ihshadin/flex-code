@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigation } from "react-router-dom";
 import { FaGithub, FaRegEnvelope, FaSpinner, FaUser } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
 import { useForm } from "react-hook-form";
@@ -8,6 +8,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import SocialLogin from "../Shared/Social/SocialLogin";
 import "./Signup.css";
 import { toast } from "react-hot-toast";
+import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
 const SignUp = () => {
   const { createUser, loading, setLoading, updateUserProfile, setReload } =
     useContext(AuthContext);
@@ -50,13 +51,18 @@ const SignUp = () => {
     // console.log(name, email, password);
   };
 
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return <FlexcodeLoading />;
+  }
+
   return (
     <div className="justify-center items-center flex pt-10">
       <div className="bg-[#1e2d40] shadow-2xl md:w-2/4 max-w-md mx-auto rounded-xl px-7 my-14">
         <>
           <div className="flex items-center justify-center text-white text-2xl font-bold py-8">
             <img className="w-16 h-16" src="/20230810_125620.png" alt="img" />
-            <span className="text-[#0fcda1] mr-1">Flex </span> {} Code
+            <span className="text-[#0fcda1] mr-1">Flex </span> { } Code
           </div>
           <SocialLogin />
           <div className="max-w-[150px] flex justify-center border-2 border-[#0fcda1] rounded mx-auto my-8"></div>

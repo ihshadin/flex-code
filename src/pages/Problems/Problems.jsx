@@ -262,13 +262,11 @@ const Problems = () => {
             <Link
               to={`${problem?.language}`}
               key={index}
-              className={`${
-                problems.reduce((total, i) => total + index, 0) - 3 <= index
-                  ? "border-b"
-                  : ""
-              } ${[9, 10, 11].includes(index) ? "" : "border-b"} ${
-                [1, 4, 7, 10, 13].includes(index) ? "border-x" : ""
-              } cursor-pointer hover:bg-[#0fcda1] hover:text-[#17181b] transition-all flex justify-center items-center`}
+              className={`${problems.reduce((total, i) => total + index, 0) - 3 <= index
+                ? "border-b"
+                : ""
+                } ${[9, 10, 11].includes(index) ? "" : "border-b"} ${[1, 4, 7, 10, 13].includes(index) ? "border-x" : ""
+                } cursor-pointer hover:bg-[#0fcda1] hover:text-[#17181b] transition-all flex justify-center items-center`}
             >
               <p className="md:text-lg font-medium text-center py-5">
                 {problem.language}
@@ -318,7 +316,7 @@ const Problems = () => {
               </span>
             </div>
             <div>
-              <button className="btn select-none mt-5 md:mt-0 hover:bg-[#1e2d40] hover:border-2 hover:border-[#0fcda1] hover:text-[#0fcda1] text-white">
+              <button className="flexcode-button py-3 px-4">
                 Solve Problem
               </button>
             </div>
@@ -355,7 +353,7 @@ const Problems = () => {
               </span>
             </div>
             <div>
-              <button className="btn select-none mt-5 md:mt-0 hover:bg-[#1e2d40] hover:border-2 hover:border-[#0fcda1] hover:text-[#0fcda1] text-white">
+              <button className="flexcode-button py-3 px-4">
                 Solve Problem
               </button>
             </div>
