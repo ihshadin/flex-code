@@ -13,6 +13,7 @@ import SingleBlog from "../pages/Blog/SingleBlog/SingleBlog";
 import Feedback from "../components/Feedback/Feedback";
 import ComingSoon from "../components/ComingSoon/ComingSoon";
 import AddBlog from "../pages/Blog/AddBlog/AddBlog";
+import ViewProblem from "../pages/Problems/ViewProblem";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "/problems/:languages",
         element: <AllProblems />,
+      },
+      {
+        path: "/viewproblems",
+        element: <ViewProblem />,
       },
       {
         path: "/dashboard",

@@ -18,7 +18,7 @@ const Editor = () => {
         dragInterval={1}
         cursor="col-resize"
       >
-        <div className=" overflow-auto">
+        <div className="overflow-auto">
           <p className="p-5"> !</p>
         </div>
         <div className="overflow-hidden h-full flex flex-col">
