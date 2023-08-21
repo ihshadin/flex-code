@@ -6,7 +6,7 @@ import "codemirror/theme/dracula.css";
 import Split from "react-split";
 import problem from '../../../public/problems.json'
 
-import './ViewProblem.css'
+import './ProblemDetails.css'
 
 const ViewProblem = () => {
 

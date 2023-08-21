@@ -1,24 +1,60 @@
-
-    {
-        "id": 1,
-        "title": "twoSum",
-        "problemsDetails": "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.\n\nYou may assume that each input would have exactly one solution, and you may not use the same element twice.\n\nYou can return the answer in any order.",
-        "highlightWords": ["nums", "target"],
-        "examples": [
-          {
-            "example": "Example 1",
-            "input": "[2,7,11,15]",
-            "output": "[0,1]"
-          },
-          { 
-            "example": "Example 2",
-            "input": "[3,2,4]",
-            "output": "[1,2]"
-          }
-        ],
-        "parameterName": ["nums", "target"],
-        "defaultCode": "function twoSum(nums, target) { return}",
-        "problemsLevel": "Easy",
-        "isPremium": false,
-        "language": "JavaScript"
-    }
+[
+  {
+    "id": 1,
+    "title": "Two Sum",
+    "functionName": "twoSum",
+    "problemsDetails": "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.\n\nYou may assume that each input would have exactly one solution, and you may not use the same element twice.\n\nYou can return the answer in any order.",
+    "highlightWords": [
+      "nums",
+      "target"
+    ],
+    "examples": [
+      {
+        "example": 1,
+        "input": "[3,2,4]",
+        "output": "[1,2]"
+      },
+      {
+        "example": 1,
+        "input": "[3,2,4]",
+        "output": "[1,2]"
+      }
+    ],
+    "parameterName": [
+      "nums",
+      "target"
+    ],
+    "defaultCode": "function twoSum(nums, target) { return}",
+    "level": "easy",
+    "isPremium": false,
+    "language": "JavaScript"
+  },
+  {
+    "id": 2,
+    "title": "Reverse String",
+    "functionName": "reverseString",
+    "problemsDetails": "Write a function that takes a string as input and returns the string reversed.\n\nYou may assume that the input string contains only lowercase letters.",
+    "highlightWords": [
+      "string"
+    ],
+    "examples": [
+      {
+        "example": 1,
+        "input": "[3,2,4]",
+        "output": "[1,2]"
+      },
+      {
+        "example": 1,
+        "input": "[3,2,4]",
+        "output": "[1,2]"
+      }
+    ],
+    "parameterName": [
+      "string"
+    ],
+    "defaultCode": "function reverseString(string) {\n  // Write your solution here\nreturn}",
+    "level": "easy",
+    "isPremium": false,
+    "language": "JavaScript"
+  }
+]
