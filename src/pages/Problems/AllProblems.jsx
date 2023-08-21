@@ -275,7 +275,7 @@ const AllProblems = () => {
                                     </span>
                                 </div>
                                 <div className="flex flex-col gap-2">
-                                    <Link to={`/viewproblems`} className="flexcode-button text-xs py-2 px-4">
+                                    <Link to={`/problem/1`} className="flexcode-button text-xs py-2 px-4">
                                         Solve Problem
                                     </Link>
                                     <Link to='/feedback' className="flexcode-button text-xs py-2 px-4 text-center">
