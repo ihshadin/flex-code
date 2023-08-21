@@ -17,3 +17,18 @@
 	cursor: row-resize;
     z-index: 1;
 }
+#viewProblems .CodeMirror {
+    height: 100%;
+}
+#viewProblems .CodeMirror-hscrollbar::-webkit-scrollbar {
+    background-color: #ffffff3d;
+    height: 10px;
+    border-radius: 20px;
+}
+#viewProblems .CodeMirror-hscrollbar::-webkit-scrollbar-thumb {
+    background-color: #0fcda1;
+    border-radius: 20px;
+}
+#viewProblems .CodeMirror-hscrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #0fcda14f;
+}

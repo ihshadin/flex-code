@@ -36,9 +36,10 @@ const ViewProblem = () => {
     };
 
     return (
-        <section>
+        <section id="viewProblems">
             <div className="flexcode-container flex gap-10">
                 <div className="w-1/2">
+                    <h2 className="text-2xl font-bold mb-2 primary-color">Two Sum</h2>
                     <p className="leading-loose">
                         Given an array of integers <span className="px-2 border border-[#0fcda1] primary-color font-medium rounded-md">nums</span> and an integer <span className="px-2 border border-[#0fcda1] primary-color font-medium rounded-md">target</span>, return indices of the two numbers such that they add up to <span className="px-2 border border-[#0fcda1] primary-color font-medium rounded-md">target</span>.
                         <br /><br />
@@ -96,26 +97,22 @@ const ViewProblem = () => {
                             />
                         </div>
                         <div className="overflow-hidden relative">
-                            <button className="flexcode-button text-xs py-2 px-3 ms-auto">Run Code</button>
-                            <span className="block font-medium text-center">Console Log</span>
+                            <button onClick={runCode} className="flexcode-button text-xs py-2 px-3 ms-auto">Run Code</button>
+                            <span className="block font-medium text-center">
+                                {consoleOutput == false ? "Console log" : consoleOutput.map((output, index) => (
+                                    <div key={index}>{output}</div>
+                                ))}
+                            </span>
                             <div className="my-5">
                                 <span className="primary-color text-3xl text-center font-semibold block">Accepted</span>
-                                <p className="text-center mt-1">You are get 10 points</p>
+                                <p className="text-center mt-1">You got 10 points</p>
+                            </div>
+                            <div className="my-5">
+                                <span className="text-red-500 text-3xl text-center font-semibold block">Wrong Answer</span>
+                                <p className="text-center mt-1">You do not get points</p>
                             </div>
                             <p className="text-red-500 text-lg font-medium">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                Consequatur nisi neque nobis expedita rerum consectetur corporis
-                                velit assumenda quidem, earum facilis hic impedit nam culpa
-                                natus sequi incidunt nemo nesciunt, maxime ad odit ut animi aut
-                                excepturi! Laudantium rerum totam sequi facilis commodi,
-                                deleniti ab asperiores voluptas quae inventore magni delectus
-                                tempore consequatur dolorum id soluta quo labore reiciendis.
-                                Suscipit aperiam voluptatibus quia omnis vero animi, nostrum
-                                dignissimos at est? Quo ipsam rem a asperiores? Reiciendis
-                                corporis vero quia, natus animi ab sunt molestias architecto
-                                necessitatibus ducimus aliquid doloribus. Esse impedit, mollitia
-                                eius blanditiis perspiciatis unde expedita. Quisquam, quos
-                                aspernatur!
+                                This is Error
                             </p>
                         </div>
                     </Split>

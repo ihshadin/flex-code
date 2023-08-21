@@ -23,6 +23,17 @@ body {
   background-color: #17181b;
   font-family: "Montserrat", sans-serif;
 }
+body::-webkit-scrollbar {
+    background-color: #1e2d40;
+    width: 10px;
+}
+body::-webkit-scrollbar-thumb {
+    background-color: #0fcda1;
+    border-radius: 20px;
+}
+body::-webkit-scrollbar-thumb:hover {
+    background-color: #0fcda185;
+}
 
 .primary-color {
   color: #0fcda1;
