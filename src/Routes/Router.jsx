@@ -13,7 +13,7 @@ import SingleBlog from "../pages/Blog/SingleBlog/SingleBlog";
 import Feedback from "../components/Feedback/Feedback";
 import ComingSoon from "../components/ComingSoon/ComingSoon";
 import AddBlog from "../pages/Blog/AddBlog/AddBlog";
-import ViewProblem from "../pages/Problems/ViewProblem";
+import ProblemDetails from "../pages/Problems/ProblemDetails";
 
 const router = createBrowserRouter([
   {
@@ -55,8 +55,8 @@ const router = createBrowserRouter([
         element: <AllProblems />,
       },
       {
-        path: "/viewproblems",
-        element: <ViewProblem />,
+        path: "/problem/:id",
+        element: <ProblemDetails />,
       },
       {
         path: "/dashboard",

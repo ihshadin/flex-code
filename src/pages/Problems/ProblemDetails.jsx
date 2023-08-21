@@ -5,7 +5,7 @@ import "codemirror/mode/javascript/javascript";
 import "codemirror/theme/dracula.css";
 import Split from "react-split";
 
-import './ViewProblem.css'
+import './ProblemDetails.css'
 
 const ViewProblem = () => {
 
