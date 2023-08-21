@@ -1,35 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Controlled as CodeMirror } from "react-codemirror2";
 import "codemirror/lib/codemirror.css";
 import "codemirror/mode/javascript/javascript";
 import "codemirror/theme/dracula.css";
 import Split from "react-split";
-import problem from '../../../public/problems.json'
 
 import './ProblemDetails.css'
 
-const ViewProblem = () => {
-
+const ProblemDetails = () => {
     const [code, setCode] = useState(''); //console.log("Hello, world!");
     const [consoleOutput, setConsoleOutput] = useState([]);
     const [outputMessage, setOutputMessage] = useState(''); //new
+    const [problems, setProblems] = useState([]);
 
     //  new
     const defaultCode = `
-    function ${problem.title}(${problem.parameterName[0]}){
+    function twoSum(nums, target){
       // Your solution logic
 
       return   ;
     }
   `;
-    
+
     // new 
     const handleCodeChange = (editor, data, value) => {
         setCode(value);
         setOutputMessage('');
-      };
+    };
 
-   
     const runCode = () => {
         try {
             // Clear console output
@@ -43,7 +41,7 @@ const ViewProblem = () => {
             };
 
             // Execute code
-           const userOutput = eval(code);
+            const userOutput = eval(code);
             console.log(userOutput);
 
 
@@ -55,8 +53,16 @@ const ViewProblem = () => {
         }
     };
 
+    useEffect(() => {
+        fetch('/problems.json')
+            .then(res => res.json())
+            .then(data => {
+                setProblems(data);
+            })
+    }, [])
+
     return (
-        <section id="viewProblems">
+        <section id="problemDetails">
             <div className="flexcode-container flex gap-10">
                 <div className="w-1/2">
                     <h2 className="text-2xl font-bold mb-2 primary-color">Two Sum</h2>
@@ -66,20 +72,22 @@ const ViewProblem = () => {
                         You may assume that each input would have exactly one <b>solution</b>, and you may not use the same element twice.
                         <br /><br />
                         You can return the answer in any order. */}
-                        {problem.problemsDetails}
+                        {problems.problemsDetails}
                     </p>
                     <div className="flex flex-col gap-6 mt-10">
-                            { 
-                            problem.examples.map(ex => (
-                            <div>
-                                <h3 className="text-xl font-semibold">{ex.example}</h3>
-                                <div className="bg-secondary-color p-5 rounded-xl mt-2 flex flex-col gap-1 text-gray-400">
-                                    <span><b className="text-white font-semibold">Input:</b> {ex.input} </span>
-                                    <span><b className="text-white font-semibold">Output:</b> {ex.output}</span>
-                                </div> 
-                            </div>
+                        {
+                            problems.map(problem => (
+                                problem.examples.map((ex, index) => (
+                                    <div key={index}>
+                                        <h3 className="text-xl font-semibold">Example {ex.example}</h3>
+                                        <div className="bg-secondary-color p-5 rounded-xl mt-2 flex flex-col gap-1 text-gray-400">
+                                            <span><b className="text-white font-semibold">Input:</b> {ex.input} </span>
+                                            <span><b className="text-white font-semibold">Output:</b> {ex.output}</span>
+                                        </div>
+                                    </div>
+                                ))
                             ))
-                            }
+                        }
                         {/* <div>
                             <h3 className="text-xl font-semibold">Example 2</h3>
                             <div className="bg-secondary-color p-5 rounded-xl mt-2 flex flex-col gap-1 text-gray-400">
@@ -140,4 +148,4 @@ const ViewProblem = () => {
     );
 };
 
-export default ViewProblem;
+export default ProblemDetails;
