@@ -6,18 +6,15 @@ import "codemirror/theme/dracula.css";
 import Split from "react-split";
 import "./ProblemDetails.css";
 import { useParams } from "react-router-dom";
-// import singleProblem from '../../../public/problem2.json'
 
 const ProblemDetails = () => {
   const { id } = useParams();
   const [code, setCode] = useState(""); //console.log("Hello, world!");
   const [consoleOutput, setConsoleOutput] = useState([]);
-  const [outputMessage, setOutputMessage] = useState(""); //new
+  const [outputMessage, setOutputMessage] = useState(""); 
   const [problems, setProblems] = useState([]);
-  const [consoleClicked, setConsoleClicked] = useState("");
 
   const singleProblem = problems.find((problem) => problem.id == id) || [];
-  // console.log(singleProblem);
   useEffect(() => {
     fetch("/problems.json")
       .then((res) => res.json())
@@ -26,22 +23,21 @@ const ProblemDetails = () => {
       });
   }, []);
 
-  //  new
-  const defaultCode = `
-function ${singleProblem.functionName}(${singleProblem.parameterName}){
+  //  Default values
+  const defaultCode = `function ${singleProblem.functionName}(${singleProblem.parameterName}){
 // Your solution logic
 
  return   ;
 }
 `;
 
-  // new
   const handleCodeChange = (editor, data, value) => {
     setCode(value);
     setOutputMessage("");
   };
 
-  const runCode = () => {
+  // Submit Code---------------------
+  const submitCode = () => {
     try {
       // Clear console output
       setConsoleOutput([]);
@@ -59,10 +55,10 @@ function ${singleProblem.functionName}(${singleProblem.parameterName}){
       }(${singleProblem.examples[0].input});`;
 
       const userOutput = eval(userCode);
-      // console.log(userOutput);
-      // setCodeOutput(userOutput)
+      //   console.log('jahid',userOutput);
+      //   setCodeOutput(userOutput);
 
-      // Output Message
+      //   Output Message
       if (userOutput == singleProblem.examples[0].output) {
         setOutputMessage("Congratulations! Problem solved.");
       } else {
@@ -70,6 +66,35 @@ function ${singleProblem.functionName}(${singleProblem.parameterName}){
       }
 
       // Restore console.log
+      //   console.log = originalLog;
+    } catch (error) {
+      console.error("Error:", error);
+      setOutputMessage(
+        `An error occurred while running your code.\n\n${error}`
+      );
+    }
+  };
+
+
+  // ConsoleCode----------------------
+  const consoleCode = () => {
+    try {
+      // Clear console output
+      setConsoleOutput([]);
+
+      // Capture console output
+      const originalLog = console.log;
+      console.log = (...args) => {
+        originalLog.apply(console, args);
+        setConsoleOutput((prevOutput) => [...prevOutput, args.join(" ")]);
+      };
+
+      // Execute code
+      const userCode = `${code || defaultCode}\n\nconsole.log(${
+        singleProblem.functionName
+      }(${singleProblem.examples[0].input}));`;
+
+      eval(userCode);
       console.log = originalLog;
     } catch (error) {
       console.error("Error:", error);
@@ -87,11 +112,6 @@ function ${singleProblem.functionName}(${singleProblem.parameterName}){
             {singleProblem.title}
           </h2>
           <p className="leading-loose">
-            {/* Given an array of integers <span className="px-2 border border-[#0fcda1] primary-color font-medium rounded-md">nums</span> and an integer <span className="px-2 border border-[#0fcda1] primary-color font-medium rounded-md">target</span>, return indices of the two numbers such that they add up to <span className="px-2 border border-[#0fcda1] primary-color font-medium rounded-md">target</span>.
-                        <br /><br />
-                        You may assume that each input would have exactly one <b>solution</b>, and you may not use the same element twice.
-                        <br /><br />
-                        You can return the answer in any order. */}
             {singleProblem?.problemsDetails
               ?.split(/(\s+|,|\.)/)
               .map((word, index, arr) => (
@@ -164,22 +184,22 @@ function ${singleProblem.functionName}(${singleProblem.parameterName}){
             <div className="overflow-hidden relative">
               <div className="flex">
                 <button
-                  onClick={runCode}
-                  className="flexcode-button text-xs py-2 px-3 "
-                >
-                  Run Code
-                </button>
-
-                <button
-                  onClick={setConsoleClicked}
+                  onClick={consoleCode}
                   className="flexcode-button text-xs py-2 px-3 ms-auto"
                 >
                   Console
                 </button>
+
+                <button
+                  onClick={submitCode}
+                  className="flexcode-button text-xs py-2 px-3"
+                >
+                  Submit
+                </button>
               </div>
               <span className="block font-medium text-center">
                 {consoleOutput == false
-                  ? "Console log"
+                  ? ""
                   : consoleOutput.map((output, index) => (
                       <div key={index}>
                         <p></p>
@@ -191,13 +211,13 @@ function ${singleProblem.functionName}(${singleProblem.parameterName}){
                 {/* <span className="primary-color text-3xl text-center font-semibold block">Accepted</span> */}
                 <p className="text-center mt-1">{outputMessage}</p>
               </div>
-              {/* <div className="my-5">
-                                <span className="text-red-500 text-3xl text-center font-semibold block">Wrong Answer</span>
-                                <p className="text-center mt-1">You do not get points</p>
-                            </div>
-                            <p className="text-red-500 text-lg font-medium">
-                                This is Error
-                            </p> */}
+              <div className="my-5">
+                <span className="text-red-500 text-3xl text-center font-semibold block">
+                  Wrong Answer
+                </span>
+                <p className="text-center mt-1">You do not get points</p>
+              </div>
+              <p className="text-red-500 text-lg font-medium">This is Error</p>
             </div>
           </Split>
         </div>
