@@ -10,15 +10,15 @@ import 'swiper/css/navigation';
 import Rating from 'react-rating';
 import { FaRegStar, FaStar } from 'react-icons/fa';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
+import axios from 'axios';
 
 const Testimonials = () => {
     const [feedbacks, setFeedbacks] = useState([])
     useEffect(() => {
-        fetch('https://flex-code-server.vercel.app/feedback')
-            .then(res => res.json())
+        axios('http://localhost:5000/feedback')
             .then(data => {
                 console.log(data);
-                setFeedbacks(data?.result)
+                setFeedbacks(data?.data?.result)
             })
     }, [])
     console.log(feedbacks, 'feedbacks');

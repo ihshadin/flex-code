@@ -13,14 +13,15 @@ import SingleBlog from "../pages/Blog/SingleBlog/SingleBlog";
 import Feedback from "../components/Feedback/Feedback";
 import ComingSoon from "../components/ComingSoon/ComingSoon";
 import AddBlog from "../pages/Blog/AddBlog/AddBlog";
-import ViewProblem from "../pages/Problems/ViewProblem";
 import Subscribe from "../pages/Subscribe/Subscribe";
+import ProblemDetails from "../pages/Problems/ProblemDetails";
+// import ProblemDetails from "../pages/Problems/ProblemDetails";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    errorElement: <ComingSoon />,
+
     children: [
       {
         path: "/",
@@ -57,8 +58,9 @@ const router = createBrowserRouter([
         element: <AllProblems />,
       },
       {
-        path: "/viewproblems",
-        element: <ViewProblem />,
+        path: "/problem/:id",
+        element: <ProblemDetails />,
+        // loader: ({ params }) => fetch(`http://localhost:5173/problems.json/${params.id}`)
       },
       {
         path: "/dashboard",

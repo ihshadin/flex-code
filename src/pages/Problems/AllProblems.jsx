@@ -264,24 +264,25 @@ const AllProblems = () => {
                 </div>
                 <div className="w-3/4 mx-auto montserrat">
                     {
-                        specificLanguageProblems[0].problems?.map((problem, i) => <div className="flex flex-col md:flex-row mb-8 justify-between items-center border px-10 py-6 rounded-xl">
-                            <div>
-                                <h1 className="text-3xl mb-5 text-white font-semibold"> {problem.title}</h1>
-                                <span className="flex items-center gap-5">
-                                    <p className="text-xs text-gray-400 tracking-wider"> Type: <span className={`${problem.level === 'easy' ? 'text-green-500' : problem.level === 'difficult' ? 'text-red-500' : "text-orange-500"}`}>{problem.level}</span>.</p>
-                                    <p className="text-xs text-gray-400 tracking-wider"> Attempts: <span className="text-white">4000</span>.</p>
-                                    <p className="text-xs text-gray-400 tracking-wider"> Success rate: <span className="text-white">53.42%</span>.</p>
-                                </span>
-                            </div>
-                            <div className="flex flex-col gap-2">
-                                <Link to={`/viewproblems`} className="flexcode-button text-xs py-2 px-4">
-                                    Solve Problem
-                                </Link>
-                                <Link to='/feedback' className="flexcode-button text-xs py-2 px-4 text-center">
-                                    Feedback
-                                </Link>
-                            </div>
-                        </div>)
+                        specificLanguageProblems[0].problems?.map((problem, i) =>
+                            <div className="flex flex-col md:flex-row mb-8 justify-between items-center border px-10 py-6 rounded-xl">
+                                <div>
+                                    <h1 className="text-3xl mb-5 text-white font-semibold"> {problem.title}</h1>
+                                    <span className="flex items-center gap-5">
+                                        <p className="text-xs text-gray-400 tracking-wider"> Type: <span className={`${problem.level === 'easy' ? 'text-green-500' : problem.level === 'difficult' ? 'text-red-500' : "text-orange-500"}`}>{problem.level}</span>.</p>
+                                        <p className="text-xs text-gray-400 tracking-wider"> Attempts: <span className="text-white">4000</span>.</p>
+                                        <p className="text-xs text-gray-400 tracking-wider"> Success rate: <span className="text-white">53.42%</span>.</p>
+                                    </span>
+                                </div>
+                                <div className="flex flex-col gap-2">
+                                    <Link to={`/problem/1`} className="flexcode-button text-xs py-2 px-4">
+                                        Solve Problem
+                                    </Link>
+                                    <Link to='/feedback' className="flexcode-button text-xs py-2 px-4 text-center">
+                                        Feedback
+                                    </Link>
+                                </div>
+                            </div>)
                     }
 
                 </div>
