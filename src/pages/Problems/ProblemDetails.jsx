@@ -6,8 +6,10 @@ import "codemirror/theme/dracula.css";
 import Split from "react-split";
 
 import './ProblemDetails.css'
+import { useParams } from "react-router-dom";
 
 const ProblemDetails = () => {
+    const { id } = useParams();
     const [code, setCode] = useState(''); //console.log("Hello, world!");
     const [consoleOutput, setConsoleOutput] = useState([]);
     const [outputMessage, setOutputMessage] = useState(''); //new
@@ -53,6 +55,9 @@ const ProblemDetails = () => {
         }
     };
 
+    const singleProblem = problems.find(problem => problem.id == id) || []
+    // console.log(singleProblem);
+
     useEffect(() => {
         fetch('/problems.json')
             .then(res => res.json())
@@ -65,27 +70,40 @@ const ProblemDetails = () => {
         <section id="problemDetails">
             <div className="flexcode-container flex gap-10">
                 <div className="w-1/2">
-                    <h2 className="text-2xl font-bold mb-2 primary-color">Two Sum</h2>
+                    <h2 className="text-2xl font-bold mb-2 primary-color">
+                        {singleProblem.title}
+                    </h2>
                     <p className="leading-loose">
                         {/* Given an array of integers <span className="px-2 border border-[#0fcda1] primary-color font-medium rounded-md">nums</span> and an integer <span className="px-2 border border-[#0fcda1] primary-color font-medium rounded-md">target</span>, return indices of the two numbers such that they add up to <span className="px-2 border border-[#0fcda1] primary-color font-medium rounded-md">target</span>.
                         <br /><br />
                         You may assume that each input would have exactly one <b>solution</b>, and you may not use the same element twice.
                         <br /><br />
                         You can return the answer in any order. */}
-                        {problems.problemsDetails}
+                        {
+                            singleProblem?.problemsDetails?.split(/(\s+|,|\.)/).map((word, index, arr) => (
+                                <React.Fragment key={index}>
+                                    {singleProblem?.highlightWords.includes(word.toLowerCase()) ? (
+                                        <span className="px-2 border border-[#0fcda1] primary-color font-medium rounded-md">
+                                            {word}
+                                            {arr[index + 1] === ',' || arr[index + 1] === '.' ? arr[index + 1] : ''}
+                                        </span>
+                                    ) : (
+                                        word
+                                    )}
+                                </React.Fragment>
+                            ))
+                        }
                     </p>
                     <div className="flex flex-col gap-6 mt-10">
                         {
-                            problems.map(problem => (
-                                problem.examples.map((ex, index) => (
-                                    <div key={index}>
-                                        <h3 className="text-xl font-semibold">Example {ex.example}</h3>
-                                        <div className="bg-secondary-color p-5 rounded-xl mt-2 flex flex-col gap-1 text-gray-400">
-                                            <span><b className="text-white font-semibold">Input:</b> {ex.input} </span>
-                                            <span><b className="text-white font-semibold">Output:</b> {ex.output}</span>
-                                        </div>
+                            singleProblem?.examples?.map((ex, index) => (
+                                <div key={index}>
+                                    <h3 className="text-xl font-semibold">Example {ex.example}</h3>
+                                    <div className="bg-secondary-color p-5 rounded-xl mt-2 flex flex-col gap-1 text-gray-400">
+                                        <span><b className="text-white font-semibold">Input:</b> {ex.input} </span>
+                                        <span><b className="text-white font-semibold">Output:</b> {ex.output}</span>
                                     </div>
-                                ))
+                                </div>
                             ))
                         }
                         {/* <div>

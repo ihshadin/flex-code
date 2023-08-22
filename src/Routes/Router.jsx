@@ -19,7 +19,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    errorElement: <ComingSoon />,
+
     children: [
       {
         path: "/",
@@ -57,6 +57,7 @@ const router = createBrowserRouter([
       {
         path: "/problem/:id",
         element: <ProblemDetails />,
+        // loader: ({ params }) => fetch(`http://localhost:5173/problems.json/${params.id}`)
       },
       {
         path: "/dashboard",

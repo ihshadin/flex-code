@@ -3,7 +3,7 @@
     "id": 1,
     "title": "Two Sum",
     "functionName": "twoSum",
-    "problemsDetails": "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.\n\nYou may assume that each input would have exactly one solution, and you may not use the same element twice.\n\nYou can return the answer in any order.",
+    "problemsDetails": "Given nums target an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.\n\nYou may assume that each input would have exactly one solution, and you may not use the same element twice.\n\nYou can return the answer in any order.",
     "highlightWords": [
       "nums",
       "target"
