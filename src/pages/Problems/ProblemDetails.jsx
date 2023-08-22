@@ -54,9 +54,8 @@ function ${singleProblem.functionName}(${singleProblem.parameterName}){
       };
 
       // Execute code
-      const userCode = `${code || defaultCode}\n\n${
-        singleProblem.functionName
-      }(${singleProblem.examples[0].input});`;
+      const userCode = `${code || defaultCode}\n\n${singleProblem.functionName
+        }(${singleProblem.examples[0].input});`;
 
       const userOutput = eval(userCode);
       // console.log(userOutput);
@@ -181,11 +180,11 @@ function ${singleProblem.functionName}(${singleProblem.parameterName}){
                 {consoleOutput == false
                   ? "Console log"
                   : consoleOutput.map((output, index) => (
-                      <div key={index}>
-                        <p></p>
-                        {output}
-                      </div>
-                    ))}
+                    <div key={index}>
+                      <p></p>
+                      {output}
+                    </div>
+                  ))}
               </span>
               <div className="my-5">
                 {/* <span className="primary-color text-3xl text-center font-semibold block">Accepted</span> */}
