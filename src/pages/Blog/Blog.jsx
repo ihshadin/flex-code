@@ -4,16 +4,16 @@ import BlogCta from "./BlogCta/BlogCta";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Blog = () => {
   const user = {role: "admin"};
   const [blogs, setBlogs] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/blog')
-            .then(res => res.json())
+        axios.get('http://localhost:5000/blog')
             .then(data =>{
                 console.log(data);
-                setBlogs(data?.result)})
+                setBlogs(data?.data?.result)})
     }, [])
   return (
     <section>
