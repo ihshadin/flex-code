@@ -4,19 +4,20 @@ import "codemirror/lib/codemirror.css";
 import "codemirror/mode/javascript/javascript";
 import "codemirror/theme/dracula.css";
 import Split from "react-split";
-import problem from '../../../public/problems.json'
-
 import './ProblemDetails.css'
+// import problem from '../../../public/problem2.json'
 
-const ViewProblem = () => {
+const ProblemDetails = () => {
 
     const [code, setCode] = useState(''); //console.log("Hello, world!");
     const [consoleOutput, setConsoleOutput] = useState([]);
     const [outputMessage, setOutputMessage] = useState(''); //new
 
+
+
     //  new
     const defaultCode = `
-    function ${problem.title}(${problem.parameterName[0]}){
+    function ${problem.functionName}(${problem.parameterName[0]}){
       // Your solution logic
 
       return   ;
@@ -42,16 +43,26 @@ const ViewProblem = () => {
                 setConsoleOutput((prevOutput) => [...prevOutput, args.join(" ")]);
             };
 
+            
+            
             // Execute code
-           const userOutput = eval(code);
+            const userCode = `${code || defaultCode}\n\n${problem.functionName}(${problem.examples[0].input});`
+
+            const userOutput = eval(userCode);
             console.log(userOutput);
 
+            // Output Message
+            if (userOutput == problem.examples[0].output) {
+                setOutputMessage('Congratulations! Problem solved.');
+              } else {
+                setOutputMessage('Your output does not match the expected output.');
+              }
 
-
-            // Restore console.log
+              // Restore console.log
             console.log = originalLog;
         } catch (error) {
             console.error("Error:", error);
+            setOutputMessage(`An error occurred while running your code.\n\n${error}`);
         }
     };
 
@@ -59,7 +70,7 @@ const ViewProblem = () => {
         <section id="viewProblems">
             <div className="flexcode-container flex gap-10">
                 <div className="w-1/2">
-                    <h2 className="text-2xl font-bold mb-2 primary-color">Two Sum</h2>
+                    <h2 className="text-2xl font-bold mb-2 primary-color">{problem.title}</h2>
                     <p className="leading-loose">
                         {/* Given an array of integers <span className="px-2 border border-[#0fcda1] primary-color font-medium rounded-md">nums</span> and an integer <span className="px-2 border border-[#0fcda1] primary-color font-medium rounded-md">target</span>, return indices of the two numbers such that they add up to <span className="px-2 border border-[#0fcda1] primary-color font-medium rounded-md">target</span>.
                         <br /><br />
@@ -104,8 +115,8 @@ const ViewProblem = () => {
                     >
                         <div className="bg-secondary-color p-2 rounded-xl">
                             <CodeMirror
-                                value={code}
-                                onBeforeChange={(editor, data, value) => setCode(value)}
+                                value={code || defaultCode}
+                                onBeforeChange={handleCodeChange}
                                 className="bg-transparent py-3 text-[16px]"
                                 options={{
                                     mode: "javascript",
@@ -122,16 +133,16 @@ const ViewProblem = () => {
                                 ))}
                             </span>
                             <div className="my-5">
-                                <span className="primary-color text-3xl text-center font-semibold block">Accepted</span>
-                                <p className="text-center mt-1">You got 10 points</p>
+                                {/* <span className="primary-color text-3xl text-center font-semibold block">Accepted</span> */}
+                                <p className="text-center mt-1">{outputMessage}</p>
                             </div>
-                            <div className="my-5">
+                            {/* <div className="my-5">
                                 <span className="text-red-500 text-3xl text-center font-semibold block">Wrong Answer</span>
                                 <p className="text-center mt-1">You do not get points</p>
                             </div>
                             <p className="text-red-500 text-lg font-medium">
                                 This is Error
-                            </p>
+                            </p> */}
                         </div>
                     </Split>
                 </div>
@@ -140,4 +151,4 @@ const ViewProblem = () => {
     );
 };
 
-export default ViewProblem;
+export default ProblemDetails;
