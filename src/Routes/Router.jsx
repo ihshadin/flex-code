@@ -13,6 +13,7 @@ import SingleBlog from "../pages/Blog/SingleBlog/SingleBlog";
 import Feedback from "../components/Feedback/Feedback";
 import ComingSoon from "../components/ComingSoon/ComingSoon";
 import AddBlog from "../pages/Blog/AddBlog/AddBlog";
+import Subscribe from "../pages/Subscribe/Subscribe";
 import ProblemDetails from "../pages/Problems/ProblemDetails";
 // import ProblemDetails from "../pages/Problems/ProblemDetails";
 
@@ -41,7 +42,8 @@ const router = createBrowserRouter([
       {
         path: "/blog/:id",
         element: <SingleBlog />,
-        loader: ({ params }) => fetch(`https://flex-code-server.vercel.app/blog/${params.id}`),
+        loader: ({ params }) =>
+          fetch(`https://flex-code-server.vercel.app/blog/${params.id}`),
       },
       {
         path: "/add-blog",
@@ -65,29 +67,33 @@ const router = createBrowserRouter([
         element: <DashboardHome></DashboardHome>,
       },
       {
-        path: '/explore',
-        element: <Explore />
+        path: "/explore",
+        element: <Explore />,
       },
       {
-        path: '/feedback',
-        element: <Feedback />
+        path: "/feedback",
+        element: <Feedback />,
       },
       {
-        path: '/profile',
-        element: <ProfileEdit></ProfileEdit>
+        path: "/profile",
+        element: <ProfileEdit></ProfileEdit>,
       },
       {
-        path: '/playground',
-        element: <ComingSoon />
+        path: "/playground",
+        element: <ComingSoon />,
       },
       {
-        path: '/notebook',
-        element: <ComingSoon />
+        path: "/notebook",
+        element: <ComingSoon />,
       },
       {
-        path: '/submissions',
-        element: <ComingSoon />
-      }
+        path: "/subscribe",
+        element: <Subscribe />,
+      },
+      {
+        path: "/submissions",
+        element: <ComingSoon />,
+      },
     ],
   },
 ]);
