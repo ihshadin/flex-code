@@ -26,6 +26,7 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [reload, setReload] = useState(null);
 
+  // console.log("From AuthProvider", user);
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -68,6 +69,27 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       // console.log(currentUser.displayName);
       setLoading(false);
+      if (currentUser && currentUser.email) {
+        const loggedUser = {
+          email: currentUser.email
+        }
+        fetch('http://localhost:5000/jwt', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(loggedUser)
+        })
+          .then(res => res.json())
+          .then(data => {
+            console.log('jwt response', data);
+            // Warning: Local storage is not the best (second best place) to store access token
+            localStorage.setItem('flex-code-token', data.token);
+          })
+      }
+      else {
+        localStorage.removeItem('flex-code-token');
+      }
     });
     return () => {
       return unsubscribe();

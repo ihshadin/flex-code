@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { Link, useNavigation } from "react-router-dom";
 import image1 from "../../../public/image-1.jpg";
 import BlogCta from "./BlogCta/BlogCta";
-import { Link, useNavigation } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
 import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
 
 const Blog = () => {
@@ -13,14 +16,12 @@ const Blog = () => {
   }
 
   const [blogs, setBlogs] = useState([])
-  useEffect(() => {
-    fetch('https://flex-code-server.vercel.app/blog')
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        setBlogs(data?.result)
-      })
-  }, [])
+    useEffect(() => {
+        axios.get('http://localhost:5000/blog')
+            .then(data =>{
+                console.log(data);
+                setBlogs(data?.data?.result)})
+    }, [])
   return (
     <section>
       <div className="flexcode-container">
