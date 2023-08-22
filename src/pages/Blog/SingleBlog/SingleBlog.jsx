@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -9,11 +10,10 @@ const SingleBlog = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/blog/${id}`)
-      .then((res) => res.json())
+    axios.get(`http://localhost:5000/blog/${id}`)
       .then((data) => {
         console.log("Fetched data:", data);
-        setData(data.result);
+        setData(data?.data?.result);
         setLoading(false);
       })
       .catch((error) => {
@@ -29,11 +29,10 @@ const SingleBlog = () => {
 
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/blog")
-      .then((res) => res.json())
+    axios("http://localhost:5000/blog")
       .then((data) => {
         console.log(data);
-        setBlogs(data?.result);
+        setBlogs(data?.data?.result);
       });
   }, []);
 

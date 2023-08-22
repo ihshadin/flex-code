@@ -24,6 +24,7 @@ const SignUp = () => {
     const name = data.name;
     const email = data.email;
     const password = data.password;
+    const userInfo = {name, email, password};
     createUser(email, password)
       .then((result) => {
         const user = result.user;
@@ -40,8 +41,8 @@ const SignUp = () => {
         reset();
         setLoading(false);
 
-        // toast.success("Login Successfull!");
-        // Swal.fire("Login Successfull!");
+        toast.success("Login Successfull!");
+        Swal.fire("Login Successfull!");
       })
       .catch((error) => {
         setLoading(false);
@@ -56,7 +57,7 @@ const SignUp = () => {
         <>
           <div className="flex items-center justify-center text-white text-2xl font-bold py-8">
             <img className="w-16 h-16" src="/20230810_125620.png" alt="img" />
-            <span className="text-[#0fcda1] mr-1">Flex </span> {} Code
+            <span className="text-[#0fcda1] mr-1">Flex </span> { } Code
           </div>
           <SocialLogin />
           <div className="max-w-[150px] flex justify-center border-2 border-[#0fcda1] rounded mx-auto my-8"></div>
