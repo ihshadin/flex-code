@@ -2,12 +2,18 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigation, useParams } from "react-router-dom";
+import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading";
 
 const SingleBlog = () => {
   const { id } = useParams();
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
+
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return <FlexcodeLoading />;
+  }
 
   useEffect(() => {
     axios.get(`http://localhost:5000/blog/${id}`)
@@ -22,7 +28,7 @@ const SingleBlog = () => {
       });
   }, [id]);
   console.log("Current data:", data);
-  
+
   // const {title, userImage, imageUrl, userName, details } = data;
 
   // Blog list of left side

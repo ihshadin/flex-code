@@ -1,6 +1,7 @@
 import React from "react";
 import Marquee from "react-fast-marquee";
 import './Partner.css'
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
 const OurPartners = () => {
   const partners = [
@@ -14,20 +15,26 @@ const OurPartners = () => {
     { pic: "https://i.ibb.co/gFfQwt3/partner-2.png" },
   ];
   return (
-    <div className="flexcode-container">
-      <Marquee
-        pauseOnClick
-        speed={200}
-        gradient={true}
-        gradientColor={[23, 24, 27]}
-        children={null}
-        className="grayscale"
-      >
-        {partners?.map((partner, index) => (
-          <img key={index} src={partner.pic} className="w-1/2" />
-        ))}
-      </Marquee>
-    </div>
+    <section className="">
+      <div className="flexcode-container">
+        <SectionTitle
+          title="Our Partners"
+          descrition="Powerful Partnerships: Achieving Excellence Together with Industry Leaders."
+        />
+        <Marquee
+          pauseOnClick
+          speed={200}
+          gradient={true}
+          gradientColor={[23, 24, 27]}
+          children={null}
+          className="grayscale"
+        >
+          {partners?.map((partner, index) => (
+            <img key={index} src={partner.pic} className="w-1/2" />
+          ))}
+        </Marquee>
+      </div>
+    </section>
   );
 };
 

@@ -13,12 +13,14 @@ import SingleBlog from "../pages/Blog/SingleBlog/SingleBlog";
 import Feedback from "../components/Feedback/Feedback";
 import ComingSoon from "../components/ComingSoon/ComingSoon";
 import AddBlog from "../pages/Blog/AddBlog/AddBlog";
+import ProblemDetails from "../pages/Problems/ProblemDetails";
+// import ProblemDetails from "../pages/Problems/ProblemDetails";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    errorElement: <ComingSoon />,
+
     children: [
       {
         path: "/",
@@ -39,7 +41,7 @@ const router = createBrowserRouter([
       {
         path: "/blog/:id",
         element: <SingleBlog />,
-        loader:({params}) => fetch(`http://localhost:5000/blog/${params.id}`),
+        loader: ({ params }) => fetch(`https://flex-code-server.vercel.app/blog/${params.id}`),
       },
       {
         path: "/add-blog",
@@ -52,6 +54,11 @@ const router = createBrowserRouter([
       {
         path: "/problems/:languages",
         element: <AllProblems />,
+      },
+      {
+        path: "/problem/:id",
+        element: <ProblemDetails />,
+        // loader: ({ params }) => fetch(`http://localhost:5173/problems.json/${params.id}`)
       },
       {
         path: "/dashboard",
