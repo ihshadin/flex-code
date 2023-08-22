@@ -4,7 +4,7 @@ import ProfileRow from './ProfileRow';
 const ProfileEdit = () => {
 
     return (
-        <div>
+        <section>
             <div className="profile-app__KJyN">
                 <div className="header__NyBc">
                     {/* ... Header content ... */}
@@ -61,7 +61,7 @@ const ProfileEdit = () => {
                     </tbody>
                 </table>
             </div>
-        </div>
+        </section>
     );
 };
 

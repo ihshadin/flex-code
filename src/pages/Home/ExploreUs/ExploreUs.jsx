@@ -5,6 +5,7 @@ import image1 from '../../../../public/image-1.jpg'
 // CSS connect
 import './ExploreUs.css'
 import { FaShieldAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const ExploreUs = () => {
     return (
@@ -22,8 +23,9 @@ const ExploreUs = () => {
                             <FaShieldAlt />
                             Problem
                         </p>
-                        <h1 className="text-[1.2rem] text-white font-semibold tracking-wider">
-                            React
+                        <h1 className="text-xl text-white font-semibold tracking-wider flex gap-2 items-center">
+                            <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                            JavaScript
                         </h1>
                         <p className="text-[0.9rem] text-gray-400 mt-1 tracking-wider">
                             A compilation of advanced React concepts.
@@ -37,8 +39,9 @@ const ExploreUs = () => {
                             <FaShieldAlt />
                             Problem
                         </p>
-                        <h1 className="text-[1.2rem] text-white font-semibold tracking-wider">
-                            React
+                        <h1 className="text-xl text-white font-semibold tracking-wider flex gap-2 items-center">
+                            <div className="w-3 h-3 bg-orange-400 rounded-full"></div>
+                            Python
                         </h1>
                         <p className="text-[0.9rem] text-gray-400 mt-1 tracking-wider">
                             A compilation of advanced React concepts.
@@ -52,8 +55,9 @@ const ExploreUs = () => {
                             <FaShieldAlt />
                             Problem
                         </p>
-                        <h1 className="text-[1.2rem] text-white font-semibold tracking-wider">
-                            React
+                        <h1 className="text-xl text-white font-semibold tracking-wider flex gap-2 items-center">
+                            <div className="w-3 h-3 bg-blue-400 rounded-full"></div>
+                            C++
                         </h1>
                         <p className="text-[0.9rem] text-gray-400 mt-1 tracking-wider">
                             A compilation of advanced React concepts.
@@ -63,9 +67,13 @@ const ExploreUs = () => {
                         </a>
                     </div>
                 </div>
-                <button className='bg-primary-color text-black py-2 px-5 text-lg rounded-md font-medium mt-3 md:mt-5 mx-auto block'>
-                    Explore All
-                </button>
+                <div className='text-center'>
+                    <Link to='explore'>
+                        <button className='flexcode-button px-8 py-3'>
+                            Explore All
+                        </button>
+                    </Link>
+                </div>
             </div>
             {/* <div className='flexcode-container flex flex-col md:flex-row gap-20 items-center'>
                 <div className='md:w-1/2 text-right text-white'>

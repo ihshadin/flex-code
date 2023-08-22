@@ -2,16 +2,25 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigation, useParams } from "react-router-dom";
+import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading";
 
 const SingleBlog = () => {
   const { id } = useParams();
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
 
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return <FlexcodeLoading />;
+  }
+
   useEffect(() => {
     axios.get(`http://localhost:5000/blog/${id}`)
+<<<<<<< HEAD
       // .then((res) => res.json())
+=======
+>>>>>>> 0b3bb64f159a33e572aea0600583130dffb06349
       .then((data) => {
         console.log("Fetched data:", data);
         setData(data?.data?.result);
@@ -23,18 +32,17 @@ const SingleBlog = () => {
       });
   }, [id]);
   console.log("Current data:", data);
-  
+
   // const {title, userImage, imageUrl, userName, details } = data;
 
   // Blog list of left side
 
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/blog")
-      .then((res) => res.json())
+    axios("http://localhost:5000/blog")
       .then((data) => {
         console.log(data);
-        setBlogs(data?.result);
+        setBlogs(data?.data?.result);
       });
   }, []);
 
