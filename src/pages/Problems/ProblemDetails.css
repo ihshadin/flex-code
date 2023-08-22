@@ -17,7 +17,9 @@
 	cursor: row-resize;
     z-index: 1;
 }
+#problemDetails .react-codemirror2,
 #problemDetails .CodeMirror {
+    min-height: 300px;
     height: 100%;
 }
 #problemDetails .CodeMirror-hscrollbar::-webkit-scrollbar {
