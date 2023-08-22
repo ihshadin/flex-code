@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigation } from "react-router-dom";
 import image1 from "../../../public/image-1.jpg";
 import BlogCta from "./BlogCta/BlogCta";
-import { useState } from "react";
-import { useEffect } from "react";
 import axios from "axios";
 import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
 

@@ -222,7 +222,7 @@ const NavBar = () => {
                       className={`absolute right-0 mt-2 z-10 ${userClicked ? "block" : "hidden"
                         }`}
                     >
-                      <div className="bg-[#1e2d40] bg-opacity-95 transition-all duration-700 w-auto py-2 rounded-md shadow-md">
+                      <div className="bg-[#1e2d40] bg-opacity-95 transition-all duration-700 w-[18rem] py-2 rounded-md shadow-md overflow-hidden">
                         <div className="px-4 py-2">
                           <div className="flex items-center">
                             {user.photoURL ? (
