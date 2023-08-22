@@ -17,10 +17,6 @@ const SingleBlog = () => {
 
   useEffect(() => {
     axios.get(`http://localhost:5000/blog/${id}`)
-<<<<<<< HEAD
-      // .then((res) => res.json())
-=======
->>>>>>> 0b3bb64f159a33e572aea0600583130dffb06349
       .then((data) => {
         console.log("Fetched data:", data);
         setData(data?.data?.result);
