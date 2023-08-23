@@ -15,6 +15,7 @@ import ComingSoon from "../components/ComingSoon/ComingSoon";
 import AddBlog from "../pages/Blog/AddBlog/AddBlog";
 import Subscribe from "../pages/Subscribe/Subscribe";
 import ProblemDetails from "../pages/Problems/ProblemDetails";
+import CheckOut from "../pages/CheckOut/CheckOut";
 // import ProblemDetails from "../pages/Problems/ProblemDetails";
 
 const router = createBrowserRouter([
@@ -89,6 +90,10 @@ const router = createBrowserRouter([
       {
         path: "/subscribe",
         element: <Subscribe />,
+      },
+      {
+        path: "/checkout",
+        element: <CheckOut />,
       },
       {
         path: "/submissions",
