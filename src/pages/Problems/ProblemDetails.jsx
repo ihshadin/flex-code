@@ -11,7 +11,7 @@ const ProblemDetails = () => {
   const { id } = useParams();
   const [code, setCode] = useState(""); //console.log("Hello, world!");
   const [consoleOutput, setConsoleOutput] = useState([]);
-  const [outputMessage, setOutputMessage] = useState(""); 
+  const [outputMessage, setOutputMessage] = useState("");
   const [problems, setProblems] = useState([]);
 
   const singleProblem = problems.find((problem) => problem.id == id) || [];
@@ -50,15 +50,24 @@ const ProblemDetails = () => {
       };
 
       // Execute code
-      const userCode = `${code || defaultCode}\n\n${singleProblem.functionName
-        }(${singleProblem.examples[0].input});`;
+      const userCode = `${code || defaultCode}\n\n${
+        singleProblem.functionName
+      }(${singleProblem.examples[1].input});`;
 
-      const userOutput = eval(userCode);
+      let userOutput = eval(userCode);
       //   console.log('jahid',userOutput);
       //   setCodeOutput(userOutput);
 
       //   Output Message
-      if (userOutput == singleProblem.examples[0].output) {
+      if (typeof userOutput === "boolean") {
+        userOutput = String(userOutput);
+      }
+      // if (userOutput === true || userOutput === false) {
+      //   // Convert userOutput to a boolean value
+      //   userOutput = "true";
+      // }
+
+      if (userOutput == singleProblem.examples[1].output) {
         setOutputMessage("Congratulations! Problem solved.");
       } else {
         setOutputMessage("Your output does not match the expected output.");
@@ -73,7 +82,6 @@ const ProblemDetails = () => {
       );
     }
   };
-
 
   // ConsoleCode----------------------
   const consoleCode = () => {
@@ -91,7 +99,7 @@ const ProblemDetails = () => {
       // Execute code
       const userCode = `${code || defaultCode}\n\nconsole.log(${
         singleProblem.functionName
-      }(${singleProblem.examples[0].input}));`;
+      }(${singleProblem.examples[1].input}));`;
 
       eval(userCode);
       console.log = originalLog;
@@ -200,11 +208,11 @@ const ProblemDetails = () => {
                 {consoleOutput == false
                   ? ""
                   : consoleOutput.map((output, index) => (
-                    <div key={index}>
-                      <p></p>
-                      {output}
-                    </div>
-                  ))}
+                      <div key={index}>
+                        <p></p>
+                        {output}
+                      </div>
+                    ))}
               </span>
               <div className="my-5">
                 {/* <span className="primary-color text-3xl text-center font-semibold block">Accepted</span> */}
