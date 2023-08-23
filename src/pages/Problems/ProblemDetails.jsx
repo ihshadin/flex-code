@@ -55,9 +55,13 @@ const ProblemDetails = () => {
       // Execute code
       const userCode = `${code || defaultCode}\n\n${
         singleProblem.functionName
-      }(${singleProblem.examples[1].input});`;
+      }(${singleProblem.examples[0].input});`;
 
       let userOutput = eval(userCode);
+
+      if(Array.isArray(userOutput)){
+        userOutput = JSON.stringify(userOutput)
+      }
 
       if (typeof userOutput === "boolean") {
         userOutput = String(userOutput);
@@ -213,7 +217,7 @@ const ProblemDetails = () => {
                     <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-sm font-medium text-white">
                       Your Code
                     </span>
-                  </div> */}
+                  </div> */}  
                 </div>
                 <CodeMirror
                   value={code || defaultCode}
