@@ -53,13 +53,16 @@ const ProblemDetails = () => {
       };
 
       // Execute code
-      const userCode = `${code || defaultCode}\n\n${singleProblem.functionName
-        }(${singleProblem.examples[0].input});`;
+      const userCode = `${code || defaultCode}\n\n${
+        singleProblem.functionName
+      }(${singleProblem.examples[1].input});`;
 
-      const userOutput = eval(userCode);
-      //   console.log('jahid',userOutput);
-      //   setCodeOutput(userOutput);
+      let userOutput = eval(userCode);
 
+      if (typeof userOutput === "boolean") {
+        userOutput = String(userOutput);
+      }
+      
       //   Output Message
       if (userOutput == singleProblem.examples[0].output) {
         setOutputMessage(
@@ -101,7 +104,6 @@ const ProblemDetails = () => {
       );
     }
   };
-
 
   // ConsoleCode----------------------
   const consoleCode = () => {
@@ -184,13 +186,6 @@ const ProblemDetails = () => {
                   </div>
                 </div>
               ))}
-              {/* <div>
-                            <h3 className="text-xl font-semibold">Example 2</h3>
-                            <div className="bg-secondary-color p-5 rounded-xl mt-2 flex flex-col gap-1 text-gray-400">
-                                <span><b className="text-white font-semibold">Input:</b> nums = [2,7,11,15], target = 9</span>
-                                <span><b className="text-white font-semibold">Output:</b> [0,1]</span>
-                            </div>
-                        </div> */}
             </div>
           </div>
           <div className="problem-exmaple w-1/2 flex flex-col overflow-y-scroll">

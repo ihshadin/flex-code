@@ -16,15 +16,13 @@
       },
       {
         "example": 2,
-        "input": "[3,2,4]",
-        "output": "[1,2]"
+        "input": "[300,170,530]",
+        "output": "1000"
       }
     ],
     "parameterName": [
-      "nums",
-      "target"
+      "nums"
     ],
-    "defaultCode": "function twoSum(nums, target) { return}",
     "level": "easy",
     "isPremium": false,
     "language": "JavaScript"
@@ -40,19 +38,46 @@
     "examples": [
       {
         "example": 1,
-        "input": "[2,7,11,15]",
-        "output": "[1,2]"
+        "input": "'programming'",
+        "output": "'gnimmargorp'"
       },
       {
         "example": 2,
-        "input": "[3,2,4]",
-        "output": "[1,2]"
+        "input": "'javascript'",
+        "output": "'tpircsavaj'"
       }
     ],
     "parameterName": [
-      "string"
+      "str"
     ],
-    "defaultCode": "function reverseString(string) {\n  // Write your solution here\nreturn}",
+    "level": "easy",
+    "isPremium": false,
+    "language": "JavaScript"
+  },
+  {
+    "id": 3,
+    "title": "Palindrome Check",
+    "functionName": "isPalindrome",
+    "problemsDetails": "Write a function that takes a string as input and returns `true` if the string is a palindrome (reads the same forwards and backwards), and `false` otherwise.",
+    "highlightWords": [
+      "string",
+      "palindrome"
+    ],
+    "examples": [
+      {
+        "example": 1,
+        "input": "'deified'",
+        "output": "true"
+      },
+      {
+        "example": 2,
+        "input": "'programming'",
+        "output": "false"
+      }
+    ],
+    "parameterName": [
+      "str"
+    ],
     "level": "easy",
     "isPremium": false,
     "language": "JavaScript"
