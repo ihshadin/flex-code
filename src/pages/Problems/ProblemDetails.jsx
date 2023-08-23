@@ -6,6 +6,9 @@ import "codemirror/theme/dracula.css";
 import Split from "react-split";
 import "./ProblemDetails.css";
 import { useParams } from "react-router-dom";
+import 'codemirror/addon/hint/show-hint.css';
+import 'codemirror/addon/hint/show-hint';
+import 'codemirror/addon/hint/javascript-hint';
 
 const ProblemDetails = () => {
   const { id } = useParams();
@@ -27,7 +30,7 @@ const ProblemDetails = () => {
   const defaultCode = `function ${singleProblem.functionName}(${singleProblem.parameterName}){
 // Your solution logic
 
- return   ;
+ return ;
 }
 `;
 
@@ -225,6 +228,10 @@ const ProblemDetails = () => {
                     mode: "javascript",
                     theme: "dracula",
                     lineNumbers: true,
+                    lineWrapping: true,
+                    extraKeys: {
+                      'Ctrl-Space': 'autocomplete',
+                    }
                   }}
                 />
               </div>
