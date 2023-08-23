@@ -1,4 +1,9 @@
-import { Link, useNavigation } from "react-router-dom";
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useNavigation,
+} from "react-router-dom";
 import { FaGithub, FaRegEnvelope, FaSpinner, FaUser } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
 import { useForm } from "react-hook-form";
@@ -12,6 +17,10 @@ import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
 const SignUp = () => {
   const { createUser, loading, setLoading, updateUserProfile, setReload } =
     useContext(AuthContext);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const {
     register,
     handleSubmit,
@@ -25,6 +34,7 @@ const SignUp = () => {
     const name = data.name;
     const email = data.email;
     const password = data.password;
+    const userInfo = {name, email, password};
     createUser(email, password)
       .then((result) => {
         const user = result.user;
@@ -34,15 +44,38 @@ const SignUp = () => {
           .then(() => {
             setReload(new Date().getTime());
             toast.success("Login Successfull!");
+
+            const saveUser = {
+              username: name,
+              email,
+              userRole: "general",
+            };
+
+            // console.log(saveUser);
+
+            fetch("http://localhost:5000/student", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(saveUser),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                // console.log(data);
+                // toast.success("Login Successfull!");
+                navigate(from, { replace: true });
+              });
           })
           .catch((error) => {
             toast.error("Login Failed. " + error.message);
           });
         reset();
+
         setLoading(false);
 
-        // toast.success("Login Successfull!");
-        // Swal.fire("Login Successfull!");
+        toast.success("Login Successfull!");
+        Swal.fire("Login Successfull!");
       })
       .catch((error) => {
         setLoading(false);

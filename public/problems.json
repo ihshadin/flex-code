@@ -1,0 +1,295 @@
+[
+  {
+    "id": 1,
+    "title": "Two Sum",
+    "functionName": "twoSum",
+    "problemsDetails": "Given nums target an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.\n\nYou may assume that each input would have exactly one solution, and you may not use the same element twice.\n\nYou can return the answer in any order.",
+    "highlightWords": [
+      "nums",
+      "target"
+    ],
+    "examples": [
+      {
+        "example": 1,
+        "input": "[2,7,11,15]",
+        "output": "35"
+      },
+      {
+        "example": 2,
+        "input": "[300,170,530]",
+        "output": "1000"
+      }
+    ],
+    "parameterName": [
+      "nums"
+    ],
+    "level": "easy",
+    "isPremium": false,
+    "language": "JavaScript"
+  },
+  {
+    "id": 2,
+    "title": "Reverse String",
+    "functionName": "reverseString",
+    "problemsDetails": "Write a function that takes a string as input and returns the string reversed.\n\nYou may assume that the input string contains only lowercase letters.",
+    "highlightWords": [
+      "string"
+    ],
+    "examples": [
+      {
+        "example": 1,
+        "input": "'programming'",
+        "output": "'gnimmargorp'"
+      },
+      {
+        "example": 2,
+        "input": "'javascript'",
+        "output": "'tpircsavaj'"
+      }
+    ],
+    "parameterName": [
+      "str"
+    ],
+    "level": "easy",
+    "isPremium": false,
+    "language": "JavaScript"
+  },
+  {
+    "id": 3,
+    "title": "Palindrome Check",
+    "functionName": "isPalindrome",
+    "problemsDetails": "Write a function that takes a string as input and returns `true` if the string is a palindrome (reads the same forwards and backwards), and `false` otherwise.",
+    "highlightWords": [
+      "string",
+      "palindrome"
+    ],
+    "examples": [
+      {
+        "example": 1,
+        "input": "'deified'",
+        "output": "true"
+      },
+      {
+        "example": 2,
+        "input": "'programming'",
+        "output": "false"
+      }
+    ],
+    "parameterName": [
+      "str"
+    ],
+    "level": "easy",
+    "isPremium": false,
+    "language": "JavaScript"
+  },
+  {
+    "id": 4,
+    "title": "FizzBuzz",
+    "functionName": "fizzBuzz",
+    "problemsDetails": "Write a function that takes a number `n` as input and returns an array of strings, where:\n\n- For each number from 1 to `n`, if the number is divisible by 3, add 'Fizz' to the array.\n- If the number is divisible by 5, add 'Buzz' to the array.\n- If the number is divisible by both 3 and 5, add 'FizzBuzz' to the array.\n- Otherwise, add the number itself as a string to the array.",
+    "highlightWords": [
+      "number",
+      "array",
+      "divisible",
+      "Fizz",
+      "Buzz",
+      "FizzBuzz"
+    ],
+    "examples": [
+      {
+        "example": 1,
+        "input": 15,
+        "output": "[\"1\",\"2\",\"Fizz\",\"4\",\"Buzz\",\"Fizz\",\"7\",\"8\",\"Fizz\",\"Buzz\",\"11\",\"Fizz\",\"13\",\"14\",\"FizzBuzz\"]"
+      },
+      {
+        "example": 2,
+        "input": 10,
+        "output": "[\"1\",\"2\",\"Fizz\",\"4\",\"Buzz\",\"Fizz\",\"7\",\"8\",\"Fizz\",\"Buzz\"]"
+      }
+    ],
+    "parameterName": [
+      "n"
+    ],
+    "level": "easy",
+    "isPremium": false,
+    "language": "JavaScript"
+  },
+  {
+    "id": 5,
+    "title": "Factorial",
+    "functionName": "calculateFactorial",
+    "problemsDetails": "Write a function that takes a non-negative integer as input and returns its factorial. The factorial of a non-negative integer n is the product of all positive integers less than or equal to n.",
+    "highlightWords": [
+      "factorial",
+      "non-negative",
+      "integer"
+    ],
+    "examples": [
+      {
+        "example": 1,
+        "input": 5,
+        "output": "120"
+      },
+      {
+        "example": 2,
+        "input": 0,
+        "output": "1"
+      }
+    ],
+    "parameterName": [
+      "n"
+    ],
+    "level": "easy",
+    "isPremium": false,
+    "language": "JavaScript"
+  },
+  {
+    "id": 6,
+    "title": "Sum of Even Numbers",
+    "functionName": "calculateEvenSum",
+    "problemsDetails": "Write a function that takes a positive integer n as input and returns the sum of all even numbers from 1 to n (inclusive).",
+    "highlightWords": [
+      "sum",
+      "even",
+      "numbers"
+    ],
+    "examples": [
+      {
+        "example": 1,
+        "input": 6,
+        "output": "12"
+      },
+      {
+        "example": 2,
+        "input": 10,
+        "output": "30"
+      }
+    ],
+    "parameterName": [
+      "n"
+    ],
+    "level": "easy",
+    "isPremium": false,
+    "language": "JavaScript"
+  },
+  {
+    "id": 7,
+    "title": "Largest Number",
+    "functionName": "findLargest",
+    "problemsDetails": "Write a function that takes an array of numbers as input and returns the largest number in the array.",
+    "highlightWords": [
+      "array",
+      "numbers",
+      "largest"
+    ],
+    "examples": [
+      {
+        "example": 1,
+        "input": "[5, 12, 8, 2, 10]",
+        "output": "12"
+      },
+      {
+        "example": 2,
+        "input": "[7, 1, 9, 4, 6]",
+        "output": "9"
+      }
+    ],
+    "parameterName": [
+      "numbers"
+    ],
+    "level": "easy",
+    "isPremium": false,
+    "language": "JavaScript"
+  },
+  {
+    "id": 8,
+    "title": "Unique Substrings",
+    "functionName": "countUniqueSubstrings",
+    "problemsDetails": "Write a function that takes a string as input and returns the count of unique substrings that can be formed from it. A substring is a contiguous sequence of characters.",
+    "highlightWords": [
+      "string",
+      "unique",
+      "substrings",
+      "contiguous"
+    ],
+    "examples": [
+      {
+        "example": 1,
+        "input": "'abc'",
+        "output": "6"
+      },
+      {
+        "example": 2,
+        "input": "'aaa'",
+        "output": "3"
+      }
+    ],
+    "parameterName": [
+      "s"
+    ],
+    "level": "medium",
+    "isPremium": false,
+    "language": "JavaScript"
+  },
+  {
+    "id": 9,
+    "title": "Common Elements",
+    "functionName": "findCommonElements",
+    "problemsDetails": "Write a function that takes an array of arrays as input and returns an array containing the common elements that appear in all subarrays.",
+    "highlightWords": [
+      "array",
+      "common",
+      "elements",
+      "subarrays"
+    ],
+    "examples": [
+      {
+        "example": 1,
+        "input": "[[1, 2, 3], [2, 3, 4], [3, 4, 5]]",
+        "output": "[3]"
+      },
+      {
+        "example": 2,
+        "input": "[[5, 6, 7], [7, 8, 9], [9, 10, 11]]",
+        "output": "[]"
+      }
+    ],
+    "parameterName": [
+      "arrays"
+    ],
+    "level": "difficult",
+    "isPremium": false,
+    "language": "JavaScript"
+  },
+  {
+    "id": 10,
+    "title": "Longest Substring Without Repeating Characters",
+    "functionName": "lengthOfLongestSubstring",
+    "problemsDetails": "Write a function that takes a string as input and returns the length of the longest substring without repeating characters.",
+    "highlightWords": [
+      "string",
+      "longest",
+      "substring",
+      "repeating",
+      "characters"
+    ],
+    "examples": [
+      {
+        "example": 1,
+        "input": "'abcabcbb'",
+        "output": "3"
+      },
+      {
+        "example": 2,
+        "input": "'bbbbb'",
+        "output": "1"
+      }
+    ],
+    "parameterName": [
+      "s"
+    ],
+    "level": "difficult",
+    "isPremium": false,
+    "language": "JavaScript"
+  }
+]

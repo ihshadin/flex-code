@@ -16,15 +16,7 @@ useScrollTop(location)
   const [blogs, setBlogs] = useState([])
   const [currentPage, setCurrentPage] = useState(0)
   const itemsPerPage = 3;
-  // useEffect(() => {
-  //   fetch('https://flex-code-server.vercel.app/blog')
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       // console.log(data);
-  //       setBlogs(data?.result)
-  //     })
-  // }, [])
-
+ 
   useEffect(() => {
       fetch(`http://localhost:5000/blog?page=${currentPage}&limit=${itemsPerPage}`)
           .then(res => res.json())

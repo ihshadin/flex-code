@@ -22,6 +22,27 @@ const SocialLogin = () => {
         navigate(from, { replace: true });
 
         // console.log(saveUser);
+        const saveUser = {
+          username: user.displayName,
+          email: user.email,
+          userRole: "general",
+        };
+
+        // console.log(saveUser);
+
+        fetch("http://localhost:5000/student", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(saveUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            toast.success("Login Successfull!");
+            navigate(from, { replace: true });
+          });
       })
       .catch((error) => {
         toast.error("Login Failed. " + error.message);
@@ -34,10 +55,30 @@ const SocialLogin = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        toast.success("Login Successfull!");
-        navigate(from, { replace: true });
+
+        // navigate(from, { replace: true });
+
+        const saveUser = {
+          username: user.displayName,
+          email: user.email,
+          userRole: "general",
+        };
 
         // console.log(saveUser);
+
+        fetch("http://localhost:5000/student", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(saveUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            toast.success("Login Successfull!");
+            navigate(from, { replace: true });
+          });
       })
       .catch((error) => {
         toast.error("Login Failed. " + error.message);
