@@ -6,6 +6,9 @@ import "codemirror/theme/dracula.css";
 import Split from "react-split";
 import "./ProblemDetails.css";
 import { useParams } from "react-router-dom";
+import 'codemirror/addon/hint/show-hint.css';
+import 'codemirror/addon/hint/show-hint';
+import 'codemirror/addon/hint/javascript-hint';
 
 const ProblemDetails = () => {
   const { id } = useParams();
@@ -27,7 +30,7 @@ const ProblemDetails = () => {
   const defaultCode = `function ${singleProblem.functionName}(${singleProblem.parameterName}){
 // Your solution logic
 
- return   ;
+ return ;
 }
 `;
 
@@ -55,22 +58,34 @@ const ProblemDetails = () => {
       }(${singleProblem.examples[1].input});`;
 
       let userOutput = eval(userCode);
-      //   console.log('jahid',userOutput);
-      //   setCodeOutput(userOutput);
 
-      //   Output Message
       if (typeof userOutput === "boolean") {
         userOutput = String(userOutput);
       }
-      // if (userOutput === true || userOutput === false) {
-      //   // Convert userOutput to a boolean value
-      //   userOutput = "true";
-      // }
-
-      if (userOutput == singleProblem.examples[1].output) {
-        setOutputMessage("Congratulations! Problem solved.");
+      
+      //   Output Message
+      if (userOutput == singleProblem.examples[0].output) {
+        setOutputMessage(
+          <div>
+            <span className="primary-color text-2xl text-center font-semibold block">
+              Congratulations! Problem solved.
+            </span>
+            <p className="text-center mt-1">
+              You get <span className="px-2 border border-[#0fcda1] text-white font-medium rounded-md">10</span> points
+            </p>
+          </div>
+        );
       } else {
-        setOutputMessage("Your output does not match the expected output.");
+        setOutputMessage(
+          <div>
+            <span className="text-red-600 text-2xl text-center font-bold block">
+              Wrong Answer
+            </span>
+            <p className="text-center mt-1">
+              Your output does not match the expected output.
+            </p>
+          </div>
+        );
       }
 
       // Restore console.log
@@ -78,7 +93,14 @@ const ProblemDetails = () => {
     } catch (error) {
       console.error("Error:", error);
       setOutputMessage(
-        `An error occurred while running your code.\n\n${error}`
+        <div className="flex gap-3">
+          <span className="text-red-600 font-semibold block">
+            {error.name}:
+          </span>
+          <span className="text-base text-gray-300">
+            {error.message}
+          </span>
+        </div>
       );
     }
   };
@@ -97,9 +119,8 @@ const ProblemDetails = () => {
       };
 
       // Execute code
-      const userCode = `${code || defaultCode}\n\nconsole.log(${
-        singleProblem.functionName
-      }(${singleProblem.examples[1].input}));`;
+      const userCode = `${code || defaultCode}\n\nconsole.log(${singleProblem.functionName
+        }(${singleProblem.examples[0].input}));`;
 
       eval(userCode);
       console.log = originalLog;
@@ -114,122 +135,136 @@ const ProblemDetails = () => {
   return (
     <section id="problemDetails">
       <div className="flexcode-container flex gap-10">
-        <div className="w-1/2">
-          <h2 className="text-2xl font-bold mb-2 primary-color">
-            {singleProblem.title}
-          </h2>
-          <p className="leading-loose">
-            {singleProblem?.problemsDetails
-              ?.split(/(\s+|,|\.)/)
-              .map((word, index, arr) => (
-                <React.Fragment key={index}>
-                  {singleProblem?.highlightWords.includes(
-                    word.toLowerCase()
-                  ) ? (
-                    <span className="px-2 border border-[#0fcda1] primary-color font-medium rounded-md">
-                      {word}
-                      {arr[index + 1] === "," || arr[index + 1] === "."
-                        ? arr[index + 1]
-                        : ""}
+        <Split
+          className="h-[calc(90vh-94px)] flex flex-row"
+          direction="horizontal"
+          sizes={[50, 50]}
+          minSize={0}
+          expandToMin={false}
+          gutterSize={10}
+          gutterAlign="center"
+          snapOffset={30}
+          dragInterval={1}
+          cursor="col-resize"
+        >
+          <div className="problem-exmaple w-1/2 overflow-y-scroll">
+            <h2 className="text-2xl font-bold mb-2 primary-color">
+              {singleProblem.title}
+            </h2>
+            <p className="leading-loose">
+              {singleProblem?.problemsDetails
+                ?.split(/(\s+|,|\.)/)
+                .map((word, index, arr) => (
+                  <React.Fragment key={index}>
+                    {singleProblem?.highlightWords.includes(
+                      word.toLowerCase()
+                    ) ? (
+                      <span className="px-2 border border-[#0fcda1] primary-color font-medium rounded-md">
+                        {word}
+                      </span>
+                    ) : (word)
+                    }
+                  </React.Fragment>
+                ))}
+            </p>
+            <div className="flex flex-col gap-6 mt-10">
+              {singleProblem?.examples?.map((ex, index) => (
+                <div key={index}>
+                  <h3 className="text-lg font-semibold flex items-center gap-2">
+                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                    Example {ex.example}
+                  </h3>
+                  <div className="bg-secondary-color p-5 rounded-xl mt-2 flex flex-col gap-1 text-gray-400">
+                    <span>
+                      <span className="text-white font-medium">Input:</span>{" "}
+                      {ex.input}
                     </span>
-                  ) : (
-                    word
-                  )}
-                </React.Fragment>
-              ))}
-          </p>
-          <div className="flex flex-col gap-6 mt-10">
-            {singleProblem?.examples?.map((ex, index) => (
-              <div key={index}>
-                <h3 className="text-xl font-semibold">Example {ex.example}</h3>
-                <div className="bg-secondary-color p-5 rounded-xl mt-2 flex flex-col gap-1 text-gray-400">
-                  <span>
-                    <b className="text-white font-semibold">Input:</b>{" "}
-                    {ex.input}{" "}
-                  </span>
-                  <span>
-                    <b className="text-white font-semibold">Output:</b>{" "}
-                    {ex.output}
-                  </span>
+                    <span>
+                      <span className="text-white font-medium">Output:</span>{" "}
+                      {ex.output}
+                    </span>
+                  </div>
                 </div>
-              </div>
-            ))}
-            {/* <div>
-                            <h3 className="text-xl font-semibold">Example 2</h3>
-                            <div className="bg-secondary-color p-5 rounded-xl mt-2 flex flex-col gap-1 text-gray-400">
-                                <span><b className="text-white font-semibold">Input:</b> nums = [2,7,11,15], target = 9</span>
-                                <span><b className="text-white font-semibold">Output:</b> [0,1]</span>
-                            </div>
-                        </div> */}
-          </div>
-        </div>
-        <div className="w-1/2 flex flex-col">
-          <Split
-            className="flex flex-col"
-            direction="vertical"
-            sizes={[85, 15]}
-            minSize={0}
-            expandToMin={false}
-            gutterSize={10}
-            gutterAlign="center"
-            snapOffset={0}
-            dragInterval={1}
-            cursor="col-resize"
-          >
-            <div className="bg-secondary-color p-2 rounded-xl">
-              <CodeMirror
-                value={code || defaultCode}
-                onBeforeChange={handleCodeChange}
-                className="bg-transparent py-3 text-[16px]"
-                options={{
-                  mode: "javascript",
-                  theme: "dracula",
-                  lineNumbers: true,
-                }}
-              />
+              ))}
             </div>
-            <div className="overflow-hidden relative">
-              <div className="flex">
-                <button
-                  onClick={consoleCode}
-                  className="flexcode-button text-xs py-2 px-3 ms-auto"
-                >
-                  Console
-                </button>
-
-                <button
-                  onClick={submitCode}
-                  className="flexcode-button text-xs py-2 px-3"
-                >
-                  Submit
-                </button>
+          </div>
+          <div className="problem-exmaple w-1/2 flex flex-col overflow-y-scroll">
+            <Split
+              className="flex flex-col h-screen"
+              direction="vertical"
+              sizes={[75, 25]}
+              minSize={0}
+              expandToMin={false}
+              gutterSize={10}
+              gutterAlign="center"
+              snapOffset={0}
+              dragInterval={1}
+              cursor="col-resize"
+            >
+              <div className="bg-slate-600 bg-opacity-10 rounded-xl overflow-hidden border border-gray-700 hover:border-[#0fcda1]">
+                <div className="bg-secondary-color flex items-end">
+                  <div className="flex items-center gap-2 px-4 py-3">
+                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  </div>
+                  {/* <div className="relative h-[30px] w-[200px]">
+                    <span className="absolute left-0 bottom-0 w-[200px] block border-b-[30px] border-b-[#0fcda1] opacity-50 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent "></span>
+                    <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-sm font-medium text-white">
+                      Your Code
+                    </span>
+                  </div> */}
+                </div>
+                <CodeMirror
+                  value={code || defaultCode}
+                  onBeforeChange={handleCodeChange}
+                  className="bg-transparent py-3 text-[16px]"
+                  options={{
+                    mode: "javascript",
+                    theme: "dracula",
+                    lineNumbers: true,
+                    lineWrapping: true,
+                    extraKeys: {
+                      'Ctrl-Space': 'autocomplete',
+                    }
+                  }}
+                />
               </div>
-              <span className="block font-medium text-center">
-                {consoleOutput == false
-                  ? ""
-                  : consoleOutput.map((output, index) => (
-                      <div key={index}>
-                        <p></p>
-                        {output}
+              <div className="overflow-hidden p-2 relative bg-slate-600 bg-opacity-10 rounded-md border border-gray-700 hover:border-[#0fcda1]">
+                <div className="flex">
+                  <button
+                    onClick={consoleCode}
+                    className="flexcode-button text-xs py-1 px-3 mr-auto"
+                  >
+                    Console
+                  </button>
+
+                  <button
+                    onClick={submitCode}
+                    className="flexcode-button text-xs py-1 px-3"
+                  >
+                    Submit
+                  </button>
+                </div>
+                <span className="block font-medium text-center py-5">
+                  {consoleOutput == false
+                    ? ""
+                    : consoleOutput.map((output, index) => (
+                      <div key={index} className="flex items-center gap-x-5">
+                        <span className="bg-secondary-color text-gray-500 w-8 py-2">{index + 1}</span>
+                        <span>{output}</span>
                       </div>
                     ))}
-              </span>
-              <div className="my-5">
-                {/* <span className="primary-color text-3xl text-center font-semibold block">Accepted</span> */}
-                <p className="text-center mt-1">{outputMessage}</p>
-              </div>
-              <div className="my-5">
-                <span className="text-red-500 text-3xl text-center font-semibold block">
-                  Wrong Answer
                 </span>
-                <p className="text-center mt-1">You do not get points</p>
+                <div>
+                  {outputMessage}
+                </div>
               </div>
-              <p className="text-red-500 text-lg font-medium">This is Error</p>
-            </div>
-          </Split>
-        </div>
+            </Split>
+          </div>
+        </Split>
       </div>
-    </section>
+    </section >
   );
 };
 
