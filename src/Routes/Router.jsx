@@ -15,13 +15,19 @@ import ComingSoon from "../components/ComingSoon/ComingSoon";
 import AddBlog from "../pages/Blog/AddBlog/AddBlog";
 import Subscribe from "../pages/Subscribe/Subscribe";
 import ProblemDetails from "../pages/Problems/ProblemDetails";
+<<<<<<< HEAD
 import CheckOut from "../pages/CheckOut/CheckOut";
+=======
+import ErrorPage from "../pages/404Error/ErrorPage";
+import LeaderBoard from "../pages/LeaderBoard/LeaderBoard";
+>>>>>>> ea10f03641d33fbdc65ba46769f58748ac5f0855
 // import ProblemDetails from "../pages/Problems/ProblemDetails";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <ErrorPage />,
 
     children: [
       {
@@ -39,6 +45,7 @@ const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog />,
+        loader: () => fetch(`http://localhost:5000/blog/all`)
       },
       {
         path: "/blog/:id",
@@ -98,6 +105,10 @@ const router = createBrowserRouter([
       {
         path: "/submissions",
         element: <ComingSoon />,
+      },
+      {
+        path: "/leader-board",
+        element: <LeaderBoard />,
       },
     ],
   },
