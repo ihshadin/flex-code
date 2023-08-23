@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import useScrollTop from "../../Hooks/useScrollTop";
 
 const Problems = () => {
+  useScrollTop('changes')
   const problems = [
     {
       language: "javaScript",
