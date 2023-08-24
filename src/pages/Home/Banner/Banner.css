@@ -1,11 +1,17 @@
 .banner-title {
-    background-image: linear-gradient(to top left, #fff, #0fcda1);
-    background-size: 400%;
-    animation: bannerTitleAnimation 3s ease-in-out infinite alternate-reverse;
-    @apply tracking-wide font-bold text-transparent bg-clip-text;
+  background-image: linear-gradient(to top left, #fff, #0fcda1);
+  background-size: 400%;
+  animation: bannerTitleAnimation 3s ease-in-out infinite alternate-reverse;
+  @apply tracking-wide font-bold text-transparent bg-clip-text;
+}
+.fail-title {
+  background-image: linear-gradient(to top left, #e71717, #f13c18);
+  background-size: 400%;
+  animation: bannerTitleAnimation 3s ease-in-out infinite alternate-reverse;
+  @apply tracking-wide font-bold text-transparent bg-clip-text;
 }
 
-  @-webkit-keyframes bannerTitleAnimation {
+@-webkit-keyframes bannerTitleAnimation {
   0% {
     background-position: 100%;
   }
