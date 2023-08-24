@@ -21,11 +21,10 @@ const Testimonials = () => {
             }
         })
             .then(data => {
-                console.log(data);
                 setFeedbacks(data?.data?.result)
             })
     }, [])
-    console.log(feedbacks, 'feedbacks');
+
     return (
         <section>
             <div className='flexcode-container'>
