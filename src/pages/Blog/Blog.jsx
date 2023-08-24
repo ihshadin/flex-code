@@ -2,41 +2,46 @@ import React, { useEffect, useState } from "react";
 import BlogCta from "./BlogCta/BlogCta";
 import { Link, useLoaderData, useLocation, useNavigation } from "react-router-dom";
 import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
-import useScrollTop from "../../Hooks/useScrollTop";
+import useScrollTop from "../../hooks/useScrollTop";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import axios from "axios";
 
 const Blog = () => {
   const user = { role: "admin" };
   const location = useLocation()
-useScrollTop(location)
-  const navigation = useNavigation();
-  if (navigation.state === "loading") {
-    return <FlexcodeLoading />;
-  }
+  useScrollTop(location)
 
   const [blogs, setBlogs] = useState([])
   const [currentPage, setCurrentPage] = useState(0)
   const itemsPerPage = 3;
- 
+  // const [axiosSecure] = useAxiosSecure();
+
   useEffect(() => {
-      fetch(`http://localhost:5000/blog?page=${currentPage}&limit=${itemsPerPage}`)
-          .then(res => res.json())
-          .then(data => {
-              setBlogs(data)
-          })
+    axios.get(`http://localhost:5000/blog?page=${currentPage}&limit=${itemsPerPage}`)
+      .then(data => {
+        setBlogs(data.data)
+      })
   }, [currentPage, itemsPerPage]);
 
+  // useEffect(() => {
+  //   fetch(`http://localhost:5000/blog?page=${currentPage}&limit=${itemsPerPage}`)
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       setBlogs(data)
+  //     })
+  // }, [currentPage, itemsPerPage]);
 
-  const {result} = useLoaderData()
+
+  const { result } = useLoaderData()
   const totalBlogs = result.length;
 
-// console.log(result.length, 'length');
-const totalPage = Math.ceil(totalBlogs / itemsPerPage)
-const pageNumber = [...Array(totalPage).keys()]
-console.log('43===>',pageNumber, itemsPerPage);
+  const totalPage = Math.ceil(totalBlogs / itemsPerPage)
+  const pageNumber = [...Array(totalPage).keys()]
 
-
-console.log(currentPage, totalPage);
-
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return <FlexcodeLoading />;
+  }
 
   return (
     <section>
@@ -85,7 +90,7 @@ console.log(currentPage, totalPage);
                   </div>
                 </div>
                 <div className="mx-5 mb-6 h-[200px] relative">
-                <Link to={`/blog/${blog._id}`}><h1 className="mt-6 text-xl font-semibold text-white dark:text-white">
+                  <Link to={`/blog/${blog._id}`}><h1 className="mt-6 text-xl font-semibold text-white dark:text-white">
                     {blog.title}
                   </h1></Link>
 
@@ -115,13 +120,13 @@ console.log(currentPage, totalPage);
               }
             </div>
             <div className="text-center space-x-4 py-10">
-            <button onClick={() => { currentPage - 1 < totalPage && setCurrentPage( currentPage - 1)}} className={`${currentPage !== 0 ? "bg-[#344a68] hover:bg-gray-600" : "bg-gray-600 btn-disabled"} btn text-white`}>&lt;</button>
-                {
-                  
-                    pageNumber.map(num => <button className={num === currentPage ? "btn bg-[#344a68] hover:bg-gray-600 text-white" : "btn hover:bg-gray-600 bg-[#1e2d40] text-white"} onClick={() => setCurrentPage(num)} key={num}>{num + 1}</button>)
-                }
-                <button onClick={() => { currentPage + 1 < totalPage && setCurrentPage( currentPage + 1)}} className={`${currentPage + 1 < totalPage ? "bg-[#344a68] hover:bg-gray-600" : "bg-gray-600 btn-disabled"} btn text-white`}>&gt;</button>
-               
+              <button onClick={() => { currentPage - 1 < totalPage && setCurrentPage(currentPage - 1) }} className={`${currentPage !== 0 ? "bg-[#344a68] hover:bg-gray-600" : "bg-gray-600 btn-disabled"} btn text-white`}>&lt;</button>
+              {
+
+                pageNumber.map(num => <button className={num === currentPage ? "btn bg-[#344a68] hover:bg-gray-600 text-white" : "btn hover:bg-gray-600 bg-[#1e2d40] text-white"} onClick={() => setCurrentPage(num)} key={num}>{num + 1}</button>)
+              }
+              <button onClick={() => { currentPage + 1 < totalPage && setCurrentPage(currentPage + 1) }} className={`${currentPage + 1 < totalPage ? "bg-[#344a68] hover:bg-gray-600" : "bg-gray-600 btn-disabled"} btn text-white`}>&gt;</button>
+
             </div>
           </div>
         </section>
