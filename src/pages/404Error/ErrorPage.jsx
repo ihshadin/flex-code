@@ -15,6 +15,7 @@ const ErrorPage = () => {
             loop
             src="https://lottie.host/fc5ab244-dc0e-424e-8b87-d986c046cc84/kMCuQmF5wi.json"
             style={{ height: "450px", width: "450px" }}
+            className='primary-color'
           >
             <Controls
               visible={false}
