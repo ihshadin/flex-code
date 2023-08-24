@@ -14,12 +14,10 @@ import axios from 'axios';
 
 const Testimonials = () => {
     const [feedbacks, setFeedbacks] = useState([])
+
+
     useEffect(() => {
-        axios.get('http://localhost:5000/feedback', {
-            headers: {
-                authorization: `Bearer ${localStorage.getItem('access-token')}`
-            }
-        })
+        axios.get('http://localhost:5000/feedback')
             .then(data => {
                 setFeedbacks(data?.data?.result)
             })

@@ -16,7 +16,6 @@ const CheckOut = () => {
   const {
     register,
     handleSubmit,
-    getValues,
     formState: { errors },
   } = useForm();
 
