@@ -10,13 +10,6 @@
 }
 
 
-::-moz-selection, ::selection {
-  background-color: #0fcda133;
-}
-* {
-  scroll-behavior: smooth;
-}
-
 body {
   overflow-x: hidden;
   color: #ffffff;

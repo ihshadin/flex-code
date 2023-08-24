@@ -55,7 +55,7 @@ const ProblemDetails = () => {
       // Execute code
       const userCode = `${code || defaultCode}\n\n${
         singleProblem.functionName
-      }(${singleProblem.examples[0].input});`;
+      }(${singleProblem.examples[1].input});`;
 
       let userOutput = eval(userCode);
 
@@ -68,7 +68,7 @@ const ProblemDetails = () => {
       }
       
       //   Output Message
-      if (userOutput == singleProblem.examples[0].output) {
+      if (userOutput == singleProblem.examples[1].output) {
         setOutputMessage(
           <div>
             <span className="primary-color text-2xl text-center font-semibold block">
@@ -124,7 +124,7 @@ const ProblemDetails = () => {
 
       // Execute code
       const userCode = `${code || defaultCode}\n\nconsole.log(${singleProblem.functionName
-        }(${singleProblem.examples[0].input}));`;
+        }(${singleProblem.examples[1].input}));`;
 
       eval(userCode);
       console.log = originalLog;
