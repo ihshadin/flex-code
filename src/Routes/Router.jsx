@@ -17,6 +17,7 @@ import Subscribe from "../pages/Subscribe/Subscribe";
 import ProblemDetails from "../pages/Problems/ProblemDetails";
 import ErrorPage from "../pages/404Error/ErrorPage";
 import LeaderBoard from "../pages/LeaderBoard/LeaderBoard";
+import AddProblemSolving from "../pages/Problems/AddProblemSolving/AddProblemSolving";
 // import ProblemDetails from "../pages/Problems/ProblemDetails";
 
 const router = createBrowserRouter([
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
         path: "/problem/:id",
         element: <ProblemDetails />,
         // loader: ({ params }) => fetch(`http://localhost:5173/problems.json/${params.id}`)
+      },
+      {
+        path: "/add-problems",
+        element: <AddProblemSolving />,
       },
       {
         path: "/dashboard",
