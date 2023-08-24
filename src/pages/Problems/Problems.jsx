@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import useScrollTop from "../../Hooks/useScrollTop";
+import useScrollTop from "../../hooks/useScrollTop";
 
 const Problems = () => {
   useScrollTop('changes')
