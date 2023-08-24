@@ -59,7 +59,7 @@ const PaymentSuccess = () => {
               </p>
             </div>
             <div className="flex justify-between items-center">
-              <p>Transition id</p>
+              <p>Transition ID</p>
               <p className="text-lg font-semibold text-slate-300">
                 {data?.transactionId}
               </p>
