@@ -15,6 +15,9 @@ import ComingSoon from "../components/ComingSoon/ComingSoon";
 import AddBlog from "../pages/Blog/AddBlog/AddBlog";
 import Subscribe from "../pages/Subscribe/Subscribe";
 import ProblemDetails from "../pages/Problems/ProblemDetails";
+import Submissions from "../pages/Dashboard/Submissions/Submissions";
+import NodeBook from "../pages/Dashboard/NodeBook/NodeBook";
+import AddNode from "../pages/Dashboard/AddNode/AddNode";
 import CheckOut from "../pages/CheckOut/CheckOut";
 import ErrorPage from "../pages/404Error/ErrorPage";
 import LeaderBoard from "../pages/LeaderBoard/LeaderBoard";
@@ -94,6 +97,18 @@ const router = createBrowserRouter([
       {
         path: "/playground",
         element: <ComingSoon />,
+      },
+      {
+        path: '/notebook',
+        element: <NodeBook></NodeBook>
+      },
+      {
+        path: '/submissions',
+        element: <Submissions></Submissions>
+      },
+      {
+        path: '/addNode',
+        element: <AddNode></AddNode>
       },
       {
         path: "/notebook",
