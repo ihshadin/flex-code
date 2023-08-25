@@ -4,11 +4,10 @@ import {
   useNavigate,
   useNavigation,
 } from "react-router-dom";
-import { FaGithub, FaRegEnvelope, FaSpinner, FaUser } from "react-icons/fa";
+import { FaRegEnvelope, FaSpinner, FaUser } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
 import { useForm } from "react-hook-form";
-import Swal from "sweetalert2";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import SocialLogin from "../Shared/Social/SocialLogin";
 import "./Signup.css";
@@ -20,6 +19,7 @@ const SignUp = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const [isChecked, setIsChecked] = useState(false);
   const from = location.state?.from?.pathname || "/";
   const {
     register,
@@ -30,11 +30,15 @@ const SignUp = () => {
 
   // "You clicked the button!", "success";
 
+  // Step 2: Event Handler
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked); // Toggle the checkbox value
+  };
+
   const onSubmit = (data) => {
     const name = data.name;
     const email = data.email;
     const password = data.password;
-    const userInfo = {name, email, password};
     createUser(email, password)
       .then((result) => {
         const user = result.user;
@@ -74,8 +78,8 @@ const SignUp = () => {
 
         setLoading(false);
 
-        toast.success("Login Successfull!");
-        Swal.fire("Login Successfull!");
+        // toast.success("Login Successfull!");
+        // Swal.fire("Login Successfull!");
       })
       .catch((error) => {
         setLoading(false);
@@ -95,7 +99,7 @@ const SignUp = () => {
         <>
           <div className="flex items-center justify-center text-white text-2xl font-bold py-8">
             <img className="w-16 h-16" src="/20230810_125620.png" alt="img" />
-            <span className="text-[#0fcda1] mr-1">Flex </span> { } Code
+            <span className="text-[#0fcda1] mr-1">Flex </span> {} Code
           </div>
           <SocialLogin />
           <div className="max-w-[150px] flex justify-center border-2 border-[#0fcda1] rounded mx-auto my-8"></div>
@@ -108,6 +112,7 @@ const SignUp = () => {
               // className="bg-black text-red p-2 rounded-lg border-none fo"
               className="flex-1 bg-[#1e2d40] hover:bg-[#17181B] text-sm outline-none py-2"
               type="text"
+              autoComplete="off"
               name="name"
               {...register("name", { required: true })}
               id=""
@@ -123,6 +128,7 @@ const SignUp = () => {
               className="flex-1 bg-[#1e2d40] hover:bg-[#17181B] text-sm outline-none py-2"
               type="email"
               name="email"
+              autoComplete="off"
               {...register("email", { required: true })}
               id=""
               placeholder="Email"
@@ -137,6 +143,7 @@ const SignUp = () => {
               className="flex-1 bg-[#1e2d40] hover:bg-[#17181B] text-sm outline-none py-2"
               type="password"
               name="password"
+              autoComplete="off"
               {...register("password", {
                 required: true,
                 minLength: 6,
@@ -175,7 +182,8 @@ const SignUp = () => {
               <input
                 type="checkbox"
                 // checked="checked"
-                defaultChecked={false}
+                defaultChecked={isChecked}
+                onChange={handleCheckboxChange}
                 className="checkbox h-4 w-4 checkbox-accent"
               />{" "}
               <span>I agree to</span>{" "}
@@ -191,7 +199,15 @@ const SignUp = () => {
           /> */}
           <button
             type="submit"
-            className="mt-3 uppercase bg-[#2fb595] px-6 font-bold text-lg text-[#1e2d40] rounded-md mb-6 py-1 hover:bg-[#43d1af] cursor-pointer"
+            className={`${
+              isChecked
+                ? " px-6 py-[6px] flexcode-button cursor-pointer mt-3 mb-6  "
+                : " px-6 py-[6px] flexcode-button opacity-40 mt-3 mb-6 cursor-not-allowed"
+            }`}
+            onClick={() => {
+              if (isChecked) {
+              }
+            }}
           >
             {loading ? (
               <FaSpinner className="m-auto animate-spin" size={24} />
@@ -199,6 +215,16 @@ const SignUp = () => {
               "Sign up"
             )}
           </button>
+          {/* <button
+            type="submit"
+            className="mt-3 uppercase bg-[#2fb595] px-6 font-bold text-lg text-[#1e2d40] rounded-md mb-6 py-1 hover:bg-[#43d1af] cursor-pointer"
+          >
+            {loading ? (
+              <FaSpinner className="m-auto animate-spin" size={24} />
+            ) : (
+              "Sign up"
+            )}
+          </button> */}
         </form>
         <div className="text-center text-gray-300 pb-10">
           <Link to="/login">

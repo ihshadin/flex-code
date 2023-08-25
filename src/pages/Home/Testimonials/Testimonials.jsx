@@ -14,15 +14,15 @@ import axios from 'axios';
 
 const Testimonials = () => {
     const [feedbacks, setFeedbacks] = useState([])
+
+
     useEffect(() => {
-        fetch('http://localhost:5000/feedback')
-            .then(res => res.json())
+        axios.get('http://localhost:5000/feedback')
             .then(data => {
-                console.log(data);
-                setFeedbacks(data?.result)
+                setFeedbacks(data?.data?.result)
             })
     }, [])
-    console.log(feedbacks, 'feedbacks');
+
     return (
         <section>
             <div className='flexcode-container'>

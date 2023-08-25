@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@codemirror/lang-javascript": "^6.1.9",
+    "@lottiefiles/react-lottie-player": "^3.5.3",
     "@uiw/codemirror-theme-vscode": "^4.21.9",
     "@uiw/react-codemirror": "^4.21.9",
     "axios": "^1.4.0",
@@ -25,8 +26,10 @@
     "react-hook-form": "^7.45.4",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.10.1",
+    "react-lottie": "^1.2.3",
     "react-rating": "^2.0.5",
     "react-router-dom": "^6.14.2",
+    "react-select": "^5.7.4",
     "react-split": "^2.0.14",
     "recharts": "^2.7.3",
     "sort-by": "^1.2.0",

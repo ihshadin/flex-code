@@ -1,0 +1,13 @@
+/* .css-13cymwt-control, .css-art2ul-ValueContainer2{
+    @apply w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 
+             text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3] !important
+} */
+.css-1p3m7a8-multiValue{
+    background-color: #08ecb8;
+}
+.css-1y7rh0y-MultiValueGeneric2{
+    color: hsl(0, 8%, 95%);
+}
+.css-13cymwt-control{
+    background-color: #1e2d40;;
+}

@@ -13,16 +13,25 @@ import SingleBlog from "../pages/Blog/SingleBlog/SingleBlog";
 import Feedback from "../components/Feedback/Feedback";
 import ComingSoon from "../components/ComingSoon/ComingSoon";
 import AddBlog from "../pages/Blog/AddBlog/AddBlog";
+import Subscribe from "../pages/Subscribe/Subscribe";
 import ProblemDetails from "../pages/Problems/ProblemDetails";
 import Submissions from "../pages/Dashboard/Submissions/Submissions";
 import NodeBook from "../pages/Dashboard/NodeBook/NodeBook";
 import AddNode from "../pages/Dashboard/AddNode/AddNode";
+import CheckOut from "../pages/CheckOut/CheckOut";
+import ErrorPage from "../pages/404Error/ErrorPage";
+import LeaderBoard from "../pages/LeaderBoard/LeaderBoard";
+import AddProblemSolving from "../pages/Problems/AddProblemSolving/AddProblemSolving";
+import PrivateRoute from "./PrivateRoute";
+import PaymentSuccess from "../pages/Subscribe/PaymentSuccess";
+import PaymentFail from "../pages/Subscribe/PaymentFail";
 // import ProblemDetails from "../pages/Problems/ProblemDetails";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    // errorElement: <ErrorPage />,
 
     children: [
       {
@@ -40,11 +49,13 @@ const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog />,
+        loader: () => fetch(`http://localhost:5000/blog/all`),
       },
       {
         path: "/blog/:id",
         element: <SingleBlog />,
-        loader: ({ params }) => fetch(`https://flex-code-server.vercel.app/blog/${params.id}`),
+        loader: ({ params }) =>
+          fetch(`https://flex-code-server.vercel.app/blog/${params.id}`),
       },
       {
         path: "/add-blog",
@@ -64,24 +75,28 @@ const router = createBrowserRouter([
         // loader: ({ params }) => fetch(`http://localhost:5173/problems.json/${params.id}`)
       },
       {
+        path: "/add-problems",
+        element: <AddProblemSolving />,
+      },
+      {
         path: "/dashboard",
         element: <DashboardHome></DashboardHome>,
       },
       {
-        path: '/explore',
-        element: <Explore />
+        path: "/explore",
+        element: <Explore />,
       },
       {
-        path: '/feedback',
-        element: <Feedback />
+        path: "/feedback",
+        element: <Feedback />,
       },
       {
-        path: '/profile',
-        element: <ProfileEdit></ProfileEdit>
+        path: "/profile",
+        element: <ProfileEdit></ProfileEdit>,
       },
       {
-        path: '/playground',
-        element: <ComingSoon />
+        path: "/playground",
+        element: <ComingSoon />,
       },
       {
         path: '/notebook',
@@ -94,7 +109,39 @@ const router = createBrowserRouter([
       {
         path: '/addNode',
         element: <AddNode></AddNode>
-      }
+      },
+      {
+        path: "/notebook",
+        element: <ComingSoon />,
+      },
+      {
+        path: "/subscribe",
+        element: (
+          <PrivateRoute>
+            <Subscribe />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/checkout",
+        element: <CheckOut />,
+      },
+      {
+        path: "/payment/success/:tranId",
+        element: <PaymentSuccess />,
+      },
+      {
+        path: "/payment/fail/:tranId",
+        element: <PaymentFail />,
+      },
+      {
+        path: "/submissions",
+        element: <ComingSoon />,
+      },
+      {
+        path: "/leader-board",
+        element: <LeaderBoard />,
+      },
     ],
   },
 ]);

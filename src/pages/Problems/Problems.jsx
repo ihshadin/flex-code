@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useScrollTop from "../../hooks/useScrollTop";
 
 const Problems = () => {
+  useScrollTop('changes')
 
   const [problems, setProblems] = useState([])
 
@@ -293,14 +295,14 @@ const Problems = () => {
             Our weekly and monthly best problems.
           </p>
         </div>
-        <div className="grid md:grid-cols-2 gap-10 w-5/6 mx-auto md:w-full">
+        <div className="grid md:grid-cols-1 gap-6 w-5/6 mx-auto md:w-[70%]">
           {
             problems.map((problem, index) => (
               <div key={index} className="flex flex-col md:flex-row mb-8 justify-between items-center border px-10 py-6 rounded-xl">
                 <div>
                   <h1 className="text-3xl mb-5 text-white font-semibold">{problem.title}</h1>
                   <span className="flex items-center gap-5">
-                    <p className="text-xs text-gray-400 tracking-wider"> Type: <span className={`capitalize ${problem.level === 'easy' ? 'text-green-500' : problem.level === 'difficult' ? 'text-red-500' : "text-orange-500"}`}>{problem.level}</span>.</p>
+                    <p className="text-xs text-gray-400 tracking-wider"> Type: <span className={`capitalize ${problem.level === 'easy' ? 'text-green-500' : problem.level === 'difficult' ? 'text-red-500' : "text-yellow-500"}`}>{problem.level}</span>.</p>
                     <p className="text-xs text-gray-400 tracking-wider"> Attempts: <span className="text-white">4000</span>.</p>
                     <p className="text-xs text-gray-400 tracking-wider"> Success rate: <span className="text-white">53.42%</span>.</p>
                   </span>

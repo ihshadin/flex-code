@@ -1,26 +1,48 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigation } from "react-router-dom";
-import image1 from "../../../public/image-1.jpg";
 import BlogCta from "./BlogCta/BlogCta";
-import axios from "axios";
+import { Link, useLoaderData, useLocation, useNavigation } from "react-router-dom";
 import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
+import useScrollTop from "../../hooks/useScrollTop";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import axios from "axios";
 
 const Blog = () => {
   const user = { role: "admin" };
+  const location = useLocation()
+  useScrollTop(location)
+
+  const [blogs, setBlogs] = useState([])
+  const [currentPage, setCurrentPage] = useState(0)
+  const itemsPerPage = 3;
+  // const [axiosSecure] = useAxiosSecure();
+
+  useEffect(() => {
+    axios.get(`http://localhost:5000/blog?page=${currentPage}&limit=${itemsPerPage}`)
+      .then(data => {
+        setBlogs(data.data)
+      })
+  }, [currentPage, itemsPerPage]);
+
+  // useEffect(() => {
+  //   fetch(`http://localhost:5000/blog?page=${currentPage}&limit=${itemsPerPage}`)
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       setBlogs(data)
+  //     })
+  // }, [currentPage, itemsPerPage]);
+
+  
+  const { result } = useLoaderData()
+  const totalBlogs = result?.length;
+
+  const totalPage = Math.ceil(totalBlogs / itemsPerPage)
+  const pageNumber = [...Array(totalPage).keys()]
 
   const navigation = useNavigation();
   if (navigation.state === "loading") {
     return <FlexcodeLoading />;
   }
 
-  const [blogs, setBlogs] = useState([])
-    useEffect(() => {
-        fetch('http://localhost:5000/blog')
-            .then(res => res.json())
-            .then(data =>{
-                console.log(data);
-                setBlogs(data?.result)})
-    }, [])
   return (
     <section>
       <div className="flexcode-container">
@@ -68,9 +90,9 @@ const Blog = () => {
                   </div>
                 </div>
                 <div className="mx-5 mb-6 h-[200px] relative">
-                  <h1 className="mt-6 text-xl font-semibold text-white dark:text-white">
+                  <Link to={`/blog/${blog._id}`}><h1 className="mt-6 text-xl font-semibold text-white dark:text-white">
                     {blog.title}
-                  </h1>
+                  </h1></Link>
 
                   <hr className="w-32 my-6 text-blue-500" />
 
@@ -96,6 +118,15 @@ const Blog = () => {
                 </div>
               </div>)
               }
+            </div>
+            <div className="text-center space-x-4 py-10">
+              <button onClick={() => { currentPage - 1 < totalPage && setCurrentPage(currentPage - 1) }} className={`${currentPage !== 0 ? "bg-[#344a68] hover:bg-gray-600" : "bg-gray-600 btn-disabled"} btn text-white`}>&lt;</button>
+              {
+
+                pageNumber.map(num => <button className={num === currentPage ? "btn bg-[#344a68] hover:bg-gray-600 text-white" : "btn hover:bg-gray-600 bg-[#1e2d40] text-white"} onClick={() => setCurrentPage(num)} key={num}>{num + 1}</button>)
+              }
+              <button onClick={() => { currentPage + 1 < totalPage && setCurrentPage(currentPage + 1) }} className={`${currentPage + 1 < totalPage ? "bg-[#344a68] hover:bg-gray-600" : "bg-gray-600 btn-disabled"} btn text-white`}>&gt;</button>
+
             </div>
           </div>
         </section>
