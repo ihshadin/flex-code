@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { Link, useRouteError } from 'react-router-dom';
 import { Controls, Player } from '@lottiefiles/react-lottie-player';
+import errorFile from '../../../public/404 Eror.json';
 
 const ErrorPage = () => {
   const { error, status } = useRouteError();
@@ -13,7 +14,7 @@ const ErrorPage = () => {
           <Player
             autoplay
             loop
-            src="https://lottie.host/fc5ab244-dc0e-424e-8b87-d986c046cc84/kMCuQmF5wi.json"
+            src={errorFile}
             style={{ height: "450px", width: "450px" }}
             className='primary-color'
           >
