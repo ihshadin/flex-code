@@ -16,6 +16,7 @@ const ErrorPage = () => {
             loop
             src={errorFile}
             style={{ height: "450px", width: "450px" }}
+            className='primary-color'
           >
             <Controls
               visible={false}

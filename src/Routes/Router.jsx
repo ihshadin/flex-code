@@ -15,16 +15,20 @@ import ComingSoon from "../components/ComingSoon/ComingSoon";
 import AddBlog from "../pages/Blog/AddBlog/AddBlog";
 import Subscribe from "../pages/Subscribe/Subscribe";
 import ProblemDetails from "../pages/Problems/ProblemDetails";
+import CheckOut from "../pages/CheckOut/CheckOut";
 import ErrorPage from "../pages/404Error/ErrorPage";
 import LeaderBoard from "../pages/LeaderBoard/LeaderBoard";
 import AddProblemSolving from "../pages/Problems/AddProblemSolving/AddProblemSolving";
+import PrivateRoute from "./PrivateRoute";
+import PaymentSuccess from "../pages/Subscribe/PaymentSuccess";
+import PaymentFail from "../pages/Subscribe/PaymentFail";
 // import ProblemDetails from "../pages/Problems/ProblemDetails";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    errorElement: <ErrorPage />,
+    // errorElement: <ErrorPage />,
 
     children: [
       {
@@ -42,6 +46,7 @@ const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog />,
+        loader: () => fetch(`http://localhost:5000/blog/all`),
       },
       {
         path: "/blog/:id",
@@ -96,7 +101,23 @@ const router = createBrowserRouter([
       },
       {
         path: "/subscribe",
-        element: <Subscribe />,
+        element: (
+          <PrivateRoute>
+            <Subscribe />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/checkout",
+        element: <CheckOut />,
+      },
+      {
+        path: "/payment/success/:tranId",
+        element: <PaymentSuccess />,
+      },
+      {
+        path: "/payment/fail/:tranId",
+        element: <PaymentFail />,
       },
       {
         path: "/submissions",

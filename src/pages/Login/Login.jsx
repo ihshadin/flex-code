@@ -86,7 +86,7 @@ const Login = () => {
         <>
           <div className="flex items-center justify-center text-white text-2xl  font-bold py-8">
             <img className="w-16 h-16" src="/20230810_125620.png" alt="img" />
-            <span className="text-[#00ffc3] mr-1">Flex </span> { } Code
+            <span className="text-[#00ffc3] mr-1">Flex </span> {} Code
           </div>
           <SocialLogin />
           <div className="max-w-[150px] flex justify-center border-2 border-[#0fcda1] rounded mx-auto my-8"></div>
@@ -97,6 +97,7 @@ const Login = () => {
             <input
               className="flex-1 bg-[#1e2d40] hover:bg-[#17181B] text-sm outline-none py-2"
               type="email"
+              autoComplete="off"
               name="email"
               {...register("email", { required: true })}
               id=""
@@ -113,6 +114,7 @@ const Login = () => {
               className="flex-1 bg-[#1e2d40] hover:bg-[#17181B] text-sm outline-none py-2"
               type="password"
               name="password"
+              autoComplete="off"
               {...register("password", { required: true })}
               id=""
               placeholder="Password"
@@ -133,7 +135,7 @@ const Login = () => {
           </div>
           <button
             type="submit"
-            className="mt-3 uppercase bg-[#2fb595] text-[#1e2d40] px-6 font-bold text-lg rounded-md mb-6 py-1 hover:bg-[#43d1af] cursor-pointer"
+            className=" px-6 py-[6px] flexcode-button cursor-pointer mt-3 mb-6 "
           >
             {loading ? (
               <FaSpinner className="m-auto animate-spin" size={24} />
