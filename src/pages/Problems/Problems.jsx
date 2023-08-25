@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useScrollTop from "../../hooks/useScrollTop";
+import AddProblemCTA from "./AddProblemSolving/AddProblemCTA";
 
 const Problems = () => {
   useScrollTop('changes')
@@ -262,7 +263,10 @@ const Problems = () => {
   return (
     <section>
       <div className="flexcode-container ">
-        <div className="mb-10 montserrat">
+
+        <AddProblemCTA/>
+
+        <div className="mt-10 mb-10 montserrat">
           <h1 className="text-3xl text-white font-semibold">
             {" "}
             Most Popular languages
