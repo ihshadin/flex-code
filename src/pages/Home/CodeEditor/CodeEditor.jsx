@@ -58,7 +58,7 @@ const CodeEditor = () => {
 
             <button
               onClick={runCode}
-              className="relative h-[30px] w-[180px] ms-auto mb-[3px]"
+              className="relative h-[30px] w-[180px] ms-auto mb-[3px] hidden md:block"
             >
               <span className="absolute left-0 bottom-0.5 w-[50px] block border-b-[12px] border-b-transparent opacity-50 border-r-[30px] border-r-[#0fcda1] border-t-[12px] border-t-transparent "></span>
               <span className="bg-[#0fcda1] bg-opacity-50 rounded-md p-1 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-sm font-medium text-white">
@@ -81,6 +81,11 @@ const CodeEditor = () => {
           </div>
         </div>
         {/* end editor  */}
+
+        <button onClick={runCode} className="relative mt-2 md:mt-0 md:absolute left-1/2 bottom-0 md:-bottom-20 -translate-x-1/2 flexcode-button py-2 md:py-3 px-5 md:px-6 text-xs md:text-base">
+          Run Your Code
+        </button>
+
 
         {/* start preview  */}
         <div className="md:w-1/2 rounded-lg overflow-hidden border border-gray-500 hover:border-[#0fcda1] transition-all drop-shadow-md mt-4 md:mt-0">
@@ -105,14 +110,6 @@ const CodeEditor = () => {
         </div>
         {/* end preview  */}
       </div>
-      <button onClick={runCode} className="absolute left-1/2 -bottom-2 -translate-x-1/2">
-        <button className="group relative inline-block focus:outline-none focus:ring">
-          <button className="absolute inset-0 translate-x-0 hover:translate-y-0 rounded-md shadow-2xl bg-[#0fcda133] focus:bg-transparent transition-transform group-hover:translate-y-2 group-hover:translate-x-2"></button>
-          <button className="relative inline-block shadow-2xl border-2 rounded-md border-[#0fcda1] focus:border-white px-8 py-3 text-base font-bold uppercase tracking-widest text-white group-active:text-opacity-75">
-            Run Your Code
-          </button>
-        </button>
-      </button>
     </div>
   );
 };
