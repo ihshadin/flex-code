@@ -15,10 +15,11 @@ import axios from 'axios';
 const Testimonials = () => {
     const [feedbacks, setFeedbacks] = useState([])
     useEffect(() => {
-        axios('http://localhost:5000/feedback')
+        fetch('http://localhost:5000/feedback')
+            .then(res => res.json())
             .then(data => {
                 console.log(data);
-                setFeedbacks(data?.data?.result)
+                setFeedbacks(data?.result)
             })
     }, [])
     console.log(feedbacks, 'feedbacks');

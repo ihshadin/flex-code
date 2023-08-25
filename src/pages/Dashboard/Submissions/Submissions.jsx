@@ -1,69 +1,43 @@
-import React from "react";
-import {
-  BarChart,
-  Bar,
-  Brush,
-  ReferenceLine,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
-import "./Submission.css";
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../providers/AuthProvider';
+import { FaUser } from "react-icons/fa";
 
 const Submissions = () => {
-  const data = [
-    { name: "Jan", submit: 456 },
-    { name: "Feb", submit: 230 },
-    { name: "Mar", submit: 345 },
-    { name: "Apr", submit: 450 },
-    { name: "May", submit: 321 },
-    { name: "Jun", submit: 235 },
-    { name: "Jul", submit: 267 },
-    { name: "Aug", submit: 378 },
-    { name: "Sep", submit: 210 },
-    { name: "Oct", submit: 200 },
-    { name: "Nov", submit: 150 },
-    { name: "Dec", submit: 500 },
-  ];
+  const { user } = useContext(AuthContext);
+  console.log(user);
   return (
-    <div className="bg-[#1e2d40] md:ml-5 mt-4 rounded-lg ">
-      <div className="flex justify-between text-base-300 pt-3 px-8">
-        <p className="pl-3">0 submissions in the last year</p>
-        <div className="flex gap-x-2">
-          <p>Total active days:0 </p>
-          <p>Max streak:0</p>
-        </div>
+    <div className='bg-[#0E141E] min-h-screen'>
+      <div className='border-b-2 border-gray-500 py-5'>
+        <p className='text-slate-300 md:ml-36 mb-2'>All Submissions</p>
+        <h1 className='text-white md:ml-36 font-semibold'>Submissions</h1>
       </div>
-      <ResponsiveContainer width="100%" height={250}>
-        <BarChart
-          data={data}
-          margin={{
-            top: 10,
-            right: 30,
-            left: 20,
-            bottom: 10,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" style={{ color: "black" }} />
-          <YAxis />
-          <Tooltip labelStyle={{ color: "black" }} />
-          <Legend verticalAlign="top" wrapperStyle={{ lineHeight: "10px" }} />
-          <ReferenceLine y={0} stroke="#0fcda1" />
-          <Brush dataKey="name" height={30} stroke="#000" />
-          <Bar
-            dataKey="submit"
-            fill="#0fcda1"
-            //   fill="#1e2d40" // Background color
-            className="hover:bg-black rounded-bar"
-            barSize={12}
-            radius={[3, 3, 0, 0]}
-          />
-        </BarChart>
-      </ResponsiveContainer>
+      <div className=" flex justify-center mt-10 bg-[#0E141E] text-white">
+        <table className="table table-striped table-bordered table-hover w-[60%] md:w-[80%] bg-secondary-color">
+          <thead>
+            <tr className='text-white border-gray-500 '>
+              <th>Label</th>
+              <th>Time Submitted</th>
+              <th>Question</th>
+              <th>Status</th>
+              <th>Language</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className='border-0'>
+              <td>Medium</td>
+              <td>4 months, 2 weeks ago</td>
+              <td>Two Sum</td>
+              <td>
+                <Link className="text-success">
+                  <strong>Accepted</strong>
+                </Link>
+              </td>
+              <td>javascript</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

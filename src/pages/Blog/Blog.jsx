@@ -15,10 +15,11 @@ const Blog = () => {
 
   const [blogs, setBlogs] = useState([])
     useEffect(() => {
-        axios.get('http://localhost:5000/blog')
+        fetch('http://localhost:5000/blog')
+            .then(res => res.json())
             .then(data =>{
                 console.log(data);
-                setBlogs(data?.data?.result)})
+                setBlogs(data?.result)})
     }, [])
   return (
     <section>

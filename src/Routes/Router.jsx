@@ -14,6 +14,9 @@ import Feedback from "../components/Feedback/Feedback";
 import ComingSoon from "../components/ComingSoon/ComingSoon";
 import AddBlog from "../pages/Blog/AddBlog/AddBlog";
 import ProblemDetails from "../pages/Problems/ProblemDetails";
+import Submissions from "../pages/Dashboard/Submissions/Submissions";
+import NodeBook from "../pages/Dashboard/NodeBook/NodeBook";
+import AddNode from "../pages/Dashboard/AddNode/AddNode";
 // import ProblemDetails from "../pages/Problems/ProblemDetails";
 
 const router = createBrowserRouter([
@@ -82,11 +85,15 @@ const router = createBrowserRouter([
       },
       {
         path: '/notebook',
-        element: <ComingSoon />
+        element: <NodeBook></NodeBook>
       },
       {
         path: '/submissions',
-        element: <ComingSoon />
+        element: <Submissions></Submissions>
+      },
+      {
+        path: '/addNode',
+        element: <AddNode></AddNode>
       }
     ],
   },
