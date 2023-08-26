@@ -1,11 +1,4 @@
-.rounded-bar:hover .recharts-tooltip-wrapper {
-  /* Apply your Tooltip hover styles here */
-  background-color: red;
-  color: blue;
-}
 path.recharts-rectangle.recharts-tooltip-cursor {
   fill: rgba(255, 255, 255, 0.188)
 }
-/* .recharts-brush-slide {
-  fill: #0fcda1;
-} */
+
