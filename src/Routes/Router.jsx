@@ -15,7 +15,6 @@ import ComingSoon from "../components/ComingSoon/ComingSoon";
 import AddBlog from "../pages/Blog/AddBlog/AddBlog";
 import Subscribe from "../pages/Subscribe/Subscribe";
 import ProblemDetails from "../pages/Problems/ProblemDetails";
-import Submissions from "../pages/Dashboard/Submissions/Submissions";
 import NodeBook from "../pages/Dashboard/NodeBook/NodeBook";
 import AddNode from "../pages/Dashboard/AddNode/AddNode";
 import CheckOut from "../pages/CheckOut/CheckOut";
@@ -25,6 +24,7 @@ import AddProblemSolving from "../pages/Problems/AddProblemSolving/AddProblemSol
 import PrivateRoute from "./PrivateRoute";
 import PaymentSuccess from "../pages/Subscribe/PaymentSuccess";
 import PaymentFail from "../pages/Subscribe/PaymentFail";
+import MySubmissions from "../pages/MySubmissions/MySubmissions";
 // import ProblemDetails from "../pages/Problems/ProblemDetails";
 
 const router = createBrowserRouter([
@@ -80,7 +80,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        element: <DashboardHome></DashboardHome>,
+        element: <DashboardHome />,
       },
       {
         path: "/explore",
@@ -92,7 +92,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <ProfileEdit></ProfileEdit>,
+        element: <ProfileEdit />,
       },
       {
         path: "/playground",
@@ -100,15 +100,15 @@ const router = createBrowserRouter([
       },
       {
         path: '/notebook',
-        element: <NodeBook></NodeBook>
+        element: <NodeBook />
       },
       {
-        path: '/submissions',
-        element: <Submissions></Submissions>
+        path: '/my-submittions',
+        element: <MySubmissions />
       },
       {
         path: '/addNode',
-        element: <AddNode></AddNode>
+        element: <AddNode />
       },
       {
         path: "/notebook",

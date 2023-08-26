@@ -57,7 +57,7 @@ const NavBar = () => {
 
   return (
     <nav
-      className={`top-0 backdrop-blur-sm z-10 w-full ${location.pathname === "/" ? "fixed" : "sticky"
+      className={`top-0 backdrop-blur-sm z-10 w-full ${location.pathname === "/" || location.pathname === "/my-submittions" ? "fixed" : "sticky"
         }`}
     >
       <div className="max-w-[1280px] w-full mx-auto bg-inherit py-2 px-3 lg:flex justify-between items-center">
@@ -271,7 +271,7 @@ const NavBar = () => {
                             <span>Notbook</span>
                           </Link>
                           <Link
-                            to="/submissions"
+                            to="/my-submittions"
                             className="flex items-center px-4 py-2 text-white hover:bg-[#00ffc3] hover:bg-opacity-40"
                           >
                             <span className="mr-2  flex">

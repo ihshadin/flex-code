@@ -264,9 +264,9 @@ const Problems = () => {
     <section>
       <div className="flexcode-container ">
 
-        <AddProblemCTA/>
+        <AddProblemCTA />
 
-        <div className="mt-10 mb-10 montserrat">
+        <div className="mt-10 mb-10">
           <h1 className="text-3xl text-white font-semibold">
             {" "}
             Most Popular languages
