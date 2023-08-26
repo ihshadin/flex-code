@@ -29,7 +29,7 @@ const Submissions = () => {
     { name: "Dec", Submit: 500 },
   ];
   return (
-    <div className="bg-[#1e2d40] md:ml-5 mt-4 rounded-lg pb-2">
+    <div className="bg-secondary-color text-white md:ml-5 mt-4 rounded-lg pb-2">
       <div className="flex justify-between text-base-300 pt-3 px-8">
         <p className="pl-3"><span>0</span> submissions in the last year</p>
         <div className="flex gap-x-2">

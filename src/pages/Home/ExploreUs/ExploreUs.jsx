@@ -17,7 +17,7 @@ const ExploreUs = () => {
                     </h2>
                     <p className='max-w-xl w-full text-center mx-auto mt-2 mb-10 text-white'>Learn from the best with our highly acclaimed instructors who bring expertise and passion to every class.</p>
                 </div>
-                <div className='grid grid-cols-3 gap-5 my-10'>
+                <div className='grid grid-cols-1 md:grid-cols-3 gap-5 my-10'>
                     <div className="flex flex-col justify-between border gap-3 p-5 rounded-xl border-gray-500 hover:border-[#0fcda1] transition-all exploreCard drop-shadow-md cursor-pointer">
                         <p className="flex gap-2 text-[0.85rem] tracking-wide font-thin items-center text-[#0fcda1]">
                             <FaShieldAlt />
