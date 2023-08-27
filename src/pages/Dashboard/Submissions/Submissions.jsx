@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   BarChart,
   Bar,
@@ -12,34 +12,109 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import "./Submission.css";
+import axios from "axios";
+import { useContext } from "react";
+import { AuthContext } from "../../../providers/AuthProvider";
+import { useState } from "react";
 
 const Submissions = () => {
-  const data = [
-    { name: "Jan", Submit: 456 },
-    { name: "Feb", Submit: 230 },
-    { name: "Mar", Submit: 345 },
-    { name: "Apr", Submit: 450 },
-    { name: "May", Submit: 321 },
-    { name: "Jun", Submit: 235 },
-    { name: "Jul", Submit: 267 },
-    { name: "Aug", Submit: 378 },
-    { name: "Sep", Submit: 210 },
-    { name: "Oct", Submit: 200 },
-    { name: "Nov", Submit: 150 },
-    { name: "Dec", Submit: 500 },
+  const { user, loading, setLoading } = useContext(AuthContext);
+  const [mySolvedProblems, setMySolvedProblems] = useState([]);
+  const [filteredProblems, setFilteredProblems] = useState([]);
+  const [problemsSolvedLastYear, setProblemsSolvedLastYear] = useState(0);
+  const [activeDaysCount, setActiveDaysCount] = useState(0);
+
+  const monthOrder = [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
   ];
+
+  useEffect(() => {
+    axios.get(`http://localhost:5000/solvedProblems/userSolveProblem?email=${user?.email}`)
+      .then(data => {
+        setMySolvedProblems(data.data);
+      })
+  }, [user?.email])
+
+  useEffect(() => {
+    const countProblemsByMonth = () => {
+      const problemsCount = {};
+      const activeDays = new Set();
+      const currentYear = new Date().getFullYear();
+
+      mySolvedProblems.forEach((problem) => {
+        const problemYear = new Date(problem.date).getFullYear();
+        const problemMonth = new Date(problem.date).getMonth();
+        const problemDate = new Date(problem.date).toLocaleDateString();
+
+        if (problemYear === currentYear) {
+          if (problemsCount[problemMonth]) {
+            problemsCount[problemMonth]++;
+          } else {
+            problemsCount[problemMonth] = 1;
+          }
+        }
+        activeDays.add(problemDate);
+      });
+
+      const newData = monthOrder.map((month, index) => ({
+        name: month,
+        Submit: problemsCount[index] || 0,
+      }));
+      setFilteredProblems(newData);
+      const numberOfActiveDays = activeDays.size;
+      setActiveDaysCount(numberOfActiveDays);
+    };
+
+    countProblemsByMonth();
+  }, [mySolvedProblems]);
+
+  // useEffect(() => {
+  //   const countProblemsByMonth = () => {
+  //     const problemsCount = {};
+  //     mySolvedProblems.forEach(problem => {
+  //       const month = new Date(problem.date).getMonth();
+  //       if (problemsCount[month]) {
+  //         problemsCount[month]++;
+  //       } else {
+  //         problemsCount[month] = 1;
+  //       }
+  //     });
+
+  //     const newData = monthOrder.map((month, index) => ({
+  //       name: month,
+  //       Submit: problemsCount[index] || 0
+  //     }));
+  //     setFilteredProblems(newData);
+
+  //   };
+  //   countProblemsByMonth();
+
+  // }, [mySolvedProblems]);
+
+  useEffect(() => {
+    const today = new Date();
+    const lastYear = today.getFullYear() - 1;
+
+    const problemsSolvedLastYear = mySolvedProblems.filter(
+      (problem) => new Date(problem.date).getFullYear() === lastYear
+    ).length;
+
+    setProblemsSolvedLastYear(problemsSolvedLastYear);
+  }, [mySolvedProblems]);
+
+
   return (
     <div className="bg-secondary-color text-white md:ml-5 mt-4 rounded-lg pb-2">
       <div className="flex justify-between text-base-300 pt-3 px-8">
-        <p className="pl-3"><span>0</span> submissions in the last year</p>
+        <p className="pl-3"><span>{problemsSolvedLastYear}</span> submissions in the last year</p>
         <div className="flex gap-x-2">
-          <p>Total active days: <span>0</span></p>
-          <p>Max streak: <span>0</span></p>
+          <p>Total active days: <span>{activeDaysCount}</span></p>
         </div>
       </div>
       <ResponsiveContainer width="100%" height={250}>
         <BarChart
-          data={data}
+          data={filteredProblems}
           margin={{
             top: 10,
             right: 30,
