@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useScrollTop from "../../hooks/useScrollTop";
+import AddProblemCTA from "./AddProblemSolving/AddProblemCTA";
 
 const Problems = () => {
   useScrollTop('changes')
@@ -262,9 +263,11 @@ const Problems = () => {
   return (
     <section>
       <div className="flexcode-container ">
-        <div className="mb-10 montserrat">
+
+        <AddProblemCTA />
+
+        <div className="mt-10 mb-10">
           <h1 className="text-3xl text-white font-semibold">
-            {" "}
             Most Popular languages
           </h1>
           <p className="text-md text-white mt-1 tracking-wider">
@@ -301,11 +304,11 @@ const Problems = () => {
               <div key={index} className="flex flex-col md:flex-row mb-8 justify-between items-center border px-10 py-6 rounded-xl">
                 <div>
                   <h1 className="text-3xl mb-5 text-white font-semibold">{problem.title}</h1>
-                  <span className="flex items-center gap-5">
+                  <div className="flex items-center gap-5">
                     <p className="text-xs text-gray-400 tracking-wider"> Type: <span className={`capitalize ${problem.level === 'easy' ? 'text-green-500' : problem.level === 'difficult' ? 'text-red-500' : "text-yellow-500"}`}>{problem.level}</span>.</p>
                     <p className="text-xs text-gray-400 tracking-wider"> Attempts: <span className="text-white">4000</span>.</p>
                     <p className="text-xs text-gray-400 tracking-wider"> Success rate: <span className="text-white">53.42%</span>.</p>
-                  </span>
+                  </div>
                 </div>
                 <div className="flex flex-col gap-2">
                   <Link to={`/problem/${problem.id}`} className="flexcode-button text-xs py-2 px-4">
@@ -318,7 +321,7 @@ const Problems = () => {
               </div>
             ))
           }
-          {/* <div className="border hover:border-[#0fcda1] rounded-lg montserrat flex justify-between px-5 items-center">
+          <div className="border hover:border-[#0fcda1] rounded-lg montserrat flex justify-between px-5 items-center">
             <div className="flex flex-col gap-3 p-5">
               <p className="text-md font-semibold text-white mt-1 tracking-wider">
                 {" "}
@@ -354,7 +357,7 @@ const Problems = () => {
                 Solve Problem
               </button>
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
     </section>

@@ -31,9 +31,9 @@ const Blog = () => {
   //     })
   // }, [currentPage, itemsPerPage]);
 
-
+  
   const { result } = useLoaderData()
-  const totalBlogs = result.length;
+  const totalBlogs = result?.length;
 
   const totalPage = Math.ceil(totalBlogs / itemsPerPage)
   const pageNumber = [...Array(totalPage).keys()]
