@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import img from "/20230810_125620.png";
-import { FaTrophy } from "react-icons/fa";
+// import { FaTrophy } from "react-icons/fa";
 
 const Subscribe = () => {
   return (
@@ -20,7 +20,13 @@ const Subscribe = () => {
           </div>
         </div>
 
-        <div className="exploreCard border border-gray-500 hover:border-[#0fcda1] transition-all p-10 rounded-md mx-auto mt-8 ">
+        <div className="flex justify-center mt-8 mb-3">
+          <Link to="/checkout">
+            <button className="flexcode-button py-3 px-16 ">Subscribe</button>
+          </Link>
+        </div>
+
+        {/* <div className="exploreCard border border-gray-500 hover:border-[#0fcda1] transition-all p-10 rounded-md mx-auto mt-8 ">
           <div className="flex justify-between mb-6">
             <h1 className="text-xl font-semibold">
               <span className="text-4xl font-extrabold text-[#0fcda1]">
@@ -63,7 +69,7 @@ const Subscribe = () => {
               </Link>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
