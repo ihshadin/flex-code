@@ -26,6 +26,7 @@ import PrivateRoute from "./PrivateRoute";
 import PaymentSuccess from "../pages/Subscribe/PaymentSuccess";
 import PaymentFail from "../pages/Subscribe/PaymentFail";
 import MySubmissions from "../pages/MySubmissions/MySubmissions";
+import AdminDashboard from "../pages/AdminDashbord/AdminDashboard";
 // import ProblemDetails from "../pages/Problems/ProblemDetails";
 
 const router = createBrowserRouter([
@@ -146,6 +147,10 @@ const router = createBrowserRouter([
       {
         path: "/leader-board",
         element: <LeaderBoard />,
+      },
+      {
+        path: "/admin-dashboard",
+        element: <AdminDashboard />
       },
     ],
   },
