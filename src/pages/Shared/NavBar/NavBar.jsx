@@ -58,7 +58,9 @@ const NavBar = () => {
   return (
     <nav
       className={`top-0 backdrop-blur-sm z-10 w-full ${
-        location.pathname === "/" ? "fixed" : "sticky"
+        location.pathname === "/" || location.pathname === "/profile"
+          ? "fixed"
+          : "sticky"
       }`}
     >
       <div className="max-w-[1280px] w-full mx-auto bg-inherit py-2 px-3 lg:flex justify-between items-center">
