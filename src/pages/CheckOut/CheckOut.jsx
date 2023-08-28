@@ -11,9 +11,9 @@ import {
 import { AuthContext } from "../../providers/AuthProvider";
 
 const CheckOut = () => {
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
 
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -39,7 +39,7 @@ const CheckOut = () => {
       .then((data) => {
         console.log(data);
         window.location.replace(data?.url);
-        setLoading(false);
+        // setLoading(false);
       });
     // setLoading(false);
     console.log("Main data", data);
@@ -150,7 +150,7 @@ const CheckOut = () => {
             )}
           </div>
 
-          <div onClick={() => setLoading(true)}>
+          <div className="w-full">
             <button type="submit" class="flexcode-button py-3 px-16 w-full">
               {loading ? (
                 <FaSpinner className="m-auto animate-spin" size={24} />

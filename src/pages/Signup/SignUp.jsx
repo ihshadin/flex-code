@@ -88,7 +88,6 @@ const SignUp = () => {
     // console.log(name, email, password);
   };
 
-  const navigation = useNavigation();
   if (navigation.state === "loading") {
     return <FlexcodeLoading />;
   }

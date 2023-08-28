@@ -73,7 +73,7 @@ const MySubmissions = () => {
                         <tbody>
                             {
                                 mySolvedProblems.map((problem) => (
-                                    <tr className='border-0 [&>*]:p-0 group'>
+                                    <tr key={problem._id} className='border-0 [&>*]:p-0 group'>
                                         <td>
                                             <div className='border-b-[2px] duration-300 border-[#0fcda1] group-hover:border-white pb-3 pt-5 px-4 whitespace-nowrap rounded-l-3xl'>
                                                 {formatDateDifference(problem.date)}

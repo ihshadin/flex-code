@@ -1,0 +1,16 @@
+.btn-effect {
+    position: relative;
+}
+.btn-effect::after {
+    content: "";
+    background-color: #0fcda1;
+    height: 1px;
+    width: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: 0.3s;
+}
+.btn-effect:hover::after {
+    width: 100%;
+}
