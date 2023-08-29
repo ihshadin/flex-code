@@ -27,6 +27,7 @@ import PaymentSuccess from "../pages/Subscribe/PaymentSuccess";
 import PaymentFail from "../pages/Subscribe/PaymentFail";
 import MySubmissions from "../pages/MySubmissions/MySubmissions";
 import AdminDashboard from "../pages/AdminDashbord/AdminDashboard";
+import ManageUser from "../pages/AdminDashbord/ManageUser/ManageUser";
 // import ProblemDetails from "../pages/Problems/ProblemDetails";
 
 const router = createBrowserRouter([
@@ -101,20 +102,20 @@ const router = createBrowserRouter([
         element: <ComingSoon />,
       },
       {
-        path: '/notebooks',
-        element: <NoteBook />
+        path: "/notebooks",
+        element: <NoteBook />,
       },
       {
-        path: '/add-note',
-        element: <AddNote />
+        path: "/add-note",
+        element: <AddNote />,
       },
       {
-        path: '/notebook/:id',
-        element: <SingleNote />
+        path: "/notebook/:id",
+        element: <SingleNote />,
       },
       {
-        path: '/my-submittions',
-        element: <MySubmissions />
+        path: "/my-submittions",
+        element: <MySubmissions />,
       },
       {
         path: "/notebook",
@@ -150,7 +151,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/admin-dashboard",
-        element: <AdminDashboard />
+        element: <AdminDashboard />,
+      },
+      {
+        path: "/manageuser",
+        element: <ManageUser />,
       },
     ],
   },
