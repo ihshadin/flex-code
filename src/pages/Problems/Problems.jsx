@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Form, Link } from "react-router-dom";
+import {Link } from "react-router-dom";
 import useScrollTop from "../../hooks/useScrollTop";
 import AddProblemCTA from "./AddProblemSolving/AddProblemCTA";
 import axios from "axios";
@@ -8,6 +8,7 @@ const Problems = () => {
   useScrollTop("changes");
   const [problems, setProblems] = useState([]);
   const [filterLevel, setFilterLevel] = useState("");
+  const [searchText, setSearchText] = useState ("")
 
   const problemCard = [
     {
@@ -252,20 +253,22 @@ const Problems = () => {
     },
     // Add more objects like this if needed
   ];
+  
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/problem?level=${filterLevel}`)
+      .get(`http://localhost:5000/problem?search=${searchText}&level=${filterLevel}`)
       .then((data) => {
+        console.log(data)
         setProblems(data.data);
       });
-  }, [filterLevel]);
+  }, [filterLevel , searchText]);
+
 
   return (
     <section>
       <div className="flexcode-container ">
         <AddProblemCTA />
-
         <div className="mt-10 mb-10">
           <h1 className="text-3xl text-white font-semibold">
             Most Popular languages
@@ -274,7 +277,7 @@ const Problems = () => {
             A collection of most popular problems.
           </p>
         </div>
-        <div className="grid grid-cols-3 mb-24 mt-16 justify-center rounded-lg w-5/6 mx-auto">
+        <div className="grid grid-cols-3 mb-24 mt-16 justify-center rounded-lg ">
           {problemCard?.map((problem, index) => (
             <Link
               to={`${problem?.language}`}
@@ -298,9 +301,42 @@ const Problems = () => {
           <p className="text-md mt-1">Our weekly and monthly best problems.</p>
         </div>
 
-        {/* Program filtering design*/}
+        {/* Program filtering and search design*/}
+        <div className="flex gap-5 ">
+          {/* Search option */}
+          <fieldset className="w-full  dark:text-gray-100">
+            <label for="Search" className="hidden">
+              Search
+            </label>
+            <div className="relative">
+              <span className="absolute inset-y-0 left-0 flex items-center pl-2">
+                <button
+                  type="button"
+                  title="search"
+                  className="p-1 focus:outline-none border-none "
+                >
+                  <svg
+                    fill="currentColor"
+                    viewBox="0 0 512 512"
+                    className="w-4 h-4 dark:text-gray-100 cursor-pointer"
+                  >
+                    <path d="M479.6,399.716l-81.084-81.084-62.368-25.767A175.014,175.014,0,0,0,368,192c0-97.047-78.953-176-176-176S16,94.953,16,192,94.953,368,192,368a175.034,175.034,0,0,0,101.619-32.377l25.7,62.2L400.4,478.911a56,56,0,1,0,79.2-79.195ZM48,192c0-79.4,64.6-144,144-144s144,64.6,144,144S271.4,336,192,336,48,271.4,48,192ZM456.971,456.284a24.028,24.028,0,0,1-33.942,0l-76.572-76.572-23.894-57.835L380.4,345.771l76.573,76.572A24.028,24.028,0,0,1,456.971,456.284Z"></path>
+                  </svg>
+                </button>
+              </span>
+              <input
+                onChange={(e)=> setSearchText(e.target.value)}
+                type="search"
+                name="Search"
+                placeholder="Search..."
+                className="w-full md:w-[400px] py-3 pl-10 pr-5 text-sm rounded-md border border-white focus:outline-none bg-[#17181b]  "
+              />
+            </div>
+          </fieldset>
 
-        <div className="w-5/6 mx-auto md:w-[70%]">
+          {/* Search option */}
+
+          {/* Program filtering design*/}
           <select
             className="block ml-auto mb-10 py-3 px-1 text-white bg-[#17181b] border border-gray-300 rounded-md shadow-sm w-52 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
             name="levelSelect"
@@ -312,18 +348,18 @@ const Problems = () => {
             <option value="medium">Medium</option>
             <option value="difficult">Difficult</option>
           </select>
+          {/* Program filtering design*/}
         </div>
+        {/* Program filtering and search design*/}
 
-        {/* Program filtering design*/}
-
-        <div className="grid md:grid-cols-1 gap-6 w-5/6 mx-auto md:w-[70%]">
+        <div className="grid md:grid-cols-2 gap-6">
           {problems?.map((problem, index) => (
             <div
               key={index}
-              className="flex flex-col md:flex-row mb-8 justify-between items-center border px-10 py-6 rounded-xl"
+              className="exploreCard flex flex-col md:flex-row items-center justify-between border px-5 py-6 rounded-xl"
             >
               <div>
-                <h1 className="text-3xl mb-5 text-white font-semibold">
+                <h1 className="text-base mb-5 text-white font-semibold">
                   {problem.title}
                 </h1>
                 <div className="flex items-center gap-5">
@@ -345,26 +381,17 @@ const Problems = () => {
                   </p>
                   <p className="text-xs text-gray-400 tracking-wider">
                     {" "}
-                    Attempts: <span className="text-white">4000</span>.
+                    Language: <span className="text-white">{problem.language}</span>.
                   </p>
-                  <p className="text-xs text-gray-400 tracking-wider">
-                    {" "}
-                    Success rate: <span className="text-white">53.42%</span>.
-                  </p>
+                 
                 </div>
               </div>
-              <div className="flex flex-col gap-2">
+              <div className="">
                 <Link
                   to={`/problem/${problem.id}`}
-                  className="flexcode-button text-xs py-2 px-4"
+                  className="flexcode-button text-xs py-2 px-3"
                 >
                   Solve Problem
-                </Link>
-                <Link
-                  to="/feedback"
-                  className="flexcode-button text-xs py-2 px-4 text-center"
-                >
-                  Feedback
                 </Link>
               </div>
             </div>
