@@ -1,0 +1,19 @@
+.test1 {
+    margin: 0 auto;
+    columns: 4;
+    column-gap: 15px;
+}
+
+.box {
+    border: 1px solid #0fcda185;
+    margin-bottom: 15px;
+    break-inside: avoid;
+}
+
+.box:hover {
+    border: 1px solid #a5c8c085;
+}
+
+.box img {
+    object-fit: contain;
+}
