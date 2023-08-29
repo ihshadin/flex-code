@@ -1,18 +1,16 @@
 import React from 'react';
 import logo from '../../../assets/flex-code1.png'
 import Swal from 'sweetalert2';
+import { toast } from 'react-hot-toast';
 
 const Footer = () => {
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        Swal.fire({
-            title: "Success Your Submit!",
-            text: "Do you want to continue",
-            icon: "success",
-            confirmButtonText: "OK",
-        });
+        toast.success("Submitted successfully. We will contact you ASAP.")
         e.target.reset()
     };
+
     return (
         <footer className='bg-secondary-color'>
             <div className='flexcode-container'>
@@ -25,7 +23,7 @@ const Footer = () => {
                             FlexCode is a problem-solving platform that helps coding enthusiasts improve their skills through engaging challenges and interactive learning. Keep an eye on tech news sources and programming blogs, as they might cover new and emerging platforms.
                         </p>
                     </div>
-                    <div className='w-full md:w-2/6 flex'>
+                    <div className='w-full md:w-2/6 flex justify-between'>
                         <div className='w-1/2 flex flex-col'>
                             <span className="font-semibold text-xl mb-2">Services</span>
                             <a className="link link-hover mb-1">Branding</a>
@@ -64,20 +62,20 @@ const Footer = () => {
                         <form onSubmit={handleSubmit}>
                             <div className='grid grid-cols-2 gap-3 mb-3'>
                                 <div>
-                                    <label htmlFor="con_name" className="text-sm font-semibold px-1 pb-2 block">Your name</label>
-                                    <input type="text" id='con_name' className="w-full block px-6 py-2 rounded-lg border-2 border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]" placeholder="John doe" />
+                                    <label htmlFor="con_name" className="text-sm font-medium p1 block">Your name</label>
+                                    <input type="text" id='con_name' className="w-full block px-5 py-1 rounded-lg border border-slate-500 bg-secondary-color outline-none focus:border-[#0fcda1]" placeholder="John doe" required />
                                 </div>
                                 <div>
-                                    <label htmlFor="con_email" className="text-sm font-semibold px-1 pb-2 block">Your Email</label>
-                                    <input type="text" id='con_email' className="w-full block px-6 py-2 rounded-lg border-2 border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]" placeholder="example@gmail.com" />
+                                    <label htmlFor="con_email" className="text-sm font-medium p1 block">Your Email</label>
+                                    <input type="email" id='con_email' className="w-full block px-5 py-1 rounded-lg border border-slate-500 bg-secondary-color outline-none focus:border-[#0fcda1]" placeholder="example@gmail.com" required />
                                 </div>
                             </div>
                             <div>
-                                <label htmlFor="con_message" className="text-sm font-semibold px-1 pb-2 block">Message</label>
-                                <textarea rows={2} id='con_message' className="w-full block px-6 py-2 rounded-lg border-2 border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]" placeholder="Write you Message" />
+                                <label htmlFor="con_message" className="text-sm font-medium p1 block">Message</label>
+                                <textarea rows={3} id='con_message' className="w-full block px-5 py-1 rounded-lg border border-slate-500 bg-secondary-color outline-none focus:border-[#0fcda1]" placeholder="Write you Message" />
                             </div>
                             <div className="mt-3 text-right">
-                                <input value="Submit" type="submit" className="flexcode-button py-2 px-4" />
+                                <input value="Submit" type="submit" className="flexcode-button text-xs !font-medium !border py-1 px-5" />
                             </div>
                         </form>
                     </div>

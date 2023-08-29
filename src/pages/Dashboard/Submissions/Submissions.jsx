@@ -17,9 +17,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { useState } from "react";
 
-const Submissions = () => {
-  const { user, loading, setLoading } = useContext(AuthContext);
-  const [mySolvedProblems, setMySolvedProblems] = useState([]);
+const Submissions = ({ mySolvedProblems }) => {
   const [filteredProblems, setFilteredProblems] = useState([]);
   const [problemsSolvedLastYear, setProblemsSolvedLastYear] = useState(0);
   const [activeDaysCount, setActiveDaysCount] = useState(0);
@@ -28,13 +26,6 @@ const Submissions = () => {
     "Jan", "Feb", "Mar", "Apr", "May", "Jun",
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
   ];
-
-  useEffect(() => {
-    axios.get(`http://localhost:5000/solvedProblems/userSolveProblem?email=${user?.email}`)
-      .then(data => {
-        setMySolvedProblems(data.data);
-      })
-  }, [user?.email])
 
   useEffect(() => {
     const countProblemsByMonth = () => {
@@ -69,29 +60,6 @@ const Submissions = () => {
     countProblemsByMonth();
   }, [mySolvedProblems]);
 
-  // useEffect(() => {
-  //   const countProblemsByMonth = () => {
-  //     const problemsCount = {};
-  //     mySolvedProblems.forEach(problem => {
-  //       const month = new Date(problem.date).getMonth();
-  //       if (problemsCount[month]) {
-  //         problemsCount[month]++;
-  //       } else {
-  //         problemsCount[month] = 1;
-  //       }
-  //     });
-
-  //     const newData = monthOrder.map((month, index) => ({
-  //       name: month,
-  //       Submit: problemsCount[index] || 0
-  //     }));
-  //     setFilteredProblems(newData);
-
-  //   };
-  //   countProblemsByMonth();
-
-  // }, [mySolvedProblems]);
-
   useEffect(() => {
     const today = new Date();
     const lastYear = today.getFullYear() - 1;
@@ -105,7 +73,7 @@ const Submissions = () => {
 
 
   return (
-    <div className="bg-secondary-color text-white md:ml-5 mt-4 rounded-lg pb-2">
+    <div className="bg-secondary-color text-white rounded-lg pb-2">
       <div className="flex justify-between text-base-300 pt-3 px-8">
         <p className="pl-3"><span>{problemsSolvedLastYear}</span> submissions in the last year</p>
         <div className="flex gap-x-2">

@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { Form, Link } from "react-router-dom";
-import useScrollTop from "../../hooks/useScrollTop";
 import AddProblemCTA from "./AddProblemSolving/AddProblemCTA";
 import axios from "axios";
 
 const Problems = () => {
-  useScrollTop("changes");
   const [problems, setProblems] = useState([]);
   const [filterLevel, setFilterLevel] = useState('')
 
@@ -256,8 +254,8 @@ const Problems = () => {
   useEffect(() => {
     axios.get(`http://localhost:5000/problem?level=${filterLevel}`)
       .then((data) => {
-      setProblems(data.data);
-    });
+        setProblems(data.data);
+      });
   }, [filterLevel]);
 
 
@@ -279,13 +277,11 @@ const Problems = () => {
             <Link
               to={`${problem?.language}`}
               key={index}
-              className={`${
-                problemCard.reduce((total, i) => total + index, 0) - 3 <= index
+              className={`${problemCard.reduce((total, i) => total + index, 0) - 3 <= index
                   ? "border-b"
                   : ""
-              } ${[9, 10, 11].includes(index) ? "" : "border-b"} ${
-                [1, 4, 7, 10, 13].includes(index) ? "border-x" : ""
-              } cursor-pointer border-[#0fcda1] hover:bg-[#0fcda1] hover:text-[#17181b] transition-all flex justify-center items-center`}
+                } ${[9, 10, 11].includes(index) ? "" : "border-b"} ${[1, 4, 7, 10, 13].includes(index) ? "border-x" : ""
+                } cursor-pointer border-[#0fcda1] hover:bg-[#0fcda1] hover:text-[#17181b] transition-all flex justify-center items-center`}
             >
               <p className="md:text-lg font-medium text-center py-5">
                 {problem.language}
@@ -331,13 +327,12 @@ const Problems = () => {
                     {" "}
                     Type:{" "}
                     <span
-                      className={`capitalize ${
-                        problem.level === "easy"
+                      className={`capitalize ${problem.level === "easy"
                           ? "text-green-500"
                           : problem.level === "difficult"
-                          ? "text-red-500"
-                          : "text-yellow-500"
-                      }`}
+                            ? "text-red-500"
+                            : "text-yellow-500"
+                        }`}
                     >
                       {problem.level}
                     </span>

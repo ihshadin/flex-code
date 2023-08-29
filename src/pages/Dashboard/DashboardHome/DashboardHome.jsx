@@ -7,36 +7,38 @@ import { useNavigation } from "react-router-dom";
 import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading";
 import RecentActiviy from "../RecentActiviy/RecentActiviy";
 import { AuthContext } from "../../../providers/AuthProvider";
-import axios from "axios";
+import useAxiosNormal from "../../../hooks/useAxiosNormal";
 
 const DashboardHome = () => {
-  const { user, loading, setLoading } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [mySolvedProblems, setMySolvedProblems] = useState([]);
+  const [axiosNormal] = useAxiosNormal();
 
   const navigation = useNavigation();
+
   if (navigation.state === "loading") {
     return <FlexcodeLoading />;
   }
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/solvedProblems/userSolveProblem?email=${user?.email}`)
+    axiosNormal.get(`/solvedProblems/userSolveProblem?email=${user?.email}`)
       .then(data => {
-        setMySolvedProblems(data.data);
+        setMySolvedProblems(data);
       })
   }, [user?.email])
 
   return (
     <section>
-      <div className="flexcode-container flex flex-col md:flex-row gap-3 md:gap-0 w-[100%]">
+      <div className="flexcode-container flex flex-col md:flex-row gap-3 md:gap-5">
         <div className="md:w-[30%]">
           <DbUser mySolvedProblems={mySolvedProblems} />
         </div>
-        <div className="md:w-[70%]">
-          <div className="flex flex-col md:flex-row gap-3 md:gap-5 md:ml-5">
-            <SolvedProblems />
+        <div className="md:w-[70%] flex flex-col gap-5">
+          <div className="flex flex-col md:flex-row gap-3 md:gap-5">
+            <SolvedProblems mySolvedProblems={mySolvedProblems} />
             <Badges />
           </div>
-          <Submissions />
+          <Submissions mySolvedProblems={mySolvedProblems} />
           <RecentActiviy mySolvedProblems={mySolvedProblems} />
         </div>
       </div>
