@@ -15,8 +15,9 @@ import ComingSoon from "../components/ComingSoon/ComingSoon";
 import AddBlog from "../pages/Blog/AddBlog/AddBlog";
 import Subscribe from "../pages/Subscribe/Subscribe";
 import ProblemDetails from "../pages/Problems/ProblemDetails";
-import NodeBook from "../pages/Dashboard/NodeBook/NodeBook";
-import AddNode from "../pages/Dashboard/AddNode/AddNode";
+import NoteBook from "../pages/Dashboard/NoteBook/NoteBook";
+import SingleNote from "../pages/Dashboard/NoteBook/SingleNote";
+import AddNote from "../pages/Dashboard/NoteBook/AddNote";
 import CheckOut from "../pages/CheckOut/CheckOut";
 import ErrorPage from "../pages/404Error/ErrorPage";
 import LeaderBoard from "../pages/LeaderBoard/LeaderBoard";
@@ -25,6 +26,7 @@ import PrivateRoute from "./PrivateRoute";
 import PaymentSuccess from "../pages/Subscribe/PaymentSuccess";
 import PaymentFail from "../pages/Subscribe/PaymentFail";
 import MySubmissions from "../pages/MySubmissions/MySubmissions";
+import AdminDashboard from "../pages/AdminDashbord/AdminDashboard";
 // import ProblemDetails from "../pages/Problems/ProblemDetails";
 
 const router = createBrowserRouter([
@@ -99,16 +101,20 @@ const router = createBrowserRouter([
         element: <ComingSoon />,
       },
       {
-        path: '/notebook',
-        element: <NodeBook />
+        path: '/notebooks',
+        element: <NoteBook />
+      },
+      {
+        path: '/add-note',
+        element: <AddNote />
+      },
+      {
+        path: '/notebook/:id',
+        element: <SingleNote />
       },
       {
         path: '/my-submittions',
         element: <MySubmissions />
-      },
-      {
-        path: '/addNode',
-        element: <AddNode />
       },
       {
         path: "/notebook",
@@ -141,6 +147,10 @@ const router = createBrowserRouter([
       {
         path: "/leader-board",
         element: <LeaderBoard />,
+      },
+      {
+        path: "/admin-dashboard",
+        element: <AdminDashboard />
       },
     ],
   },

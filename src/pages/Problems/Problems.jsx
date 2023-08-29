@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Form, Link } from "react-router-dom";
 import useScrollTop from "../../hooks/useScrollTop";
 import AddProblemCTA from "./AddProblemSolving/AddProblemCTA";
+import axios from "axios";
 
 const Problems = () => {
   useScrollTop("changes");
-
   const [problems, setProblems] = useState([]);
+  const [filterLevel, setFilterLevel] = useState("");
 
-  const problemss = [
+  const problemCard = [
     {
       language: "javaScript",
       problems: [
@@ -253,12 +254,12 @@ const Problems = () => {
   ];
 
   useEffect(() => {
-    fetch("/problems.json")
-      .then((res) => res.json())
+    axios
+      .get(`http://localhost:5000/problem?level=${filterLevel}`)
       .then((data) => {
-        setProblems(data);
+        setProblems(data.data);
       });
-  }, []);
+  }, [filterLevel]);
 
   return (
     <section>
@@ -274,12 +275,12 @@ const Problems = () => {
           </p>
         </div>
         <div className="grid grid-cols-3 mb-24 mt-16 justify-center rounded-lg w-5/6 mx-auto">
-          {problemss?.map((problem, index) => (
+          {problemCard?.map((problem, index) => (
             <Link
               to={`${problem?.language}`}
               key={index}
               className={`${
-                problemss.reduce((total, i) => total + index, 0) - 3 <= index
+                problemCard.reduce((total, i) => total + index, 0) - 3 <= index
                   ? "border-b"
                   : ""
               } ${[9, 10, 11].includes(index) ? "" : "border-b"} ${
@@ -296,8 +297,27 @@ const Problems = () => {
           <h1 className="text-3xl font-semibold">See What's new for you</h1>
           <p className="text-md mt-1">Our weekly and monthly best problems.</p>
         </div>
+
+        {/* Program filtering design*/}
+
+        <div className="w-5/6 mx-auto md:w-[70%]">
+          <select
+            className="block ml-auto mb-10 py-3 px-1 text-white bg-[#17181b] border border-gray-300 rounded-md shadow-sm w-52 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+            name="levelSelect"
+            value={filterLevel}
+            onChange={(e) => setFilterLevel(e.target.value)}
+          >
+            <option value="">Filter Problem</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="difficult">Difficult</option>
+          </select>
+        </div>
+
+        {/* Program filtering design*/}
+
         <div className="grid md:grid-cols-1 gap-6 w-5/6 mx-auto md:w-[70%]">
-          {problems.map((problem, index) => (
+          {problems?.map((problem, index) => (
             <div
               key={index}
               className="flex flex-col md:flex-row mb-8 justify-between items-center border px-10 py-6 rounded-xl"
