@@ -18,7 +18,7 @@ const Faq = () => {
                                 <details className="group">
                                     <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
                                         <span className='flex items-center gap-2'>
-                                        <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                            <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
                                             What is FlexCode?</span>
                                         <span className="transition group-open:rotate-180">
                                             <svg fill="none" height="24" shapeRendering="geometricPrecision"
@@ -35,10 +35,10 @@ const Faq = () => {
                             <div className="py-5 px-2">
                                 <details className="group">
                                     <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
-                                        <span className='flex items-center gap-2'> 
-                                        <div className="w-3 h-3 bg-blue-300 rounded-full"></div>
+                                        <span className='flex items-center gap-2'>
+                                            <div className="w-3 h-3 bg-blue-300 rounded-full"></div>
                                             How do I join FlexCode?
-                                            </span>
+                                        </span>
                                         <span className="transition group-open:rotate-180">
                                             <svg fill="none" height="24" shapeRendering="geometricPrecision"
                                                 stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
@@ -55,7 +55,7 @@ const Faq = () => {
                                 <details className="group">
                                     <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
                                         <span className='flex items-center gap-2'>
-                                        <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                                            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                                             Is FlexCode suitable for beginners?</span>
                                         <span className="transition group-open:rotate-180">
                                             <svg fill="none" height="24" shapeRendering="geometricPrecision"
@@ -73,7 +73,7 @@ const Faq = () => {
                                 <details className="group">
                                     <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
                                         <span className='flex items-center gap-2'>
-                                        <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+                                            <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
                                             Are there any membership fees?</span>
                                         <span className="transition group-open:rotate-180">
                                             <svg fill="none" height="24" shapeRendering="geometricPrecision"
@@ -91,7 +91,7 @@ const Faq = () => {
                                 <details className="group">
                                     <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
                                         <span className='flex items-center gap-2'>
-                                        <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                                            <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
                                             How often are new challenges added?</span>
                                         <span className="transition group-open:rotate-180">
                                             <svg fill="none" height="24" shapeRendering="geometricPrecision"
@@ -109,8 +109,9 @@ const Faq = () => {
                                 <details className="group">
                                     <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
                                         <span className='flex items-center gap-2'>
-                                        <div className="w-3 h-3 bg-red-400 rounded-full"></div>
-                                            Can I collaborate with other users on challenges?</span>
+                                            <div className="w-3 h-3 bg-red-400 rounded-full flex-shrink-0"></div>
+                                            Can I collaborate with other users on challenges?
+                                        </span>
                                         <span className="transition group-open:rotate-180">
                                             <svg fill="none" height="24" shapeRendering="geometricPrecision"
                                                 stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"

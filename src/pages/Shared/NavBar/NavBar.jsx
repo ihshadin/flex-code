@@ -58,7 +58,9 @@ const NavBar = () => {
   return (
     <nav
       className={`top-0 backdrop-blur-sm z-10 w-full ${
-        location.pathname === "/" ? "fixed" : "sticky"
+        location.pathname === "/" || location.pathname === "/my-submittions"
+          ? "fixed"
+          : "sticky"
       }`}
     >
       <div className="max-w-[1280px] w-full mx-auto bg-inherit py-2 px-3 lg:flex justify-between items-center">
@@ -174,21 +176,6 @@ const NavBar = () => {
                   Subscribe
                 </Link>
               </li>
-              {user && (
-                <li>
-                  <Link
-                    to="/feedback"
-                    onClick={closeMenu}
-                    className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#0fcda1] transition-all duration-300 ${
-                      isActiveRoute("/feedback")
-                        ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
-                        : ""
-                    }`}
-                  >
-                    FeedBack
-                  </Link>
-                </li>
-              )}
               <li>
                 <Link
                   to="/explore"
@@ -240,7 +227,7 @@ const NavBar = () => {
                   {/* start user dropdown  */}
                   {user?.email && (
                     <div
-                      className={`absolute right-0 mt-2 z-10 ${
+                      className={`absolute left-0 md:left-auto md:right-0 mt-2 z-10 ${
                         userClicked ? "block" : "hidden"
                       }`}
                     >
@@ -288,16 +275,16 @@ const NavBar = () => {
                             <span>Profile</span>
                           </Link>
                           <Link
-                            to="/notebook"
+                            to="/notebooks"
                             className="flex items-center px-4 py-2 text-white hover:bg-[#00ffc3] hover:bg-opacity-40"
                           >
                             <span className="mr-2  flex">
                               <span className="inline-block h-2 w-2 rounded-full bg-teal-400"></span>
                             </span>
-                            <span>Notbook</span>
+                            <span>Notebooks</span>
                           </Link>
                           <Link
-                            to="/submissions"
+                            to="/my-submittions"
                             className="flex items-center px-4 py-2 text-white hover:bg-[#00ffc3] hover:bg-opacity-40"
                           >
                             <span className="mr-2  flex">

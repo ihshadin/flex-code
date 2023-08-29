@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import CreatableSelect from "react-select/creatable";
 import Swal from "sweetalert2";
@@ -39,7 +38,6 @@ const AddProblemSolving = () => {
       level: data.level,
       isPremium,
       language: data.language,
-    
     };
     console.log(AddProblems);
     fetch("http://localhost:5000/problem", {
@@ -61,8 +59,7 @@ const AddProblemSolving = () => {
           });
           reset();
         }
-      }
-      );
+      });
   };
 
   const customStyles = {
@@ -72,7 +69,7 @@ const AddProblemSolving = () => {
       fontWeight: "normal", // Set font weight to bold
     }),
   };
-  
+
   return (
     <div className="flexcode-container">
       <section className="py-6 bg-[#1e2d40] text-white rounded-md ">
@@ -160,7 +157,6 @@ const AddProblemSolving = () => {
               Highlight Words
             </label>
             <div className="flex">
-            
               <CreatableSelect
                 className="w-full"
                 classNamePrefix="select"
@@ -302,7 +298,6 @@ const AddProblemSolving = () => {
           </div>
         </div>
 
-
         {/* language */}
 
         <div className="flex -mx-3">
@@ -325,52 +320,46 @@ const AddProblemSolving = () => {
           </div>
         </div>
 
-
         {/* is Premium */}
 
         <div className="flex -mx-3">
           <div className="px-3 mb-5 w-full flex items-center gap-5">
             <div>
-            <label htmlFor="" className="text-sm font-semibold px-1">
-            Premium
-            </label>
+              <label htmlFor="" className="text-sm font-semibold px-1">
+                Premium
+              </label>
             </div>
-           
 
             <div>
-            <div className="flex">
-             
-             <div className="">
-               <label className="label cursor-pointer">
-                 <span className="label-text text-white pr-4">True</span>
-                 <input
-                   type="radio"
-                   name="radio-10"
-                   className="radio bg-white checked:bg-[#00ffc3]"
-                   onClick={() => setIsPremium(true)}
-                 />
-               </label>
-             </div>
-             <div className="px-5">
-               <label className="label cursor-pointer">
-                 <span className="label-text text-white pr-4">False</span>
-                 <input
-                   type="radio"
-                   name="radio-10"
-                   className="radio  bg-white checked:bg-[#00ffc3]"
-                   onClick={() => setIsPremium(false)}
+              <div className="flex">
+                <div className="">
+                  <label className="label cursor-pointer">
+                    <span className="label-text text-white pr-4">True</span>
+                    <input
+                      type="radio"
+                      name="radio-10"
+                      className="radio bg-white checked:bg-[#00ffc3]"
+                      onClick={() => setIsPremium(true)}
+                    />
+                  </label>
+                </div>
+                <div className="px-5">
+                  <label className="label cursor-pointer">
+                    <span className="label-text text-white pr-4">False</span>
+                    <input
+                      type="radio"
+                      name="radio-10"
+                      className="radio  bg-white checked:bg-[#00ffc3]"
+                      onClick={() => setIsPremium(false)}
 
-                   // {...register("isPremium", { required: true })}
-                 />
-               </label>
-             </div>
-           </div>
+                      // {...register("isPremium", { required: true })}
+                    />
+                  </label>
+                </div>
+              </div>
             </div>
-            
           </div>
         </div>
-
-
 
         <div className="flex -mx-3">
           <div className="w-full px-3 mb-5">

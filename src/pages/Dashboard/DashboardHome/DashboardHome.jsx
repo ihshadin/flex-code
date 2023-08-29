@@ -1,33 +1,48 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
 import DbUser from "../DbUser/DbUser";
 import SolvedProblems from "../SolvedProblems/SolvedProblems";
 import Badges from "../Badges/Badges";
 import Submissions from "../Submissions/Submissions";
-import Solve from "../Solve/Solve";
 import { useNavigation } from "react-router-dom";
 import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading";
+import RecentActiviy from "../RecentActiviy/RecentActiviy";
+import { AuthContext } from "../../../providers/AuthProvider";
+import useAxiosNormal from "../../../hooks/useAxiosNormal";
 
 const DashboardHome = () => {
+  const { user } = useContext(AuthContext);
+  const [mySolvedProblems, setMySolvedProblems] = useState([]);
+  const [axiosNormal] = useAxiosNormal();
 
   const navigation = useNavigation();
+
   if (navigation.state === "loading") {
     return <FlexcodeLoading />;
   }
 
+  useEffect(() => {
+    axiosNormal.get(`/solvedProblems/userSolveProblem?email=${user?.email}`)
+      .then(data => {
+        setMySolvedProblems(data);
+      })
+  }, [user?.email])
+
   return (
-    <div className="flexcode-container flex flex-col md:flex-row gap-3 md:gap-0 w-[100%]">
-      <div className="md:w-[30%]">
-        <DbUser></DbUser>
-      </div>
-      <div className="md:w-[70%]">
-        <div className="flex flex-col md:flex-row gap-3 md:gap-5 md:ml-5">
-          <SolvedProblems></SolvedProblems>
-          <Badges></Badges>
+    <section>
+      <div className="flexcode-container flex flex-col md:flex-row gap-3 md:gap-5">
+        <div className="md:w-[30%]">
+          <DbUser mySolvedProblems={mySolvedProblems} />
         </div>
-        <Submissions></Submissions>
-        <Solve />
+        <div className="md:w-[70%] flex flex-col gap-5">
+          <div className="flex flex-col md:flex-row gap-3 md:gap-5">
+            <SolvedProblems mySolvedProblems={mySolvedProblems} />
+            <Badges />
+          </div>
+          <Submissions mySolvedProblems={mySolvedProblems} />
+          <RecentActiviy mySolvedProblems={mySolvedProblems} />
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

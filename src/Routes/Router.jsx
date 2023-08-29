@@ -15,6 +15,9 @@ import ComingSoon from "../components/ComingSoon/ComingSoon";
 import AddBlog from "../pages/Blog/AddBlog/AddBlog";
 import Subscribe from "../pages/Subscribe/Subscribe";
 import ProblemDetails from "../pages/Problems/ProblemDetails";
+import NoteBook from "../pages/Dashboard/NoteBook/NoteBook";
+import SingleNote from "../pages/Dashboard/NoteBook/SingleNote";
+import AddNote from "../pages/Dashboard/NoteBook/AddNote";
 import CheckOut from "../pages/CheckOut/CheckOut";
 import ErrorPage from "../pages/404Error/ErrorPage";
 import LeaderBoard from "../pages/LeaderBoard/LeaderBoard";
@@ -22,13 +25,16 @@ import AddProblemSolving from "../pages/Problems/AddProblemSolving/AddProblemSol
 import PrivateRoute from "./PrivateRoute";
 import PaymentSuccess from "../pages/Subscribe/PaymentSuccess";
 import PaymentFail from "../pages/Subscribe/PaymentFail";
+import MySubmissions from "../pages/MySubmissions/MySubmissions";
+import AdminDashboard from "../pages/AdminDashbord/AdminDashboard";
+import ManageUser from "../pages/AdminDashbord/ManageUser/ManageUser";
 // import ProblemDetails from "../pages/Problems/ProblemDetails";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    // errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />,
 
     children: [
       {
@@ -77,7 +83,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        element: <DashboardHome></DashboardHome>,
+        element: <DashboardHome />,
       },
       {
         path: "/explore",
@@ -89,11 +95,27 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <ProfileEdit></ProfileEdit>,
+        element: <ProfileEdit />,
       },
       {
         path: "/playground",
         element: <ComingSoon />,
+      },
+      {
+        path: "/notebooks",
+        element: <NoteBook />,
+      },
+      {
+        path: "/add-note",
+        element: <AddNote />,
+      },
+      {
+        path: "/notebook/:id",
+        element: <SingleNote />,
+      },
+      {
+        path: "/my-submittions",
+        element: <MySubmissions />,
       },
       {
         path: "/notebook",
@@ -126,6 +148,14 @@ const router = createBrowserRouter([
       {
         path: "/leader-board",
         element: <LeaderBoard />,
+      },
+      {
+        path: "/admin-dashboard",
+        element: <AdminDashboard />,
+      },
+      {
+        path: "/manageuser",
+        element: <ManageUser />,
       },
     ],
   },
