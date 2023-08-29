@@ -2,14 +2,11 @@ import React, { useEffect, useState } from "react";
 import BlogCta from "./BlogCta/BlogCta";
 import { Link, useLoaderData, useLocation, useNavigation } from "react-router-dom";
 import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
-import useScrollTop from "../../hooks/useScrollTop";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import axios from "axios";
 
 const Blog = () => {
   const user = { role: "admin" };
-  const location = useLocation()
-  useScrollTop(location)
 
   const [blogs, setBlogs] = useState([])
   const [currentPage, setCurrentPage] = useState(0)
@@ -31,7 +28,7 @@ const Blog = () => {
   //     })
   // }, [currentPage, itemsPerPage]);
 
-  
+
   const { result } = useLoaderData()
   const totalBlogs = result?.length;
 
