@@ -7,7 +7,7 @@ import axios from "axios";
 const Problems = () => {
   useScrollTop("changes");
   const [problems, setProblems] = useState([]);
-  const [filterLevel, setFilterLevel] = useState('')
+  const [filterLevel, setFilterLevel] = useState("");
 
   const problemCard = [
     {
@@ -254,12 +254,12 @@ const Problems = () => {
   ];
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/problem?level=${filterLevel}`)
+    axios
+      .get(`http://localhost:5000/problem?level=${filterLevel}`)
       .then((data) => {
-      setProblems(data.data);
-    });
+        setProblems(data.data);
+      });
   }, [filterLevel]);
-
 
   return (
     <section>
