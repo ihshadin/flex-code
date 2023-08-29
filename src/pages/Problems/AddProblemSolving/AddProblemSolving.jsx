@@ -5,30 +5,36 @@ import CreatableSelect from "react-select/creatable";
 import Swal from "sweetalert2";
 import "./AddProblemSolving.css";
 import { AuthContext } from "../../../providers/AuthProvider";
+import { FaPlus } from "react-icons/fa";
 const AddProblemSolving = () => {
   const { user } = useContext(AuthContext);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [visibleDivs, setVisibleDivs] = useState([]);
+
+  const handleButtonClick = () => {
+    setVisibleDivs([...visibleDivs, true]);
+  };
   const [isPremium, setIsPremium] = useState(null);
   const output = selectedOption?.map((item) => item?.value);
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, getValues } = useForm();
   const onSubmit = (data) => {
+   
+    const examples = [];
+    for (let i = 0; i < visibleDivs.length; i++) {
+      const exampleData = {
+        example: i + 1,
+        input: getValues(`input${i}`),
+        output: getValues(`output${i}`),
+      };
+      examples.push(exampleData);
+    }
+
     const AddProblems = {
       title: data.title,
       functionName: data.title,
       problemsDetails: data.problemsDetails,
       highlightWords: output,
-      examples: [
-        {
-          example: data.example1,
-          input: data.input1,
-          output: data.output1,
-        },
-        {
-          example: data.example2,
-          input: data.input2,
-          output: data.output2,
-        },
-      ],
+      examples,
       parameterName: [data.parameterName],
       level: data.level,
       isPremium,
@@ -177,150 +183,80 @@ const AddProblemSolving = () => {
             </div>
           </div>
         </div>
-
-        {/* Examples */}
-        <div className="flex -mx-3">
-          <div className="w-full px-3 mb-5">
-            <label htmlFor="" className="text-sm font-semibold px-1">
-              Examples
-            </label>
-            <div className="flex">
-              <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
-              </div>
-              <input
-                type="text"
-                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 
-                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
-                placeholder="Type your examples"
-                {...register("examples", { required: true })}
-              />
-            </div>
-          </div>
-        </div>
         
-        {/* Example 1 */}
-        <div className="flex -mx-3">
-          <div className="w-full px-3 mb-5">
-            <label htmlFor="" className="text-sm font-semibold px-1">
-              Example - 1
-            </label>
-            <div className="flex">
-              <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
-              </div>
-              <input
-                type="number"
-                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 
-                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
-                placeholder="Type your examples - 2"
-                {...register("example1", { required: true })}
-              />
-            </div>
-          </div>
-        </div>
+      <div>
 
-        <div className="flex -mx-3">
-          <div className="w-full px-3 mb-5">
-            <label htmlFor="" className="text-sm font-semibold px-1">
-              Input
-            </label>
-            <div className="flex">
-              <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
-              </div>
-              <input
-                type="text"
-                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 
-                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
-                placeholder="Type your input"
-                {...register("input1", { required: true })}
-              />
-            </div>
-          </div>
+          {/* Example 1 */}
+        {
+        visibleDivs.map((isVisible, index) => (
+          isVisible &&  <div key={index} className="border p-6 my-5">
+          <div className="flex -mx-3">
+           <div className="w-full px-3 mb-5">
+             <label htmlFor="" className="text-sm font-semibold px-1">
+               Example - {`${index + 1}`}
+             </label>
+             <div className="flex">
+               <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                 <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
+               </div>
+               <input
+                 type="text"
+                 className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 
+                 text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
+                 placeholder={`Type example ${index + 1} `}
+                 {...register(`example${index}`, { required: true })}
+               />
+             </div>
+           </div>
+         </div>
+ 
+         <div className="flex -mx-3">
+           <div className="w-full px-3 mb-5">
+             <label htmlFor="" className="text-sm font-semibold px-1">
+               Input
+             </label>
+             <div className="flex">
+               <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                 <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
+               </div>
+               <input
+                 type="text"
+                 className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 
+                 text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
+                 placeholder={`Input for example ${index + 1} `}
+                 {...register(`input${index}`, { required: true })}
+               />
+             </div>
+           </div>
+         </div>
+ 
+         <div className="flex -mx-3">
+           <div className="w-full px-3 mb-5">
+             <label htmlFor="" className="text-sm font-semibold px-1">
+               Output
+             </label>
+             <div className="flex">
+               <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                 <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
+               </div>
+               <input
+                 type="text"
+                 className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 
+                 text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
+                 placeholder={`Output for example ${index + 1} `}
+                 {...register(`output${index}`, { required: true })}
+               />
+             </div>
+           </div>
+         </div>
+ 
+          </div> ))}
+          <div onClick={handleButtonClick} className="flex items-center gap-3 border-b w-1/4 px-3 mb-10 cursor-pointer">
+            <FaPlus className="text-3xl font-thin"/>  Add Example
         </div>
-
-        <div className="flex -mx-3">
-          <div className="w-full px-3 mb-5">
-            <label htmlFor="" className="text-sm font-semibold px-1">
-              Output
-            </label>
-            <div className="flex">
-              <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
-              </div>
-              <input
-                type="text"
-                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 
-                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
-                placeholder="Type your output"
-                {...register("output1", { required: true })}
-              />
-            </div>
-          </div>
-        </div>
-
         {/* Example 2 */}
 
-        <div className="flex -mx-3">
-          <div className="w-full px-3 mb-5">
-            <label htmlFor="" className="text-sm font-semibold px-1">
-              Example - 2
-            </label>
-            <div className="flex">
-              <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
-              </div>
-              <input
-                type="number"
-                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 
-                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
-                placeholder="Type your examples - 2"
-                {...register("example2", { required: true })}
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="flex -mx-3">
-          <div className="w-full px-3 mb-5">
-            <label htmlFor="" className="text-sm font-semibold px-1">
-              Input
-            </label>
-            <div className="flex">
-              <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
-              </div>
-              <input
-                type="text"
-                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 
-                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
-                placeholder="Type your input"
-                {...register("input2", { required: true })}
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="flex -mx-3">
-          <div className="w-full px-3 mb-5">
-            <label htmlFor="" className="text-sm font-semibold px-1">
-              Output
-            </label>
-            <div className="flex">
-              <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
-              </div>
-              <input
-                type="text"
-                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 
-                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
-                placeholder="Type your output"
-                {...register("output2", { required: true })}
-              />
-            </div>
-          </div>
-        </div>
+      </div>
 
         {/* Parameter Name */}
 

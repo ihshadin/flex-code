@@ -35,7 +35,7 @@
     "sort-by": "^1.2.0",
     "sweetalert": "^2.1.2",
     "sweetalert2": "^11.7.21",
-    "swiper": "^10.1.0"
+    "swiper": "^10.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
