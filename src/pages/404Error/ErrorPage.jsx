@@ -1,12 +1,8 @@
-import React, { useRef } from 'react';
-import { Link, useRouteError } from 'react-router-dom';
-import { Controls, Player } from '@lottiefiles/react-lottie-player';
-import errorFile from '../../../public/404 Eror.json';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import './ErrorPage.css'
 
 const ErrorPage = () => {
-  const { error, status } = useRouteError();
-  const playerRef = useRef();
 
   return (
     <section>
