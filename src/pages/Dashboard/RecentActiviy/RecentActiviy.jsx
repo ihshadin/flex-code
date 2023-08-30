@@ -1,12 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaAngleRight, FaRegListAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../../providers/AuthProvider";
-
 
 const RecentActiviy = ({ mySolvedProblems }) => {
-  const { user, loading, setLoading } = useContext(AuthContext);
-  const [dateDifferences, setDateDifferences] = useState([]);
 
   function formatDateDifference(solvedDate) {
     const currentDate = new Date();
@@ -32,32 +28,13 @@ const RecentActiviy = ({ mySolvedProblems }) => {
     return 'Today';
   }
 
-  useEffect(() => {
-    const calculateDateDifferences = () => {
-      const formattedDifferences = mySolvedProblems.map((problem) => {
-        const dateDifference = formatDateDifference(problem.date);
-        return { _id: problem._id, dateDifference };
-      });
-
-      setDateDifferences(formattedDifferences);
-    };
-
-    calculateDateDifferences();
-  }, [mySolvedProblems]);
-
   return (
-    <div className="bg-secondary-color text-white md:ml-5 mt-4 rounded-lg overflow-hidden py-3 px-5 h-[250px]">
+    <div className="bg-secondary-color text-white rounded-lg overflow-hidden py-3 px-5 h-[250px]">
       <div className="flex justify-between">
         <div className="flex gap-8">
           <div className="flex gap-x-1 items-center">
             <FaRegListAlt /> <p>Recent Solved Problem</p>
           </div>
-          {/* <div className="flex gap-x-1 items-center">
-            <FaRegCheckSquare /> <p>Solutions</p>
-          </div>
-          <div className="flex gap-x-1 items-center">
-            <FaRegCommentDots /> <p>Discuss</p>
-          </div> */}
         </div>
         <div className="flex gap-x-1 items-center">
           <Link to={'/my-submittions'}>View all submissions</Link> <FaAngleRight />

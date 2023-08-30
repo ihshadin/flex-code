@@ -11,9 +11,10 @@ import Rating from 'react-rating';
 import { FaRegStar, FaStar } from 'react-icons/fa';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Testimonials = () => {
-    const [feedbacks, setFeedbacks] = useState([])
+    const [feedbacks, setFeedbacks] = useState([]);
 
 
     useEffect(() => {
@@ -95,6 +96,13 @@ const Testimonials = () => {
                         </SwiperSlide>)
                     }
                 </Swiper >
+                <div className='text-center'>
+                    <Link to='/allTestimonials'>
+                        <button className='flexcode-button px-8 py-3'>
+                            Testimonial All
+                        </button>
+                    </Link>
+                </div>
             </div>
         </section>
     );

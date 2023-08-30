@@ -1,42 +1,47 @@
-import React, { useRef } from 'react';
-import { Link, useRouteError } from 'react-router-dom';
-import { Controls, Player } from '@lottiefiles/react-lottie-player';
-import errorFile from '../../../public/404 Eror.json';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './ErrorPage.css'
 
 const ErrorPage = () => {
-  const { error, status } = useRouteError();
-  const playerRef = useRef();
 
   return (
-    <section className='flex items-center h-screen p-16 bg-secondary-color text-white'>
-      <div className='container flex flex-col items-center justify-center px-5 mx-auto my-8'>
-        <div>
-          <Player
-            autoplay
-            loop
-            src={errorFile}
-            style={{ height: "450px", width: "450px" }}
-            className='primary-color'
-          >
-            <Controls
-              visible={false}
-              buttons={["play", "repeat", "frame", "debug"]}
-            />
-          </Player>
-        </div>
-        <div className='max-w-md text-center'>
-          {/* <h2 className='mb-8 font-extrabold text-9xl text-gray-600'>
-            <span className='sr-only'>Error</span> {status || 404}
-          </h2> */}
-          <p className='text-2xl font-semibold md:text-3xl mb-8'>
-            {error?.message}
-          </p>
-          <Link
-            to='/'
-            className='flexcode-button px-8 py-3 font-semibold rounded text-gray-900'
-          >
-            Back to homepage
-          </Link>
+    <section>
+      <div className="wrapper">
+        <div className="er-container">
+          <div id="scene" className="scene" data-hover-only="false">
+            <div className="circle" data-depth="1.2"></div>
+            <div className="one" data-depth="0.9">
+              <div className="content">
+                <span className="piece"></span>
+                <span className="piece"></span>
+                <span className="piece"></span>
+              </div>
+            </div>
+            <div className="two" data-depth="0.60">
+              <div className="content">
+                <span className="piece"></span>
+                <span className="piece"></span>
+                <span className="piece"></span>
+              </div>
+            </div>
+            <div className="three" data-depth="0.40">
+              <div className="content">
+                <span className="piece"></span>
+                <span className="piece"></span>
+                <span className="piece"></span>
+              </div>
+            </div>
+            <p className="p404" data-depth="0.50">404</p>
+            <p className="p404" data-depth="0.10">404</p>
+          </div>
+          <div className="text">
+            <article>
+              <p>Uh oh! Looks like you got lost. <br />Go back to the homepage if you dare!</p>
+              <Link to={'/'}>
+                <button className=''>Back to home</button>
+              </Link>
+            </article>
+          </div>
         </div>
       </div>
     </section>
