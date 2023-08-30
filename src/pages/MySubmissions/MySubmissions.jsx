@@ -6,7 +6,6 @@ import useAxiosNormal from '../../hooks/useAxiosNormal';
 const MySubmissions = () => {
     const { user, loading, setLoading } = useContext(AuthContext);
     const [mySolvedProblems, setMySolvedProblems] = useState([]);
-    const [dateDifferences, setDateDifferences] = useState([]);
     const [axiosNormal] = useAxiosNormal();
 
     function formatDateDifference(solvedDate) {
@@ -32,7 +31,6 @@ const MySubmissions = () => {
 
         return 'Today';
     }
-
 
     useEffect(() => {
         axiosNormal.get(`/solvedProblems/userSolveProblem?email=${user?.email}`)
@@ -95,22 +93,6 @@ const MySubmissions = () => {
                         </tbody>
                     </table>
                 </div>
-                {/* <div className='overflow-x-auto'>
-                    <div className='flex justify-between whitespace-nowrap border-b-[2px] duration-300 border-[#0fcda1] hover:border-white px-6 pb-2 pt-7 rounded-3xl'>
-                        <h3 className='font-semibold w-[30%]'>Submitted Time</h3>
-                        <h3 className='font-semibold w-[30%]'>Question</h3>
-                        <h3 className='font-semibold w-[20%]'>Level</h3>
-                        <h3 className='font-semibold w-[25%]'>Status</h3>
-                        <h3 className='font-semibold w-[25%]'>Language</h3>
-                    </div>
-                    <div className='flex justify-between whitespace-nowrap border-b-[2px] duration-300 border-[#0fcda1] hover:border-white px-6 pb-2 pt-7 rounded-3xl'>
-                        <p className='w-[30%]'>3 Months 22 Days ago</p>
-                        <p className='w-[30%]'>Two Sum</p>
-                        <p className='w-[20%]'>Easy</p>
-                        <p className='w-[25%]'>Accepted</p>
-                        <p className='w-[25%]'>JavaScript</p>
-                    </div>
-                </div> */}
             </div>
         </section>
     );
