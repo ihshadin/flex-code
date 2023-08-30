@@ -29,6 +29,7 @@ import MySubmissions from "../pages/MySubmissions/MySubmissions";
 import AllTestimonials from "../pages/Home/AllTestimonials/AllTestimonials";
 import AdminDashboard from "../pages/AdminDashbord/AdminDashboard";
 import ManageUser from "../pages/AdminDashbord/ManageUser/ManageUser";
+import ExploreDetails from "../pages/Explore/ExploreDetails";
 // import ProblemDetails from "../pages/Problems/ProblemDetails";
 
 const router = createBrowserRouter([
@@ -161,6 +162,10 @@ const router = createBrowserRouter([
         path: "/manageuser",
         element: <ManageUser />,
       },
+      {
+        path: "/exploreDetails/:id",
+        element: <ExploreDetails></ExploreDetails>
+      }
     ],
   },
 ]);
