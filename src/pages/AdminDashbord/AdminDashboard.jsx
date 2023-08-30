@@ -4,8 +4,8 @@ import AdminMainContent from "./AdminMainContent/AdminMainContent";
 
 const AdminDashboard = () => {
   return (
-    <div className="min-h-screen md:flex flexcode-container">
-      <AdminSideBar></AdminSideBar>
+    <div className="w-full">
+      {/* <AdminSideBar></AdminSideBar> */}
       <AdminMainContent></AdminMainContent>
     </div>
   );

@@ -28,6 +28,7 @@ import PaymentFail from "../pages/Subscribe/PaymentFail";
 import MySubmissions from "../pages/MySubmissions/MySubmissions";
 import AdminDashboard from "../pages/AdminDashbord/AdminDashboard";
 import ManageUser from "../pages/AdminDashbord/ManageUser/ManageUser";
+import Dashboard from "../layouts/Dashboard";
 // import ProblemDetails from "../pages/Problems/ProblemDetails";
 
 const router = createBrowserRouter([
@@ -60,9 +61,10 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`https://flex-code-server.vercel.app/blog/${params.id}`),
       },
+
       {
-        path: "/add-blog",
-        element: <AddBlog />,
+        path: "add-note",
+        element: <AddNote />,
       },
       {
         path: "/problems",
@@ -76,10 +78,6 @@ const router = createBrowserRouter([
         path: "/problem/:id",
         element: <ProblemDetails />,
         // loader: ({ params }) => fetch(`http://localhost:5173/problems.json/${params.id}`)
-      },
-      {
-        path: "/add-problems",
-        element: <AddProblemSolving />,
       },
       {
         path: "/dashboard",
@@ -105,10 +103,7 @@ const router = createBrowserRouter([
         path: "/notebooks",
         element: <NoteBook />,
       },
-      {
-        path: "/add-note",
-        element: <AddNote />,
-      },
+
       {
         path: "/notebook/:id",
         element: <SingleNote />,
@@ -149,13 +144,27 @@ const router = createBrowserRouter([
         path: "/leader-board",
         element: <LeaderBoard />,
       },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
       {
-        path: "/admin-dashboard",
+        path: "main",
         element: <AdminDashboard />,
       },
       {
-        path: "/manageuser",
+        path: "manageuser",
         element: <ManageUser />,
+      },
+      {
+        path: "add-problems",
+        element: <AddProblemSolving />,
+      },
+      {
+        path: "add-blog",
+        element: <AddBlog />,
       },
     ],
   },
