@@ -3,6 +3,7 @@ import Feedback from "../../components/Feedback/Feedback";
 import ExploreCard from "./ExploreCard";
 import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
 import About from "./About";
+import { useEffect, useState } from "react";
 
 const Explore = () => {
 
@@ -11,58 +12,17 @@ const Explore = () => {
         return <FlexcodeLoading />;
     }
 
-    const exploreCards = [
-        {
-            title: 'React',
-            desc: 'A compilation of advanced React concepts.',
-            link: 'https://reactskills.com'
-        },
-        {
-            title: 'Data Structures',
-            desc: 'A comprehensive guide to various data structures.',
-            link: 'https://datastructpro.com'
-        },
-        {
-            title: 'Machine Learning',
-            desc: 'Explore machine learning algorithms and applications.',
-            link: 'https://ml-explorer.net'
-        },
-        {
-            title: 'Web Development',
-            desc: 'A collection of web development projects and resources.',
-            link: 'https://webdevhub.io'
-        },
-        {
-            title: 'Java',
-            desc: 'Dive into Java programming with hands-on exercises.',
-            link: 'https://javamastery.org'
-        },
-        {
-            title: 'Artificial Intelligence',
-            desc: 'Learn about AI advancements and ethical considerations.',
-            link: 'https://ailearningspace.com'
-        },
-        {
-            title: 'Frontend Frameworks',
-            desc: 'Comparative study of popular frontend frameworks.',
-            link: 'https://frontendframeworks.net'
-        },
-        {
-            title: 'Cybersecurity Basics',
-            desc: 'Understand the fundamentals of cybersecurity.',
-            link: 'https://cybersecureyou.org'
-        },
-        {
-            title: 'iOS App Development',
-            desc: 'Create engaging apps for the iOS platform.',
-            link: 'https://iosprospective.com'
-        },
-        {
-            title: 'Creative Writing',
-            desc: 'Unlock your creativity with writing prompts and tips.',
-            link: 'https://writecreatively.org'
-        }
-    ];
+    const [exploreCards, setExploreCards] = useState([]);
+
+
+    useEffect(() => {
+        fetch('http://localhost:5000/exploreDetails')
+            .then(res => res.json())
+            .then(data => {
+                setExploreCards(data)
+            })
+    }, [])
+
 
     return (
         <section>
