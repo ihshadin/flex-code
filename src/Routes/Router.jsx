@@ -26,6 +26,7 @@ import PrivateRoute from "./PrivateRoute";
 import PaymentSuccess from "../pages/Subscribe/PaymentSuccess";
 import PaymentFail from "../pages/Subscribe/PaymentFail";
 import MySubmissions from "../pages/MySubmissions/MySubmissions";
+import AllTestimonials from "../pages/Home/AllTestimonials/AllTestimonials";
 import AdminDashboard from "../pages/AdminDashbord/AdminDashboard";
 import ManageUser from "../pages/AdminDashbord/ManageUser/ManageUser";
 // import ProblemDetails from "../pages/Problems/ProblemDetails";
@@ -150,6 +151,9 @@ const router = createBrowserRouter([
         element: <LeaderBoard />,
       },
       {
+        path: "/allTestimonials",
+        element: <AllTestimonials></AllTestimonials>
+      },{
         path: "/admin-dashboard",
         element: <AdminDashboard />,
       },

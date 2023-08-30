@@ -2,6 +2,7 @@ import { useNavigation } from "react-router-dom";
 import Feedback from "../../components/Feedback/Feedback";
 import ExploreCard from "./ExploreCard";
 import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
+import About from "./About";
 
 const Explore = () => {
 
@@ -68,6 +69,7 @@ const Explore = () => {
             <div className="flexcode-container">
                 <h1 className="text-6xl text-white font-bold">Explore</h1>
                 <p className="text-xl text-white mt-5 tracking-wider">The best place for problem solving with exploring smart contracts <br /> from world-class companies problems — unlock the power of problem solving with <span className="text-[#0fcda1]">Flex Code</span>.</p>
+                <About></About>
                 <div className="my-16">
                     <h1 className="text-2xl text-white font-semibold">Popular</h1>
                     <p className="text-md text-white mt-1 tracking-wider">A collection of most popular problems.</p>
@@ -77,7 +79,6 @@ const Explore = () => {
                         }
                     </div>
                 </div>
-
                 <h1 className="text-3xl text-center text-white font-semibold">Give Feedback.</h1>
                 <p className="text-md text-center border-b pb-4 w-1/2 mx-auto border-[#00ffc3] text-white mt-1 tracking-wider">Share your opinion with others.</p>
                 <div className="my-16">
