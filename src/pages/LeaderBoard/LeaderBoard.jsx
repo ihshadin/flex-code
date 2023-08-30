@@ -109,22 +109,22 @@ const LeaderBoard = () => {
                   </div>
                   {
                     solvedProblems.slice(3).map((solveProblem, index) => (
-                      <div key={index} className='flex justify-between min-w-[600px] items-center text-center whitespace-nowrap border-b-[2px] duration-300 border-[#0fcda1] hover:border-white px-6 pb-2 pt-7 rounded-3xl'>
-                        <p className='w-[5%] text-left'>{index + 4}</p>
+                      <div key={index} className='flex justify-between min-w-[600px] items-center whitespace-nowrap border-b-[2px] duration-300 border-[#0fcda1] hover:border-white px-6 pb-2 pt-7 rounded-3xl'>
+                        <p className='w-[5%]'>{index + 4}</p>
                         <p className='w-[40%] flex gap-2'>
                           <img className="object-cover w-10 h-10 rounded-full" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" alt="" />
                           <div>
-                            <h2 className="font-medium dark:text-white ">
+                            <h2 className="font-medium">
                               {solveProblem.userName}
                             </h2>
-                            <p className="text-sm font-normal text-slate-400 dark:text-gray-400">
+                            <p className="text-sm text-slate-400">
                               @{solveProblem.userName.toLowerCase().split(' ').join('')}
                             </p>
                           </div>
                         </p>
-                        <p className='w-[20%]'>{solveProblem.points}</p>
-                        <p className='w-[20%]'>{solveProblem.problemsSolved}</p>
-                        <p className='w-[15%]'>Profile</p>
+                        <p className='w-[20%] text-center'>{solveProblem.points}</p>
+                        <p className='w-[20%] text-center'>{solveProblem.problemsSolved}</p>
+                        <p className='w-[15%] text-center'>Profile</p>
                       </div>
                     ))
                   }
