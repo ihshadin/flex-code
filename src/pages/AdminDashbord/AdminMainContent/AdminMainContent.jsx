@@ -5,7 +5,7 @@ import UserRationChart from "./UserRatioChart/UserRationChart";
 
 const AdminMainContent = () => {
   return (
-    <div className="px-4 w-[77%]">
+    <div className="px-4">
       <div className="bg-secondary-color p-5 rounded-lg">
         <h3 className="text-xl font-semibold mb-4 text-gray-400">OverView</h3>
         <OverViewAd></OverViewAd>

@@ -31,7 +31,11 @@ import AdminDashboard from "../pages/AdminDashbord/AdminDashboard";
 import MyPlayGround from "../pages/MyPlayGround/MyPlayGround";
 import PlayGround from "../pages/MyPlayGround/PlayGround/PlayGround";
 import ManageUser from "../pages/AdminDashbord/ManageUser/ManageUser";
+<<<<<<< HEAD
+import Dashboard from "../layouts/Dashboard";
+=======
 import ExploreDetails from "../pages/Explore/ExploreDetails";
+>>>>>>> 4a671f1d4f1159d381d2b5ae0c9bf2abb1cdd86d
 // import ProblemDetails from "../pages/Problems/ProblemDetails";
 
 const router = createBrowserRouter([
@@ -64,9 +68,10 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`https://flex-code-server.vercel.app/blog/${params.id}`),
       },
+
       {
-        path: "/add-blog",
-        element: <AddBlog />,
+        path: "add-note",
+        element: <AddNote />,
       },
       {
         path: "/problems",
@@ -80,10 +85,6 @@ const router = createBrowserRouter([
         path: "/problem/:id",
         element: <ProblemDetails />,
         // loader: ({ params }) => fetch(`http://localhost:5173/problems.json/${params.id}`)
-      },
-      {
-        path: "/add-problems",
-        element: <AddProblemSolving />,
       },
       {
         path: "/dashboard",
@@ -113,10 +114,7 @@ const router = createBrowserRouter([
         path: "/notebooks",
         element: <NoteBook />,
       },
-      {
-        path: "/add-note",
-        element: <AddNote />,
-      },
+
       {
         path: "/notebook/:id",
         element: <SingleNote />,
@@ -157,21 +155,41 @@ const router = createBrowserRouter([
         path: "/leader-board",
         element: <LeaderBoard />,
       },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
       {
+<<<<<<< HEAD
+        path: "main",
+=======
         path: "/allTestimonials",
         element: <AllTestimonials></AllTestimonials>
       },{
         path: "/admin-dashboard",
+>>>>>>> 4a671f1d4f1159d381d2b5ae0c9bf2abb1cdd86d
         element: <AdminDashboard />,
       },
       {
-        path: "/manageuser",
+        path: "manageuser",
         element: <ManageUser />,
       },
       {
+<<<<<<< HEAD
+        path: "add-problems",
+        element: <AddProblemSolving />,
+      },
+      {
+        path: "add-blog",
+        element: <AddBlog />,
+      },
+=======
         path: "/exploreDetails/:id",
         element: <ExploreDetails></ExploreDetails>
       }
+>>>>>>> 4a671f1d4f1159d381d2b5ae0c9bf2abb1cdd86d
     ],
   },
 ]);
