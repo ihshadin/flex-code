@@ -1,25 +1,22 @@
 import React, { useEffect, useState } from "react";
 import BlogCta from "./BlogCta/BlogCta";
-import { Link, useLoaderData, useLocation, useNavigation } from "react-router-dom";
+import { Link, useLoaderData, useNavigation } from "react-router-dom";
 import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
-import useScrollTop from "../../hooks/useScrollTop";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
-import axios from "axios";
+import useAxiosNormal from "../../hooks/useAxiosNormal";
 
 const Blog = () => {
   const user = { role: "admin" };
-  const location = useLocation()
-  useScrollTop(location)
 
   const [blogs, setBlogs] = useState([])
   const [currentPage, setCurrentPage] = useState(0)
   const itemsPerPage = 3;
-  // const [axiosSecure] = useAxiosSecure();
+  const [axiosNormal] = useAxiosNormal();
+
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/blog?page=${currentPage}&limit=${itemsPerPage}`)
+    axiosNormal.get(`/blog?page=${currentPage}&limit=${itemsPerPage}`)
       .then(data => {
-        setBlogs(data.data)
+        setBlogs(data)
       })
   }, [currentPage, itemsPerPage]);
 
@@ -31,7 +28,7 @@ const Blog = () => {
   //     })
   // }, [currentPage, itemsPerPage]);
 
-  
+
   const { result } = useLoaderData()
   const totalBlogs = result?.length;
 

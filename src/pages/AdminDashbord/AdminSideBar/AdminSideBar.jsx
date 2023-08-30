@@ -27,7 +27,12 @@ const AdminSideBar = () => {
             width="100px"
             height="100px"
             src={user?.photoURL}
-            style={{ cursor: "pointer", borderRadius: "50%" }}
+            style={{
+              cursor: "pointer",
+              borderRadius: "50%",
+              border: "2px solid #00ffc3",
+              padding: "5px",
+            }}
           />
         </div>
         <div className="text-center">
@@ -40,7 +45,7 @@ const AdminSideBar = () => {
       <ul>
         <li>
           <Link
-            to="/my-playground"
+            to="/manageuser"
             className="flex items-center px-4 py-2 text-white hover:bg-[#00ffc3] hover:bg-opacity-40 mt-2"
           >
             <span className="mr-2  flex">
@@ -51,7 +56,7 @@ const AdminSideBar = () => {
         </li>
         <li>
           <Link
-            to="/profile"
+            to="/add-blog"
             className="flex items-center px-4 py-2 text-white hover:bg-[#00ffc3] hover:bg-opacity-40"
           >
             <span className="mr-2  flex">
@@ -62,7 +67,7 @@ const AdminSideBar = () => {
         </li>
         <li>
           <Link
-            to="/notebook"
+            to="/add-problems"
             className="flex items-center px-4 py-2 text-white hover:bg-[#00ffc3] hover:bg-opacity-40"
           >
             <span className="mr-2  flex">

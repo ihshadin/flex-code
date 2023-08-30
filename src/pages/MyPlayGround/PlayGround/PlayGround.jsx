@@ -101,8 +101,20 @@ const PlayGround = () => {
   };
 
   return (
-    <div className="p-4">
-      <div className="md:flex w-full gap-3 my-10">
+    <div className="p-4 overflow-hidden">
+        <Split
+          className="flex flex-col h-screen"
+          direction="vertical"
+          sizes={[75, 25]}
+          minSize={0}
+          expandToMin={false}
+          gutterSize={10}
+          gutterAlign="center"
+          snapOffset={0}
+          dragInterval={1}
+          cursor="col-resize"
+        >
+      <div className="md:flex w-full gap-3 mt-10">
         <div className="w-full bg-slate-600 bg-opacity-10 rounded-xl overflow-hidden border border-gray-500 hover:border-[#0fcda1]">
           <div className="bg-secondary-color flex items-end">
             <div className="flex items-center gap-2 px-4 py-3">
@@ -196,27 +208,16 @@ const PlayGround = () => {
       </div>
 
       <div className="w-full">
-        <Split
-          className="flex flex-col h-screen"
-          direction="vertical"
-          sizes={[75, 25]}
-          minSize={0}
-          expandToMin={false}
-          gutterSize={10}
-          gutterAlign="center"
-          snapOffset={0}
-          dragInterval={1}
-          cursor="col-resize"
-        >
-          <div className="bg-slate-600 bg-opacity-10 rounded-xl overflow-hidden border border-gray-700 hover:border-[#0fcda1]">
+        
+          <div className="bg-transparent bg-opacity-10 rounded-xl overflow-hidden border border-gray-700 hover:border-[#0fcda1]">
             {/* <h2 className="mb-2 text-xl font-semibold">Preview</h2> */}
             <iframe
-              className="w-full h-64 border border-gray-300"
+              className="w-full h-64 border border-gray-300 "
               srcDoc={`<html><head><style>${cssCode}</style></head><body>${htmlCode}<script>${jsCode}</script></body></html>`}
             />
           </div>
-        </Split>
       </div>
+    </Split>
 
       {/* <div className="w-1/2 p-4 border border-gray-300 rounded">
         <h2 className="mb-2 text-xl font-semibold">Console Output</h2>
