@@ -27,6 +27,8 @@ import PaymentSuccess from "../pages/Subscribe/PaymentSuccess";
 import PaymentFail from "../pages/Subscribe/PaymentFail";
 import MySubmissions from "../pages/MySubmissions/MySubmissions";
 import AdminDashboard from "../pages/AdminDashbord/AdminDashboard";
+import MyPlayGround from "../pages/MyPlayGround/MyPlayGround";
+import PlayGround from "../pages/MyPlayGround/PlayGround/PlayGround";
 // import ProblemDetails from "../pages/Problems/ProblemDetails";
 
 const router = createBrowserRouter([
@@ -97,8 +99,12 @@ const router = createBrowserRouter([
         element: <ProfileEdit />,
       },
       {
+        path: "/My-playground",
+        element: <MyPlayGround />,
+      },
+      {
         path: "/playground",
-        element: <ComingSoon />,
+        element: <PlayGround />,
       },
       {
         path: '/notebooks',
