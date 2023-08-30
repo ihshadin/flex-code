@@ -1,11 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
 import axios from "axios";
 import { AuthContext } from '../../providers/AuthProvider';
+import useAxiosNormal from '../../hooks/useAxiosNormal';
 
 const MySubmissions = () => {
     const { user, loading, setLoading } = useContext(AuthContext);
     const [mySolvedProblems, setMySolvedProblems] = useState([]);
     const [dateDifferences, setDateDifferences] = useState([]);
+    const [axiosNormal] = useAxiosNormal();
 
     function formatDateDifference(solvedDate) {
         const currentDate = new Date();
@@ -33,24 +35,11 @@ const MySubmissions = () => {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/solvedProblems/userSolveProblem?email=${user?.email}`)
+        axiosNormal.get(`/solvedProblems/userSolveProblem?email=${user?.email}`)
             .then(data => {
-                setMySolvedProblems(data.data);
+                setMySolvedProblems(data);
             })
     }, [user?.email])
-
-    useEffect(() => {
-        const calculateDateDifferences = () => {
-            const formattedDifferences = mySolvedProblems.map((problem) => {
-                const dateDifference = formatDateDifference(problem.date);
-                return { _id: problem._id, dateDifference };
-            });
-
-            setDateDifferences(formattedDifferences);
-        };
-
-        calculateDateDifferences();
-    }, [mySolvedProblems]);
 
     return (
         <section className='flexcode-banner-bg pt-16 overflow-x-auto'>
@@ -73,7 +62,7 @@ const MySubmissions = () => {
                         <tbody>
                             {
                                 mySolvedProblems.map((problem) => (
-                                    <tr className='border-0 [&>*]:p-0 group'>
+                                    <tr key={problem._id} className='border-0 [&>*]:p-0 group'>
                                         <td>
                                             <div className='border-b-[2px] duration-300 border-[#0fcda1] group-hover:border-white pb-3 pt-5 px-4 whitespace-nowrap rounded-l-3xl'>
                                                 {formatDateDifference(problem.date)}
@@ -103,71 +92,6 @@ const MySubmissions = () => {
                                     </tr>
                                 ))
                             }
-                            {/* <tr className='border-0 [&>*]:p-0 group'>
-                                <td>
-                                    <div className='border-b-[2px] duration-300 border-[#0fcda1] group-hover:border-white pb-3 pt-5 px-4 whitespace-nowrap rounded-l-3xl'>
-                                        4 months 2 weeks ago
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className='border-b-[2px] duration-300 border-[#0fcda1] group-hover:border-white pb-3 pt-5 px-4 whitespace-nowrap'>
-                                        Two Sum
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className='border-b-[2px] duration-300 border-[#0fcda1] group-hover:border-white pb-3 pt-5 px-4 whitespace-nowrap primary-color'>
-                                        Easy
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className='border-b-[2px] duration-300 border-[#0fcda1] group-hover:border-white pb-3 pt-5 px-4 whitespace-nowrap primary-color flex items-center gap-2'>
-                                        <div className="w-3 h-3 bg-primary-color rounded-full flex-shrink-0"></div>
-                                        <strong>Accepted</strong>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className='border-b-[2px] duration-300 border-[#0fcda1] group-hover:border-white pb-3 pt-5 px-4 whitespace-nowrap rounded-r-3xl'>
-                                        JavaScript
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr className='border-0 [&>*]:p-0 group'>
-                                <td>
-                                    <div className='border-b-[2px] duration-300 border-[#0fcda1] group-hover:border-white pb-3 pt-5 px-4 whitespace-nowrap rounded-l-3xl'>
-                                        4 months 2 weeks ago
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className='border-b-[2px] duration-300 border-[#0fcda1] group-hover:border-white pb-3 pt-5 px-4 whitespace-nowrap'>
-                                        Two Sum
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className='border-b-[2px] duration-300 border-[#0fcda1] group-hover:border-white pb-3 pt-5 px-4 whitespace-nowrap primary-color'>
-                                        Easy
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className='border-b-[2px] duration-300 border-[#0fcda1] group-hover:border-white pb-3 pt-5 px-4 whitespace-nowrap primary-color flex items-center gap-2'>
-                                        <div className="w-3 h-3 bg-primary-color rounded-full flex-shrink-0"></div>
-                                        <strong>Accepted</strong>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className='border-b-[2px] duration-300 border-[#0fcda1] group-hover:border-white pb-3 pt-5 px-4 whitespace-nowrap rounded-r-3xl'>
-                                        JavaScript
-                                    </div>
-                                </td>
-                            </tr> */}
-                            {/* <tr className=''>
-                                <td>4 months, 2 weeks ago</td>
-                                <td>Two Sum</td>
-                                <td className='text-yellow-500'>Medium</td>
-                                <td className="text-success">
-                                    <strong>Accepted</strong>
-                                </td>
-                                <td>Python</td>
-                            </tr> */}
                         </tbody>
                     </table>
                 </div>

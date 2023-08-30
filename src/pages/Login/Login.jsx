@@ -82,7 +82,7 @@ const Login = () => {
   // };
   return (
     <div className="justify-center items-center flex pt-10">
-      <div className="bg-[#1e2d40]  shadow-2xl md:w-2/4 max-w-md mx-auto rounded-xl px-7 my-14">
+      <div className="bg-[#1e2d40] shadow-2xl md:w-2/4 max-w-md mx-auto rounded-xl px-7 my-14">
         <>
           <div className="flex items-center justify-center text-white text-2xl  font-bold py-8">
             <img className="w-16 h-16" src="/20230810_125620.png" alt="img" />

@@ -79,7 +79,6 @@ const Explore = () => {
                         }
                     </div>
                 </div>
-
                 <h1 className="text-3xl text-center text-white font-semibold">Give Feedback.</h1>
                 <p className="text-md text-center border-b pb-4 w-1/2 mx-auto border-[#00ffc3] text-white mt-1 tracking-wider">Share your opinion with others.</p>
                 <div className="my-16">

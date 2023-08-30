@@ -15,8 +15,9 @@ import ComingSoon from "../components/ComingSoon/ComingSoon";
 import AddBlog from "../pages/Blog/AddBlog/AddBlog";
 import Subscribe from "../pages/Subscribe/Subscribe";
 import ProblemDetails from "../pages/Problems/ProblemDetails";
-import NodeBook from "../pages/Dashboard/NodeBook/NodeBook";
-import AddNode from "../pages/Dashboard/AddNode/AddNode";
+import NoteBook from "../pages/Dashboard/NoteBook/NoteBook";
+import SingleNote from "../pages/Dashboard/NoteBook/SingleNote";
+import AddNote from "../pages/Dashboard/NoteBook/AddNote";
 import CheckOut from "../pages/CheckOut/CheckOut";
 import ErrorPage from "../pages/404Error/ErrorPage";
 import LeaderBoard from "../pages/LeaderBoard/LeaderBoard";
@@ -26,13 +27,15 @@ import PaymentSuccess from "../pages/Subscribe/PaymentSuccess";
 import PaymentFail from "../pages/Subscribe/PaymentFail";
 import MySubmissions from "../pages/MySubmissions/MySubmissions";
 import AllTestimonials from "../pages/Home/AllTestimonials/AllTestimonials";
+import AdminDashboard from "../pages/AdminDashbord/AdminDashboard";
+import ManageUser from "../pages/AdminDashbord/ManageUser/ManageUser";
 // import ProblemDetails from "../pages/Problems/ProblemDetails";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    // errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />,
 
     children: [
       {
@@ -100,16 +103,20 @@ const router = createBrowserRouter([
         element: <ComingSoon />,
       },
       {
-        path: '/notebook',
-        element: <NodeBook />
+        path: "/notebooks",
+        element: <NoteBook />,
       },
       {
-        path: '/my-submittions',
-        element: <MySubmissions />
+        path: "/add-note",
+        element: <AddNote />,
       },
       {
-        path: '/addNode',
-        element: <AddNode />
+        path: "/notebook/:id",
+        element: <SingleNote />,
+      },
+      {
+        path: "/my-submittions",
+        element: <MySubmissions />,
       },
       {
         path: "/notebook",
@@ -146,7 +153,14 @@ const router = createBrowserRouter([
       {
         path: "/allTestimonials",
         element: <AllTestimonials></AllTestimonials>
-      }
+      },{
+        path: "/admin-dashboard",
+        element: <AdminDashboard />,
+      },
+      {
+        path: "/manageuser",
+        element: <ManageUser />,
+      },
     ],
   },
 ]);
