@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading";
+import { toast } from "react-hot-toast";
 
 const ManageUser = () => {
   const [loading, setLoading] = useState(true);
@@ -20,25 +21,22 @@ const ManageUser = () => {
     setMakeLoading(filterUser);
   }, [makeloading]);
 
-  // console.log("loading", makeloading);
-
   const handleMakeAdmin = async (email) => {
-    // console.log(email);
     try {
       const res = await axios.post(
         `http://localhost:5000/student/all/admin/${email}`
       );
-
-      // console.log(res.data.user);
-
       if (res.data.user.modifiedCount > 0) {
-        Swal.fire({
-          icon: "success",
-          title: "User role updated to Admin",
-          showConfirmButton: false,
-          timer: 1000,
+        toast.success("User role updated to admin!", {
+          position: "top-center",
+          autoClose: 10000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: 1,
+          theme: "dark",
         });
-        // const AllUser = users.filter(a =>)
         const filterUser = users.find((data) => data.userRole === "genarel");
         setMakeLoading(filterUser);
       }
@@ -48,20 +46,21 @@ const ManageUser = () => {
   };
 
   const handleMakeUser = async (email) => {
-    // console.log("user", email);
     try {
       const res = await axios.post(
         `http://localhost:5000/student/all/genarel/${email}`
       );
 
-      // console.log(res.data.user);
-
       if (res.data.user.modifiedCount > 0) {
-        Swal.fire({
-          icon: "success",
-          title: "Admin role updated to User",
-          showConfirmButton: false,
-          timer: 1000,
+        toast.success("Admin role updated to user!", {
+          position: "top-center",
+          autoClose: 10000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: 1,
+          theme: "dark",
         });
         const filterUser = users.find((data) => data.userRole === "admin");
         setMakeLoading(filterUser);
