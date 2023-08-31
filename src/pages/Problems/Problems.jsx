@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import {Link } from "react-router-dom";
-import useScrollTop from "../../hooks/useScrollTop";
 import AddProblemCTA from "./AddProblemSolving/AddProblemCTA";
 import axios from "axios";
 
