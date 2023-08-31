@@ -7,7 +7,7 @@ import Home from "../pages/Home/Home/Home";
 import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 import Explore from "../pages/Explore/Explore";
 import Problems from "../pages/Problems/Problems";
-import AllProblems from "../pages/Problems/AllProblems";
+import LangBasedProblems from "../pages/Problems/LangBasedProblems";
 import ProfileEdit from "../pages/Dashboard/ProfileEdit/ProfileEdit";
 import SingleBlog from "../pages/Blog/SingleBlog/SingleBlog";
 import Feedback from "../components/Feedback/Feedback";
@@ -28,8 +28,13 @@ import PaymentFail from "../pages/Subscribe/PaymentFail";
 import MySubmissions from "../pages/MySubmissions/MySubmissions";
 import AllTestimonials from "../pages/Home/AllTestimonials/AllTestimonials";
 import AdminDashboard from "../pages/AdminDashbord/AdminDashboard";
+import MyPlayGround from "../pages/MyPlayGround/MyPlayGround";
+import PlayGround from "../pages/MyPlayGround/PlayGround/PlayGround";
 import ManageUser from "../pages/AdminDashbord/ManageUser/ManageUser";
+import Dashboard from "../layouts/Dashboard";
 import ExploreDetails from "../pages/Explore/ExploreDetails";
+import AdminCalendar from "../pages/AdminDashbord/AdminCalendar/AdminCalendar";
+
 // import ProblemDetails from "../pages/Problems/ProblemDetails";
 
 const router = createBrowserRouter([
@@ -62,9 +67,10 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`https://flex-code-server.vercel.app/blog/${params.id}`),
       },
+
       {
-        path: "/add-blog",
-        element: <AddBlog />,
+        path: "add-note",
+        element: <AddNote />,
       },
       {
         path: "/problems",
@@ -72,16 +78,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/problems/:languages",
-        element: <AllProblems />,
+        element: <LangBasedProblems />,
       },
       {
         path: "/problem/:id",
         element: <ProblemDetails />,
         // loader: ({ params }) => fetch(`http://localhost:5173/problems.json/${params.id}`)
-      },
-      {
-        path: "/add-problems",
-        element: <AddProblemSolving />,
       },
       {
         path: "/dashboard",
@@ -100,17 +102,18 @@ const router = createBrowserRouter([
         element: <ProfileEdit />,
       },
       {
+        path: "/My-playground",
+        element: <MyPlayGround />,
+      },
+      {
         path: "/playground",
-        element: <ComingSoon />,
+        element: <PlayGround />,
       },
       {
         path: "/notebooks",
         element: <NoteBook />,
       },
-      {
-        path: "/add-note",
-        element: <AddNote />,
-      },
+
       {
         path: "/notebook/:id",
         element: <SingleNote />,
@@ -153,19 +156,34 @@ const router = createBrowserRouter([
       },
       {
         path: "/allTestimonials",
-        element: <AllTestimonials></AllTestimonials>
-      },{
-        path: "/admin-dashboard",
+        element: <AllTestimonials />,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
+      {
+        path: "main",
         element: <AdminDashboard />,
       },
       {
-        path: "/manageuser",
+        path: "manageuser",
         element: <ManageUser />,
       },
       {
-        path: "/exploreDetails/:id",
-        element: <ExploreDetails></ExploreDetails>
-      }
+        path: "add-problems",
+        element: <AddProblemSolving />,
+      },
+      {
+        path: "add-blog",
+        element: <AddBlog />,
+      },
+      {
+        path: "calendar",
+        element: <AdminCalendar />,
+      },
     ],
   },
 ]);

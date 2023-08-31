@@ -10,22 +10,21 @@ import "codemirror/addon/hint/show-hint.css";
 import "codemirror/addon/hint/show-hint";
 import "codemirror/addon/hint/javascript-hint";
 import { AuthContext } from "../../providers/AuthProvider";
-import axios from "axios";
+import useAxiosNormal from "../../hooks/useAxiosNormal";
 
 const ProblemDetails = () => {
   const { id } = useParams();
+  const { user } = useContext(AuthContext);
   const [code, setCode] = useState(""); //console.log("Hello, world!");
   const [consoleOutput, setConsoleOutput] = useState([]);
   const [outputMessage, setOutputMessage] = useState("");
-  const [problems, setProblems] = useState([]);
-  const { user } = useContext(AuthContext);
+  const [singleProblem, setSingleProblems] = useState([]);
+  const [axiosNormal] = useAxiosNormal();
 
-  const singleProblem = problems.find((problem) => problem.id == id) || [];
   useEffect(() => {
-    fetch("/problems.json")
-      .then((res) => res.json())
+    axiosNormal.get(`/problem/${id}`)
       .then((data) => {
-        setProblems(data);
+        setSingleProblems(data);
       });
   }, []);
 
@@ -42,16 +41,9 @@ const ProblemDetails = () => {
     setOutputMessage("");
   };
 
-  // get current date
-  const currentDate = new Date();
-  const formattedDate = `${currentDate.getDate()}/${
-    currentDate.getMonth() + 1
-  }/${currentDate.getFullYear()} ${currentDate.getHours()}:${currentDate.getMinutes()}:${currentDate.getSeconds()}`;
-  // console.log(formattedDate);
-
   const userSubmission = {
-    userEmail: user.email,
-    date: formattedDate,
+    userEmail: user?.email,
+    date: new Date(),
     title: singleProblem.title,
     functionName: singleProblem.functionName,
     level: singleProblem.level,
@@ -74,9 +66,8 @@ const ProblemDetails = () => {
       };
 
       // Execute code
-      const userCode = `${code || defaultCode}\n\n${
-        singleProblem.functionName
-      }(${singleProblem.examples[1].input});`;
+      const userCode = `${code || defaultCode}\n\n${singleProblem.functionName
+        }(${singleProblem.examples[0].input});`;
 
       let userOutput = eval(userCode);
 
@@ -87,9 +78,10 @@ const ProblemDetails = () => {
       if (typeof userOutput === "boolean") {
         userOutput = String(userOutput);
       }
+      console.log(userOutput, singleProblem.examples[0].output)
 
       //   Output Message
-      if (userOutput == singleProblem.examples[1].output) {
+      if (userOutput == singleProblem.examples[0].output) {
         setOutputMessage(
           <div>
             <span className="primary-color text-2xl text-center font-semibold block">
@@ -105,11 +97,10 @@ const ProblemDetails = () => {
           </div>
         );
         // -----------------------
-        axios
-          .post("http://localhost:5000/solvedProblems", userSubmission)
+        axiosNormal.post("/solvedProblems", userSubmission)
           .then((data) => console.log(data));
 
-          
+
       } else {
         setOutputMessage(
           <div>
@@ -152,9 +143,8 @@ const ProblemDetails = () => {
       };
 
       // Execute code
-      const userCode = `${code || defaultCode}\n\nconsole.log(${
-        singleProblem.functionName
-      }(${singleProblem.examples[1].input}));`;
+      const userCode = `${code || defaultCode}\n\nconsole.log(${singleProblem.functionName
+        }(${singleProblem.examples[0].input}));`;
 
       eval(userCode);
       console.log = originalLog;
@@ -168,7 +158,7 @@ const ProblemDetails = () => {
 
   return (
     <section id="problemDetails">
-      <div className="flexcode-container flex gap-10">
+      <div className="flexcode-container flex justify-between gap-10">
         <Split
           className="h-[calc(90vh-94px)] flex flex-row"
           direction="horizontal"
@@ -285,13 +275,13 @@ const ProblemDetails = () => {
                   {consoleOutput == false
                     ? ""
                     : consoleOutput.map((output, index) => (
-                        <div key={index} className="flex items-center gap-x-5">
-                          <span className="bg-secondary-color text-gray-500 w-8 py-2">
-                            {index + 1}
-                          </span>
-                          <span>{output}</span>
-                        </div>
-                      ))}
+                      <div key={index} className="flex items-center gap-x-5">
+                        <span className="bg-secondary-color text-gray-500 w-8 py-2">
+                          {index + 1}
+                        </span>
+                        <span>{output}</span>
+                      </div>
+                    ))}
                 </span>
                 <div>{outputMessage}</div>
               </div>
