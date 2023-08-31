@@ -7,7 +7,7 @@ const UserCard = () => {
 	const [axiosNormal] = useAxiosNormal();
 
 	useEffect(() => {
-		axiosNormal.get("/student/all")
+		axiosNormal.get("/users/all")
 			.then((data) => {
 				setUsers(data)
 			});
