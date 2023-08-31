@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
-import { Link, NavLink, Outlet } from "react-router-dom";
-import { FaCloudRain, FaGraduationCap, FaHome } from "react-icons/fa";
+import { Link, Outlet } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import NavBar from "../pages/Shared/NavBar/NavBar";
 import Footer from "../pages/Shared/Footer/Footer";
@@ -30,7 +29,7 @@ const Dashboard = () => {
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
 
           <div className="bg-gray-800 menu p-4 w-80 text-white py-5 rounded-lg h-screen">
-            <div className="mb-8">
+            <div className="pt-8 pb-6 mb-4 border-b-2 border-[#0fcda185]">
               <div className="flex justify-center items-center mb-4">
                 <img
                   alt="profile-user"
@@ -40,7 +39,7 @@ const Dashboard = () => {
                   style={{
                     cursor: "pointer",
                     borderRadius: "50%",
-                    border: "2px solid #00ffc3",
+                    border: "2px solid #0fcda185",
                     padding: "5px",
                   }}
                 />
@@ -111,7 +110,7 @@ const Dashboard = () => {
               </li>
               <li>
                 <Link
-                  to="/dashboard"
+                  to="/dashboard/calendar"
                   className="flex items-center px-4 py-2 text-white hover:bg-[#00ffc3] hover:bg-opacity-40"
                 >
                   <span className="mr-2  flex">
