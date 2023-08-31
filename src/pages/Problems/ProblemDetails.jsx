@@ -265,36 +265,36 @@ const ProblemDetails = () => {
                   }}
                 />
               </div>
-              <div className="overflow-hidden p-2 relative bg-slate-600 bg-opacity-10 rounded-md border border-gray-700 hover:border-[#0fcda1]">
-                <div className="flex">
-                  <button
-                    onClick={consoleCode}
-                    className="flexcode-button text-xs py-1 px-3 mr-auto"
-                  >
-                    Console
-                  </button>
+                <div className="overflow-hidden p-2 relative bg-slate-600 bg-opacity-10 rounded-md border border-gray-700 hover:border-[#0fcda1]">
+                  <div className="flex">
+                    <button
+                      onClick={consoleCode}
+                      className="flexcode-button text-xs py-1 px-3 mr-auto"
+                    >
+                      Console
+                    </button>
 
-                  <button
-                    onClick={submitCode}
-                    className="flexcode-button text-xs py-1 px-3"
-                  >
-                    Submit
-                  </button>
+                    <button
+                      onClick={submitCode}
+                      className="flexcode-button text-xs py-1 px-3"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                  <span className="block font-medium text-center py-5">
+                    {consoleOutput == false
+                      ? ""
+                      : consoleOutput.map((output, index) => (
+                        <div key={index} className="flex items-center gap-x-5">
+                          <span className="bg-secondary-color text-gray-500 w-8 py-2">
+                            {index + 1}
+                          </span>
+                          <span>{output}</span>
+                        </div>
+                      ))}
+                  </span>
+                  <div>{outputMessage}</div>
                 </div>
-                <span className="block font-medium text-center py-5">
-                  {consoleOutput == false
-                    ? ""
-                    : consoleOutput.map((output, index) => (
-                      <div key={index} className="flex items-center gap-x-5">
-                        <span className="bg-secondary-color text-gray-500 w-8 py-2">
-                          {index + 1}
-                        </span>
-                        <span>{output}</span>
-                      </div>
-                    ))}
-                </span>
-                <div>{outputMessage}</div>
-              </div>
             </Split>
           </div>
         </Split>

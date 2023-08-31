@@ -26,16 +26,14 @@ import PrivateRoute from "./PrivateRoute";
 import PaymentSuccess from "../pages/Subscribe/PaymentSuccess";
 import PaymentFail from "../pages/Subscribe/PaymentFail";
 import MySubmissions from "../pages/MySubmissions/MySubmissions";
-import AllTestimonials from "../pages/Home/AllTestimonials/AllTestimonials";
+// import AllTestimonials from "../pages/Home/AllTestimonials/AllTestimonials";
 import AdminDashboard from "../pages/AdminDashbord/AdminDashboard";
 import MyPlayGround from "../pages/MyPlayGround/MyPlayGround";
 import PlayGround from "../pages/MyPlayGround/PlayGround/PlayGround";
 import ManageUser from "../pages/AdminDashbord/ManageUser/ManageUser";
-<<<<<<< HEAD
 import Dashboard from "../layouts/Dashboard";
-=======
 import ExploreDetails from "../pages/Explore/ExploreDetails";
->>>>>>> 4a671f1d4f1159d381d2b5ae0c9bf2abb1cdd86d
+import AllTestimonials from "../pages/Home/AllTestimonials/AllTestimonials";
 // import ProblemDetails from "../pages/Problems/ProblemDetails";
 
 const router = createBrowserRouter([
@@ -158,18 +156,16 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/dashboard",
+    path: "/",
     element: <Dashboard />,
     children: [
       {
-<<<<<<< HEAD
-        path: "main",
-=======
+        // path: "main",
         path: "/allTestimonials",
-        element: <AllTestimonials></AllTestimonials>
-      },{
+        element: <AllTestimonials></AllTestimonials>,
+      },
+      {
         path: "/admin-dashboard",
->>>>>>> 4a671f1d4f1159d381d2b5ae0c9bf2abb1cdd86d
         element: <AdminDashboard />,
       },
       {
@@ -177,7 +173,6 @@ const router = createBrowserRouter([
         element: <ManageUser />,
       },
       {
-<<<<<<< HEAD
         path: "add-problems",
         element: <AddProblemSolving />,
       },
@@ -185,11 +180,10 @@ const router = createBrowserRouter([
         path: "add-blog",
         element: <AddBlog />,
       },
-=======
+      {
         path: "/exploreDetails/:id",
-        element: <ExploreDetails></ExploreDetails>
-      }
->>>>>>> 4a671f1d4f1159d381d2b5ae0c9bf2abb1cdd86d
+        element: <ExploreDetails />,
+      },
     ],
   },
 ]);
