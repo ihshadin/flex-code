@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-// import useScrollTop from "../../hooks/useScrollTop";
 import AddProblemCTA from "./AddProblemSolving/AddProblemCTA";
-import axios from "axios";
 import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
 import useAxiosNormal from "../../hooks/useAxiosNormal";
 import SpeLangButton from "./SpeLangButton";
+import pythonLogo from '../../assets/language/pythonLogo.svg'
 
 const Problems = () => {
   const [problems, setProblems] = useState([]);
@@ -16,256 +15,256 @@ const Problems = () => {
 
   const problemsLanguage = ['JavaScript', 'Python', 'Java', 'C++', 'Ruby', 'Swift', 'PHP', 'Go', 'TypeScript']
 
-  useEffect(() => {
-    axiosNormal.get(`/problem`)
-      .then((data) => {
-        setSpeLangProblems(data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axiosNormal.get(`/problem`)
+  //     .then((data) => {
+  //       setSpeLangProblems(data);
+  //     });
+  // }, []);
 
-  const problemCard = [
-    {
-      language: "javaScript",
-      problems: [
-        {
-          title: "FizzBuzz",
-          level: "easy",
-          answer: "",
-        },
-        {
-          title: "Reverse a String",
-          level: "easy",
-          answer: "",
-        },
-        {
-          title: "Two sum",
-          level: "easy",
-          answer: "",
-        },
-      ],
-    },
-    {
-      language: "Python",
-      problems: [
-        {
-          title: "Palindrome Check",
-          level: "easy",
-          answer: "",
-        },
-        {
-          title: "Factorial",
-          level: "easy",
-          answer: "",
-        },
-        {
-          title: "Fibonacci Series",
-          level: "easy",
-          answer: "",
-        },
-      ],
-    },
-    {
-      language: "Java",
-      problems: [
-        {
-          title: "String Reversal",
-          level: "easy",
-          answer: "",
-        },
-        {
-          title: "Prime Number Check",
-          level: "easy",
-          answer: "",
-        },
-        {
-          title: "Array Sum",
-          level: "easy",
-          answer: "",
-        },
-      ],
-    },
-    {
-      language: "C++",
-      problems: [
-        {
-          title: "Factorial",
-          level: "easy",
-          answer: "",
-        },
-        {
-          title: "GCD and LCM",
-          level: "easy",
-          answer: "",
-        },
-        {
-          title: "Array Average",
-          level: "easy",
-          answer: "",
-        },
-      ],
-    },
-    {
-      language: "Ruby",
-      problems: [
-        {
-          title: "Palindrome Check",
-          level: "easy",
-          answer: "",
-        },
-        {
-          title: "FizzBuzz",
-          level: "easy",
-          answer: "",
-        },
-        {
-          title: "Prime Number Check",
-          level: "easy",
-          answer: "",
-        },
-      ],
-    },
-    {
-      language: "Swift",
-      problems: [
-        {
-          title: "Fibonacci Series",
-          level: "easy",
-          answer: "",
-        },
-        {
-          title: "Reverse a String",
-          level: "easy",
-          answer: "",
-        },
-        {
-          title: "Array Sum",
-          level: "easy",
-          answer: "",
-        },
-      ],
-    },
-    {
-      language: "PHP",
-      problems: [
-        {
-          title: "String Reversal",
-          level: "easy",
-          answer: "",
-        },
-        {
-          title: "GCD and LCM",
-          level: "easy",
-          answer: "",
-        },
-        {
-          title: "Palindrome Check",
-          level: "easy",
-          answer: "",
-        },
-      ],
-    },
-    {
-      language: "Kotlin",
-      problems: [
-        {
-          title: "Array Average",
-          level: "easy",
-          answer: "",
-        },
-        {
-          title: "FizzBuzz",
-          level: "easy",
-          answer: "",
-        },
-        {
-          title: "Factorial",
-          level: "easy",
-          answer: "",
-        },
-      ],
-    },
-    {
-      language: "C#",
-      problems: [
-        {
-          title: "Prime Number Check",
-          level: "easy",
-          answer: "",
-        },
-        {
-          title: "Reverse a String",
-          level: "easy",
-          answer: "",
-        },
-        {
-          title: "GCD and LCM",
-          level: "easy",
-          answer: "",
-        },
-      ],
-    },
-    {
-      language: "Go",
-      problems: [
-        {
-          title: "Two sum",
-          level: "easy",
-          answer: "",
-        },
-        {
-          title: "Palindrome Check",
-          level: "easy",
-          answer: "",
-        },
-        {
-          title: "Fibonacci Series",
-          level: "easy",
-          answer: "",
-        },
-      ],
-    },
-    {
-      language: "Rust",
-      problems: [
-        {
-          title: "Array Sum",
-          level: "easy",
-          answer: "",
-        },
-        {
-          title: "Reverse a String",
-          level: "easy",
-          answer: "",
-        },
-        {
-          title: "Prime Number Check",
-          level: "easy",
-          answer: "",
-        },
-      ],
-    },
-    {
-      language: "TypeScript",
-      problems: [
-        {
-          title: "Array Average",
-          level: "easy",
-          answer: "",
-        },
-        {
-          title: "Palindrome Check",
-          level: "easy",
-          answer: "",
-        },
-        {
-          title: "Two sum",
-          level: "easy",
-          answer: "",
-        },
-      ],
-    },
-    // Add more objects like this if needed
-  ];
+  // const problemCard = [
+  //   {
+  //     language: "javaScript",
+  //     problems: [
+  //       {
+  //         title: "FizzBuzz",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //       {
+  //         title: "Reverse a String",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //       {
+  //         title: "Two sum",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     language: "Python",
+  //     problems: [
+  //       {
+  //         title: "Palindrome Check",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //       {
+  //         title: "Factorial",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //       {
+  //         title: "Fibonacci Series",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     language: "Java",
+  //     problems: [
+  //       {
+  //         title: "String Reversal",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //       {
+  //         title: "Prime Number Check",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //       {
+  //         title: "Array Sum",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     language: "C++",
+  //     problems: [
+  //       {
+  //         title: "Factorial",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //       {
+  //         title: "GCD and LCM",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //       {
+  //         title: "Array Average",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     language: "Ruby",
+  //     problems: [
+  //       {
+  //         title: "Palindrome Check",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //       {
+  //         title: "FizzBuzz",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //       {
+  //         title: "Prime Number Check",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     language: "Swift",
+  //     problems: [
+  //       {
+  //         title: "Fibonacci Series",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //       {
+  //         title: "Reverse a String",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //       {
+  //         title: "Array Sum",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     language: "PHP",
+  //     problems: [
+  //       {
+  //         title: "String Reversal",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //       {
+  //         title: "GCD and LCM",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //       {
+  //         title: "Palindrome Check",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     language: "Kotlin",
+  //     problems: [
+  //       {
+  //         title: "Array Average",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //       {
+  //         title: "FizzBuzz",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //       {
+  //         title: "Factorial",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     language: "C#",
+  //     problems: [
+  //       {
+  //         title: "Prime Number Check",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //       {
+  //         title: "Reverse a String",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //       {
+  //         title: "GCD and LCM",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     language: "Go",
+  //     problems: [
+  //       {
+  //         title: "Two sum",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //       {
+  //         title: "Palindrome Check",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //       {
+  //         title: "Fibonacci Series",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     language: "Rust",
+  //     problems: [
+  //       {
+  //         title: "Array Sum",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //       {
+  //         title: "Reverse a String",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //       {
+  //         title: "Prime Number Check",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     language: "TypeScript",
+  //     problems: [
+  //       {
+  //         title: "Array Average",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //       {
+  //         title: "Palindrome Check",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //       {
+  //         title: "Two sum",
+  //         level: "easy",
+  //         answer: "",
+  //       },
+  //     ],
+  //   },
+  //   // Add more objects like this if needed
+  // ];
 
   useEffect(() => {
     axiosNormal.get(`/problem?search=${searchText}&level=${filterLevel}`)
@@ -280,13 +279,32 @@ const Problems = () => {
         <PageBannerTitle
           title="Most Popular languages"
           shortDesc="A collection of most popular problems."
+
         />
+        {/* <div className="flex gap-x-28 gap-y-10 flex-wrap px-16 py-5">
+          <SpeLangButton
+            language="javascript"
+            link="/problems/javascript"
+            icon='https://i.ibb.co/hfwxPBy/python-Logo.png'
+            bgColor={'#0fcda1'}
+          />
+          <SpeLangButton />
+          <SpeLangButton />
+          <SpeLangButton />
+          <SpeLangButton />
+          <SpeLangButton />
+          <SpeLangButton />
+          <SpeLangButton />
+          <SpeLangButton />
+          <SpeLangButton />
+        </div> */}
+
         <div className="grid grid-cols-3 mb-24 mt-16 justify-center rounded-lg ">
           {problemsLanguage?.map((problem, index) => (
             <Link
               to={`${problem.toLowerCase()}`}
               key={index}
-              className={`${problemCard.reduce((total, i) => total + index, 0) - 3 <= index
+              className={`${problemsLanguage.reduce((total, i) => total + index, 0) - 3 <= index
                 ? "border-b"
                 : ""
                 } ${[6, 7, 8].includes(index) ? "" : "border-b"} ${[1, 4, 7, 10, 13].includes(index) ? "border-x" : ""
@@ -299,8 +317,7 @@ const Problems = () => {
           ))}
         </div>
 
-        <SpeLangButton />
-        <div className="grid grid-cols-3 pt-20">
+        {/* <div className="grid grid-cols-3 pt-20">
           <div>
             <div className='relative w-16 h-16 group transition-all duration-300 rotate-[-10deg] skew-x-[25deg]'>
               <Link className='[&>*]:absolute [&>*]:top-0 [&>*]:left-0 [&>*]:w-44 [&>*]:h-16 [&>*]:duration-300 [&>*]:bg-[#0fcda1] [&>*]:flex [&>*]:justify-between [&>*]:items-center [&>*]:pr-2'>
@@ -319,7 +336,7 @@ const Problems = () => {
             </div>
           </div>
           <div>
-            <div className='relative w-16 h-16 group transition-all duration-300 rotate-[-10deg] skew-x-[25deg]'>
+            <div className='relative w-16 h-16 group transition-all duration-300'>
               <Link className='[&>*]:absolute [&>*]:top-0 [&>*]:left-0 [&>*]:w-44 [&>*]:h-16 [&>*]:duration-300 [&>*]:bg-[#0fcda1] [&>*]:flex [&>*]:justify-between [&>*]:items-center [&>*]:pr-2'>
                 <span className='group-hover:translate-y-0 group-hover:translate-x-0 group-hover:opacity-20'></span>
                 <span className='group-hover:translate-y-[-10px] group-hover:translate-x-[10px] group-hover:opacity-40'></span>
@@ -347,7 +364,7 @@ const Problems = () => {
               </Link>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <PageBannerTitle
           title="Recent problems"

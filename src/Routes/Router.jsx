@@ -7,7 +7,7 @@ import Home from "../pages/Home/Home/Home";
 import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 import Explore from "../pages/Explore/Explore";
 import Problems from "../pages/Problems/Problems";
-import AllProblems from "../pages/Problems/AllProblems";
+import LangBasedProblems from "../pages/Problems/LangBasedProblems";
 import ProfileEdit from "../pages/Dashboard/ProfileEdit/ProfileEdit";
 import SingleBlog from "../pages/Blog/SingleBlog/SingleBlog";
 import Feedback from "../components/Feedback/Feedback";
@@ -33,6 +33,8 @@ import PlayGround from "../pages/MyPlayGround/PlayGround/PlayGround";
 import ManageUser from "../pages/AdminDashbord/ManageUser/ManageUser";
 import Dashboard from "../layouts/Dashboard";
 import ExploreDetails from "../pages/Explore/ExploreDetails";
+import AdminCalendar from "../pages/AdminDashbord/AdminCalendar/AdminCalendar";
+
 // import ProblemDetails from "../pages/Problems/ProblemDetails";
 
 const router = createBrowserRouter([
@@ -76,7 +78,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/problems/:languages",
-        element: <AllProblems />,
+        element: <LangBasedProblems />,
       },
       {
         path: "/problem/:id",
@@ -154,8 +156,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/allTestimonials",
-        element: <AllTestimonials></AllTestimonials>
-      }
+        element: <AllTestimonials />,
+      },
     ],
   },
   {
@@ -163,11 +165,7 @@ const router = createBrowserRouter([
     element: <Dashboard />,
     children: [
       {
-        path: "/allTestimonials",
-        element: <AllTestimonials></AllTestimonials>
-      },
-      {
-        path: "/admin-dashboard",
+        path: "main",
         element: <AdminDashboard />,
       },
       {
@@ -183,9 +181,9 @@ const router = createBrowserRouter([
         element: <AddBlog />,
       },
       {
-        path: "/exploreDetails/:id",
-        element: <ExploreDetails />
-      }
+        path: "calendar",
+        element: <AdminCalendar />,
+      },
     ],
   },
 ]);
