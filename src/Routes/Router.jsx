@@ -7,7 +7,7 @@ import Home from "../pages/Home/Home/Home";
 import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 import Explore from "../pages/Explore/Explore";
 import Problems from "../pages/Problems/Problems";
-import AllProblems from "../pages/Problems/AllProblems";
+import LangBasedProblems from "../pages/Problems/LangBasedProblems";
 import ProfileEdit from "../pages/Dashboard/ProfileEdit/ProfileEdit";
 import SingleBlog from "../pages/Blog/SingleBlog/SingleBlog";
 import Feedback from "../components/Feedback/Feedback";
@@ -78,7 +78,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/problems/:languages",
-        element: <AllProblems />,
+        element: <LangBasedProblems />,
       },
       {
         path: "/problem/:id",
