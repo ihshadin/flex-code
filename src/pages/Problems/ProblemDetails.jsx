@@ -11,6 +11,7 @@ import "codemirror/addon/hint/show-hint";
 import "codemirror/addon/hint/javascript-hint";
 import { AuthContext } from "../../providers/AuthProvider";
 import axios from "axios";
+import useAxiosNormal from "../../hooks/useAxiosNormal";
 
 const ProblemDetails = () => {
   const { id } = useParams();
@@ -19,12 +20,14 @@ const ProblemDetails = () => {
   const [outputMessage, setOutputMessage] = useState("");
   const [problems, setProblems] = useState([]);
   const { user } = useContext(AuthContext);
+  const [axiosNormal] = useAxiosNormal();
 
-  const singleProblem = problems.find((problem) => problem.id == id) || [];
+  const singleProblem = problems?.find((problem) => problem._id == id) || [];
+
   useEffect(() => {
-    fetch("/problems.json")
-      .then((res) => res.json())
+    axiosNormal.get(`problem/${id}`)
       .then((data) => {
+        console.log(data);
         setProblems(data);
       });
   }, []);
@@ -43,15 +46,14 @@ const ProblemDetails = () => {
   };
 
   // get current date
-  const currentDate = new Date();
-  const formattedDate = `${currentDate.getDate()}/${
-    currentDate.getMonth() + 1
-  }/${currentDate.getFullYear()} ${currentDate.getHours()}:${currentDate.getMinutes()}:${currentDate.getSeconds()}`;
+  // const currentDate = new Date();
+  // const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1
+  //   }/${currentDate.getFullYear()} ${currentDate.getHours()}:${currentDate.getMinutes()}:${currentDate.getSeconds()}`;
   // console.log(formattedDate);
 
   const userSubmission = {
-    userEmail: user.email,
-    date: formattedDate,
+    userEmail: user?.email,
+    date: new Date(),
     title: singleProblem.title,
     functionName: singleProblem.functionName,
     level: singleProblem.level,
@@ -74,9 +76,8 @@ const ProblemDetails = () => {
       };
 
       // Execute code
-      const userCode = `${code || defaultCode}\n\n${
-        singleProblem.functionName
-      }(${singleProblem.examples[1].input});`;
+      const userCode = `${code || defaultCode}\n\n${singleProblem.functionName
+        }(${singleProblem.examples[1].input});`;
 
       let userOutput = eval(userCode);
 
@@ -109,7 +110,7 @@ const ProblemDetails = () => {
           .post("http://localhost:5000/solvedProblems", userSubmission)
           .then((data) => console.log(data));
 
-          
+
       } else {
         setOutputMessage(
           <div>
@@ -152,9 +153,8 @@ const ProblemDetails = () => {
       };
 
       // Execute code
-      const userCode = `${code || defaultCode}\n\nconsole.log(${
-        singleProblem.functionName
-      }(${singleProblem.examples[1].input}));`;
+      const userCode = `${code || defaultCode}\n\nconsole.log(${singleProblem.functionName
+        }(${singleProblem.examples[1].input}));`;
 
       eval(userCode);
       console.log = originalLog;
@@ -285,13 +285,13 @@ const ProblemDetails = () => {
                   {consoleOutput == false
                     ? ""
                     : consoleOutput.map((output, index) => (
-                        <div key={index} className="flex items-center gap-x-5">
-                          <span className="bg-secondary-color text-gray-500 w-8 py-2">
-                            {index + 1}
-                          </span>
-                          <span>{output}</span>
-                        </div>
-                      ))}
+                      <div key={index} className="flex items-center gap-x-5">
+                        <span className="bg-secondary-color text-gray-500 w-8 py-2">
+                          {index + 1}
+                        </span>
+                        <span>{output}</span>
+                      </div>
+                    ))}
                 </span>
                 <div>{outputMessage}</div>
               </div>

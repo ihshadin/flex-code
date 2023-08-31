@@ -26,8 +26,15 @@ import PrivateRoute from "./PrivateRoute";
 import PaymentSuccess from "../pages/Subscribe/PaymentSuccess";
 import PaymentFail from "../pages/Subscribe/PaymentFail";
 import MySubmissions from "../pages/MySubmissions/MySubmissions";
+import AllTestimonials from "../pages/Home/AllTestimonials/AllTestimonials";
 import AdminDashboard from "../pages/AdminDashbord/AdminDashboard";
+import MyPlayGround from "../pages/MyPlayGround/MyPlayGround";
+import PlayGround from "../pages/MyPlayGround/PlayGround/PlayGround";
 import ManageUser from "../pages/AdminDashbord/ManageUser/ManageUser";
+import Dashboard from "../layouts/Dashboard";
+import ExploreDetails from "../pages/Explore/ExploreDetails";
+import AdminCalendar from "../pages/AdminDashbord/AdminCalendar/AdminCalendar";
+
 // import ProblemDetails from "../pages/Problems/ProblemDetails";
 
 const router = createBrowserRouter([
@@ -60,9 +67,10 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`https://flex-code-server.vercel.app/blog/${params.id}`),
       },
+
       {
-        path: "/add-blog",
-        element: <AddBlog />,
+        path: "add-note",
+        element: <AddNote />,
       },
       {
         path: "/problems",
@@ -76,10 +84,6 @@ const router = createBrowserRouter([
         path: "/problem/:id",
         element: <ProblemDetails />,
         // loader: ({ params }) => fetch(`http://localhost:5173/problems.json/${params.id}`)
-      },
-      {
-        path: "/add-problems",
-        element: <AddProblemSolving />,
       },
       {
         path: "/dashboard",
@@ -98,17 +102,18 @@ const router = createBrowserRouter([
         element: <ProfileEdit />,
       },
       {
+        path: "/My-playground",
+        element: <MyPlayGround />,
+      },
+      {
         path: "/playground",
-        element: <ComingSoon />,
+        element: <PlayGround />,
       },
       {
         path: "/notebooks",
         element: <NoteBook />,
       },
-      {
-        path: "/add-note",
-        element: <AddNote />,
-      },
+
       {
         path: "/notebook/:id",
         element: <SingleNote />,
@@ -150,12 +155,34 @@ const router = createBrowserRouter([
         element: <LeaderBoard />,
       },
       {
-        path: "/admin-dashboard",
+        path: "/allTestimonials",
+        element: <AllTestimonials />,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
+      {
+        path: "main",
         element: <AdminDashboard />,
       },
       {
-        path: "/manageuser",
+        path: "manageuser",
         element: <ManageUser />,
+      },
+      {
+        path: "add-problems",
+        element: <AddProblemSolving />,
+      },
+      {
+        path: "add-blog",
+        element: <AddBlog />,
+      },
+      {
+        path: "calendar",
+        element: <AdminCalendar />,
       },
     ],
   },

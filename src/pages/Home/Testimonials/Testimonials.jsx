@@ -29,7 +29,7 @@ const Testimonials = () => {
           title="Inspiring Testimonials"
           descrition="Learn from the best with our highly acclaimed instructors who bring expertise and passion to every class."
         />
-        <Swiper
+        <Swiper  
           slidesPerView={1}
           spaceBetween={10}
           loop={true}
@@ -105,7 +105,7 @@ const Testimonials = () => {
                   {feedback?.image ? (
                     <img src={feedback.image} className="rounded-full" alt="" />
                   ) : (
-                    <FaUserCircle className=" text-primary-color text-3xl w-[78px] h-[78px]" />
+                    <FaUserCircle className=" text-[#0fcda1] text-3xl w-[78px] h-[78px]" />
                   )}
                 </div>
               </div>
