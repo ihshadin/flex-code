@@ -80,7 +80,7 @@ const ProfileEdit = () => {
 
     console.log(addProfilUpdate);
 
-    // fetch("http://localhost:5000/student", {
+    // fetch("http://localhost:5000/users", {
     //   method: "POST",
     //   headers: {
     //     "content-type": "application/json",
@@ -110,7 +110,7 @@ const ProfileEdit = () => {
 
     // console.log();
 
-    fetch("http://localhost:5000/student", {
+    fetch("http://localhost:5000/users", {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

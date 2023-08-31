@@ -1,9 +1,9 @@
 import React from "react";
-import { FaUserTie } from "react-icons/fa";
+import { FaUser, FaUserTie } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Top3Card = ({ data, position }) => {
-
+  console.log(data.userPhoto);
   return (
     <div className={`w-full p-4 flexcode-banner-bg border flex flex-col gap-8 pt-10 rounded-xl border-gray-500 hover:border-[#0fcda156] transition-all drop-shadow-md ${position === 1 && 'scale-100 -mt-4' || position === 2 && 'scale-100 -skew-y-2' || position === 3 && 'scale-100 skew-y-2'}`}>
       <div className="flex flex-col gap-3">
@@ -11,14 +11,20 @@ const Top3Card = ({ data, position }) => {
           Score: <span className="primary-color">{data.points}</span>
         </h2>
         <div className="text-center">
-          <img
-            alt="Developer"
-            src="https://images.unsplash.com/photo-1614644147724-2d4785d69962?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80"
-            className="h-20 w-20 rounded-full object-cover mx-auto border-2 p-1 border-[#0fcda180]"
-          />
+          {
+            data.userPhoto ? (
+              <img
+                alt="Developer"
+                src={data.userPhoto}
+                className="h-20 w-20 rounded-full object-cover mx-auto border-2 p-1 border-[#0fcda180]"
+              />
+            ) : <FaUser
+              className="h-20 w-20 rounded-full object-cover mx-auto border-2 p-1 text-white border-[#0fcda180]"
+            />
+          }
           <div className="pt-2">
-            <h3 className="text-lg font-medium leading-5">{data.userName}</h3>
-            <p className="text-sm text-slate-400">@{data.userName.toLowerCase().split(' ').join('')}</p>
+            <h3 className="text-lg font-medium leading-5">{data?.displayName || "Solver Name"}</h3>
+            <p className="text-sm text-slate-400">@{data?.username}</p>
           </div>
         </div>
       </div>
