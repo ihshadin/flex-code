@@ -23,7 +23,6 @@ const Explore = () => {
             })
     }, [])
 
-
     return (
         <section>
             <div className="flexcode-container">

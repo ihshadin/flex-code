@@ -6,6 +6,7 @@ import Rating from 'react-rating';
 import { FaRegStar, FaStar } from 'react-icons/fa';
 import './AllTestimonials.css';
 import { Link } from 'react-router-dom';
+import { FaUserCircle } from "react-icons/fa";
 
 const AllTestimonials = () => {
 
@@ -34,13 +35,11 @@ const AllTestimonials = () => {
                     feedback.map(review => <div key={review._id}>
                         <div className='box w-[80] bg-secondary-color shadow-2xl rounded-lg text-white py-6'>
                             <div className="flex px-5">
-                                <img
-                                    loading="lazy"
-                                    src={user?.photoURL}
-                                    alt=""
-                                    className="overflow-hidden rounded-full w-12 h-12"
-                                    style={{ minWidth: '3rem' }}
-                                />
+                                {review?.image ? (
+                                    <img src={review.image} className="rounded-full w-12" alt="" />
+                                ) : (
+                                    <FaUserCircle className=" text-[#0fcda1] text-3xl w-[44px] h-[44px]" />
+                                )}
                                 <div className="flex-grow pl-3">
                                     <div className="flex justify-between">
                                         <div>
