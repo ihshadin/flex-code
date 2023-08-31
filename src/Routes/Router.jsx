@@ -158,6 +158,10 @@ const router = createBrowserRouter([
         path: "/allTestimonials",
         element: <AllTestimonials />,
       },
+      {
+        path: "/exploreDetails/:id",
+        element: <ExploreDetails></ExploreDetails>
+      }
     ],
   },
   {
