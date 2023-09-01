@@ -38,6 +38,9 @@ const Feedback = () => {
     };
     return (
         <section>
+            {user &&  <>
+                <h1 className="text-3xl text-center text-white font-semibold">Give Feedback.</h1>
+                <p className="text-md text-center border-b pb-4 w-1/2 mx-auto border-[#00ffc3] text-white mt-1 tracking-wider">Share your opinion with others.</p>
             <div className="flexcode-container flex gap-10 items-center">
                 <form onSubmit={handleSubmit(onSubmit)} className="w-1/2">
                     <div className="flex -mx-3">
@@ -109,6 +112,9 @@ const Feedback = () => {
                     </div>
                 </div>
             </div>
+            </>
+            }
+           
         </section>
     );
 };

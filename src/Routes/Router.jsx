@@ -79,6 +79,7 @@ const router = createBrowserRouter([
       {
         path: "/problems/:languages",
         element: <LangBasedProblems />,
+        loader: () => fetch(`http://localhost:5000/problem/all`),
       },
       {
         path: "/problem/:id",

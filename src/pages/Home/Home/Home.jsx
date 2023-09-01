@@ -14,7 +14,6 @@ const Home = () => {
   if (navigation.state === "loading") {
     return <FlexcodeLoading />;
   }
-
   return (
     <div>
       <Banner />
