@@ -2,35 +2,24 @@ import React, { useContext, useState } from "react";
 import ProfileRow from "./ProfileRow";
 import { AuthContext } from "../../../providers/AuthProvider";
 import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading";
-import { useNavigation } from "react-router-dom";
+import { Link, useNavigation } from "react-router-dom";
 import { FaHome, FaSignInAlt, FaUserCog } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { MdSpaceDashboard } from "react-icons/md";
 import CreatableSelect from "react-select/creatable";
 import Select from "react-select";
+import useAxiosNormal from "../../../hooks/useAxiosNormal";
 
 const ProfileEdit = () => {
   const { user, loading } = useContext(AuthContext);
   const [selectedOption, setSelectedOption] = useState("");
   const [selectedSkills, setSelectedSkills] = useState([]);
   const inputSkills = selectedSkills?.map((item) => item?.value);
+  const [axiosNormal] = useAxiosNormal();
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
   };
-
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   reset,
-  //   formState: { errors },
-  // } = useForm();
-
-  // const onSubmit = (data) => {
-  //   const name = data.name;
-  //   const email = data.email;
-  //   console.log(name, email);
-  // };
 
   const navigation = useNavigation();
   if (navigation.state === "loading") {
@@ -77,28 +66,6 @@ const ProfileEdit = () => {
       github,
       dateOfBirth,
     };
-
-    console.log(addProfilUpdate);
-
-    // fetch("http://localhost:5000/student", {
-    //   method: "POST",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(addNewToy),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     if (data.insertedId) {
-    //       Swal.fire({
-    //         title: "Toy Add Successfull !",
-    //         text: "Do you want to continue",
-    //         icon: "success",
-    //         confirmButtonText: "ok",
-    //       });
-    //     }
-    //     form.reset();
-    //   });
   };
 
   const handleSaveClick = (value) => {
@@ -108,21 +75,24 @@ const ProfileEdit = () => {
     };
     console.log(value);
 
-    // console.log();
-
-    fetch("http://localhost:5000/student", {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(upDate),
-    })
-      .then((res) => res.json())
-      .then((data) => {
+    axiosNormal.patch('/users', upDate)
+      .then(data => {
         console.log(data);
-        // toast.success("Login Successfull!");
-        // navigate(from, { replace: true });
-      });
+      })
+
+    // fetch("http://localhost:5000/users", {
+    //   method: "PATCH",
+    //   headers: {
+    //     "content-type": "application/json",
+    //   },
+    //   body: JSON.stringify(upDate),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     // toast.success("Login Successfull!");
+    //     // navigate(from, { replace: true });
+    //   });
   };
 
   return (
@@ -141,9 +111,12 @@ const ProfileEdit = () => {
                 <span className="primary-color">FlexCode ID</span>: @
                 {user?.displayName.split(" ").join("").toLowerCase()}
               </p> */}
-              <button className=" flex items-center justify-center gap-x-3 py-3 font-semibold text-[#0fcda1] text-lg">
-                <MdSpaceDashboard size={22} /> Deshbord
-              </button>
+              <Link to="/dashboard/main">
+                <button className=" flex items-center justify-center gap-x-3 py-3 font-semibold text-[#0fcda1] text-lg">
+                  <MdSpaceDashboard size={22} /> Deshbord
+                </button>
+              </Link>
+
               <button className="bg-[#0fcda1] flex items-center pl-8 justify-center gap-x-3 py-3 font-semibold text-black text-lg">
                 {" "}
                 <FaUserCog size={22} />

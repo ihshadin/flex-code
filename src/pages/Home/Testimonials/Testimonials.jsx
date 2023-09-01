@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FaUserCircle } from "react-icons/fa";
+import { FaUser, FaUserCircle } from "react-icons/fa";
 // import { Pagination } from "swiper";
 import reviewImg1 from "/20230810_120154.png";
 
@@ -12,15 +12,19 @@ import Rating from "react-rating";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import axios from "axios";
+import useAxiosNormal from "../../../hooks/useAxiosNormal";
+import { Link } from "react-router-dom";
 
 
 const Testimonials = () => {
   const [feedbacks, setFeedbacks] = useState([]);
+  const [axiosNormal] = useAxiosNormal();
 
   useEffect(() => {
-    axios.get("http://localhost:5000/feedback").then((data) => {
-      setFeedbacks(data?.data?.result);
-    });
+    axiosNormal.get("/feedback")
+      .then((data) => {
+        setFeedbacks(data?.result);
+      });
   }, []);
 
   return (
@@ -30,7 +34,7 @@ const Testimonials = () => {
           title="Inspiring Testimonials"
           descrition="Learn from the best with our highly acclaimed instructors who bring expertise and passion to every class."
         />
-        <Swiper  
+        <Swiper
           slidesPerView={1}
           spaceBetween={10}
           loop={true}
@@ -72,13 +76,13 @@ const Testimonials = () => {
                     </SwiperSlide> */}
           {feedbacks?.map((feedback) => (
             <SwiperSlide key={feedback._id}>
-              <div className="bg-secondary-color p-8 md:p-10 mb-12 rounded-2xl text-white border border-[#1e2d40] hover:border-[#0fcda1] transition-all duration-300 cursor-pointer">
+              <div className="bg-secondary-color p-8 md:p-10 mb-8 rounded-2xl text-white border border-[#1e2d40] hover:border-[#0fcda1] transition-all duration-300 cursor-pointer">
                 <h2 className="text-2xl font-semibold mb-5">
                   {feedback.thumbExpression.length > 20
                     ? feedback.thumbExpression.slice(0, 20) + "...."
                     : feedback.thumbExpression}
                 </h2>
-                <p className="min-h-[200px]">
+                <p className="min-h-[160px]">
                   {feedback.details.length > 350
                     ? feedback.details.slice(0, 350) + "...."
                     : feedback.details}
@@ -95,24 +99,31 @@ const Testimonials = () => {
                     readonly
                     className="flex items-center justify-center"
                     emptySymbol={
-                      <FaRegStar className="text-xl mr-3 text-amber-500" />
+                      <FaRegStar className="text-xl mr-2 text-amber-500" />
                     }
                     fullSymbol={
-                      <FaStar className="text-xl mr-3 text-amber-500" />
+                      <FaStar className="text-xl mr-2 text-amber-500" />
                     }
                   />
                 </span>
-                <div className="w-20 h-20 object-cover rounded-full border-[#0fcda1] bg-secondary-color border absolute">
+                <div className="w-16 h-16 object-cover rounded-full border-[#0fcda1] bg-secondary-color border absolute bottom-0">
                   {feedback?.image ? (
-                    <img src={feedback.image} className="rounded-full" alt="" />
+                    <img src={feedback.image} className="rounded-full p-1" alt="" />
                   ) : (
-                    <FaUserCircle className=" text-[#0fcda1] text-3xl w-[78px] h-[78px]" />
+                    <FaUser className=" text-[#0fcda1] w-full h-full p-1 rounded-full" />
                   )}
                 </div>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
+        <div className='text-center mt-10'>
+          <Link to='/allTestimonials'>
+            <button className='flexcode-button px-8 py-3'>
+              All Testimonials
+            </button>
+          </Link>
+        </div>
       </div>
     </section>
   );

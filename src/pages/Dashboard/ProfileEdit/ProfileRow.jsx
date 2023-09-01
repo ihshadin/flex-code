@@ -30,7 +30,7 @@ const ProfileRow = ({ title, description, handleSaveClick }) => {
 
   //   console.log();
 
-  //   fetch("http://localhost:5000/student", {
+  //   fetch("http://localhost:5000/users", {
   //     method: "PATCH",
   //     headers: {
   //       "content-type": "application/json",

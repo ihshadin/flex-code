@@ -26,14 +26,15 @@ import PrivateRoute from "./PrivateRoute";
 import PaymentSuccess from "../pages/Subscribe/PaymentSuccess";
 import PaymentFail from "../pages/Subscribe/PaymentFail";
 import MySubmissions from "../pages/MySubmissions/MySubmissions";
-import AllTestimonials from "../pages/Home/AllTestimonials/AllTestimonials";
 import AdminDashboard from "../pages/AdminDashbord/AdminDashboard";
 import MyPlayGround from "../pages/MyPlayGround/MyPlayGround";
 import PlayGround from "../pages/MyPlayGround/PlayGround/PlayGround";
 import ManageUser from "../pages/AdminDashbord/ManageUser/ManageUser";
-import Dashboard from "../layouts/Dashboard";
+// import Dashboard from "../layouts/Dashboard";
 import ExploreDetails from "../pages/Explore/ExploreDetails";
 import AdminCalendar from "../pages/AdminDashbord/AdminCalendar/AdminCalendar";
+import AllTestimonials from "../pages/Home/AllTestimonials/AllTestimonials";
+import Dashboard from "../layouts/Dashboard";
 
 // import ProblemDetails from "../pages/Problems/ProblemDetails";
 
@@ -79,16 +80,17 @@ const router = createBrowserRouter([
       {
         path: "/problems/:languages",
         element: <LangBasedProblems />,
+        loader: () => fetch(`http://localhost:5000/problem/all`),
       },
       {
         path: "/problem/:id",
         element: <ProblemDetails />,
         // loader: ({ params }) => fetch(`http://localhost:5173/problems.json/${params.id}`)
       },
-      {
-        path: "/dashboard",
-        element: <DashboardHome />,
-      },
+      // {
+      //   path: "/dashboard",
+      //   element: <DashboardHome />,
+      // },
       {
         path: "/explore",
         element: <Explore />,
@@ -160,8 +162,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/exploreDetails/:id",
-        element: <ExploreDetails></ExploreDetails>
-      }
+        element: <ExploreDetails></ExploreDetails>,
+      },
     ],
   },
   {
@@ -169,7 +171,7 @@ const router = createBrowserRouter([
     element: <Dashboard />,
     children: [
       {
-        path: "main",
+        path: "",
         element: <AdminDashboard />,
       },
       {

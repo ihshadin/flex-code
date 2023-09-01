@@ -4,8 +4,10 @@ import ExploreCard from "./ExploreCard";
 import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
 import About from "./About";
 import { useEffect, useState } from "react";
+import useAxiosNormal from "../../hooks/useAxiosNormal";
 
 const Explore = () => {
+    const [axiosNormal] = useAxiosNormal();
 
     const navigation = useNavigation();
     if (navigation.state === "loading") {
@@ -16,8 +18,7 @@ const Explore = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/exploreDetails')
-            .then(res => res.json())
+        axiosNormal.get('/exploreDetails')
             .then(data => {
                 setExploreCards(data)
             })
@@ -26,7 +27,8 @@ const Explore = () => {
     return (
         <section>
             <div className="flexcode-container">
-                <h1 className="text-6xl text-white font-bold">Explore</h1>
+                <span className="flex items-center gap-5"> <h1 className="text-6xl text-white font-bold">Explore</h1>
+                    < img loading="lazy" alt="yawing face" src="./smiling-face-with-sunglasses@80.webp" className=" pointer-events-none h-16 w-16 align-bottom" /></span>
                 <p className="text-xl text-white mt-5 tracking-wider">The best place for problem solving with exploring smart contracts <br /> from world-class companies problems — unlock the power of problem solving with <span className="text-[#0fcda1]">Flex Code</span>.</p>
                 <About></About>
                 <div className="my-16">
@@ -38,8 +40,7 @@ const Explore = () => {
                         }
                     </div>
                 </div>
-                <h1 className="text-3xl text-center text-white font-semibold">Give Feedback.</h1>
-                <p className="text-md text-center border-b pb-4 w-1/2 mx-auto border-[#00ffc3] text-white mt-1 tracking-wider">Share your opinion with others.</p>
+
                 <div className="my-16">
                     <Feedback />
                 </div>

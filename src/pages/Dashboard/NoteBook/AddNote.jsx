@@ -3,23 +3,18 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import handWithPen from '../../../assets/images/hand-with-pen4.png'
+import useAxiosNormal from "../../../hooks/useAxiosNormal";
 
 const AddNode = () => {
 	const { register, handleSubmit, reset } = useForm();
+	const [axiosNormal] = useAxiosNormal();
 
 
 	const onSubmit = (data) => {
 		const nodeInfo = {
 			...data,
 		};
-		fetch("http://localhost:5000/notebooks", {
-			method: "POST",
-			headers: {
-				"content-type": "application/json",
-			},
-			body: JSON.stringify(nodeInfo),
-		})
-			.then((res) => res.json())
+		axiosNormal.post("/notebooks", nodeInfo)
 			.then((data) => {
 				if (data.message === "success") {
 					Swal.fire({

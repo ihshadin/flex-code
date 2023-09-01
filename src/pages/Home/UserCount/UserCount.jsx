@@ -8,7 +8,7 @@ const UserCount = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/student/all")
+      .get("http://localhost:5000/users/all")
       .then((data) => setUsers(data.data));
   }, []);
 

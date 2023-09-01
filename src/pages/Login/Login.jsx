@@ -9,8 +9,7 @@ import Swal from "sweetalert2";
 import { toast } from "react-hot-toast";
 
 const Login = () => {
-  const { signIn, resetPassword, loading, setLoading } =
-    useContext(AuthContext);
+  const { signIn, resetPassword, loading, setLoading } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -22,11 +21,9 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    // console.log(data.email, data.password);
-    const email = data.email;
-    const password = data.password;
-    const userInfo = { email, password };
-    signIn(data?.email, data?.password)
+    const email = data?.email;
+    const password = data?.password;
+    signIn(email, password)
       .then((result) => {
         const user = result.user;
         toast.success("Login Successfull!");
@@ -34,7 +31,6 @@ const Login = () => {
       })
       .catch((error) => {
         setLoading(false);
-
         toast.error("Login Failed. " + error.message);
       });
   };
@@ -42,7 +38,6 @@ const Login = () => {
   const handleReset = async (email) => {
     try {
       await resetPassword(email);
-      // console.log(email);
       toast.success("Please check your email for reset link.");
       setLoading(false);
     } catch (error) {
@@ -56,37 +51,13 @@ const Login = () => {
     }
   };
 
-  // const handleReset = () => {
-  //   const email = emailRef.current?.value;
-  //   console.log(email);
-
-  //   if (!email) {
-  //     toast.error("Please enter a valid email address.");
-  //     return;
-  //   }
-
-  //   resetPassword(email)
-  //     .then(() => {
-  //       toast.success("Please check your email for reset link.");
-  //       setLoading(false);
-  //     })
-  //     .catch((err) => {
-  //       setLoading(false);
-  //       console.log(err.code);
-  //       if (err.code === "auth/user-not-found") {
-  //         toast.error("Please enter a valid email address.");
-  //       } else {
-  //         toast.error("Failed to send password reset email. Please try again.");
-  //       }
-  //     });
-  // };
   return (
     <div className="justify-center items-center flex pt-10">
       <div className="bg-[#1e2d40] shadow-2xl md:w-2/4 max-w-md mx-auto rounded-xl px-7 my-14">
         <>
           <div className="flex items-center justify-center text-white text-2xl  font-bold py-8">
             <img className="w-16 h-16" src="/20230810_125620.png" alt="img" />
-            <span className="text-[#00ffc3] mr-1">Flex </span> {} Code
+            <span className="text-[#00ffc3] mr-1">Flex </span>Code
           </div>
           <SocialLogin />
           <div className="max-w-[150px] flex justify-center border-2 border-[#0fcda1] rounded mx-auto my-8"></div>
