@@ -4,7 +4,6 @@ import ProblemsChart from "./ProblemSChart/ProblemsChart";
 import UserRationChart from "./UserRatioChart/UserRationChart";
 
 const AdminMainContent = () => {
-
   return (
     <div className="px-4 grid gap-5">
       <OverViewAd />

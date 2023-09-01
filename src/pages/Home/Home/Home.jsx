@@ -9,7 +9,6 @@ import { useNavigation } from "react-router-dom";
 import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading";
 
 const Home = () => {
-
   const navigation = useNavigation();
   if (navigation.state === "loading") {
     return <FlexcodeLoading />;
