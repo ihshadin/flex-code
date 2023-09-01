@@ -1,25 +1,27 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import useAxiosNormal from '../../../hooks/useAxiosNormal';
 
 const SingleNote = () => {
     const { id } = useParams();
     const [notes, setNotes] = useState([])
     const [note, setNote] = useState([])
     const [loading, setLoading] = useState(true);
+    const [axiosNormal] = useAxiosNormal();
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/notebooks/${id}`)
+        axiosNormal.get(`/notebooks/${id}`)
             .then(data => {
-                setNote(data.data)
+                setNote(data)
                 setLoading(false)
             })
     }, [id])
 
     useEffect(() => {
-        axios.get('http://localhost:5000/notebooks')
+        axiosNormal.get('/notebooks')
             .then(data => {
-                setNotes(data.data)
+                setNotes(data)
                 setLoading(false)
             })
     }, [])

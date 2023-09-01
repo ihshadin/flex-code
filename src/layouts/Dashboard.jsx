@@ -4,18 +4,18 @@ import { AuthContext } from "../providers/AuthProvider";
 import NavBar from "../pages/Shared/NavBar/NavBar";
 import Footer from "../pages/Shared/Footer/Footer";
 import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
+import useAxiosNormal from "../hooks/useAxiosNormal";
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
-
   const [fetchUser, setFetchUser] = useState(null);
+  const [axiosNormal] = useAxiosNormal();
 
   const isAdmin = fetchUser?.userRole;
   // const isAdmin = "admin";
 
   useEffect(() => {
-    fetch(`http://localhost:5000/users?email=${user?.email}`)
-      .then((res) => res.json())
+    axiosNormal.get(`/users?email=${user?.email}`)
       .then((data) => setFetchUser(data[0]));
   }, []);
 
