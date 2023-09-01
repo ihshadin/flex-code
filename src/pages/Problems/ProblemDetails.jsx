@@ -20,6 +20,7 @@ const ProblemDetails = () => {
   const [outputMessage, setOutputMessage] = useState("");
   const [singleProblem, setSingleProblems] = useState([]);
   const [axiosNormal] = useAxiosNormal();
+  
 
   useEffect(() => {
     axiosNormal.get(`/problem/${id}`)
@@ -27,6 +28,15 @@ const ProblemDetails = () => {
         setSingleProblems(data);
       });
   }, []);
+
+  // useEffect(() => {
+  //   fetch(`/problems.json`)
+  //     .then(res => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       setSingleProblems(data[1]);
+  //     });
+  // }, []);
 
   //  Default values
   const defaultCode = `function ${singleProblem.functionName}(${singleProblem.parameterName}){
@@ -76,9 +86,23 @@ const ProblemDetails = () => {
       }
 
       if (typeof userOutput === "boolean") {
-        userOutput = String(userOutput);
+        userOutput = JSON.stringify(userOutput);
       }
-      console.log(userOutput, singleProblem.examples[0].output)
+      // console.log('userOutput 91---',userOutput);
+      
+      // if (typeof userOutput === "string") {
+      //   userOutput = JSON.stringify(userOutput);
+      //   console.log("jahid",userOutput);
+      // }
+      // if (typeof singleProblem.examples[0].output === "string") {
+      //   let stringProblem = singleProblem.examples[0].output
+      //   String(stringProblem)
+      //   console.log('problem------',stringProblem);
+      // }
+
+      // console.log(singleProblem.examples[0].output)
+      // console.log('userOutput---95',userOutput);
+      // // , 
 
       //   Output Message
       if (userOutput == singleProblem.examples[0].output) {

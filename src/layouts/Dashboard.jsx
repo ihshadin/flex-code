@@ -3,7 +3,6 @@ import { Link, Outlet } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import NavBar from "../pages/Shared/NavBar/NavBar";
 import Footer from "../pages/Shared/Footer/Footer";
-import './Dashboard.css'
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
