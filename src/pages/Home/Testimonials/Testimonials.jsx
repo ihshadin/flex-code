@@ -15,7 +15,6 @@ import axios from "axios";
 import useAxiosNormal from "../../../hooks/useAxiosNormal";
 import { Link } from "react-router-dom";
 
-
 const Testimonials = () => {
   const [feedbacks, setFeedbacks] = useState([]);
   const [axiosNormal] = useAxiosNormal();
