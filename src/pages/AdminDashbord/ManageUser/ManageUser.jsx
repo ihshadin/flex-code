@@ -11,7 +11,7 @@ const ManageUser = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/student/all")
+      .get("http://localhost:5000/users/all")
       .then((data) => setUsers(data.data));
     setLoading(false);
   }, [makeloading]);
@@ -24,7 +24,7 @@ const ManageUser = () => {
   const handleMakeAdmin = async (email) => {
     try {
       const res = await axios.post(
-        `http://localhost:5000/student/all/admin/${email}`
+        `http://localhost:5000/users/all/admin/${email}`
       );
       if (res.data.user.modifiedCount > 0) {
         toast.success("User role updated to admin!", {
@@ -48,7 +48,7 @@ const ManageUser = () => {
   const handleMakeUser = async (email) => {
     try {
       const res = await axios.post(
-        `http://localhost:5000/student/all/genarel/${email}`
+        `http://localhost:5000/users/all/genarel/${email}`
       );
 
       if (res.data.user.modifiedCount > 0) {
@@ -174,7 +174,7 @@ const ManageUser = () => {
               >
                 <p className="w-[5%]">{index + 1}</p>
                 <p className="w-[30%]">
-                  <h2 className="font-medium">{data?.username}</h2>
+                  <h2 className="font-medium">{data?.name}</h2>
                 </p>
                 <p className="w-[35%]">{data?.email}</p>
                 <p className="w-[15%] text-center">{data?.userRole}</p>
@@ -190,7 +190,7 @@ const ManageUser = () => {
                     <button
                       onClick={() => handleMakeAdmin(data?.email)}
                       className=" p-1"
-                      // disabled={makeloading || user.userRole === "admin"}
+                    // disabled={makeloading || user.userRole === "admin"}
                     >
                       Make admin
                     </button>

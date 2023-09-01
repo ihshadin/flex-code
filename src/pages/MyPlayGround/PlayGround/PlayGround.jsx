@@ -10,7 +10,7 @@ import "codemirror/mode/javascript/javascript";
 import "codemirror/addon/hint/show-hint.css";
 import "codemirror/addon/hint/show-hint";
 import "codemirror/addon/hint/javascript-hint";
-import "./PlayGround.css"
+import "./PlayGround.css";
 
 const PlayGround = () => {
   const [htmlCode, setHtmlCode] = useState("");
@@ -18,6 +18,16 @@ const PlayGround = () => {
   const [jsCode, setJsCode] = useState("");
   const [consoleOutput, setConsoleOutput] = useState("");
   const [errorOutput, setErrorOutput] = useState("");
+  const [isConsoleOpen, setIsConsoleOpen] = useState(false);
+
+  const openConsole = () => {
+    setIsConsoleOpen(true);
+    runCode();
+  };
+
+  const closeConsole = () => {
+    setIsConsoleOpen(false);
+  };
 
   const runCode = () => {
     try {
@@ -43,36 +53,6 @@ const PlayGround = () => {
         setErrorOutput(htmlError.message);
         return;
       }
-
-      //   CSS and JavaScript
-      //     try {
-      // //   Capture console.log output
-      //   const originalConsoleLog = console.log;
-      //   console.log = (message) => {
-      //     consoleLogMessages.push(message);
-      //     originalConsoleLog(message);
-      //   };
-
-      // //   Execute JavaScript
-      //   const iframe = document.createElement('iframe');
-      //   iframe.style.display = 'none';
-      //   document.body.appendChild(iframe);
-      //   const iframeWindow = iframe.contentWindow;
-      //   iframeWindow.eval(jsCode);
-      //   document.body.removeChild(iframe);
-
-      // //   Restore original console.log
-      //   console.log = originalConsoleLog;
-
-      // //   Set console output
-      //   setConsoleOutput(consoleLogMessages.join(' '));
-      //     } catch (error) {
-      //       setErrorOutput(error.message);
-      //     }
-
-      //   } catch (outerError) {
-      //     setErrorOutput(outerError.message);
-      //   }
 
       //   JavaScript
       try {
@@ -101,11 +81,11 @@ const PlayGround = () => {
   };
 
   return (
-    <div className="p-4 flexcode-container overflow-hidden">
+    <div className="relative p-4 overflow-hidden ">
       <Split
-        className="flex flex-col h-screen"
+        className="flex flex-col h-[100vh]"
         direction="vertical"
-        sizes={[65, 45]}
+        sizes={[55, 55]}
         minSize={0}
         expandToMin={false}
         gutterSize={10}
@@ -123,7 +103,7 @@ const PlayGround = () => {
                 <div className="w-3 h-3 bg-green-500 rounded-full"></div>
               </div>
               <div className="relative h-[30px] w-[200px]">
-                <span className="absolute left-0 bottom-0 w-[200px] block border-b-[30px] border-b-[#0fcda1] opacity-50 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent "></span>
+                <span className="absolute left-0 bottom-0 w-[200px] block border-b-[30px] border-b-[#0fcda1] opacity-50 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent"></span>
                 <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-sm font-medium text-white">
                   HTML
                 </span>
@@ -207,29 +187,60 @@ const PlayGround = () => {
           </div>
         </div>
 
-        <div className="w-full">
-          <div className="bg-transparent bg-opacity-10 rounded-xl overflow-hidden border border-gray-700 hover:border-[#0fcda1]">
-            {/* <h2 className="mb-2 text-xl font-semibold">Preview</h2> */}
-            <iframe
-              className="w-full border border-gray-300"
-              srcDoc={`<html><head><style>${cssCode}</style></head><body>${htmlCode}<script>${jsCode}</script></body></html>`}
-            />
-          </div>
+        <div className="h-auto relative">
+          <iframe
+            className="w-full h-full pt-4 bg-white rounded-xl overflow-hidden border border-gray-700 hover:border-[#0fcda1]"
+            srcDoc={`<html><head><style>${cssCode}</style></head><body>${htmlCode}<script>${jsCode}</script></body></html>`}
+          />
+
+          {isConsoleOpen ? (
+            <div className="absolute top-0 w-full text-white h-full">
+              <div className="relative flex justify-between w-full bg-[#1e2d40] bg-opacity-90 top-0">
+                <button
+                  className="absolute top-0 right-0 mr-2 text-gray-400 hover:text-white"
+                  onClick={closeConsole}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+                <h1 className="ml-2">Console</h1>
+              </div>
+              <div className="h-full bg-[#1c1f23] text-white p-2">
+                {/* {consoleOutput?.map((output, index) => (
+               <div key={index} className="mb-1">
+                 {output}
+               </div>
+             ))} */}
+
+                <div>{consoleOutput}</div>
+                <div>{errorOutput}</div>
+              </div>
+            </div>
+          ) : (
+            <div className="flex justify-end absolute top-0 bg-[#1e2d40] bg-opacity-90 w-full py-1">
+              <button
+                onClick={openConsole}
+                className="text-xs px-2 btn-ghost bg-slate-500 rounded mr-1"
+              >
+                Console
+              </button>
+            </div>
+          )}
         </div>
       </Split>
 
-      {/* <div className="w-1/2 p-4 border border-gray-300 rounded">
-        <h2 className="mb-2 text-xl font-semibold">Console Output</h2>
-        <div className="overflow-auto h-32 p-2 bg-gray-100 rounded">
-          {consoleOutput}
-        </div>
-      </div> */}
-      {/* <div className="w-full p-4 border border-gray-300 rounded">
-        <h2 className="mb-2 text-xl font-semibold">Errors</h2>
-        <div className="overflow-auto h-32 p-2 bg-red-100 text-red-600 rounded">
-          {errorOutput}
-        </div>
-      </div> */}
     </div>
   );
 };

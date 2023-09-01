@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BarChart,
   Bar,
@@ -12,10 +12,6 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import "./Submission.css";
-import axios from "axios";
-import { useContext } from "react";
-import { AuthContext } from "../../../providers/AuthProvider";
-import { useState } from "react";
 
 const Submissions = ({ mySolvedProblems }) => {
   const [filteredProblems, setFilteredProblems] = useState([]);

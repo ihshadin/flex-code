@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import logo from '../../../assets/flex-code1.png'
 import Swal from 'sweetalert2';
 import { toast } from 'react-hot-toast';
+import emailjs from '@emailjs/browser';
 
 const Footer = () => {
+    
+    const form = useRef();
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        toast.success("Submitted successfully. We will contact you ASAP.")
-        e.target.reset()
+    const sendEmail = (e) => {
+        e.preventDefault();
+
+        emailjs.sendForm('service_1u3nstp', 'template_2vzgr9e', form.current, 'CS7gQ2h1oiq4bD8nk')
+            .then((result) => {
+                console.log(result.text);
+                toast.success("Submitted successfully. We will contact you ASAP.")
+                e.target.reset();
+            }, (error) => {
+                console.log(error.text);
+            });
     };
 
     return (
@@ -59,23 +69,23 @@ const Footer = () => {
                         <h2 className="text-xl md:text-2xl font-semibold mb-3">
                             Contact Us
                         </h2>
-                        <form onSubmit={handleSubmit}>
+                        <form ref={form} onSubmit={sendEmail}>
                             <div className='grid grid-cols-2 gap-3 mb-3'>
                                 <div>
                                     <label htmlFor="con_name" className="text-sm font-medium p1 block">Your name</label>
-                                    <input type="text" id='con_name' className="w-full block px-5 py-1 rounded-lg border border-slate-500 bg-secondary-color outline-none focus:border-[#0fcda1]" placeholder="John doe" required />
+                                    <input type="text" name="user_name" id='con_name' className="w-full block px-5 py-1 rounded-lg border border-slate-500 bg-secondary-color outline-none focus:border-[#0fcda1]" placeholder="John doe" required />
                                 </div>
                                 <div>
                                     <label htmlFor="con_email" className="text-sm font-medium p1 block">Your Email</label>
-                                    <input type="email" id='con_email' className="w-full block px-5 py-1 rounded-lg border border-slate-500 bg-secondary-color outline-none focus:border-[#0fcda1]" placeholder="example@gmail.com" required />
+                                    <input type="email" name="user_email" id='con_email' className="w-full block px-5 py-1 rounded-lg border border-slate-500 bg-secondary-color outline-none focus:border-[#0fcda1]" placeholder="example@gmail.com" required />
                                 </div>
                             </div>
                             <div>
                                 <label htmlFor="con_message" className="text-sm font-medium p1 block">Message</label>
-                                <textarea rows={3} id='con_message' className="w-full block px-5 py-1 rounded-lg border border-slate-500 bg-secondary-color outline-none focus:border-[#0fcda1]" placeholder="Write you Message" />
+                                <textarea rows={3} name="message" id='con_message' className="w-full block px-5 py-1 rounded-lg border border-slate-500 bg-secondary-color outline-none focus:border-[#0fcda1]" placeholder="Write you Message" />
                             </div>
                             <div className="mt-3 text-right">
-                                <input value="Submit" type="submit" className="flexcode-button text-xs !font-medium !border py-1 px-5" />
+                                <input type="submit" value="Send" className="flexcode-button text-xs !font-medium !border py-1 px-5" />
                             </div>
                         </form>
                     </div>

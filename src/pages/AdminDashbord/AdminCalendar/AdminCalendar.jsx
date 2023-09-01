@@ -26,7 +26,7 @@ const AdminCalendar = () => {
         // maxDate={endDate}
         activeStartDate={date}
         tileClassName="!border-b-2 border-red-500"
-        className="border border-red-500 !bg-secondary-color text-black !w-2/3 !h-3/4	 mx-auto text-center p-4"
+        className="border border-red-500 !bg-[#1e2d40] text-black !w-2/3 !h-3/4 mx-auto text-center p-4"
       />
       <p className="text-center pt-2 text-lg">
         Today's date is:{" "}
