@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { FaUser, FaUserAlt } from "react-icons/fa";
+import './NavBar.css'
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -128,9 +129,9 @@ const NavBar = () => {
                 <Link
                   to="/"
                   onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${
+                  className={`text-white hover:text-gray-300 pb-1 nav-effect${
                     isActiveRoute("/")
-                      ? "font-bold border-b-2 pb-1 border-[#0fcda1]"
+                      ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
                       : ""
                   }`}
                 >
@@ -141,9 +142,9 @@ const NavBar = () => {
                 <Link
                   to="/problems"
                   onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#0fcda1] transition-all duration-300 ${
+                  className={`text-white hover:text-gray-300 pb-1 nav-effect${
                     isActiveRoute("/problems")
-                      ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
+                      ? "font-bold md:border-b-2 pb-[1.9px] border-[#0fcda1]"
                       : ""
                   }`}
                 >
@@ -154,9 +155,9 @@ const NavBar = () => {
                 <Link
                   to="/blog"
                   onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#0fcda1] transition-all duration-300 ${
+                  className={`text-white hover:text-gray-300 pb-1 nav-effect${
                     isActiveRoute("/blog")
-                      ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
+                      ? "font-bold md:border-b-2 pb-[1.9px] border-[#0fcda1]"
                       : ""
                   }`}
                 >
@@ -167,9 +168,9 @@ const NavBar = () => {
                 <Link
                   to="/subscribe"
                   onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#0fcda1] transition-all duration-300 ${
+                  className={`text-white hover:text-gray-300 pb-1 nav-effect${
                     isActiveRoute("/subscribe")
-                      ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
+                      ? "font-bold md:border-b-2 pb-[1.9px] border-[#0fcda1]"
                       : ""
                   }`}
                 >
@@ -180,9 +181,9 @@ const NavBar = () => {
                 <Link
                   to="/explore"
                   onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${
+                  className={`text-white hover:text-gray-300 pb-1 nav-effect${
                     isActiveRoute("/explore")
-                      ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
+                      ? "font-bold md:border-b-2 pb-[1.9px] border-[#0fcda1]"
                       : ""
                   }`}
                 >
@@ -322,22 +323,22 @@ const NavBar = () => {
                     <Link
                       to="/login"
                       onClick={closeMenu}
-                      className={`text-white font-semibold hover:text-gray-300  pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${
+                      className={`text-white hover:text-gray-300 pb-1 nav-effect${
                         isActiveRoute("/login")
-                          ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
+                          ? "font-bold md:border-b-2 pb-[1.9px] border-[#0fcda1]"
                           : ""
                       }`}
                     >
-                      Login
+                      Sing In
                     </Link>
                   </li>
                   <li>
                     <Link
                       to="/signup"
                       onClick={closeMenu}
-                      className={`text-white font-semibold hover:text-gray-300  pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${
+                      className={`text-white hover:text-gray-300 pb-1 nav-effect${
                         isActiveRoute("/signup")
-                          ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
+                          ? "font-bold md:border-b-2 pb-[1.9px] border-[#0fcda1]"
                           : ""
                       }`}
                     >
