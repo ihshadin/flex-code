@@ -85,10 +85,10 @@ const router = createBrowserRouter([
         element: <ProblemDetails />,
         // loader: ({ params }) => fetch(`http://localhost:5173/problems.json/${params.id}`)
       },
-      {
-        path: "/dashboard",
-        element: <DashboardHome />,
-      },
+      // {
+      //   path: "/dashboard",
+      //   element: <DashboardHome />,
+      // },
       {
         path: "/explore",
         element: <Explore />,
@@ -165,7 +165,7 @@ const router = createBrowserRouter([
     element: <Dashboard />,
     children: [
       {
-        path: "main",
+        path: "",
         element: <AdminDashboard />,
       },
       {

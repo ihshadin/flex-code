@@ -33,7 +33,7 @@ const OverViewAd = () => {
       .then((data) => setBlogs(data.data.result));
   }, []);
 
-  console.log(payment);
+  // console.log(payment);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">

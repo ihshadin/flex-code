@@ -30,7 +30,7 @@ const AdminCalendar = () => {
       />
       <p className="text-center pt-2 text-lg">
         Today's date is:{" "}
-        <span class="text-green-400 font-semibold">
+        <span className="text-green-400 font-semibold">
           {date.toString().slice(0, 15)}
         </span>
       </p>

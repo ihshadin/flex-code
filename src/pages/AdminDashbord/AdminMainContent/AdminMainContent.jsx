@@ -12,7 +12,7 @@ const AdminMainContent = () => {
       </div>
 
       {/* User Ratio Chart */}
-      <div className="mt-6 w-full py-5 bg-secondary-color rounded-lg pr-6">
+      <div className="mt-6 w-full py-5 bg-secondary-color rounded-lg">
         <h3 className="text-xl font-semibold mb-4 ps-5">
           User Ratio Over Time
         </h3>

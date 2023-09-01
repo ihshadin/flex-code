@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import ProfileRow from "./ProfileRow";
 import { AuthContext } from "../../../providers/AuthProvider";
 import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading";
-import { useNavigation } from "react-router-dom";
+import { Link, useNavigation } from "react-router-dom";
 import { FaHome, FaSignInAlt, FaUserCog } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { MdSpaceDashboard } from "react-icons/md";
@@ -141,9 +141,12 @@ const ProfileEdit = () => {
                 <span className="primary-color">FlexCode ID</span>: @
                 {user?.displayName.split(" ").join("").toLowerCase()}
               </p> */}
-              <button className=" flex items-center justify-center gap-x-3 py-3 font-semibold text-[#0fcda1] text-lg">
-                <MdSpaceDashboard size={22} /> Deshbord
-              </button>
+              <Link to="/dashboard/main">
+                <button className=" flex items-center justify-center gap-x-3 py-3 font-semibold text-[#0fcda1] text-lg">
+                  <MdSpaceDashboard size={22} /> Deshbord
+                </button>
+              </Link>
+
               <button className="bg-[#0fcda1] flex items-center pl-8 justify-center gap-x-3 py-3 font-semibold text-black text-lg">
                 {" "}
                 <FaUserCog size={22} />
