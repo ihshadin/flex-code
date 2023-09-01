@@ -124,7 +124,7 @@ const NavBar = () => {
             } lg:flex lg:w-auto mt-4 lg:mt-0`}
             id="mobile-menu"
           >
-            <ul className="flex flex-col gap-3 md:gap-0  lg:text-left lg:flex-row lg:space-x-8 lg:items-center">
+            <ul className="flex flex-col gap-3 md:gap-0 md:mt-[1.5px] lg:text-left lg:flex-row lg:space-x-8 lg:items-center">
               <li>
                 <Link
                   to="/"
