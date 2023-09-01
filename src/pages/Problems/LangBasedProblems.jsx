@@ -1,30 +1,36 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 import useAxiosNormal from "../../hooks/useAxiosNormal";
 import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
-import ComingSoon from "../../components/ComingSoon/ComingSoon";
+import Pagination from "../../components/Pagination/Pagination";
+import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
 
 const LangBasedProblems = () => {
     const { languages } = useParams()
     const [problems, setProblems] = useState([])
+    const [currentPage, setCurrentPage] = useState(0)
+    const itemsPerPage = 6; // Just change the number to 10
     const [axiosNormal] = useAxiosNormal();
-
-    const specificLanguageProblems = problems.filter(problem => problem.language.toLowerCase() === languages)
+    const specificLanguageProblems = problems?.filter(problem => problem.language.toLowerCase() === languages)
 
     useEffect(() => {
-        axiosNormal.get('/problem')
-            .then((data) => {
-                setProblems(data);
-            });
-    }, []);
-
+        axiosNormal.get(`/problem?page=${currentPage}&limit=${itemsPerPage}`)
+          .then(data => {
+            setProblems(data)
+          })
+      }, [currentPage, itemsPerPage]);
+    
+      
+    
+      const result = useLoaderData()
+      const totalProblems = result?.length;
+      const totalPage = Math.ceil(totalProblems / itemsPerPage)
+      console.log(result);
+      
     return (
         <section>
             <div className="flexcode-container">
-                <PageBannerTitle
-                    title={`All ${languages} Problems`}
-                    shortDesc="Give your best to unlock the power of problem solving."
-                />
+                
                 {/* <div className="mb-10 montserrat flex flex-col justify-center items-center">
                     <h1 className="text-4xl text-white font-semibold"> All popular <span className="text-[#0fcda1]">{languages}</span> problems</h1>
                     <p className="text-md text-white mt-1 tracking-wider">Give your best to unlock the power of problem solving.</p>
@@ -55,6 +61,10 @@ const LangBasedProblems = () => {
                 </div> */}
                 {
                     specificLanguageProblems.length > 0 ? (
+                  <><PageBannerTitle
+                    title={`All ${languages} Problems`}
+                    shortDesc="Give your best to unlock the power of problem solving."
+                />
                         <div className="grid md:grid-cols-2 gap-6 py-12">
                             {specificLanguageProblems?.map((problem, index) => (
                                 <div
@@ -96,11 +106,14 @@ const LangBasedProblems = () => {
                                     </div>
                                 </div>
                             ))}
-                        </div>
+                        </div></>
                     ) : (
-                        <ComingSoon />
+                        <FlexcodeLoading />
                     )
-                }
+                    }
+            </div>
+            <div>
+                <Pagination currentPage={currentPage} totalPage={totalPage} setCurrentPage={setCurrentPage}/>
             </div>
         </section>
     );

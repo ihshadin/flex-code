@@ -3,7 +3,9 @@ import BlogCta from "./BlogCta/BlogCta";
 import { Link, useLoaderData, useNavigation } from "react-router-dom";
 import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
 import useAxiosNormal from "../../hooks/useAxiosNormal";
-
+import Pagination from "../../components/Pagination/Pagination";
+import Skeleton from "react-loading-skeleton";
+import 'react-loading-skeleton/dist/skeleton.css'
 const Blog = () => {
   const user = { role: "admin" };
 
@@ -20,20 +22,13 @@ const Blog = () => {
       })
   }, [currentPage, itemsPerPage]);
 
-  // useEffect(() => {
-  //   fetch(`http://localhost:5000/blog?page=${currentPage}&limit=${itemsPerPage}`)
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       setBlogs(data)
-  //     })
-  // }, [currentPage, itemsPerPage]);
-
+  
 
   const { result } = useLoaderData()
   const totalBlogs = result?.length;
 
   const totalPage = Math.ceil(totalBlogs / itemsPerPage)
-  const pageNumber = [...Array(totalPage).keys()]
+  // const pageNumber = [...Array(totalPage).keys()]
 
   const navigation = useNavigation();
   if (navigation.state === "loading") {
@@ -59,8 +54,8 @@ const Blog = () => {
         {/* New Blog Articles */}
         <section className=" dark:bg-gray-900">
           <div className="container  mx-auto">
-            <div className="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2 xl:grid-cols-3">
-
+            <div className="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2 xl:grid-cols-3 min-h-[75vh]">
+         
               {/* 1s blog card */}
 
               {blogs?.map(blog => <div key={blog._id} className="bg-[#1e2d40] shadow-md shadow-[#111111] rounded-lg border border-gray-500 hover:border-[#0fcda1]">
@@ -116,15 +111,10 @@ const Blog = () => {
               </div>)
               }
             </div>
-            <div className="text-center space-x-4 py-10">
-              <button onClick={() => { currentPage - 1 < totalPage && setCurrentPage(currentPage - 1) }} className={`${currentPage !== 0 ? "bg-[#344a68] hover:bg-gray-600" : "bg-gray-600 btn-disabled"} btn text-white`}>&lt;</button>
-              {
-
-                pageNumber.map(num => <button className={num === currentPage ? "btn bg-[#344a68] hover:bg-gray-600 text-white" : "btn hover:bg-gray-600 bg-[#1e2d40] text-white"} onClick={() => setCurrentPage(num)} key={num}>{num + 1}</button>)
-              }
-              <button onClick={() => { currentPage + 1 < totalPage && setCurrentPage(currentPage + 1) }} className={`${currentPage + 1 < totalPage ? "bg-[#344a68] hover:bg-gray-600" : "bg-gray-600 btn-disabled"} btn text-white`}>&gt;</button>
-
+            <div className="pt-10">
+              <Pagination currentPage={currentPage} totalPage={totalPage} setCurrentPage={setCurrentPage} />
             </div>
+         
           </div>
         </section>
       </div>
