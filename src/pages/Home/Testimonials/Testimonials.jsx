@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FaUserCircle } from "react-icons/fa";
+import { FaUser, FaUserCircle } from "react-icons/fa";
 // import { Pagination } from "swiper";
 import reviewImg1 from "/20230810_120154.png";
 
@@ -29,7 +29,7 @@ const Testimonials = () => {
           title="Inspiring Testimonials"
           descrition="Learn from the best with our highly acclaimed instructors who bring expertise and passion to every class."
         />
-        <Swiper  
+        <Swiper
           slidesPerView={1}
           spaceBetween={10}
           loop={true}
@@ -77,7 +77,7 @@ const Testimonials = () => {
                     ? feedback.thumbExpression.slice(0, 20) + "...."
                     : feedback.thumbExpression}
                 </h2>
-                <p className="min-h-[200px]">
+                <p className="min-h-[160px]">
                   {feedback.details.length > 350
                     ? feedback.details.slice(0, 350) + "...."
                     : feedback.details}
@@ -94,18 +94,18 @@ const Testimonials = () => {
                     readonly
                     className="flex items-center justify-center"
                     emptySymbol={
-                      <FaRegStar className="text-xl mr-3 text-amber-500" />
+                      <FaRegStar className="text-xl mr-2 text-amber-500" />
                     }
                     fullSymbol={
-                      <FaStar className="text-xl mr-3 text-amber-500" />
+                      <FaStar className="text-xl mr-2 text-amber-500" />
                     }
                   />
                 </span>
                 <div className="w-20 h-20 object-cover rounded-full border-[#0fcda1] bg-secondary-color border absolute">
                   {feedback?.image ? (
-                    <img src={feedback.image} className="rounded-full" alt="" />
+                    <img src={feedback.image} className="rounded-full p-1" alt="" />
                   ) : (
-                    <FaUserCircle className=" text-[#0fcda1] text-3xl w-[78px] h-[78px]" />
+                    <FaUser className=" text-[#0fcda1] text-3xl w-full h-full p-1 rounded-full" />
                   )}
                 </div>
               </div>

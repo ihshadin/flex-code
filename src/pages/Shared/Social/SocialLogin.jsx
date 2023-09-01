@@ -4,43 +4,48 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import { useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { toast } from "react-hot-toast";
+import useAxiosNormal from "../../../hooks/useAxiosNormal";
 
 const SocialLogin = () => {
   const { signInWithGoogle, signInWithGitHub } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+  const [axiosNormal] = useAxiosNormal()
 
   const clickSignInWithGitHub = () => {
-    // console.log("click");
-    // console.log("click");
     signInWithGitHub()
       .then((result) => {
         const user = result.user;
-        console.log(user);
         toast.success("Login Successfull!");
         navigate(from, { replace: true });
 
-        // console.log(saveUser);
         const saveUser = {
-          username: user.displayName,
+          name: user.displayName || 'User Name',
           email: user.email,
-          userRole: "general",
+          username: `${user.email.split('@')[0]}${Math.floor(Math.random() * (999 - 100 + 1)) + 100}`,
+          date: new Date(),
+          userRole: 'general',
+          gender: '',
+          address: '',
+          fbLinks: '',
+          LinkLinks: '',
+          webSiteLink: '',
+          mobile: user.phoneNumber || null,
+          dateOfBirth: new Date(),
+          education: [
+            {
+              degreeTitle: '',
+              InstituteName: '',
+            }
+          ],
+          skills: ['JavaScript', 'React', 'Node.js', 'HTML', 'CSS'],
+          userPhotoUrl: user.photoURL || '',
         };
 
-        // console.log(saveUser);
-
-        fetch("http://localhost:5000/student", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(saveUser),
-        })
-          .then((res) => res.json())
+        axiosNormal.post("/users", saveUser)
           .then((data) => {
             console.log(data);
-            toast.success("Login Successfull!");
             navigate(from, { replace: true });
           });
       })
@@ -49,34 +54,36 @@ const SocialLogin = () => {
       });
   };
   const clickSignInWithGoogle = () => {
-    console.log("click");
-    // console.log("click");
+
     signInWithGoogle()
       .then((result) => {
         const user = result.user;
-        console.log(user);
-
-        // navigate(from, { replace: true });
 
         const saveUser = {
-          username: user.displayName,
+          name: user.displayName || 'User Name',
           email: user.email,
-          userRole: "general",
+          username: `${user.email.split('@')[0]}${Math.floor(Math.random() * (999 - 100 + 1)) + 100}`,
+          date: new Date(),
+          userRole: 'general',
+          gender: '',
+          address: '',
+          fbLinks: '',
+          LinkLinks: '',
+          webSiteLink: '',
+          mobile: user.phoneNumber || null,
+          dateOfBirth: new Date(),
+          education: [
+            {
+              degreeTitle: '',
+              InstituteName: '',
+            }
+          ],
+          skills: ['JavaScript', 'React', 'Node.js', 'HTML', 'CSS'],
+          userPhotoUrl: user.photoURL || '',
         };
 
-        // console.log(saveUser);
-
-        fetch("http://localhost:5000/student", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(saveUser),
-        })
-          .then((res) => res.json())
+        axiosNormal.post("/users", saveUser)
           .then((data) => {
-            console.log(data);
-            toast.success("Login Successfull!");
             navigate(from, { replace: true });
           });
       })

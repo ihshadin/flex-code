@@ -26,7 +26,6 @@ import PrivateRoute from "./PrivateRoute";
 import PaymentSuccess from "../pages/Subscribe/PaymentSuccess";
 import PaymentFail from "../pages/Subscribe/PaymentFail";
 import MySubmissions from "../pages/MySubmissions/MySubmissions";
-import AllTestimonials from "../pages/Home/AllTestimonials/AllTestimonials";
 import AdminDashboard from "../pages/AdminDashbord/AdminDashboard";
 import MyPlayGround from "../pages/MyPlayGround/MyPlayGround";
 import PlayGround from "../pages/MyPlayGround/PlayGround/PlayGround";
@@ -34,6 +33,7 @@ import ManageUser from "../pages/AdminDashbord/ManageUser/ManageUser";
 import Dashboard from "../layouts/Dashboard";
 import ExploreDetails from "../pages/Explore/ExploreDetails";
 import AdminCalendar from "../pages/AdminDashbord/AdminCalendar/AdminCalendar";
+import AllTestimonials from "../pages/Home/AllTestimonials/AllTestimonials";
 
 // import ProblemDetails from "../pages/Problems/ProblemDetails";
 

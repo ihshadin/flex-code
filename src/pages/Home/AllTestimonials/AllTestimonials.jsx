@@ -6,6 +6,7 @@ import Rating from 'react-rating';
 import { FaRegStar, FaStar, FaUserCircle } from 'react-icons/fa';
 import './AllTestimonials.css';
 import FlexcodeLoading from '../../../components/FlexcodeLoading/FlexcodeLoading';
+import { Link } from 'react-router-dom';
 
 const AllTestimonials = () => {
     

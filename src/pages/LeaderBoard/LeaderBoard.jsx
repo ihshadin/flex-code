@@ -8,9 +8,6 @@ const LeaderBoard = () => {
 
   const [axiosNormal] = useAxiosNormal();
 
-
-  console.log(solvedProblems.slice(3).length > 0);
-
   useEffect(() => {
     axiosNormal.get('/solvedProblems/leaderboard')
       .then(data => {
