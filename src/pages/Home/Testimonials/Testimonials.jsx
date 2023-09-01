@@ -13,6 +13,7 @@ import { FaRegStar, FaStar } from "react-icons/fa";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import axios from "axios";
 
+
 const Testimonials = () => {
   const [feedbacks, setFeedbacks] = useState([]);
 
