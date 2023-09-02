@@ -4,25 +4,36 @@ import { AuthContext } from "../providers/AuthProvider";
 import NavBar from "../pages/Shared/NavBar/NavBar";
 import Footer from "../pages/Shared/Footer/Footer";
 import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
+import FlexcodeLoading from "../components/FlexcodeLoading/FlexcodeLoading";
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
-
   const [fetchUser, setFetchUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const isAdmin = fetchUser?.userRole;
-  // const isAdmin = "admin";
 
   useEffect(() => {
     fetch(`http://localhost:5000/users?email=${user?.email}`)
       .then((res) => res.json())
-      .then((data) => setFetchUser(data[0]));
-  }, []);
+      .then((data) => {
+        setFetchUser(data[0]);
+        if (data[0]?.userRole === "admin") {
+          setLoading(false);
+        }
+        if (data[0]?.userRole === "genarel") {
+          setLoading(false);
+        }
+      });
+  }, [user]);
 
-  console.log(fetchUser, fetchUser?.userRole);
   const isActiveRoute = (routePath) => {
     return location.pathname === routePath;
   };
+
+  if (loading) {
+    return <FlexcodeLoading />;
+  }
 
   return (
     <div>
