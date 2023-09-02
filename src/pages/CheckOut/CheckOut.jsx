@@ -28,7 +28,7 @@ const CheckOut = () => {
     data.number = number;
     data.currency = "BDT";
 
-    fetch("http://localhost:5000/payment", {
+    fetch("https://flex-code-server.vercel.app/payment", {
       method: "POST",
       headers: {
         "content-type": "application/json",
