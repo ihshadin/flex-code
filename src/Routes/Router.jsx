@@ -6,11 +6,44 @@ import Blog from "../pages/Blog/Blog";
 import Home from "../pages/Home/Home/Home";
 import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 import Explore from "../pages/Explore/Explore";
+import Problems from "../pages/Problems/Problems";
+import LangBasedProblems from "../pages/Problems/LangBasedProblems";
+import ProfileEdit from "../pages/Dashboard/ProfileEdit/ProfileEdit";
+import SingleBlog from "../pages/Blog/SingleBlog/SingleBlog";
+import Feedback from "../components/Feedback/Feedback";
+import ComingSoon from "../components/ComingSoon/ComingSoon";
+import AddBlog from "../pages/Blog/AddBlog/AddBlog";
+import Subscribe from "../pages/Subscribe/Subscribe";
+import ProblemDetails from "../pages/Problems/ProblemDetails";
+import NoteBook from "../pages/Dashboard/NoteBook/NoteBook";
+import SingleNote from "../pages/Dashboard/NoteBook/SingleNote";
+import AddNote from "../pages/Dashboard/NoteBook/AddNote";
+import CheckOut from "../pages/CheckOut/CheckOut";
+import ErrorPage from "../pages/404Error/ErrorPage";
+import LeaderBoard from "../pages/LeaderBoard/LeaderBoard";
+import AddProblemSolving from "../pages/Problems/AddProblemSolving/AddProblemSolving";
+import PrivateRoute from "./PrivateRoute";
+import PaymentSuccess from "../pages/Subscribe/PaymentSuccess";
+import PaymentFail from "../pages/Subscribe/PaymentFail";
+import MySubmissions from "../pages/MySubmissions/MySubmissions";
+import AdminDashboard from "../pages/AdminDashbord/AdminDashboard";
+import MyPlayGround from "../pages/MyPlayGround/MyPlayGround";
+import PlayGround from "../pages/MyPlayGround/PlayGround/PlayGround";
+import ManageUser from "../pages/AdminDashbord/ManageUser/ManageUser";
+// import Dashboard from "../layouts/Dashboard";
+import ExploreDetails from "../pages/Explore/ExploreDetails";
+import AdminCalendar from "../pages/AdminDashbord/AdminCalendar/AdminCalendar";
+import AllTestimonials from "../pages/Home/AllTestimonials/AllTestimonials";
+import Dashboard from "../layouts/Dashboard";
+
+// import ProblemDetails from "../pages/Problems/ProblemDetails";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <ErrorPage />,
+
     children: [
       {
         path: "/",
@@ -27,15 +60,136 @@ const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog />,
+        loader: () => fetch(`https://flex-code-server.vercel.app/blog/all`),
       },
       {
-        path: "/dashboard",
-        element: <DashboardHome></DashboardHome>,
+        path: "/blog/:id",
+        element: <SingleBlog />,
+        loader: ({ params }) =>
+          fetch(`https://flex-code-server.vercel.app/blog/${params.id}`),
+      },
+
+      {
+        path: "add-note",
+        element: <AddNote />,
       },
       {
-        path: '/explore',
-        element: <Explore/>
-      }
+        path: "/problems",
+        element: <Problems />,
+      },
+      {
+        path: "/problems/:languages",
+        element: <LangBasedProblems />,
+        loader: () => fetch(`https://flex-code-server.vercel.app/problem/all`),
+      },
+      {
+        path: "/problem/:id",
+        element: <ProblemDetails />,
+        // loader: ({ params }) => fetch(`http://localhost:5173/problems.json/${params.id}`)
+      },
+      // {
+      //   path: "/dashboard",
+      //   element: <DashboardHome />,
+      // },
+      {
+        path: "/explore",
+        element: <Explore />,
+      },
+      {
+        path: "/feedback",
+        element: <Feedback />,
+      },
+      {
+        path: "/profile",
+        element: <ProfileEdit />,
+      },
+      {
+        path: "/My-playground",
+        element: <MyPlayGround />,
+      },
+      {
+        path: "/playground",
+        element: <PlayGround />,
+      },
+      {
+        path: "/notebooks",
+        element: <NoteBook />,
+      },
+
+      {
+        path: "/notebook/:id",
+        element: <SingleNote />,
+      },
+      {
+        path: "/my-submittions",
+        element: <MySubmissions />,
+      },
+      {
+        path: "/notebook",
+        element: <ComingSoon />,
+      },
+      {
+        path: "/subscribe",
+        element: (
+          <PrivateRoute>
+            <Subscribe />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/checkout",
+        element: <CheckOut />,
+      },
+      {
+        path: "/payment/success/:tranId",
+        element: <PaymentSuccess />,
+      },
+      {
+        path: "/payment/fail/:tranId",
+        element: <PaymentFail />,
+      },
+      {
+        path: "/submissions",
+        element: <ComingSoon />,
+      },
+      {
+        path: "/leader-board",
+        element: <LeaderBoard />,
+      },
+      {
+        path: "/allTestimonials",
+        element: <AllTestimonials />,
+      },
+      {
+        path: "/exploreDetails/:id",
+        element: <ExploreDetails></ExploreDetails>,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
+      {
+        path: "",
+        element: <AdminDashboard />,
+      },
+      {
+        path: "manageuser",
+        element: <ManageUser />,
+      },
+      {
+        path: "add-problems",
+        element: <AddProblemSolving />,
+      },
+      {
+        path: "add-blog",
+        element: <AddBlog />,
+      },
+      {
+        path: "calendar",
+        element: <AdminCalendar />,
+      },
     ],
   },
 ]);

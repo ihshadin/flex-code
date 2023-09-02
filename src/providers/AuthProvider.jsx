@@ -13,6 +13,7 @@ import {
 
 import { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase.config";
+import axios from "axios";
 
 export const AuthContext = createContext(null);
 
@@ -24,8 +25,9 @@ const githubProvider = new GithubAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [reload, setReload] = useState(null);
 
-  console.log("From AuthProvider", user);
+  // console.log("From AuthProvider", user);
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -66,17 +68,28 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+
+      if (currentUser) {
+        axios.post('https://flex-code-server.vercel.app/jwt', { email: currentUser.email })
+          .then(data => {
+            localStorage.setItem('access-token', data.data.token);
+            setLoading(false);
+          })
+      } else {
+        localStorage.removeItem('access-token')
+      }
       setLoading(false);
     });
     return () => {
       return unsubscribe();
     };
-  }, []);
+  }, [reload]);
 
   const authInfo = {
     user,
     loading,
     setLoading,
+    setReload,
     createUser,
     signIn,
     signInWithGoogle,

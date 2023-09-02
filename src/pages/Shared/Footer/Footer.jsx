@@ -1,142 +1,112 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import logo from '../../../assets/flex-code1.png'
 import Swal from 'sweetalert2';
+import { toast } from 'react-hot-toast';
+import emailjs from '@emailjs/browser';
 
 const Footer = () => {
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        Swal.fire({
-            title: "Success Your Submit!",
-            text: "Do you want to continue",
-            icon: "success",
-            confirmButtonText: "OK",
-        });
-        e.target.reset()
+    
+    const form = useRef();
+
+    const sendEmail = (e) => {
+        e.preventDefault();
+
+        emailjs.sendForm('service_1u3nstp', 'template_2vzgr9e', form.current, 'CS7gQ2h1oiq4bD8nk')
+            .then((result) => {
+                console.log(result.text);
+                toast.success("Submitted successfully. We will contact you ASAP.")
+                e.target.reset();
+            }, (error) => {
+                console.log(error.text);
+            });
     };
+
     return (
-        <div>
-            <footer className="footer p-10 bg-[#1e2d40] text-white">
-                <div className="sm:col-span-2">
-                    <div>
-                        <img src={logo} alt="logo" className="w-[11rem]" />
-                    </div>
-                    <div className="mt-4 lg:max-w-sm">
-                        <p className="text-sm text-white">
+        <footer className='bg-secondary-color'>
+            <div className='flexcode-container'>
+                <div className="flex flex-col md:flex-row justify-between gap-5 text-white mb-5 pt-10 md:pt-0">
+                    <div className='w-full md:w-2/6 text-center mb-3 md:mb-0'>
+                        <div>
+                            <img src={logo} alt="logo" className="w-[11rem] mx-auto md:mx-0 pb-2" />
+                        </div>
+                        <p className="mt-3 text-sm text-white md:text-left">
                             FlexCode is a problem-solving platform that helps coding enthusiasts improve their skills through engaging challenges and interactive learning. Keep an eye on tech news sources and programming blogs, as they might cover new and emerging platforms.
                         </p>
                     </div>
-                </div>
-                <div>
-                    <span className="footer-title">Services</span>
-                    <a className="link link-hover mb-1">Branding</a>
-                    <a className="link link-hover mb-1">Design</a>
-                    <a className="link link-hover mb-1">Marketing</a>
-                    <a className="link link-hover mb-1">Advertisement</a>
-                    <a className="link link-hover mb-1">Custom Solutions</a>
-                    <a className="link link-hover mb-1">Consultation</a>
-                    <a className="link link-hover mb-1">Client Testimonials</a>
-                </div>
-                <div>
-                    <span className="footer-title">Company</span>
-                    <a className="link link-hover mb-1">About us</a>
-                    <a className="link link-hover mb-1">Contact</a>
-                    <a className="link link-hover mb-1">Jobs</a>
-                    <a className="link link-hover mb-1">Press kit</a>
-                    <a className="link link-hover mb-1">Our Team</a>
-                    <a className="link link-hover mb-1">Locations</a>
-                    <a className="link link-hover mb-1">FAQs</a>
-                </div>
-                <div>
-                    <span className="footer-title">Legal</span>
-                    <a className="link link-hover mb-1">Terms of use</a>
-                    <a className="link link-hover mb-1">Privacy policy</a>
-                    <a className="link link-hover mb-1">Cookie policy</a>
-                    <a className="link link-hover mb-1">Disclaimer</a>
-                    <a className="link link-hover mb-1">Legal Jurisdiction</a>
-                    <a className="link link-hover mb-1">Copyright Notice</a>
-                    <a className="link link-hover mb-1">GDPR Compliance</a>
-                </div>
-                <div className="w-full ">
-                    <div className="max-w-4xl">
-                        <h2 className="text-3xl md:text-3xl font-bold mb-3">
+                    <div className='w-full md:w-2/6 flex justify-between'>
+                        <div className='w-1/2 flex flex-col'>
+                            <span className="font-semibold text-xl mb-2">Services</span>
+                            <a className="link link-hover mb-1">Branding</a>
+                            <a className="link link-hover mb-1">Design</a>
+                            <a className="link link-hover mb-1">Marketing</a>
+                            <a className="link link-hover mb-1">Advertisement</a>
+                            <a className="link link-hover mb-1">Custom Solutions</a>
+                            <a className="link link-hover mb-1">Consultation</a>
+                            <a className="link link-hover mb-1">Client Testimonials</a>
+                        </div>
+                        {/* <div>
+                        <span className="">Company</span>
+                        <a className="link link-hover mb-1">About us</a>
+                        <a className="link link-hover mb-1">Contact</a>
+                        <a className="link link-hover mb-1">Jobs</a>
+                        <a className="link link-hover mb-1">Press kit</a>
+                        <a className="link link-hover mb-1">Our Team</a>
+                        <a className="link link-hover mb-1">Locations</a>
+                        <a className="link link-hover mb-1">FAQs</a>
+                    </div> */}
+                        <div className='w-1/2 flex flex-col gap-1'>
+                            <span className="font-semibold text-xl mb-2">Legal</span>
+                            <a className="link link-hover mb-1">Terms of use</a>
+                            <a className="link link-hover mb-1">Privacy policy</a>
+                            <a className="link link-hover mb-1">Cookie policy</a>
+                            <a className="link link-hover mb-1">Disclaimer</a>
+                            <a className="link link-hover mb-1">Legal Jurisdiction</a>
+                            <a className="link link-hover mb-1">Copyright Notice</a>
+                            <a className="link link-hover mb-1">GDPR Compliance</a>
+                        </div>
+                    </div>
+                    <div className='w-full md:w-2/6'>
+                        <h2 className="text-xl md:text-2xl font-semibold mb-3">
                             Contact Us
                         </h2>
-                        <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-2">
-                            <div>
-                                <label
-                                    htmlFor="name"
-                                    className="block text-[#00ffc3] font-bold mb-2"
-                                >
-                                    Name
-                                </label>
-                                <input
-                                    type="text"
-                                    id="name"
-                                    name="name"
-                                    placeholder="Your name"
-                                    required
-                                    className="border-2 text-neutral  p-2 w-full rounded-md focus:outline-none focus:border-[#00ffc3]"
-                                />
+                        <form ref={form} onSubmit={sendEmail}>
+                            <div className='grid grid-cols-2 gap-3 mb-3'>
+                                <div>
+                                    <label htmlFor="con_name" className="text-sm font-medium p1 block">Your name</label>
+                                    <input type="text" name="user_name" id='con_name' className="w-full block px-5 py-1 rounded-lg border border-slate-500 bg-secondary-color outline-none focus:border-[#0fcda1]" placeholder="John doe" required />
+                                </div>
+                                <div>
+                                    <label htmlFor="con_email" className="text-sm font-medium p1 block">Your Email</label>
+                                    <input type="email" name="user_email" id='con_email' className="w-full block px-5 py-1 rounded-lg border border-slate-500 bg-secondary-color outline-none focus:border-[#0fcda1]" placeholder="example@gmail.com" required />
+                                </div>
                             </div>
                             <div>
-                                <label
-                                    htmlFor="email"
-                                    className="block text-[#00ffc3] font-bold mb-2"
-                                >
-                                    Email
-                                </label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    placeholder="Your Email"
-                                    required
-                                    className="border-2 text-neutral  p-2 w-full rounded-md focus:outline-none focus:border-[#00ffc3]"
-                                />
+                                <label htmlFor="con_message" className="text-sm font-medium p1 block">Message</label>
+                                <textarea rows={3} name="message" id='con_message' className="w-full block px-5 py-1 rounded-lg border border-slate-500 bg-secondary-color outline-none focus:border-[#0fcda1]" placeholder="Write you Message" />
                             </div>
-                            <div className="col-span-2">
-                                <label
-                                    htmlFor="message"
-                                    className="block text-[#00ffc3] font-bold mb-2"
-                                >
-                                    Message
-                                </label>
-                                <textarea
-                                    id="message"
-                                    name="message"
-                                    placeholder="Your Message"
-                                    required
-                                    className="border-2 text-neutral  p-2 w-full rounded-md focus:outline-none focus:border-[#00ffc3]"
-                                ></textarea>
-                            </div>
-                            <div className="col-span-2">
-                                <input
-                                    value="Submit"
-                                    type="submit"
-                                    className="btn bg-[#1e2d40]  hover:bg-[#1e2d40] hover:border-2 hover:border-[#00ffc3] hover:text-[#00ffc3] text-white"
-                                ></input>
+                            <div className="mt-3 text-right">
+                                <input type="submit" value="Send" className="flexcode-button text-xs !font-medium !border py-1 px-5" />
                             </div>
                         </form>
                     </div>
                 </div>
-            </footer>
-            <div class="flex bg-[#1e2d40] flex-col-reverse justify-between pt-5 pb-10 border-t lg:flex-row border-[#00ffc3]">
-                <p class="text-sm text-gray-300 md:pl-10 px-10">© Copyright 2023 Company. All rights reserved.</p>
-                <ul class="flex flex-col mb-3 space-y-2 lg:mb-0 sm:space-y-0 sm:space-x-5 sm:flex-row md:pr-16 px-10">
-                    <li>
-                        <a href="#"
-                            class="text-sm text-gray-300 transition-colors duration-300 hover:text-deep-purple-accent-400">Privacy
-                            &amp; Cookies Policy
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            class="text-sm text-gray-300 transition-colors duration-300 hover:text-deep-purple-accent-400">Disclaimer
-                        </a>
-                    </li>
-                </ul>
+                <div className="flex bg-[#1e2d40] flex-col-reverse justify-between pt-5 border-t lg:flex-row border-[#0fcda156]">
+                    <p className="text-sm text-gray-300 md:pl-10 px-10">© Copyright 2023 Company. All rights reserved.</p>
+                    <ul className="flex mb-3 lg:mb-0 space-x-5 sm:flex-row md:pr-16 px-10">
+                        <li>
+                            <span className="text-sm text-gray-300 transition-colors duration-300 hover:text-deep-purple-accent-400">
+                                Privacy &amp; Cookies Policy
+                            </span>
+                        </li>
+                        <li>
+                            <span className="text-sm text-gray-300 transition-colors duration-300 hover:text-deep-purple-accent-400">
+                                Disclaimer
+                            </span>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
+        </footer>
     );
 };
 

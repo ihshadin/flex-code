@@ -1,18 +1,24 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
-import NavBar from '../pages/Shared/NavBar/NavBar';
-import Footer from '../pages/Shared/Footer/Footer';
+import React from "react";
+import { Outlet, ScrollRestoration, useNavigation } from "react-router-dom";
+import NavBar from "../pages/Shared/NavBar/NavBar";
+import Footer from "../pages/Shared/Footer/Footer";
+import FlexcodeLoading from "../components/FlexcodeLoading/FlexcodeLoading";
 
 const MainLayout = () => {
-    return (
-        <>
-            <NavBar />
-         <main className='min-h-screen'>
-         <Outlet />
-         </main>
-            <Footer />
-        </>
-    );
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return <FlexcodeLoading />;
+  }
+  return (
+    <>
+      <NavBar />
+      <main className="min-h-[calc(100vh-515px)]">
+        <Outlet />
+      </main>
+      <Footer />
+      <ScrollRestoration></ScrollRestoration>
+    </>
+  );
 };
 
 export default MainLayout;
