@@ -38,7 +38,7 @@ const ErrorPage = () => {
             <article>
               <p>Uh oh! Looks like you got lost. <br />Go back to the homepage if you dare!</p>
               <Link to={'/'}>
-                <button className=''>Back to home</button>
+                <button className='flexcode-button py-2 px-5'>Back to home</button>
               </Link>
             </article>
           </div>
