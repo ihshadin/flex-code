@@ -64,6 +64,7 @@ const ProfileEdit = () => {
     };
 
     axiosNormal.patch("/users", addProfilUpdate).then((data) => {
+      console.log(data);
       if (data.acknowledged) {
         Swal.fire({
           title: "Your Profile update Successfull!",
