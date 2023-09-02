@@ -6,6 +6,7 @@ import "./AddProblemSolving.css";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { FaPlus } from "react-icons/fa";
 import useAxiosNormal from "../../../hooks/useAxiosNormal";
+import PageBannerTitle from "../../../components/BannerTitle/PageBannerTitle";
 const AddProblemSolving = () => {
   const { user } = useContext(AuthContext);
   const [axiosNormal] = useAxiosNormal();
@@ -68,19 +69,16 @@ const AddProblemSolving = () => {
 
   return (
     <div className="flexcode-container">
-      <section className="py-6 bg-[#1e2d40] text-white rounded-md ">
-        <div className="container mx-auto flex flex-col justify-around p-4 text-center md:p-10 lg:flex-row">
-          <div className="flex flex-col justify-center lg:text-left">
-            <p className="mb-1 text-sm font-medium text-center tracki uppercase dark:text-violet-400">
-              Share your knowledge with other
-            </p>
-            <h1 className="py-2 text-3xl font-semibold leadi title-font">
-              Add problems to solve
-            </h1>
-          </div>
-        </div>
+      <section className="py-6">
+      <PageBannerTitle 
+     title="Add Problems"
+     shortDesc={"Add any types of creative problems"}
+     btnLink={"/problems"}
+     btnText1={"All problems"}
+     btnText2={"Go to the all problems"}
+     />
       </section>
-      <form onSubmit={handleSubmit(onSubmit)} className="w-2/3 mx-auto my-5 ">
+      <form onSubmit={handleSubmit(onSubmit)} className="w-5/6 mx-auto my-5 ">
         {/* Problem Title*/}
 
         <div className="-mx-3">
@@ -94,7 +92,7 @@ const AddProblemSolving = () => {
               </div>
               <input
                 type="text"
-                className="w-full -ml-10 pl-10 pr-3 bg-[#1e2d40] py-2 rounded-lg border-2 text-white border-gray-500 outline-none focus:border-[#00ffc3]"
+                className="w-full -ml-10 pl-10 pr-3 bg-[#1e2d40] py-2 rounded-lg bordertext-white border-gray-500 outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
                 placeholder="Problem Title"
                 {...register("title", { required: true })}
               />
@@ -115,8 +113,8 @@ const AddProblemSolving = () => {
               </div>
               <input
                 type="text"
-                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 
-                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
+                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border
+                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
                 placeholder="Write Function Name"
                 {...register("functionName", { required: true })}
               />
@@ -137,7 +135,7 @@ const AddProblemSolving = () => {
               </div>
               <textarea
                 rows={4}
-                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2  text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
+                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
                 placeholder="Write details of problems"
                 {...register("problemsDetails", { required: true })}
               />
@@ -167,8 +165,8 @@ const AddProblemSolving = () => {
               </div> */}
               {/* <input
                 type="text"
-                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 
-                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
+                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border
+                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
                 placeholder="Type your highlight words"
                 {...register("highlightWords", { required: true })}
               /> */}
@@ -193,8 +191,8 @@ const AddProblemSolving = () => {
                       </div>
                       <input
                         type="text"
-                        className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 
-                 text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
+                        className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border
+                 text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
                         placeholder={`Type example ${index + 1} `}
                         {...register(`example${index}`, { required: true })}
                       />
@@ -213,8 +211,8 @@ const AddProblemSolving = () => {
                       </div>
                       <input
                         type="text"
-                        className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 
-                 text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
+                        className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border
+                 text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
                         placeholder={`Input for example ${index + 1} `}
                         {...register(`input${index}`, { required: true })}
                       />
@@ -233,8 +231,8 @@ const AddProblemSolving = () => {
                       </div>
                       <input
                         type="text"
-                        className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 
-                 text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
+                        className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border
+                 text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
                         placeholder={`Output for example ${index + 1} `}
                         {...register(`output${index}`, { required: true })}
                       />
@@ -263,8 +261,8 @@ const AddProblemSolving = () => {
               </div>
               <input
                 type="text"
-                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 
-                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
+                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border
+                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
                 placeholder="Type your parameter Name"
                 {...register("parameterName", { required: true })}
               />
@@ -285,8 +283,8 @@ const AddProblemSolving = () => {
               </div>
               <input
                 type="text"
-                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 
-                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
+                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border
+                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
                 placeholder="Type your level"
                 {...register("level", { required: true })}
               />
@@ -307,8 +305,8 @@ const AddProblemSolving = () => {
               </div>
               <input
                 type="text"
-                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 
-                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
+                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border
+                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
                 placeholder="Type your Language"
                 {...register("language", { required: true })}
               />
