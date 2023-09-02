@@ -70,13 +70,13 @@ const AddProblemSolving = () => {
   return (
     <div className="flexcode-container">
       <section className="py-6">
-      <PageBannerTitle 
-     title="Add Problems"
-     shortDesc={"Add any types of creative problems"}
-     btnLink={"/problems"}
-     btnText1={"All problems"}
-     btnText2={"Go to the all problems"}
-     />
+        <PageBannerTitle
+          title="Add Problems"
+          shortDesc={"Add any types of creative problems"}
+          btnLink={"/problems"}
+          btnText1={"All problems"}
+          btnText2={"Go to the all problems"}
+        />
       </section>
       <form onSubmit={handleSubmit(onSubmit)} className="w-5/6 mx-auto my-5 ">
         {/* Problem Title*/}

@@ -17,7 +17,7 @@ const Dashboard = () => {
   useEffect(() => {
     axiosNormal.get(`/users?email=${user?.email}`)
       .then((data) => setFetchUser(data[0]));
-  }, []);
+  }, [user]);
 
   console.log(fetchUser, fetchUser?.userRole);
   const isActiveRoute = (routePath) => {
