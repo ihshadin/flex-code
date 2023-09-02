@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Top3Card from "./Top3Card";
 import { Link } from "react-router-dom";
 import useAxiosNormal from "../../hooks/useAxiosNormal";
+import { FaUser } from "react-icons/fa";
 
 const LeaderBoard = () => {
   const [solvedProblems, setSolvedProblems] = useState([]);

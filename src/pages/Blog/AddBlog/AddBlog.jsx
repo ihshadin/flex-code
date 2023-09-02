@@ -40,13 +40,13 @@ const AddBlog = () => {
   return (
     <div className="flexcode-container">
       <section className="py-6">
-     <PageBannerTitle 
-     title="Add Blogs"
-     shortDesc={"Share your knowledge with everyone"}
-     btnLink={"/blog"}
-     btnText1={"All blogs"}
-     btnText2={"Go to the all blogs"}
-     />
+        <PageBannerTitle
+          title="Add Blogs"
+          shortDesc={"Share your knowledge with everyone"}
+          btnLink={"/blog"}
+          btnText1={"Our Blogs"}
+          btnText2={"View All Blogs"}
+        />
       </section>
       <form onSubmit={handleSubmit(onSubmit)} className="w-5/6 mx-auto my-5 ">
         <div className="-mx-3">
