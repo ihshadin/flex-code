@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { FaUser, FaUserAlt } from "react-icons/fa";
+import './NavBar.css'
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -57,11 +58,10 @@ const NavBar = () => {
 
   return (
     <nav
-      className={`top-0 backdrop-blur-sm z-10 w-full ${
-        location.pathname === "/" || location.pathname === "/my-submittions"
+      className={`top-0 backdrop-blur-sm z-10 w-full ${location.pathname === "/" || location.pathname === "/my-submittions"
           ? "fixed"
           : "sticky"
-      }`}
+        }`}
     >
       <div className="max-w-[1280px] w-full mx-auto bg-inherit py-2 px-3 lg:flex justify-between items-center">
         <div className="flex items-center justify-between">
@@ -118,21 +118,19 @@ const NavBar = () => {
         </div>
         <div className="flex items-center">
           <div
-            className={`${
-              isMenuOpen ? "block" : "hidden"
-            } lg:flex lg:w-auto mt-4 lg:mt-0`}
+            className={`${isMenuOpen ? "block" : "hidden"
+              } lg:flex lg:w-auto mt-4 lg:mt-0`}
             id="mobile-menu"
           >
-            <ul className="flex flex-col gap-3 md:gap-0  lg:text-left lg:flex-row lg:space-x-8 lg:items-center">
+            <ul className="flex flex-col gap-3 md:gap-0 md:mt-[1.5px] lg:text-left lg:flex-row lg:space-x-8 lg:items-center">
               <li>
                 <Link
                   to="/"
                   onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${
-                    isActiveRoute("/")
-                      ? "font-bold border-b-2 pb-1 border-[#0fcda1]"
+                  className={`text-white hover:text-gray-300 pb-1 nav-effect${isActiveRoute("/")
+                      ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
                       : ""
-                  }`}
+                    }`}
                 >
                   Home
                 </Link>
@@ -141,11 +139,10 @@ const NavBar = () => {
                 <Link
                   to="/problems"
                   onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#0fcda1] transition-all duration-300 ${
-                    isActiveRoute("/problems")
-                      ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
+                  className={`text-white hover:text-gray-300 pb-1 nav-effect${isActiveRoute("/problems")
+                      ? "font-bold md:border-b-2 pb-[1.9px] border-[#0fcda1]"
                       : ""
-                  }`}
+                    }`}
                 >
                   Problems
                 </Link>
@@ -154,11 +151,10 @@ const NavBar = () => {
                 <Link
                   to="/blog"
                   onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#0fcda1] transition-all duration-300 ${
-                    isActiveRoute("/blog")
-                      ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
+                  className={`text-white hover:text-gray-300 pb-1 nav-effect${isActiveRoute("/blog")
+                      ? "font-bold md:border-b-2 pb-[1.9px] border-[#0fcda1]"
                       : ""
-                  }`}
+                    }`}
                 >
                   Blogs
                 </Link>
@@ -167,11 +163,10 @@ const NavBar = () => {
                 <Link
                   to="/subscribe"
                   onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#0fcda1] transition-all duration-300 ${
-                    isActiveRoute("/subscribe")
-                      ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
+                  className={`text-white hover:text-gray-300 pb-1 nav-effect${isActiveRoute("/subscribe")
+                      ? "font-bold md:border-b-2 pb-[1.9px] border-[#0fcda1]"
                       : ""
-                  }`}
+                    }`}
                 >
                   Subscribe
                 </Link>
@@ -180,11 +175,10 @@ const NavBar = () => {
                 <Link
                   to="/explore"
                   onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${
-                    isActiveRoute("/explore")
-                      ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
+                  className={`text-white hover:text-gray-300 pb-1 nav-effect${isActiveRoute("/explore")
+                      ? "font-bold md:border-b-2 pb-[1.9px] border-[#0fcda1]"
                       : ""
-                  }`}
+                    }`}
                 >
                   Explore
                 </Link>
@@ -195,18 +189,16 @@ const NavBar = () => {
                   <button
                     ref={dropdownRef}
                     onClick={handleUserClick}
-                    className={`flex items-center ${
-                      userClicked ? "text-gray-300" : "text-white"
-                    }`}
+                    className={`flex items-center ${userClicked ? "text-gray-300" : "text-white"
+                      }`}
                   >
                     {user.photoURL ? (
                       <>
                         <img
-                          className={`h-9 w-9 rounded-full ${
-                            userClicked
+                          className={`h-9 w-9 rounded-full ${userClicked
                               ? "border-2 border-[#0fcda1]"
                               : "border-2 border-transparent"
-                          } `}
+                            } `}
                           title={user?.displayName}
                           src={user?.photoURL}
                           alt=""
@@ -214,11 +206,10 @@ const NavBar = () => {
                       </>
                     ) : (
                       <FaUser
-                        className={`h-8 w-8 rounded-full p-1 ${
-                          userClicked
+                        className={`h-8 w-8 rounded-full p-1 ${userClicked
                             ? "border-2 border-[#0fcda1]"
                             : "border-2 border-white"
-                        } `}
+                          } `}
                         title={user?.displayName}
                       ></FaUser>
                     )}
@@ -227,9 +218,8 @@ const NavBar = () => {
                   {/* start user dropdown  */}
                   {user?.email && (
                     <div
-                      className={`absolute left-0 md:left-auto md:right-0 mt-2 z-10 ${
-                        userClicked ? "block" : "hidden"
-                      }`}
+                      className={`absolute left-0 md:left-auto md:right-0 mt-2 z-10 ${userClicked ? "block" : "hidden"
+                        }`}
                     >
                       <div className="bg-[#1e2d40] bg-opacity-95 transition-all duration-700 w-[18rem] py-2 rounded-md shadow-md overflow-hidden">
                         <div className="px-4 py-2">
@@ -273,6 +263,15 @@ const NavBar = () => {
                               <span className="inline-block h-2 w-2 rounded-full bg-blue-500"></span>
                             </span>
                             <span>Profile</span>
+                          </Link>
+                          <Link
+                            to="/leader-board"
+                            className="flex items-center px-4 py-2 text-white hover:bg-[#00ffc3] hover:bg-opacity-40"
+                          >
+                            <span className="mr-2  flex">
+                              <span className="inline-block h-2 w-2 rounded-full bg-blue-300"></span>
+                            </span>
+                            <span>Leader Board</span>
                           </Link>
                           <Link
                             to="/notebooks"
@@ -322,24 +321,22 @@ const NavBar = () => {
                     <Link
                       to="/login"
                       onClick={closeMenu}
-                      className={`text-white font-semibold hover:text-gray-300  pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${
-                        isActiveRoute("/login")
-                          ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
+                      className={`text-white hover:text-gray-300 pb-1 nav-effect${isActiveRoute("/login")
+                          ? "font-bold md:border-b-2 pb-[1.9px] border-[#0fcda1]"
                           : ""
-                      }`}
+                        }`}
                     >
-                      Login
+                      Sing In
                     </Link>
                   </li>
                   <li>
                     <Link
                       to="/signup"
                       onClick={closeMenu}
-                      className={`text-white font-semibold hover:text-gray-300  pb-1 hover:border-b-2 hover:border-[#00ffc3] transition-all duration-300 ${
-                        isActiveRoute("/signup")
-                          ? "font-bold md:border-b-2 pb-1 border-[#0fcda1]"
+                      className={`text-white hover:text-gray-300 pb-1 nav-effect${isActiveRoute("/signup")
+                          ? "font-bold md:border-b-2 pb-[1.9px] border-[#0fcda1]"
                           : ""
-                      }`}
+                        }`}
                     >
                       Sign Up
                     </Link>

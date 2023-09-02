@@ -60,7 +60,7 @@ const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog />,
-        loader: () => fetch(`http://localhost:5000/blog/all`),
+        loader: () => fetch(`https://flex-code-server.vercel.app/blog/all`),
       },
       {
         path: "/blog/:id",
@@ -80,6 +80,7 @@ const router = createBrowserRouter([
       {
         path: "/problems/:languages",
         element: <LangBasedProblems />,
+        loader: () => fetch(`https://flex-code-server.vercel.app/problem/all`),
       },
       {
         path: "/problem/:id",

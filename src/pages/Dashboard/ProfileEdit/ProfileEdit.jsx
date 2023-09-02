@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 
 import Select from "react-select";
 import PageBannerTitle from "../../../components/BannerTitle/PageBannerTitle";
+import useAxiosNormal from "../../../hooks/useAxiosNormal";
 
 const ProfileEdit = () => {
   const { user } = useContext(AuthContext);
@@ -14,6 +15,7 @@ const ProfileEdit = () => {
   const navigation = useNavigation();
   const navigate = useNavigate();
   const inputSkills = selectedSkills?.map((item) => item?.value);
+  const [axiosNormal] = useAxiosNormal();
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
@@ -38,7 +40,6 @@ const ProfileEdit = () => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
-    const username = form.name.value;
     const dateOfBirth = form.date.value;
     const address = form.address.value;
     const mobile = parseInt(form.mobile.value);
@@ -51,7 +52,6 @@ const ProfileEdit = () => {
 
     const addProfilUpdate = {
       address,
-      username,
       mobile,
       skills,
       gender,
@@ -62,30 +62,73 @@ const ProfileEdit = () => {
       github,
       dateOfBirth,
     };
-    fetch("http://localhost:5000/users", {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(addProfilUpdate),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.acknowledged) {
-          Swal.fire({
-            title: "Your Profile update Successfull!",
-            text: "Go to dashboard",
-            icon: "success",
-            confirmButtonText: "OK",
-          }).then((result) => {
-            if (result.isConfirmed) {
-              navigate("/dashboard");
-            }
-          });
-        }
-        form.reset();
-      });
+
+    axiosNormal.patch("/users", addProfilUpdate).then((data) => {
+      if (data.acknowledged) {
+        Swal.fire({
+          title: "Your Profile update Successfull!",
+          text: "Go to dashboard",
+          icon: "success",
+          confirmButtonText: "OK",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            navigate("/dashboard");
+          }
+        });
+      }
+      form.reset();
+    });
   };
+
+  // fetch("http://localhost:5000/users", {
+  //   method: "PATCH",
+  //   headers: {
+  //     "content-type": "application/json",
+  //   },
+  //   body: JSON.stringify(addProfilUpdate),
+  // })
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     if (data.acknowledged) {
+  //       Swal.fire({
+  //         title: "Your Profile update Successfull!",
+  //         text: "Go to dashboard",
+  //         icon: "success",
+  //         confirmButtonText: "OK",
+  //       }).then((result) => {
+  //         if (result.isConfirmed) {
+  //           navigate("/dashboard");
+  //         }
+  //       });
+  //     }
+  //     form.reset();
+  //   });
+
+  // const handleSaveClick = (value) => {
+  //   const upDate = {
+  //     value: value,
+  //     email: user?.email,
+  //   };
+  //   console.log(value);
+
+  //   axiosNormal.patch("/users", upDate).then((data) => {
+  //     console.log(data);
+  //   });
+
+  // fetch("https://flex-code-server.vercel.app/users", {
+  //   method: "PATCH",
+  //   headers: {
+  //     "content-type": "application/json",
+  //   },
+  //   body: JSON.stringify(upDate),
+  // })
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     console.log(data);
+  //     // toast.success("Login Successfull!");
+  //     // navigate(from, { replace: true });
+  //   });
+  // };
   return (
     <section className="-mt-10">
       <div className="flexcode-container">

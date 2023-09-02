@@ -5,8 +5,11 @@ import Swal from "sweetalert2";
 import "./AddProblemSolving.css";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { FaPlus } from "react-icons/fa";
+import useAxiosNormal from "../../../hooks/useAxiosNormal";
+import PageBannerTitle from "../../../components/BannerTitle/PageBannerTitle";
 const AddProblemSolving = () => {
   const { user } = useContext(AuthContext);
+  const [axiosNormal] = useAxiosNormal();
   const [selectedOption, setSelectedOption] = useState(null);
   const [visibleDivs, setVisibleDivs] = useState([]);
 
@@ -16,8 +19,8 @@ const AddProblemSolving = () => {
   const [isPremium, setIsPremium] = useState(null);
   const output = selectedOption?.map((item) => item?.value);
   const { register, handleSubmit, reset, getValues } = useForm();
+
   const onSubmit = (data) => {
-   
     const examples = [];
     for (let i = 0; i < visibleDivs.length; i++) {
       const exampleData = {
@@ -39,18 +42,12 @@ const AddProblemSolving = () => {
       isPremium,
       language: data.language,
     };
-    console.log(AddProblems);
-    fetch("http://localhost:5000/problem", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(AddProblems),
-    })
-      .then((res) => res.json())
+
+    axiosNormal.post("/problem", AddProblems)
       .then((data) => {
         if (data.message === "success") {
           console.log(AddProblems);
+
           Swal.fire({
             title: "Success Your Submit!",
             text: "Do you want to continue",
@@ -72,19 +69,16 @@ const AddProblemSolving = () => {
 
   return (
     <div className="flexcode-container">
-      <section className="py-6 bg-[#1e2d40] text-white rounded-md ">
-        <div className="container mx-auto flex flex-col justify-around p-4 text-center md:p-10 lg:flex-row">
-          <div className="flex flex-col justify-center lg:text-left">
-            <p className="mb-1 text-sm font-medium text-center tracki uppercase dark:text-violet-400">
-              Share your knowledge with other
-            </p>
-            <h1 className="py-2 text-3xl font-semibold leadi title-font">
-              Add problems to solve
-            </h1>
-          </div>
-        </div>
+      <section className="py-6">
+        <PageBannerTitle
+          title="Add Problems"
+          shortDesc={"Add any types of creative problems"}
+          btnLink={"/problems"}
+          btnText1={"All problems"}
+          btnText2={"Go to the all problems"}
+        />
       </section>
-      <form onSubmit={handleSubmit(onSubmit)} className="w-2/3 mx-auto my-5 ">
+      <form onSubmit={handleSubmit(onSubmit)} className="w-5/6 mx-auto my-5 ">
         {/* Problem Title*/}
 
         <div className="-mx-3">
@@ -98,7 +92,7 @@ const AddProblemSolving = () => {
               </div>
               <input
                 type="text"
-                className="w-full -ml-10 pl-10 pr-3 bg-[#1e2d40] py-2 rounded-lg border-2 text-white border-gray-500 outline-none focus:border-[#00ffc3]"
+                className="w-full -ml-10 pl-10 pr-3 bg-[#1e2d40] py-2 rounded-lg bordertext-white border-gray-500 outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
                 placeholder="Problem Title"
                 {...register("title", { required: true })}
               />
@@ -119,8 +113,8 @@ const AddProblemSolving = () => {
               </div>
               <input
                 type="text"
-                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 
-                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
+                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border
+                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
                 placeholder="Write Function Name"
                 {...register("functionName", { required: true })}
               />
@@ -141,7 +135,7 @@ const AddProblemSolving = () => {
               </div>
               <textarea
                 rows={4}
-                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2  text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
+                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
                 placeholder="Write details of problems"
                 {...register("problemsDetails", { required: true })}
               />
@@ -163,7 +157,7 @@ const AddProblemSolving = () => {
                 styles={customStyles} // Apply custom styles
                 isMulti
                 onChange={setSelectedOption}
-                // Other props...
+              // Other props...
               />
 
               {/* <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
@@ -171,88 +165,88 @@ const AddProblemSolving = () => {
               </div> */}
               {/* <input
                 type="text"
-                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 
-                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
+                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border
+                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
                 placeholder="Type your highlight words"
                 {...register("highlightWords", { required: true })}
               /> */}
             </div>
           </div>
         </div>
-        
-      <div>
+
+        <div>
 
           {/* Example 1 */}
-        {
-        visibleDivs.map((isVisible, index) => (
-          isVisible &&  <div key={index} className="border p-6 my-5">
-          <div className="flex -mx-3">
-           <div className="w-full px-3 mb-5">
-             <label htmlFor="" className="text-sm font-semibold px-1">
-               Example - {`${index + 1}`}
-             </label>
-             <div className="flex">
-               <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                 <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
-               </div>
-               <input
-                 type="text"
-                 className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 
-                 text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
-                 placeholder={`Type example ${index + 1} `}
-                 {...register(`example${index}`, { required: true })}
-               />
-             </div>
-           </div>
-         </div>
- 
-         <div className="flex -mx-3">
-           <div className="w-full px-3 mb-5">
-             <label htmlFor="" className="text-sm font-semibold px-1">
-               Input
-             </label>
-             <div className="flex">
-               <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                 <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
-               </div>
-               <input
-                 type="text"
-                 className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 
-                 text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
-                 placeholder={`Input for example ${index + 1} `}
-                 {...register(`input${index}`, { required: true })}
-               />
-             </div>
-           </div>
-         </div>
- 
-         <div className="flex -mx-3">
-           <div className="w-full px-3 mb-5">
-             <label htmlFor="" className="text-sm font-semibold px-1">
-               Output
-             </label>
-             <div className="flex">
-               <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                 <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
-               </div>
-               <input
-                 type="text"
-                 className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 
-                 text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
-                 placeholder={`Output for example ${index + 1} `}
-                 {...register(`output${index}`, { required: true })}
-               />
-             </div>
-           </div>
-         </div>
- 
-          </div> ))}
-          <div onClick={handleButtonClick} className="flex items-center gap-3 border-b w-1/4 px-3 mb-10 cursor-pointer">
-            <FaPlus className="text-3xl font-thin"/>  Add Example
-        </div>
-        {/* Example 2 */}
+          {
+            visibleDivs.map((isVisible, index) => (
+              isVisible && <div key={index} className="border p-6 my-5">
+                <div className="flex -mx-3">
+                  <div className="w-full px-3 mb-5">
+                    <label htmlFor="" className="text-sm font-semibold px-1">
+                      Example - {`${index + 1}`}
+                    </label>
+                    <div className="flex">
+                      <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                        <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
+                      </div>
+                      <input
+                        type="text"
+                        className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border
+                 text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
+                        placeholder={`Type example ${index + 1} `}
+                        {...register(`example${index}`, { required: true })}
+                      />
+                    </div>
+                  </div>
+                </div>
 
-      </div>
+                <div className="flex -mx-3">
+                  <div className="w-full px-3 mb-5">
+                    <label htmlFor="" className="text-sm font-semibold px-1">
+                      Input
+                    </label>
+                    <div className="flex">
+                      <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                        <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
+                      </div>
+                      <input
+                        type="text"
+                        className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border
+                 text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
+                        placeholder={`Input for example ${index + 1} `}
+                        {...register(`input${index}`, { required: true })}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex -mx-3">
+                  <div className="w-full px-3 mb-5">
+                    <label htmlFor="" className="text-sm font-semibold px-1">
+                      Output
+                    </label>
+                    <div className="flex">
+                      <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                        <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
+                      </div>
+                      <input
+                        type="text"
+                        className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border
+                 text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
+                        placeholder={`Output for example ${index + 1} `}
+                        {...register(`output${index}`, { required: true })}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+              </div>))}
+          <div onClick={handleButtonClick} className="flex items-center gap-3 border-b w-1/4 px-3 mb-10 cursor-pointer">
+            <FaPlus className="text-3xl font-thin" />  Add Example
+          </div>
+          {/* Example 2 */}
+
+        </div>
 
         {/* Parameter Name */}
 
@@ -267,8 +261,8 @@ const AddProblemSolving = () => {
               </div>
               <input
                 type="text"
-                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 
-                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
+                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border
+                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
                 placeholder="Type your parameter Name"
                 {...register("parameterName", { required: true })}
               />
@@ -289,8 +283,8 @@ const AddProblemSolving = () => {
               </div>
               <input
                 type="text"
-                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 
-                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
+                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border
+                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
                 placeholder="Type your level"
                 {...register("level", { required: true })}
               />
@@ -311,8 +305,8 @@ const AddProblemSolving = () => {
               </div>
               <input
                 type="text"
-                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 
-                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
+                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border
+                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
                 placeholder="Type your Language"
                 {...register("language", { required: true })}
               />
@@ -352,7 +346,7 @@ const AddProblemSolving = () => {
                       className="radio  bg-white checked:bg-[#00ffc3]"
                       onClick={() => setIsPremium(false)}
 
-                      // {...register("isPremium", { required: true })}
+                    // {...register("isPremium", { required: true })}
                     />
                   </label>
                 </div>

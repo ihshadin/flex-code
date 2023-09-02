@@ -5,27 +5,39 @@ import NavBar from "../pages/Shared/NavBar/NavBar";
 import Footer from "../pages/Shared/Footer/Footer";
 import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 import FlexcodeLoading from "../components/FlexcodeLoading/FlexcodeLoading";
+import useAxiosNormal from "../hooks/useAxiosNormal";
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
   const [fetchUser, setFetchUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [axiosNormal] = useAxiosNormal();
 
   const isAdmin = fetchUser?.userRole;
 
   useEffect(() => {
-    fetch(`http://localhost:5000/users?email=${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setFetchUser(data[0]);
-        if (data[0]?.userRole === "admin") {
-          setLoading(false);
-        }
-        if (data[0]?.userRole === "genarel") {
-          setLoading(false);
-        }
-      });
+    axiosNormal.get(`/users?email=${user?.email}`).then((data) => {
+      setFetchUser(data[0]);
+      if (data[0]?.userRole === "admin") {
+        setLoading(false);
+      }
+      if (data[0]?.userRole === "general") {
+        setLoading(false);
+      }
+    });
   }, [user]);
+
+  //  fetch(`http://localhost:5000/users?email=${user?.email}`)
+  //    .then((res) => res.json())
+  //    .then((data) => {
+  //      setFetchUser(data[0]);
+  //      if (data[0]?.userRole === "admin") {
+  //        setLoading(false);
+  //      }
+  //      if (data[0]?.userRole === "genarel") {
+  //        setLoading(false);
+  //      }
+  //    });
 
   const isActiveRoute = (routePath) => {
     return location.pathname === routePath;

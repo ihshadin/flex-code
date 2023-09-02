@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Top3Card from "./Top3Card";
 import { Link } from "react-router-dom";
 import useAxiosNormal from "../../hooks/useAxiosNormal";
+import { FaUser } from "react-icons/fa";
 
 const LeaderBoard = () => {
   const [solvedProblems, setSolvedProblems] = useState([]);
@@ -139,6 +140,40 @@ const LeaderBoard = () => {
                   <div className="font-semibold w-[15%] text-center">
                     Profile
                   </div>
+                  {solvedProblems.slice(3).map((solveProblem, index) => (
+                    <div
+                      key={index}
+                      className="flex justify-between min-w-[600px] items-center whitespace-nowrap border-b-[2px] duration-300 border-[#0fcda1] hover:border-white px-6 pb-2 pt-7 rounded-3xl"
+                    >
+                      <p className="w-[5%]">{index + 4}</p>
+                      <p className="w-[40%] flex items-center gap-2">
+                        {solveProblem.userPhoto ? (
+                          <img
+                            alt="Developer"
+                            src={solveProblem.userPhoto}
+                            className="object-cover w-10 h-10 rounded-full"
+                          />
+                        ) : (
+                          <FaUser className="object-cover w-10 h-10 rounded-full" />
+                        )}
+                        <div>
+                          <h2 className="font-medium">
+                            {solveProblem?.displayName}
+                          </h2>
+                          <p className="text-sm text-slate-400">
+                            @{solveProblem.username}
+                          </p>
+                        </div>
+                      </p>
+                      <p className="w-[20%] text-center">
+                        {solveProblem.points}
+                      </p>
+                      <p className="w-[20%] text-center">
+                        {solveProblem.problemsSolved}
+                      </p>
+                      <p className="w-[15%] text-center">Profile</p>
+                    </div>
+                  ))}
                 </div>
                 {solvedProblems.slice(3).map((solveProblem, index) => (
                   <div

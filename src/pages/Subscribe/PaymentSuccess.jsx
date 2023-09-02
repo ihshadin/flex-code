@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { useParams } from "react-router-dom";
+import useAxiosNormal from "../../hooks/useAxiosNormal";
 
 const PaymentSuccess = () => {
   const { tranId } = useParams();
   const [data, setData] = useState();
+  const [axiosNormal] = useAxiosNormal();
+
   console.log(data);
   //   const {
   //     access,
@@ -18,8 +21,7 @@ const PaymentSuccess = () => {
   //   } = data;
 
   useEffect(() => {
-    fetch(`http://localhost:5000/payment/${tranId}`)
-      .then((res) => res.json())
+    axiosNormal.get(`/payment/${tranId}`)
       .then((result) => {
         setData(result);
       });
