@@ -1,132 +1,82 @@
 import React from 'react';
-import faqImg from '../../../assets/FAQ.png'
+import faqImg from '../../../assets/faq1.png'
+import { color } from '@uiw/react-codemirror';
+import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 
 const Faq = () => {
     return (
         <section className='w-full'>
             <div className="flexcode-container relative bg-[#17181b] ring-1 ring-gray-900/5  text-white">
                 <div className="">
-                    <div className="flex flex-col items-center">
+                    {/* <div className="flex flex-col items-center">
                         <h2 className="mt-2 text-center text-3xl font-bold tracking-tight md:text-5xl">FAQ</h2>
-                        <p className="mt-3 text-lg text-neutral-400 md:text-xl">Frequenty asked questions
+                        <p className="mt-3 text-lg text-neutral-400 md:text-2xl">FREQUENTLY ASK <span className='text-blue-400'>QUESTIONS</span>
 
                         </p>
-                    </div>
-                    <div className='md:flex justify-center items-center gap-20'>
-                        <div className="mx-auto md:w-[50%] mt-8 grid  divide-y divide-[#00ffc3]">
-                            <div className="py-5 px-2">
-                                <details className="group">
-                                    <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
-                                        <span className='flex items-center gap-2'>
-                                            <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                                            What is FlexCode?</span>
-                                        <span className="transition group-open:rotate-180">
-                                            <svg fill="none" height="24" shapeRendering="geometricPrecision"
-                                                stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
-                                                strokeWidth="1.5" viewBox="0 0 24 24" width="24">
-                                                <path d="M6 9l6 6 6-6"></path>
-                                            </svg>
-                                        </span>
-                                    </summary>
-                                    <p className="group-open:animate-fadeIn mt-3 text-white">FlexCode is a problem-solving platform that helps coding enthusiasts improve their skills through engaging challenges and interactive learning.
-                                    </p>
-                                </details>
+                    </div> */}
+                    <SectionTitle 
+                    title="Frequntly Ask Questions" 
+                    descrition="A brief list of common questions and answers, simplifying information access and reducing repetitive queries for users or customers."
+                    />
+                    <div className='md:flex justify-between items-center gap-20'>
+                        <div className='mx-auto md:w-[60%] mt-10'>
+                            <div className="collapse collapse-plus flexcode-banner-bg rounded-lg shadow-2xl border-teal-950 border-[2px] mb-4">
+                                <input type="radio" name="my-accordion-3" />
+                                <div className="collapse-title text-xl font-medium">
+                                    <span className='mr-4 text-lg font-normal'>01</span>What is FlexCode?
+                                </div>
+                                <div className="collapse-content">
+                                    <p className='text-slate-300 ml-9 text-md font-normal mr-4'>FlexCode is a problem-solving platform that helps coding enthusiasts improve their skills through engaging challenges and interactive learning.</p>
+                                </div>
                             </div>
-                            <div className="py-5 px-2">
-                                <details className="group">
-                                    <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
-                                        <span className='flex items-center gap-2'>
-                                            <div className="w-3 h-3 bg-blue-300 rounded-full"></div>
-                                            How do I join FlexCode?
-                                        </span>
-                                        <span className="transition group-open:rotate-180">
-                                            <svg fill="none" height="24" shapeRendering="geometricPrecision"
-                                                stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
-                                                strokeWidth="1.5" viewBox="0 0 24 24" width="24">
-                                                <path d="M6 9l6 6 6-6"></path>
-                                            </svg>
-                                        </span>
-                                    </summary>
-                                    <p className="group-open:animate-fadeIn mt-3 text-white"> Joining FlexCode is easy! Simply sign up for an account, and you'll have access to a wide range of coding challenges and features.
-                                    </p>
-                                </details>
+                            <div className="collapse collapse-plus flexcode-banner-bg rounded-lg shadow-2xl border-teal-950 border-[2px] mb-4">
+                                <input type="radio" name="my-accordion-3" />
+                                <div className="collapse-title text-xl font-medium">
+                                    <span className='mr-4 text-lg font-normal'>02</span>How do I join FlexCode?
+                                </div>
+                                <div className="collapse-content">
+                                    <p className='text-slate-300 ml-9 text-md font-normal mr-4'>Joining FlexCode is easy! Simply sign up for an account, and you'll have access to a wide range of coding challenges and features.</p>
+                                </div>
                             </div>
-                            <div className="py-5 px-2">
-                                <details className="group">
-                                    <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
-                                        <span className='flex items-center gap-2'>
-                                            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                                            Is FlexCode suitable for beginners?</span>
-                                        <span className="transition group-open:rotate-180">
-                                            <svg fill="none" height="24" shapeRendering="geometricPrecision"
-                                                stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
-                                                strokeWidth="1.5" viewBox="0 0 24 24" width="24">
-                                                <path d="M6 9l6 6 6-6"></path>
-                                            </svg>
-                                        </span>
-                                    </summary>
-                                    <p className="group-open:animate-fadeIn mt-3 text-white">Yes, FlexCode is designed for all skill levels, including beginners. Our platform provides challenges and resources that cater to both newcomers and experienced coders.
-                                    </p>
-                                </details>
+                            <div className="collapse collapse-plus flexcode-banner-bg rounded-lg shadow-2xl border-teal-950 border-[2px] mb-4">
+                                <input type="radio" name="my-accordion-3" />
+                                <div className="collapse-title text-xl font-medium">
+                                    <span className='mr-4 text-lg font-normal'>03</span>Is FlexCode suitable for beginners?
+                                </div>
+                                <div className="collapse-content">
+                                    <p className='text-slate-300 ml-9 text-md font-normal mr-4'>Yes, FlexCode is designed for all skill levels, including beginners. Our platform provides challenges and resources that cater to both newcomers and experienced coders.</p>
+                                </div>
                             </div>
-                            <div className="py-5 px-2">
-                                <details className="group">
-                                    <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
-                                        <span className='flex items-center gap-2'>
-                                            <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
-                                            Are there any membership fees?</span>
-                                        <span className="transition group-open:rotate-180">
-                                            <svg fill="none" height="24" shapeRendering="geometricPrecision"
-                                                stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
-                                                strokeWidth="1.5" viewBox="0 0 24 24" width="24">
-                                                <path d="M6 9l6 6 6-6"></path>
-                                            </svg>
-                                        </span>
-                                    </summary>
-                                    <p className="group-open:animate-fadeIn mt-3 text-white">FlexCode offers a free basic membership with access to a selection of challenges. We also have a premium membership that provides access to our full range of challenges, advanced features, and personalized learning paths.
-                                    </p>
-                                </details>
+                            <div className="collapse collapse-plus flexcode-banner-bg rounded-lg shadow-2xl border-teal-950 border-[2px] mb-4">
+                                <input type="radio" name="my-accordion-3" />
+                                <div className="collapse-title text-xl font-medium">
+                                    <span className='mr-4 text-lg font-normal'>04</span>Are there any membership fees?
+                                </div>
+                                <div className="collapse-content">
+                                    <p className='text-slate-300 ml-9 text-md font-normal mr-4'>FlexCode offers a free basic membership with access to a selection of challenges. We also have a premium membership that provides access to our full range of challenges, advanced features, and personalized learning paths.</p>
+                                </div>
                             </div>
-                            <div className="py-5 px-2">
-                                <details className="group">
-                                    <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
-                                        <span className='flex items-center gap-2'>
-                                            <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                                            How often are new challenges added?</span>
-                                        <span className="transition group-open:rotate-180">
-                                            <svg fill="none" height="24" shapeRendering="geometricPrecision"
-                                                stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
-                                                strokeWidth="1.5" viewBox="0 0 24 24" width="24">
-                                                <path d="M6 9l6 6 6-6"></path>
-                                            </svg>
-                                        </span>
-                                    </summary>
-                                    <p className="group-open:animate-fadeIn mt-3 text-white"> We regularly update FlexCode with new challenges to keep the content fresh and engaging. You can expect new challenges to be added on a weekly basis, offering you a continuous learning experience.
-                                    </p>
-                                </details>
+                            <div className="collapse collapse-plus flexcode-banner-bg rounded-lg shadow-2xl border-teal-950 border-[2px] mb-4">
+                                <input type="radio" name="my-accordion-3" />
+                                <div className="collapse-title text-xl font-medium">
+                                    <span className='mr-4 text-lg font-normal'>05</span>How often are new challenges added?
+                                </div>
+                                <div className="collapse-content">
+                                    <p className='text-slate-300 ml-9 text-md font-normal mr-4'>We regularly update FlexCode with new challenges to keep the content fresh and engaging. You can expect new challenges to be added on a weekly basis, offering you a continuous learning experience.</p>
+                                </div>
                             </div>
-                            <div className="py-5 px-2">
-                                <details className="group">
-                                    <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
-                                        <span className='flex items-center gap-2'>
-                                            <div className="w-3 h-3 bg-red-400 rounded-full flex-shrink-0"></div>
-                                            Can I collaborate with other users on challenges?
-                                        </span>
-                                        <span className="transition group-open:rotate-180">
-                                            <svg fill="none" height="24" shapeRendering="geometricPrecision"
-                                                stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
-                                                strokeWidth="1.5" viewBox="0 0 24 24" width="24">
-                                                <path d="M6 9l6 6 6-6"></path>
-                                            </svg>
-                                        </span>
-                                    </summary>
-                                    <p className="group-open:animate-fadeIn mt-3 text-white">Absolutely! FlexCode encourages collaboration among users. You can team up with others, tackle challenges together, and even join coding communities to learn and grow with fellow enthusiasts.
-                                    </p>
-                                </details>
-                            </div>
+                            {/* <div className="collapse collapse-plus flexcode-banner-bg rounded-lg shadow-2xl border-teal-950 border-[2px] mb-4">
+                                <input type="radio" name="my-accordion-3" />
+                                <div className="collapse-title text-xl font-medium">
+                                    <span className='mr-4 text-lg font-normal'>06</span>Can I collaborate with other users on challenges?
+                                </div>
+                                <div className="collapse-content">
+                                    <p className='text-slate-300 ml-9 text-md font-normal mr-4'>Absolutely! FlexCode encourages collaboration among users. You can team up with others, tackle challenges together, and even join coding communities to learn and grow with fellow enthusiasts.</p>
+                                </div>
+                            </div> */}
                         </div>
                         <div className='md:w-[40%] mt-8'>
-                            <img className='rounded-lg' src={faqImg} alt="" />
+                            <img className='rounded-lg w-[380px]' src={faqImg} alt="" />
                         </div>
                     </div>
                 </div>
