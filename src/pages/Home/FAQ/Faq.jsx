@@ -3,6 +3,7 @@ import faqImg from '../../../assets/faq1.png'
 import { color } from '@uiw/react-codemirror';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 
+
 const Faq = () => {
     return (
         <section className='w-full'>
