@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 const PageBannerTitle = ({ title, shortDesc, btnLink, btnIcon, btnText1, btnText2 }) => {
     return (
         <section>
-            <div className='border-b-2 border-[#0fcda185] pb-3 flex justify-between items-center'>
+            <div className='flex flex-col md:flex-row gap-5 md:gap-2 justify-between items-center border-b-2 border-[#0fcda185] pb-3'>
                 <div>
-                    <h1 className='text-white text-2xl md:text-4xl tracking-wider font-semibold'>{title}</h1>
+                    <h1 className='text-white text-xl md:text-2xl md:text-4xl tracking-wider font-semibold'>{title}</h1>
                     <p className='text-slate-300 text-sm md:text-base mt-1'>{shortDesc}</p>
                 </div>
                 {
                     btnLink && btnText1 && btnText2 && (
-                        <Link to={btnLink} className=''>
+                        <Link to={btnLink} className='shrink-0'>
                             <button className="inline-flex items-center gap-5 px-5 py-3 group rounded-xl bg-gradient-to-tr from-[#1e2d4056] to-[#0fcda122] border border-gray-500 hover:border-[#0fcda1] focus:border focus:border-[#0fcda1] text-white">
                                 {btnIcon ? btnIcon : (
                                     <svg className='w-10' fill="#0fcda1" version="1.1" id="Capa_1" viewBox="0 0 487.168 487.168" space="preserve">
