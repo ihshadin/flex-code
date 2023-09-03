@@ -53,41 +53,19 @@ const Testimonials = () => {
           }}
           className="mySwiper"
         >
-          {/* <SwiperSlide>
-                        <div className='bg-secondary-color p-8 md:p-10 mb-12 rounded-2xl text-white border border-[#1e2d40] hover:border-[#0fcda1] transition-all duration-300 cursor-pointer'>
-                            <h2 className='text-2xl font-semibold mb-5'>
-                                Excellent
-                            </h2>
-                            <p>
-                                I've been using this carrier service
-                                company for years, and they never disappoint. They always
-                                deliver on time, and my goods arrive in perfect condition.
-                                Their customer service is also top-notch -
-                                they are always friendly and responsive.
-                            </p>
-                            <h3 className='text-xl font-semibold mt-8 mb-2'>~ Omar Faruq</h3>
-                            <div
-                                className='w-20 h-20 object-cover rounded-full border-[#0fcda1] bg-secondary-color border absolute'
-                            >
-                                <img src={reviewImg1} alt="" />
-                            </div>
-                        </div>
-                    </SwiperSlide> */}
           {feedbacks?.map((feedback) => (
             <SwiperSlide key={feedback._id}>
-              <div className="bg-secondary-color p-8 md:p-10 mb-8 rounded-2xl text-white border border-[#1e2d40] hover:border-[#0fcda1] transition-all duration-300 cursor-pointer">
-                <h2 className="text-2xl font-semibold mb-5">
-                  {feedback.thumbExpression.length > 20
-                    ? feedback.thumbExpression.slice(0, 20) + "...."
-                    : feedback.thumbExpression}
+              <div className="flexcode-banner-bg p-5 md:p-5 mb-9 rounded-2xl text-white border border-slate-500 hover:border-[#0fcda156] transition-all duration-300 cursor-pointer">
+                <h2 className="text-xl font-semibold mb-5">
+                  {feedback.thumbExpression}
                 </h2>
                 <p className="min-h-[160px]">
-                  {feedback.details.length > 350
-                    ? feedback.details.slice(0, 350) + "...."
+                  {feedback.details.length > 400
+                    ? feedback.details.slice(0, 400) + "...."
                     : feedback.details}
                 </p>
                 <span className="flex mt-8 items-center justify-between">
-                  <h3 className="text-xl font-semibold  mb-2">
+                  <h3 className="text-xl font-semibold mb-4">
                     ~{" "}
                     {feedback.userName.length > 9
                       ? feedback.userName.slice(0, 9) + "...."

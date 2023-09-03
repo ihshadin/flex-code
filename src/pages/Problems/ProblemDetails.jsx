@@ -58,16 +58,6 @@ const ProblemDetails = () => {
     try {
       // Clear console output
       setConsoleOutput('');
-<<<<<<< HEAD
-=======
-
-      // Capture console output
-      // const originalLog = console.log;
-      // console.log = (...args) => {
-      //   originalLog.apply(console, args);
-      //   setConsoleOutput((prevOutput) => [...prevOutput, args.join(" ")]);
-      // };
->>>>>>> 5157fb0c9fa61b393597f800867e26cd383bf5c1
 
       // Execute code
       const userCode = `${code || defaultCode}\n\n${singleProblem.functionName
