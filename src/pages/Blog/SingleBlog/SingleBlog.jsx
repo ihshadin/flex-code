@@ -16,7 +16,7 @@ const SingleBlog = () => {
   }
 
   useEffect(() => {
-    axios.get(`https://flex-code-server.vercel.app/blog/${id}`)
+    axios.get(`http://localhost:5000/blog/${id}`)
       .then((data) => {
         setData(data?.data?.result);
         setLoading(false);
@@ -25,7 +25,7 @@ const SingleBlog = () => {
 
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
-    axios("https://flex-code-server.vercel.app/blog")
+    axios("http://localhost:5000/blog")
       .then((data) => {
         setBlogs(data?.data);
       });

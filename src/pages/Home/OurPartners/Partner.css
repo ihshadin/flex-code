@@ -4,3 +4,8 @@
 .marquee-container .child {
   width: 200px;
 }
+@media (max-width: 767px) {
+  .marquee-container .child {
+  width: 100px;
+}
+}

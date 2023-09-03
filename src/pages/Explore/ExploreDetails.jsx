@@ -9,7 +9,7 @@ const ExploreDetails = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get(`https://flex-code-server.vercel.app/exploreDetails/${id}`)
+        axios.get(`http://localhost:5000/exploreDetails/${id}`)
             .then(data => {
                 setExplore(data.data)
                 setLoading(false)

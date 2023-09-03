@@ -81,55 +81,6 @@ const ProfileEdit = () => {
     });
   };
 
-  // fetch("http://localhost:5000/users", {
-  //   method: "PATCH",
-  //   headers: {
-  //     "content-type": "application/json",
-  //   },
-  //   body: JSON.stringify(addProfilUpdate),
-  // })
-  //   .then((res) => res.json())
-  //   .then((data) => {
-  //     if (data.acknowledged) {
-  //       Swal.fire({
-  //         title: "Your Profile update Successfull!",
-  //         text: "Go to dashboard",
-  //         icon: "success",
-  //         confirmButtonText: "OK",
-  //       }).then((result) => {
-  //         if (result.isConfirmed) {
-  //           navigate("/dashboard");
-  //         }
-  //       });
-  //     }
-  //     form.reset();
-  //   });
-
-  // const handleSaveClick = (value) => {
-  //   const upDate = {
-  //     value: value,
-  //     email: user?.email,
-  //   };
-  //   console.log(value);
-
-  //   axiosNormal.patch("/users", upDate).then((data) => {
-  //     console.log(data);
-  //   });
-
-  // fetch("https://flex-code-server.vercel.app/users", {
-  //   method: "PATCH",
-  //   headers: {
-  //     "content-type": "application/json",
-  //   },
-  //   body: JSON.stringify(upDate),
-  // })
-  //   .then((res) => res.json())
-  //   .then((data) => {
-  //     console.log(data);
-  //     // toast.success("Login Successfull!");
-  //     // navigate(from, { replace: true });
-  //   });
-  // };
   return (
     <section className="-mt-10">
       <div className="flexcode-container">

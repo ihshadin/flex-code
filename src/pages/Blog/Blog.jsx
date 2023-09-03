@@ -22,7 +22,7 @@ const Blog = () => {
       })
   }, [currentPage, itemsPerPage]);
 
-  
+
 
   const { result } = useLoaderData()
   const totalBlogs = result?.length;
@@ -55,7 +55,7 @@ const Blog = () => {
         <section className=" dark:bg-gray-900">
           <div className="container  mx-auto">
             <div className="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2 xl:grid-cols-3 min-h-[75vh]">
-         
+
               {/* 1s blog card */}
 
               {blogs?.map(blog => <div key={blog._id} className="bg-[#1e2d40] shadow-md shadow-[#111111] rounded-lg border border-gray-500 hover:border-[#0fcda1]">
@@ -114,7 +114,7 @@ const Blog = () => {
             <div className="pt-10">
               <Pagination currentPage={currentPage} totalPage={totalPage} setCurrentPage={setCurrentPage} />
             </div>
-         
+
           </div>
         </section>
       </div>
