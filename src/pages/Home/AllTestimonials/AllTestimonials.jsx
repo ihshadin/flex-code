@@ -17,7 +17,7 @@ const AllTestimonials = () => {
     console.log(user);
 
     useEffect(() => {
-        axios.get('https://flex-code-server.vercel.app/feedback')
+        axios.get('http://localhost:5000/feedback')
             .then(data => {
                 setFeedback(data?.data?.result)
             })

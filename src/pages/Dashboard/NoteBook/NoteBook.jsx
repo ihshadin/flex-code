@@ -7,7 +7,7 @@ const NoteBook = () => {
 
 
     useEffect(() => {
-        fetch('https://flex-code-server.vercel.app/notebooks')
+        fetch('http://localhost:5000/notebooks')
             .then(res => res.json())
             .then(data => {
                 setNotes(data)

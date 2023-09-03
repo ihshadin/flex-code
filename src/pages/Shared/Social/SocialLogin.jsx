@@ -93,20 +93,20 @@ const SocialLogin = () => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col gap-2">
       <div
         onClick={clickSignInWithGitHub}
-        className="flex border-2 border-gray-500 mb-6 text-gray-300 justify-center font-semibold rounded-md py-1 hover:bg-[#17181B] cursor-pointer"
+        className="flex items-center justify-center gap-2 border border-slate-500 hover:border-[#0fcda18c] p-2 text-slate-300 rounded-lg hover:bg-[#17181B] cursor-pointer"
       >
-        <span className="mr-2">Sign in with GitHub</span>
-        <FaGithub className="text-2xl" />
+        <span>Sign in with GitHub</span>
+        <FaGithub className="w-5 h-5 text-slate-400" />
       </div>
       <div
         onClick={clickSignInWithGoogle}
-        className="flex border-2 border-gray-500 text-gray-300 justify-center font-semibold rounded-md py-1 hover:bg-[#17181B] cursor-pointer"
+        className="flex items-center justify-center gap-2 border border-slate-500 hover:border-[#0fcda18c] p-2 text-slate-300 rounded-lg hover:bg-[#17181B] cursor-pointer"
       >
-        <span className="mr-2">Sign in with Google</span>
-        <FaGoogle className="text-2xl" />
+        <span>Sign in with Google</span>
+        <FaGoogle className="w-5 h-5 text-slate-400" />
       </div>
     </div>
   );

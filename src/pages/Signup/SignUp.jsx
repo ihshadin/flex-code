@@ -95,69 +95,72 @@ const SignUp = () => {
   // }
 
   return (
-    <div className="justify-center items-center flex pt-10">
-      <div className="bg-[#1e2d40] shadow-2xl md:w-2/4 max-w-md mx-auto rounded-xl px-7 my-14">
-        <>
-          <div className="flex items-center justify-center text-white text-2xl font-bold py-8">
-            <img className="w-16 h-16" src="/20230810_125620.png" alt="img" />
-            <span className="text-[#0fcda1] mr-1">Flex </span> { } Code
-          </div>
-          <SocialLogin />
-          <div className="max-w-[150px] flex justify-center border-2 border-[#0fcda1] rounded mx-auto my-8"></div>
-        </>
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-start gap-5">
-          <div className="w-full flex items-center gap-2 border border-slate-500 hover:border-[#0fcda18c] px-2 rounded-lg hover:bg-[#17181B] cursor-pointer">
-            <FaUser className="w-5 h-5 text-[#0fcda156]" />
-            <input
-              className="flex-1 bg-transparent text-base outline-none py-2"
-              type="text"
-              autoComplete="off"
-              name="name"
-              {...register("name", { required: true })}
-              id=""
-              placeholder="Write Your Name"
-            />
-            {errors.name && (
-              <span className="text-red-500 text-xs">Name is required</span>
-            )}
-          </div>
-          <div className="w-full flex items-center gap-2 border border-slate-500 hover:border-[#0fcda18c] px-2 rounded-lg hover:bg-[#17181B] cursor-pointer">
-            <FaRegEnvelope className="w-5 h-5 text-[#0fcda156]" />
-            <input
-              className="flex-1 bg-transparent text-base outline-none py-2"
-              type="email"
-              name="email"
-              autoComplete="off"
-              {...register("email", { required: true })}
-              id=""
-              placeholder="Write Your Email"
-            />
-            {errors.email && (
-              <span className="text-red-500 text-xs">Email is required</span>
-            )}
-          </div>
-          <div className="w-full flex items-center gap-2 border border-slate-500 hover:border-[#0fcda18c] px-2 rounded-lg hover:bg-[#17181B] cursor-pointer">
-            <MdLockOutline className="w-5 h-5 text-[#0fcda156]" />
-            <input
-              className="flex-1 bg-transparent text-base outline-none py-2"
-              type="password"
-              name="password"
-              autoComplete="off"
-              {...register("password", {
-                required: true,
-                minLength: 6,
-                maxLength: 20,
-                pattern: /(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z])/,
-              })}
-              id=""
-              placeholder="Password"
-            />{" "}
-            {errors.password?.type === "required" && (
-              <p className="text-red-500 text-xs mt-1">Password is required</p>
-            )}
-            {errors.password?.type === "minLength" && (
-              <p className="text-red-500 text-xs mt-1">Must be 6 characters</p>
-            )}
+    <div className="flexcode-container">
+      <div className="bg-secondary-color shadow-2xl md:w-2/4 max-w-md mx-auto rounded-xl px-7 my-5">
+        <div className="flex justify-center py-8">
+          <img
+            className="w-44 md:w-48"
+            src="/flex-codelogo.png"
+            alt="logo"
+          />
+        </div>
+        <SocialLogin />
+        <div className="max-w-[150px] flex justify-center border-2 border-[#0fcda1] rounded mx-auto my-8"></div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex flex-col items-start gap-3">
+            <div className="w-full flex items-center gap-2 border border-slate-500 hover:border-[#0fcda18c] px-2 rounded-lg hover:bg-[#17181B] cursor-pointer">
+              <FaUser className="w-5 h-5 text-[#0fcda156]" />
+              <input
+                className="flex-1 bg-transparent text-base outline-none py-2"
+                type="text"
+                autoComplete="off"
+                name="name"
+                {...register("name", { required: true })}
+                id=""
+                placeholder="Write Your Name"
+              />
+              {errors.name && (
+                <span className="text-red-500 text-xs">Name is required</span>
+              )}
+            </div>
+            <div className="w-full flex items-center gap-2 border border-slate-500 hover:border-[#0fcda18c] px-2 rounded-lg hover:bg-[#17181B] cursor-pointer">
+              <FaRegEnvelope className="w-5 h-5 text-[#0fcda156]" />
+              <input
+                className="flex-1 bg-transparent text-base outline-none py-2"
+                type="email"
+                name="email"
+                autoComplete="off"
+                {...register("email", { required: true })}
+                id=""
+                placeholder="Write Your Email"
+              />
+              {errors.email && (
+                <span className="text-red-500 text-xs">Email is required</span>
+              )}
+            </div>
+            <div className="w-full flex items-center gap-2 border border-slate-500 hover:border-[#0fcda18c] px-2 rounded-lg hover:bg-[#17181B] cursor-pointer">
+              <MdLockOutline className="w-5 h-5 text-[#0fcda156]" />
+              <input
+                className="flex-1 bg-transparent text-base outline-none py-2"
+                type="password"
+                name="password"
+                autoComplete="off"
+                {...register("password", {
+                  required: true,
+                  minLength: 6,
+                  maxLength: 20,
+                  pattern: /(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z])/,
+                })}
+                id=""
+                placeholder="Password"
+              />{" "}
+              {errors.password?.type === "required" && (
+                <p className="text-red-500 text-xs mt-1">Password is required</p>
+              )}
+              {errors.password?.type === "minLength" && (
+                <p className="text-red-500 text-xs mt-1">Must be 6 characters</p>
+              )}
+            </div>
           </div>
           {errors.password?.type === "pattern" && (
             <p className="text-red-500 text-sm mt-1 mb-2 text-center">
@@ -165,8 +168,8 @@ const SignUp = () => {
             </p>
           )}
           <div className="w-full">
-            <div className="flex justify-end gap-1 text-gray-300 text-sm">
-              <p className="flex items-center gap-1">
+            <div className="flex justify-end gap-1 mt-1 text-gray-300 text-sm">
+              <div className="flex items-center gap-1">
                 <input
                   type="checkbox"
                   // checked="checked"
@@ -175,7 +178,7 @@ const SignUp = () => {
                   className="checkbox h-4 w-4 checkbox-accent"
                 />
                 <span>I agree to</span>
-              </p>
+              </div>
               <Link className="text-right inline-block cursor-pointer hover:link text-blue-400 ">
                 Terms and conditions?
               </Link>
@@ -199,11 +202,9 @@ const SignUp = () => {
             </button>
           </div>
         </form>
-        <div className="text-center text-gray-300 pb-10">
-          <Link to="/login">
-            <span className="cursor-pointer link text-gray-300 hover:text-blue-500">
-              Sign in
-            </span>
+        <div className="text-center pb-10 text-sm text-gray-300">
+          <Link to="/login" className="cursor-pointer link hover:text-blue-500 mr-1">
+            Sign in
           </Link>
           <span> if you have an account yet.</span>
         </div>
