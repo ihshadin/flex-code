@@ -66,14 +66,7 @@ const ProblemDetails = () => {
   const submitCode = () => {
     try {
       // Clear console output
-      setConsoleOutput([]);
-
-      // Capture console output
-      const originalLog = console.log;
-      console.log = (...args) => {
-        originalLog.apply(console, args);
-        setConsoleOutput((prevOutput) => [...prevOutput, args.join(" ")]);
-      };
+      setConsoleOutput('');
 
       // Execute code
       const userCode = `${code || defaultCode}\n\n${singleProblem.functionName
@@ -137,9 +130,6 @@ const ProblemDetails = () => {
           </div>
         );
       }
-
-      // Restore console.log
-      //   console.log = originalLog;
     } catch (error) {
       console.error("Error:", error);
       setOutputMessage(

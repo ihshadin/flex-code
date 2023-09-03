@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
-import Swal from "sweetalert2";
 import { FaUser, FaUserAlt } from "react-icons/fa";
 import './NavBar.css'
+import Swal from "sweetalert2";
+const NavBar = ({setUserPaid, onLogout}) => {
 
-const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [userClicked, setUserClicked] = useState(false);
 
@@ -28,6 +28,9 @@ const NavBar = () => {
 
   const handleSignOut = () => {
     logOut().then(() => {
+      onLogout()
+      setUserPaid(false)
+      // console.log("nav-----32",userPaid);
       Swal.fire({
         position: "bottom-start",
         icon: "success",
@@ -303,7 +306,7 @@ const NavBar = () => {
                             <span>Dashboard</span>
                           </Link>
                           <button
-                            onClick={logOut}
+                            onClick={handleSignOut}
                             className="w-full flex items-center text-left px-4 py-2 text-white hover:bg-[#00ffc3] hover:bg-opacity-30 mb-4"
                           >
                             <span className="mr-2  flex">
