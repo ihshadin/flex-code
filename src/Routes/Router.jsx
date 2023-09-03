@@ -60,13 +60,13 @@ const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog />,
-        loader: () => fetch(`https://flex-code-server.vercel.app/blog/all`),
+        loader: () => fetch(`http://localhost:5000/blog/all`),
       },
       {
         path: "/blog/:id",
         element: <SingleBlog />,
         loader: ({ params }) =>
-          fetch(`https://flex-code-server.vercel.app/blog/${params.id}`),
+          fetch(`http://localhost:5000/blog/${params.id}`),
       },
 
       {
@@ -80,12 +80,12 @@ const router = createBrowserRouter([
       {
         path: "/problems/:languages",
         element: <LangBasedProblems />,
-        loader: () => fetch(`https://flex-code-server.vercel.app/problem/all`),
+        loader: () => fetch(`http://localhost:5000/problem/all`),
       },
       {
         path: "/problem/:id",
         element: <ProblemDetails />,
-        // loader: ({ params }) => fetch(`http://localhost:5173/problems.json/${params.id}`)
+        // loader: ({ params }) => fetch(`http://localhost:5000/problems.json/${params.id}`)
       },
       // {
       //   path: "/dashboard",

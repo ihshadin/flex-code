@@ -8,13 +8,13 @@ const UserCount = () => {
 
   useEffect(() => {
     axios
-      .get("https://flex-code-server.vercel.app/users/all")
+      .get("http://localhost:5000/users/all")
       .then((data) => setUsers(data.data));
   }, []);
 
   useEffect(() => {
     axios
-      .get("https://flex-code-server.vercel.app/problem")
+      .get("http://localhost:5000/problem")
       .then((data) => setProblems(data.data));
   }, []);
 
