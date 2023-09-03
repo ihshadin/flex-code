@@ -29,15 +29,6 @@ const ProblemDetails = () => {
       });
   }, []);
 
-  // useEffect(() => {
-  //   fetch(`/problems.json`)
-  //     .then(res => res.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //       setSingleProblems(data[1]);
-  //     });
-  // }, []);
-
   //  Default values
   const defaultCode = `function ${singleProblem.functionName}(${singleProblem.parameterName}){
 // Your solution logic
