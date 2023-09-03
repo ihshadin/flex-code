@@ -12,14 +12,18 @@ import Rating from "react-rating";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import axios from "axios";
+import useAxiosNormal from "../../../hooks/useAxiosNormal";
+import { Link } from "react-router-dom";
 
 const Testimonials = () => {
   const [feedbacks, setFeedbacks] = useState([]);
+  const [axiosNormal] = useAxiosNormal();
 
   useEffect(() => {
-    axios.get("http://localhost:5000/feedback").then((data) => {
-      setFeedbacks(data?.data?.result);
-    });
+    axiosNormal.get("/feedback")
+      .then((data) => {
+        setFeedbacks(data?.result);
+      });
   }, []);
 
   return (
@@ -71,7 +75,7 @@ const Testimonials = () => {
                     </SwiperSlide> */}
           {feedbacks?.map((feedback) => (
             <SwiperSlide key={feedback._id}>
-              <div className="bg-secondary-color p-8 md:p-10 mb-12 rounded-2xl text-white border border-[#1e2d40] hover:border-[#0fcda1] transition-all duration-300 cursor-pointer">
+              <div className="bg-secondary-color p-8 md:p-10 mb-8 rounded-2xl text-white border border-[#1e2d40] hover:border-[#0fcda1] transition-all duration-300 cursor-pointer">
                 <h2 className="text-2xl font-semibold mb-5">
                   {feedback.thumbExpression.length > 20
                     ? feedback.thumbExpression.slice(0, 20) + "...."
@@ -101,17 +105,24 @@ const Testimonials = () => {
                     }
                   />
                 </span>
-                <div className="w-20 h-20 object-cover rounded-full border-[#0fcda1] bg-secondary-color border absolute">
+                <div className="w-16 h-16 object-cover rounded-full border-[#0fcda1] bg-secondary-color border absolute bottom-0">
                   {feedback?.image ? (
                     <img src={feedback.image} className="rounded-full p-1" alt="" />
                   ) : (
-                    <FaUser className=" text-[#0fcda1] text-3xl w-full h-full p-1 rounded-full" />
+                    <FaUser className=" text-[#0fcda1] w-full h-full p-1 rounded-full" />
                   )}
                 </div>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
+        <div className='text-center mt-10'>
+          <Link to='/allTestimonials'>
+            <button className='flexcode-button px-8 py-3'>
+              All Testimonials
+            </button>
+          </Link>
+        </div>
       </div>
     </section>
   );

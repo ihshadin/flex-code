@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../providers/AuthProvider";
+import PageBannerTitle from "../../../components/BannerTitle/PageBannerTitle";
 
 
 const AddBlog = () => {
@@ -14,7 +15,7 @@ const AddBlog = () => {
       userImage: user?.photoURL,
       userName: user?.displayName,
     };
-    fetch("https://flex-code-server.vercel.app/blog", {
+    fetch("http://localhost:5000/blog", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -38,20 +39,16 @@ const AddBlog = () => {
 
   return (
     <div className="flexcode-container">
-      <section className="py-6 bg-[#1e2d40] text-white rounded-md ">
-        <div className="container mx-auto flex flex-col justify-around p-4 text-center md:p-10 lg:flex-row">
-          <div className="flex flex-col justify-center lg:text-left">
-            <p className="mb-1 text-sm font-medium text-center tracki uppercase dark:text-violet-400">
-              Share your knowledge with other
-            </p>
-            <h1 className="py-2 text-3xl font-semibold leadi title-font">
-              Write your blog share your experience
-            </h1>
-          </div>
-
-        </div>
+      <section className="py-6">
+        <PageBannerTitle
+          title="Add Blogs"
+          shortDesc={"Share your knowledge with everyone"}
+          btnLink={"/blog"}
+          btnText1={"Our Blogs"}
+          btnText2={"View All Blogs"}
+        />
       </section>
-      <form onSubmit={handleSubmit(onSubmit)} className="w-1/2 mx-auto my-5 ">
+      <form onSubmit={handleSubmit(onSubmit)} className="w-5/6 mx-auto my-5 ">
         <div className="-mx-3">
           <div className="w-full px-3 mb-5">
             <label htmlFor="" className="text-sm font-semibold px-1">
@@ -65,7 +62,7 @@ const AddBlog = () => {
                 defaultValue={user?.displayName}
                 readOnly
                 type="text"
-                className="w-full -ml-10 pl-10 pr-3 bg-[#1e2d40] py-2 rounded-lg border-2 text-white border-gray-500 outline-none focus:border-[#00ffc3]"
+                className="w-full -ml-10 pl-10 pr-3 bg-[#1e2d40] py-2 rounded-lg border text-white border-gray-500 outline-none"
                 placeholder="John doe"
               />
             </div>
@@ -82,8 +79,8 @@ const AddBlog = () => {
               </div>
               <input
                 type="text"
-                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 
-                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
+                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border 
+                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
                 placeholder="Write your blog title"
                 {...register("title", { required: true })}
               />
@@ -101,8 +98,8 @@ const AddBlog = () => {
               </div>
               <input
                 type="url"
-                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 
-                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
+                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border 
+                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
                 placeholder="Keep a image url"
                 {...register("imageUrl", { required: true })}
               />
@@ -120,7 +117,7 @@ const AddBlog = () => {
               </div>
               <textarea
                 rows={7}
-                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2  text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
+                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border  text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
                 placeholder="Write details your blog"
                 {...register("details", { required: true })}
               />

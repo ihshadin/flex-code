@@ -66,7 +66,7 @@ const router = createBrowserRouter([
         path: "/blog/:id",
         element: <SingleBlog />,
         loader: ({ params }) =>
-          fetch(`https://flex-code-server.vercel.app/blog/${params.id}`),
+          fetch(`http://localhost:5000/blog/${params.id}`),
       },
 
       {
@@ -85,7 +85,7 @@ const router = createBrowserRouter([
       {
         path: "/problem/:id",
         element: <ProblemDetails />,
-        // loader: ({ params }) => fetch(`http://localhost:5173/problems.json/${params.id}`)
+        // loader: ({ params }) => fetch(`http://localhost:5000/problems.json/${params.id}`)
       },
       // {
       //   path: "/dashboard",
