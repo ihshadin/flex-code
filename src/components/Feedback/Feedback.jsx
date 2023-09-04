@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import reviewImg1 from "../../../public/20230810_120154.png";
 import { AuthContext } from "../../providers/AuthProvider";
 import useAxiosNormal from "../../hooks/useAxiosNormal";
+import PageBannerTitle from "../BannerTitle/PageBannerTitle";
 
 const Feedback = () => {
   const [rating, setRating] = useState(0);
@@ -24,10 +25,9 @@ const Feedback = () => {
     };
     axiosNormal.post("/feedback", feedbackDetails).then((data) => {
       if (data.message === "success") {
-        console.log(feedbackDetails);
         Swal.fire({
-          title: "Success Your Submit!",
-          text: "Do you want to continue",
+          title: "Wow! You Leave a feedback!",
+          text: "Submit you feedback successfully",
           icon: "success",
           confirmButtonText: "OK",
         });
@@ -36,113 +36,90 @@ const Feedback = () => {
     });
   };
   return (
-    <section>
+    <>
       {user && (
         <>
-          <h1 className="text-2xl md:text-3xl text-center text-white font-semibold">
-            Give Feedback.
-          </h1>
-          <p className="text-sm md:text-md text-center border-b pb-4 md:w-1/2 mx-auto border-[#00ffc3] text-white mt-1 tracking-wider">
-            Share your opinion with others.
-          </p>
-          <div className="flexcode-container md:flex gap-10 items-center relative">
-            <form onSubmit={handleSubmit(onSubmit)} className="md:w-1/2 ">
-              <div className="flex -mx-3">
-                <div className="w-full px-0 mb-5">
-                  <label htmlFor="" className="text-sm font-semibold px-1">
-                    Your name
-                  </label>
-                  <div className="flex">
-                    <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                      <i className="mdi mdi-account-outline text-gray-400 text-lg"></i>
-                    </div>
-                    <input
-                      defaultValue={user?.displayName}
-                      readOnly
-                      type="text"
-                      className="w-full -ml-10 pl-10 pr-3 bg-[#1e2d40] py-2 rounded-lg border-2 border-gray-500 outline-none focus:border-[#00ffc3]"
-                      placeholder="John doe"
-                    />
-                  </div>
+          <PageBannerTitle
+            title={"Leave Feedback"}
+            shortDesc={"Share your opinion with others."}
+          />
+          <div className="md:flex gap-10 items-start relative my-5 md:my-16">
+            <form onSubmit={handleSubmit(onSubmit)} className="md:w-1/2">
+              <div className="w-full mb-5">
+                <label htmlFor="" className="font-medium p-1">
+                  Your name
+                </label>
+                <input
+                  defaultValue={user?.displayName}
+                  readOnly
+                  type="text"
+                  className="w-full px-6 bg-secondary-color py-3 rounded-xl border-2 border-slate-500 outline-none"
+                  placeholder="John doe"
+                />
+              </div>
+              <div className="w-full mb-5">
+                <label htmlFor="thumbExp" className="font-medium p-1">
+                  Your thumb expression
+                </label>
+                <input
+                  onKeyUp={(e) => setExp(e.target.value)}
+                  type="text"
+                  id="thumbExp"
+                  className="w-full px-6 bg-secondary-color py-3 rounded-xl border-2 border-slate-500 hover:border-[#0fcda156] focus:border-[#0fcda156] outline-none"
+                  placeholder="Awesome experience"
+                  {...register("thumbExpression", { required: true })}
+                />
+              </div>
+              <div className="w-full mb-5">
+                <label htmlFor="details" className="text-sm font-semibold px-1">
+                  Give your full expression
+                </label>
+                <textarea
+                  onKeyUp={(e) => setDetails(e.target.value)}
+                  rows={5}
+                  id="details"
+                  className="w-full px-6 bg-secondary-color py-3 rounded-xl border-2 border-slate-500 hover:border-[#0fcda156] focus:border-[#0fcda156] outline-none"
+                  placeholder="Write details about your experience"
+                  {...register("details", { required: true })}
+                />
+              </div>
+              <div className="flex items-center gap-5 mb-8 md:mb-12">
+                <span className="text-xl font-semibold px-1">
+                  Rate Us.
+                </span>
+                <div className="flex">
+                  <Rating
+                    onClick={(value) => setRating(value)}
+                    emptySymbol={
+                      <FaRegStar className="text-3xl mr-2 text-amber-500" />
+                    }
+                    fullSymbol={
+                      <FaStar className="text-3xl mr-2 text-amber-500" />
+                    }
+                  />
                 </div>
               </div>
-              <div className="flex -mx-3">
-                <div className="w-full px-0 mb-5">
-                  <label htmlFor="" className="text-sm font-semibold px-1">
-                    Your thumb expression
-                  </label>
-                  <div className="flex">
-                    <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                      <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
-                    </div>
-                    <input
-                      onKeyUp={(e) => setExp(e.target.value)}
-                      type="text"
-                      className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
-                      placeholder="Awesome experience"
-                      {...register("thumbExpression", { required: true })}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="flex -mx-3">
-                <div className="w-full px-0 mb-5">
-                  <label htmlFor="" className="text-sm font-semibold px-1">
-                    Give your full expression
-                  </label>
-                  <div className="flex">
-                    <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                      <i className="mdi mdi-lock-outline text-gray-400 text-lg"></i>
-                    </div>
-                    <textarea
-                      onKeyUp={(e) => setDetails(e.target.value)}
-                      rows={5}
-                      className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-500 bg-[#1e2d40] outline-none focus:border-[#00ffc3]"
-                      placeholder="Write details about your experience"
-                      {...register("details", { required: true })}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="flex -mx-3">
-                <div className="w-full px-0 mb-12">
-                  <label htmlFor="" className="text-sm font-semibold px-1">
-                    Rate Us.
-                  </label>
-                  <div className="flex">
-                    <Rating
-                      onClick={(value) => setRating(value)}
-                      emptySymbol={
-                        <FaRegStar className="text-3xl mr-3 text-amber-500" />
-                      }
-                      fullSymbol={
-                        <FaStar className="text-3xl mr-3 text-amber-500" />
-                      }
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="md:flex md:-mx-3 ml-10  absolute -bottom-8 md:bottom-0">
-                <div className="text-center w-full px-0 mb-5">
-                  <button
-                    type="submit"
-                    className="flexcode-button px-20 py-2 md:py-3 md:px-28"
-                  >
-                    Submit
-                  </button>
-                </div>
+              <div className="text-center w-full">
+                <button
+                  type="submit"
+                  className="flexcode-button px-20 md:px-28 py-2 md:py-3"
+                >
+                  Submit
+                </button>
               </div>
             </form>
-            <div className="md:w-1/2 md:-mt-20 mb-24 md:mb-0">
-              <div className="bg-secondary-color p-3 md:p-10 mb-12 rounded-2xl text-white border border-[#1e2d40] hover:border-[#0fcda1] transition-all duration-300 cursor-pointer">
-                <h2 className="text-2xl font-semibold mb-5">
-                  {exp === "" ? "Your expression" : exp}
+            <div className="md:w-1/2 min-h-[400px] flex flex-col justify-between relative flexcode-banner-bg px-5 md:px-10 py-10 mt-10 md:mt-6 rounded-2xl text-white border border-slate-500 hover:border-[#0fcda156] transition-all duration-300 cursor-pointer">
+              <div>
+                <h2 className="text-xl md:text-2xl font-semibold mb-5">
+                  {exp === "" ? "Your Expression" : exp}
                 </h2>
-                <p className="min-h-16">
+                <p className="min-h-16 text-slate-300">
                   {details === "" ? "Write your experience here..." : details}
                 </p>
-                <span className="flex mt-8 items-center justify-between">
-                  <h3 className="text-md md:text-xl md:w-1/2 font-semibold  mb-2">
+              </div>
+              <div className="">
+                <div className="flex flex-col-reverse md:flex-row mt-8 md:items-center justify-between mb-3">
+                  <h3 className="text-md md:text-xl font-semibold mt-5 md:mt-0">
                     ~ {user?.displayName || "Your Name"}
                   </h3>
                   <Rating
@@ -150,14 +127,14 @@ const Feedback = () => {
                     readonly
                     className="flex items-center justify-center"
                     emptySymbol={
-                      <FaRegStar className="text-xl mr-3 text-amber-500" />
+                      <FaRegStar className="text-xl md:text-2xl ml-3 text-amber-500" />
                     }
                     fullSymbol={
-                      <FaStar className="text-xl mr-3 text-amber-500" />
+                      <FaStar className="text-xl md:text-2xl ml-3 text-amber-500" />
                     }
                   />
-                </span>
-                <div className="w-20 h-20 object-cover rounded-full border-[#0fcda1] bg-secondary-color border absolute">
+                </div>
+                <div className="w-20 h-20 object-cover rounded-full border border-[#0fcda156] p-1 bg-secondary-color absolute">
                   <img
                     src={user?.photoURL || reviewImg1}
                     className="rounded-full"
@@ -169,7 +146,7 @@ const Feedback = () => {
           </div>
         </>
       )}
-    </section>
+    </>
   );
 };
 export default Feedback;
