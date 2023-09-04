@@ -5,47 +5,48 @@ import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
 import About from "./About";
 import { useEffect, useState } from "react";
 import useAxiosNormal from "../../hooks/useAxiosNormal";
+import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
 
 const Explore = () => {
-    const [axiosNormal] = useAxiosNormal();
+  const [axiosNormal] = useAxiosNormal();
+  const [exploreCards, setExploreCards] = useState([]);
 
-    const navigation = useNavigation();
-    if (navigation.state === "loading") {
-        return <FlexcodeLoading />;
-    }
+  useEffect(() => {
+    axiosNormal.get("/exploreDetails").then((data) => {
+      setExploreCards(data);
+    });
+  }, []);
 
-    const [exploreCards, setExploreCards] = useState([]);
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return <FlexcodeLoading />;
+  }
 
+  return (
+    <section>
+      <div className="flexcode-container">
+        <PageBannerTitle
+          title="About Us"
+          shortDesc="Who we are and what we do,"
+        />
+        <About></About>
+        <div className="my-8 md:my-16">
+        <PageBannerTitle
+          title="Explore"
+          shortDesc="The best place for problem solving with exploring smart contracts"
+        />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-5 my-5 md:my-10">
+            {exploreCards?.map((explore, index) => (
+              <ExploreCard key={index} explore={explore} />
+            ))}
+          </div>
+        </div>
 
-    useEffect(() => {
-        axiosNormal.get('/exploreDetails')
-            .then(data => {
-                setExploreCards(data)
-            })
-    }, [])
-
-    return (
-        <section>
-            <div className="flexcode-container">
-                <span className="flex items-center gap-5"> <h1 className="text-6xl text-white font-bold">Explore</h1>
-                    < img loading="lazy" alt="yawing face" src="./smiling-face-with-sunglasses@80.webp" className=" pointer-events-none h-16 w-16 align-bottom" /></span>
-                <p className="text-xl text-white mt-5 tracking-wider">The best place for problem solving with exploring smart contracts <br /> from world-class companies problems — unlock the power of problem solving with <span className="text-[#0fcda1]">Flex Code</span>.</p>
-                <About></About>
-                <div className="my-16">
-                    <h1 className="text-2xl text-white font-semibold">Popular</h1>
-                    <p className="text-md text-white mt-1 tracking-wider">A collection of most popular problems.</p>
-                    <div className="grid grid-cols-3 gap-5 my-10">
-                        {
-                            exploreCards?.map((explore, index) => <ExploreCard key={index} explore={explore} />)
-                        }
-                    </div>
-                </div>
-
-                <div className="my-16">
-                    <Feedback />
-                </div>
-            </div>
-        </section>
-    );
+        <div className="my-8 md:my-16">
+          <Feedback />
+        </div>
+      </div>
+    </section>
+  );
 };
 export default Explore;
