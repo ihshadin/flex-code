@@ -151,7 +151,7 @@ const router = createBrowserRouter([
         element: <AllTestimonials />,
       },
       {
-        path: "/exploreDetails/:id",
+        path: "/explore/:id",
         element: <ExploreDetails></ExploreDetails>,
       },
     ],
