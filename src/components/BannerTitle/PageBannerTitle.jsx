@@ -6,7 +6,7 @@ const PageBannerTitle = ({ title, shortDesc, btnLink, btnIcon, btnText1, btnText
         <section>
             <div className='flex flex-col md:flex-row gap-5 md:gap-2 justify-between items-center border-b-2 border-[#0fcda185] pb-3'>
                 <div>
-                    <h1 className='text-white text-xl md:text-2xl md:text-4xl tracking-wider font-semibold'>{title}</h1>
+                    <h1 className='text-white text-xl md:text-2xl lg:text-4xl tracking-wider font-semibold'>{title}</h1>
                     <p className='text-slate-300 text-sm md:text-base mt-1'>{shortDesc}</p>
                 </div>
                 {

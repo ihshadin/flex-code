@@ -6,12 +6,13 @@ import Pagination from "../../components/Pagination/Pagination";
 import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
 import CardLoading from "../../components/FlexcodeLoading/CardLoading";
 import ComingSoon from "../../components/ComingSoon/ComingSoon";
+import ProblemCard from "./ProblemCard";
 
 const LangBasedProblems = () => {
     const { languages } = useParams()
     const [problems, setProblems] = useState([])
     const [currentPage, setCurrentPage] = useState(0)
-    const itemsPerPage = 6; // Just change the number to 10
+    const itemsPerPage = 10; // Just change the number to 10
     const [axiosNormal] = useAxiosNormal();
     const [isLoading, setIsLoading] = useState(true);
     const [totalProblems, setTotalProblems] = useState(0);
@@ -20,17 +21,15 @@ const LangBasedProblems = () => {
     // specific language base problems
     const specificLanguageProblems = problems?.filter(problem => problem.language.toLowerCase() === languages)
 
+
+
     useEffect(() => {
-        // axiosNormal.get(`/problem?page=${currentPage}&limit=${itemsPerPage}`)
-        //     .then(data => {
-        //         setProblems(data)
-        //     })
         axiosNormal.get(`/problem/?&page=${currentPage}&itemsPerPage=${itemsPerPage}`)
             .then((data) => {
                 setProblems(data.data);
-                setTotalProblems(data.totalCount)
                 setIsLoading(false)
             });
+        setTotalProblems(specificLanguageProblems.length)
     }, [currentPage, itemsPerPage]);
 
     return (
@@ -49,44 +48,7 @@ const LangBasedProblems = () => {
                                 <>
                                     <div className="grid md:grid-cols-2 gap-6">
                                         {specificLanguageProblems?.map((problem, index) => (
-                                            <div
-                                                key={index}
-                                                className="flexcode-banner-bg flex flex-col md:flex-row items-center justify-between border border-slate-500 hover:border-[#0fcda18c] px-5 py-6 rounded-xl"
-                                            >
-                                                <div>
-                                                    <h1 className="text-base mb-5 text-white font-semibold">
-                                                        {problem.title}
-                                                    </h1>
-                                                    <div className="flex items-center gap-5">
-                                                        <p className="text-xs text-gray-400 tracking-wider">
-                                                            Type:
-                                                            <span
-                                                                className={`capitalize ${problem.level === "easy"
-                                                                    ? "text-green-500"
-                                                                    : problem.level === "difficult"
-                                                                        ? "text-red-500"
-                                                                        : "text-yellow-500"
-                                                                    }`}
-                                                            >
-                                                                {problem.level}
-                                                            </span>
-                                                            .
-                                                        </p>
-                                                        <p className="text-xs text-gray-400 tracking-wider">
-                                                            Language: <span className="text-white">{problem.language}</span>.
-                                                        </p>
-
-                                                    </div>
-                                                </div>
-                                                <div className="shrink-0">
-                                                    <Link
-                                                        to={`/problem/${problem._id}`}
-                                                        className="flexcode-button text-xs py-2 px-3"
-                                                    >
-                                                        Solve Problem
-                                                    </Link>
-                                                </div>
-                                            </div>
+                                            <ProblemCard key={problem._id} problem={problem} />
                                         ))}
                                     </div>
                                     <Pagination currentPage={currentPage} totalPage={totalPages} setCurrentPage={setCurrentPage} />
