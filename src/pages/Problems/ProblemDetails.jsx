@@ -15,7 +15,7 @@ import useAxiosNormal from "../../hooks/useAxiosNormal";
 const ProblemDetails = () => {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
-  const [code, setCode] = useState(""); //console.log("Hello, world!");
+  const [code, setCode] = useState("");
   const [consoleOutput, setConsoleOutput] = useState([]);
   const [outputMessage, setOutputMessage] = useState("");
   const [singleProblem, setSingleProblems] = useState([]);

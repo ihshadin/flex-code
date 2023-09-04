@@ -4,7 +4,8 @@ import './FlexcodeLoading.css'
 
 const FlexcodeLoading = () => {
   return (
-    <div className="flex items-center justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+    <div className="flex items-center justify-center h-screen">
+     {/* <div className="flex items-center justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"> */}
       <div className="w-32 h-20 relative ">
         <img
           src={logo} // Replace with your logo path

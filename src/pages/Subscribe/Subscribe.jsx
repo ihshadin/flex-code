@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import img from "/premiumlogo.png";
-// import { FaTrophy } from "react-icons/fa";
 import './Subscribe.css'
 
 const Subscribe = () => {
@@ -23,7 +22,6 @@ const Subscribe = () => {
 
         <div className="flex justify-center mt-8 mb-3">
           <Link to="/checkout">
-            {/* <button className="flexcode-button py-3 px-16 ">Subscribe</button> */}
             <button className="p-container">
               <div className="left-side">
                 <div className="card">
@@ -60,51 +58,6 @@ const Subscribe = () => {
             </button>
           </Link>
         </div>
-
-        {/* <div className="exploreCard border border-gray-500 hover:border-[#0fcda1] transition-all p-10 rounded-md mx-auto mt-8 ">
-          <div className="flex justify-between mb-6">
-            <h1 className="text-xl font-semibold">
-              <span className="text-4xl font-extrabold text-[#0fcda1]">
-                Yearly{" "}
-              </span>
-              billed yearly ({" "}
-              <span className="text-[#0fcda1] font-semibold">$159 </span> )
-            </h1>
-            <h1 className="flex items-center text-xl font-semibold">
-              {" "}
-              <span className="mr-3">
-                <FaTrophy size={20} color="#0fcda1" />
-              </span>
-              {"  "}
-              Most popular plan
-            </h1>
-          </div>
-          <p className="text-xl">
-            Our{" "}
-            <span className="text-[#0fcda1] font-semibold">
-              most popular plan
-            </span>{" "}
-            previously sold for{" "}
-            <span className="text-[#0fcda1] font-semibold">$299 </span> and is
-            now only{" "}
-            <span className="text-[#0fcda1] font-semibold">$13.25 </span>
-            /Life time. This plan saves you over 60% in comparison to the yearly
-            plan.
-          </p>
-          <div className="flex justify-between items-center mt-4">
-            <h1 className="text-xl">
-              <span className="text-4xl font-semibold">$13.25 /</span>Life time
-            </h1>
-            <h1 className="text-xl">Prices are marked in USD</h1>
-            <div className="flex justify-center mt-8 mb-3">
-              <Link to="/checkout">
-                <button className="flexcode-button py-3 px-16 ">
-                  Subscribe
-                </button>
-              </Link>
-            </div>
-          </div>
-        </div> */}
       </div>
     </section>
   );
