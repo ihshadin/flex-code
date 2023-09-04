@@ -30,7 +30,6 @@ const NavBar = ({setUserPaid, onLogout}) => {
     logOut().then(() => {
       onLogout()
       setUserPaid(false)
-      // console.log("nav-----32",userPaid);
       Swal.fire({
         position: "bottom-start",
         icon: "success",

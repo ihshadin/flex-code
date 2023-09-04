@@ -1,13 +1,20 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigation } from "react-router-dom";
 import AddProblemCTA from "./AddProblemSolving/AddProblemCTA";
 import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
 import useAxiosNormal from "../../hooks/useAxiosNormal";
 import SpeLangButton from "./SpeLangButton";
 import pythonLogo from '../../assets/language/pythonLogo.svg'
 import Pagination from "../../components/Pagination/Pagination";
+import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
 
 const Problems = () => {
+
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return <FlexcodeLoading />;
+  }
+
   const [problems, setProblems] = useState([]);
   const [filterLevel, setFilterLevel] = useState("");
   const [searchText, setSearchText] = useState("")
