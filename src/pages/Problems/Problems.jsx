@@ -119,7 +119,7 @@ const Problems = () => {
             <CardLoading />
           ) : (
             <div className="grid md:grid-cols-2 gap-6">
-              {problems?.map((problem, index) => (
+              {problems?.map((problem) => (
                 <ProblemCard key={problem._id} problem={problem} />
               ))}
             </div>
