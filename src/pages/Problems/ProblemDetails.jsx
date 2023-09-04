@@ -21,12 +21,10 @@ const ProblemDetails = () => {
   const [singleProblem, setSingleProblems] = useState([]);
   const [axiosNormal] = useAxiosNormal();
 
-
   useEffect(() => {
-    axiosNormal.get(`/problem/${id}`)
-      .then((data) => {
-        setSingleProblems(data);
-      });
+    axiosNormal.get(`/problem/${id}`).then((data) => {
+      setSingleProblems(data);
+    });
   }, []);
 
   //  Default values
@@ -57,9 +55,7 @@ const ProblemDetails = () => {
   const submitCode = () => {
     try {
       // Clear console output
-      setConsoleOutput('');
-<<<<<<< HEAD
-=======
+      setConsoleOutput("");
 
       // Capture console output
       // const originalLog = console.log;
@@ -67,11 +63,11 @@ const ProblemDetails = () => {
       //   originalLog.apply(console, args);
       //   setConsoleOutput((prevOutput) => [...prevOutput, args.join(" ")]);
       // };
->>>>>>> 5157fb0c9fa61b393597f800867e26cd383bf5c1
 
       // Execute code
-      const userCode = `${code || defaultCode}\n\n${singleProblem.functionName
-        }(${singleProblem.examples[0].input});`;
+      const userCode = `${code || defaultCode}\n\n${
+        singleProblem.functionName
+      }(${singleProblem.examples[0].input});`;
 
       let userOutput = eval(userCode);
 
@@ -96,7 +92,7 @@ const ProblemDetails = () => {
 
       // console.log(singleProblem.examples[0].output)
       // console.log('userOutput---95',userOutput);
-      // // , 
+      // // ,
 
       //   Output Message
       if (userOutput == singleProblem.examples[0].output) {
@@ -115,10 +111,9 @@ const ProblemDetails = () => {
           </div>
         );
         // -----------------------
-        axiosNormal.post("/solvedProblems", userSubmission)
+        axiosNormal
+          .post("/solvedProblems", userSubmission)
           .then((data) => console.log(data));
-
-
       } else {
         setOutputMessage(
           <div>
@@ -158,8 +153,9 @@ const ProblemDetails = () => {
       };
 
       // Execute code
-      const userCode = `${code || defaultCode}\n\nconsole.log(${singleProblem.functionName
-        }(${singleProblem.examples[0].input}));`;
+      const userCode = `${code || defaultCode}\n\nconsole.log(${
+        singleProblem.functionName
+      }(${singleProblem.examples[0].input}));`;
 
       eval(userCode);
       console.log = originalLog;
@@ -290,13 +286,13 @@ const ProblemDetails = () => {
                   {consoleOutput == false
                     ? ""
                     : consoleOutput.map((output, index) => (
-                      <div key={index} className="flex items-center gap-x-5">
-                        <span className="bg-secondary-color text-gray-500 w-8 py-2">
-                          {index + 1}
-                        </span>
-                        <span>{output}</span>
-                      </div>
-                    ))}
+                        <div key={index} className="flex items-center gap-x-5">
+                          <span className="bg-secondary-color text-gray-500 w-8 py-2">
+                            {index + 1}
+                          </span>
+                          <span>{output}</span>
+                        </div>
+                      ))}
                 </span>
                 <div>{outputMessage}</div>
               </div>
