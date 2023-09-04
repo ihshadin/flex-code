@@ -57,13 +57,6 @@ const ProblemDetails = () => {
       // Clear console output
       setConsoleOutput("");
 
-      // Capture console output
-      // const originalLog = console.log;
-      // console.log = (...args) => {
-      //   originalLog.apply(console, args);
-      //   setConsoleOutput((prevOutput) => [...prevOutput, args.join(" ")]);
-      // };
-
       // Execute code
       const userCode = `${code || defaultCode}\n\n${
         singleProblem.functionName

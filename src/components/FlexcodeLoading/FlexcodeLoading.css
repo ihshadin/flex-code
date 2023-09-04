@@ -1,0 +1,19 @@
+
+@keyframes colorize {
+    0% {
+      filter: grayscale(100%);
+      transform: scale(1); 
+    }
+    50% {
+      filter: grayscale(70%);
+      transform: scale(1.2); 
+    }
+    100% {
+      filter: grayscale(100%);
+      transform: scale(1);
+    }
+  }
+  
+  .animation-image {
+    animation: colorize 2s infinite;
+  }
