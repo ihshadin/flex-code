@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigation } from "react-router-dom";
 import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
 import useAxiosNormal from "../../hooks/useAxiosNormal";
 import Pagination from "../../components/Pagination/Pagination";
+import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
 import CardLoading from "../../components/FlexcodeLoading/CardLoading";
 
 const Problems = () => {
+
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return <FlexcodeLoading />;
+  }
+
   const [problems, setProblems] = useState([]);
   const [filterLevel, setFilterLevel] = useState("");
   const [searchText, setSearchText] = useState("")
