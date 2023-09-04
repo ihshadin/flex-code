@@ -225,7 +225,7 @@ const PlayGround = () => {
              ))} */}
 
                 <div>{consoleOutput}</div>
-                <div>{errorOutput}</div>
+                <div className="text-red-500">{errorOutput}</div>
               </div>
             </div>
           ) : (
