@@ -3,7 +3,7 @@
 :root {
  --background: #33837e;
  --left-side: #5de2a3;
- --left-side: #ffba2a;
+ --left-side: #ffbc2a;
  --card: #c7ffbc;
  /* --card: #0fcda1a4; */
  --card-line: #80ea69;
@@ -145,28 +145,41 @@ html {
 }
 
 .p-container:hover .card {
- animation: slide-top 1.2s cubic-bezier(0.645, 0.045, 0.355, 1) both;
+ -webkit-animation: slide-top 1.2s cubic-bezier(0.645, 0.045, 0.355, 1) both;
+         animation: slide-top 1.2s cubic-bezier(0.645, 0.045, 0.355, 1) both;
 }
 
 .p-container:hover .post {
- animation: slide-post 1s cubic-bezier(0.165, 0.84, 0.44, 1) both;
+ -webkit-animation: slide-post 1s cubic-bezier(0.165, 0.84, 0.44, 1) both;
+         animation: slide-post 1s cubic-bezier(0.165, 0.84, 0.44, 1) both;
+}
+
+@-webkit-keyframes slide-top {
+ 0% {
+  transform: translateY(0);
+ }
+ 50% {
+  transform: translateY(-70px) rotate(90deg);
+ }
+ 60% {
+  transform: translateY(-70px) rotate(90deg);
+ }
+ 100% {
+  transform: translateY(-8px) rotate(90deg);
+ }
 }
 
 @keyframes slide-top {
  0% {
-  -webkit-transform: translateY(0);
   transform: translateY(0);
  }
  50% {
-  -webkit-transform: translateY(-70px) rotate(90deg);
   transform: translateY(-70px) rotate(90deg);
  }
  60% {
-  -webkit-transform: translateY(-70px) rotate(90deg);
   transform: translateY(-70px) rotate(90deg);
  }
  100% {
-  -webkit-transform: translateY(-8px) rotate(90deg);
   transform: translateY(-8px) rotate(90deg);
  }
 }
@@ -235,13 +248,20 @@ html {
  top: 68px;
 }
 
-@keyframes slide-post {
+@-webkit-keyframes slide-post {
  50% {
-  -webkit-transform: translateY(0);
   transform: translateY(0);
  }
  100% {
-  -webkit-transform: translateY(-70px);
+  transform: translateY(-70px);
+ }
+}
+
+@keyframes slide-post {
+ 50% {
+  transform: translateY(0);
+ }
+ 100% {
   transform: translateY(-70px);
  }
 }
@@ -258,7 +278,19 @@ html {
 }
 
 .p-container:hover .dollar {
- animation: fade-in-fwd 0.3s 1s backwards;
+ -webkit-animation: fade-in-fwd 0.3s 1s backwards;
+         animation: fade-in-fwd 0.3s 1s backwards;
+}
+
+@-webkit-keyframes fade-in-fwd {
+ 0% {
+  opacity: 0;
+  transform: translateY(-5px);
+ }
+ 100% {
+  opacity: 1;
+  transform: translateY(0);
+ }
 }
 
 @keyframes fade-in-fwd {
