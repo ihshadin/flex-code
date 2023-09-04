@@ -42,8 +42,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    errorElement: <ErrorPage />,
-
+    // errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -60,13 +59,10 @@ const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog />,
-        loader: () => fetch(`http://localhost:5000/blog/all`),
       },
       {
         path: "/blog/:id",
         element: <SingleBlog />,
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/blog/${params.id}`),
       },
 
       {
@@ -80,17 +76,11 @@ const router = createBrowserRouter([
       {
         path: "/problems/:languages",
         element: <LangBasedProblems />,
-        // loader: () => fetch(`http://localhost:5000/problem/all`),
       },
       {
         path: "/problem/:id",
         element: <ProblemDetails />,
-        // loader: ({ params }) => fetch(`http://localhost:5000/problems.json/${params.id}`)
       },
-      // {
-      //   path: "/dashboard",
-      //   element: <DashboardHome />,
-      // },
       {
         path: "/explore",
         element: <Explore />,
