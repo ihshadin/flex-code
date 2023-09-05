@@ -46,8 +46,8 @@ const CheckOut = () => {
   };
 
   return (
-    <div className="flex items-center gap-x-6 flexcode-container">
-      <div className="exploreCard border my-8 border-gray-500 hover:border-[#0fcda1] transition-all p-10 rounded-md w-[60%]">
+    <div className="flex flex-col md:flex-row items-stretch gap-y-5 md:gap-x-6 flexcode-container">
+      <div className="exploreCard border border-gray-500 hover:border-[#0fcda1] transition-all p-5 md:p-10 rounded-md md:w-[60%]">
         <div className="flex justify-between mb-6">
           <h1 className="text-xl font-semibold">
             <span className="text-4xl font-extrabold text-[#0fcda1]">
@@ -83,7 +83,7 @@ const CheckOut = () => {
           <h1 className="text-xl">Prices are marked in USD</h1>
         </div>
       </div>
-      <div class="exploreCard border border-gray-500 hover:border-[#0fcda1] transition-all p-10 rounded-lg w-[40%] text-white">
+      <div class="exploreCard border border-gray-500 hover:border-[#0fcda1] transition-all p-10 rounded-lg md:w-[40%] text-white">
         <h1 class="text-2xl font-semibold mb-4">Payment Checkout</h1>
 
         <form onSubmit={handleSubmit(onSubmit)}>

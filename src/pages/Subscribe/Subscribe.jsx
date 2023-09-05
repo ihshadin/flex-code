@@ -5,14 +5,14 @@ import './Subscribe.css'
 const Subscribe = () => {
   return (
     <section>
-      <div className="flexcode-container my-10 max-h-screen">
+      <div className="mt-8 mb-8 md:mt-12 md:mb-16 max-h-screen px-5">
         <div className="flex justify-center items-center ">
           <div className="text-center">
-            <div className="h-[15rem] w-[15rem] mx-auto">
+            <div className="h-[10rem] w-[10rem] md:h-[15rem] md:w-[15rem] mx-auto">
               <img src={img} alt="" />
             </div>
-            <h1 className="text-4xl text-white font-bold mt-2">Premium</h1>
-            <p className="text-2xl font-medium mt-4">
+            <h1 className="text-2xl md:text-4xl text-white font-bold mt-2">Premium</h1>
+            <p className="text-lg md:text-2xl font-medium mt-4">
               Get started with a{" "}
               <span className="text-[#0fcda1]">Flex</span>code
               Subscription that works for you.
@@ -20,7 +20,7 @@ const Subscribe = () => {
           </div>
         </div>
 
-        <div className="flex justify-center mt-8 mb-3">
+        <div className="flex justify-center mt-8 ">
           <Link to="/checkout">
             <button className="p-container">
               <div className="left-side">

@@ -39,10 +39,12 @@ html {
  transition: 0.3s ease-in-out;
  
  &:before {
-  width: 200vw;
+  /* width: 135vw; */
+  /* width: 100%; */
   position: absolute;
   top: 0;
-  left: -100vw;
+  /* left: -100vw; */
+  /* right: 100vw; */
   height: 100%;
   content: "";
  }
@@ -123,6 +125,8 @@ html {
 
 @media only screen and (max-width: 480px) {
  .p-container {
+        width: 100%;
+        margin-right: 60px;
   transform: scale(0.7);
   &:hover {
    transform: scale(0.74);
