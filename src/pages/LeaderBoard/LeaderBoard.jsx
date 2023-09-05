@@ -9,6 +9,7 @@ const LeaderBoard = () => {
   const [solvedProblems, setSolvedProblems] = useState([]);
 
   const [axiosNormal] = useAxiosNormal();
+  const isSmallDevice = window.innerWidth <= 768;
 
   useEffect(() => {
     axiosNormal.get('/solvedProblems/leaderboard')
@@ -127,10 +128,10 @@ const LeaderBoard = () => {
                     <div className='font-semibold w-[15%] text-center'>Profile</div>
                   </div>
                   {
-                    solvedProblems.slice(3).map((solveProblem, index) => (
+                    solvedProblems.slice(3, 50).map((solveProblem, index) => (
                       <div key={index} className='flex justify-between min-w-[600px] items-center whitespace-nowrap border-b-[2px] duration-300 border-[#0fcda1] hover:border-white px-6 pb-2 pt-7 rounded-3xl'>
                         <p className='w-[5%]'>{index + 4}</p>
-                        <p className='w-[40%] flex items-center gap-2'>
+                        <div className='w-[40%] flex items-center gap-2'>
                           {
                             solveProblem.userPhoto ? (
                               <img
@@ -139,18 +140,19 @@ const LeaderBoard = () => {
                                 className="object-cover w-10 h-10 rounded-full"
                               />
                             ) : <FaUser
-                              className="object-cover w-10 h-10 rounded-full"
+                              className="object-cover primary-color bg-secondary-color w-10 h-10 rounded-full"
                             />
                           }
                           <div>
-                            <h2 className="font-medium">
-                              {solveProblem?.displayName}
+                            <h2 className="font-medium whitespace-nowrap overflow-hidden text-ellipsis md:text-clip max-w-[19ch] md:max-w-full">
+                              {/* {solveProblem?.displayName.length > 17 ? solveProblem.displayName.slice(0, 17) + ".." : solveProblem.displayName} */}
+                              {solveProblem.displayName}
                             </h2>
                             <p className="text-sm text-slate-400">
                               @{solveProblem.username}
                             </p>
                           </div>
-                        </p>
+                        </div>
                         <p className='w-[20%] text-center'>{solveProblem.points}</p>
                         <p className='w-[20%] text-center'>{solveProblem.problemsSolved}</p>
                         <p className='w-[15%] text-center'>Profile</p>

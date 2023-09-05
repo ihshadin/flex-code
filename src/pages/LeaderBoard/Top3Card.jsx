@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Top3Card = ({ data, position }) => {
   ;
   return (
-    <div className={`w-full p-4 flexcode-banner-bg border flex flex-col gap-8 pt-10 rounded-xl border-gray-500 hover:border-[#0fcda156] transition-all drop-shadow-md ${position === 1 && 'md:-mt-4' || position === 2 && 'md:-skew-y-2' || position === 3 && 'md:skew-y-2'}`}>
+    <div className={`w-full p-4 flexcode-banner-bg border flex flex-col gap-8 pt-10 rounded-xl border-gray-500 hover:border-[#0fcda156] transition-all drop-shadow-md ${position === 1 && 'md:-mt-4 md:order-1' || position === 2 && 'md:-skew-y-2 order-2 md:order-1' || position === 3 && 'md:skew-y-2 order-2 md:order-1'}`}>
       <div className="flex flex-col gap-3">
         <h2 className="font-semibold text-xl text-center tracking-widest">
           Score: <span className="primary-color">{data.points}</span>
