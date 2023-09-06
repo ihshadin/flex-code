@@ -6,7 +6,7 @@ import FlexcodeLoading from "../components/FlexcodeLoading/FlexcodeLoading";
 import premiumlogo from "/premiumlogo.png";
 import normallogo from "/20230810_125620.png";
 import { AuthContext } from "../providers/AuthProvider";
-import useAxiosNormal from "../hooks/useAxiosNormal";
+import useAxiosNormal from "../Hooks/useAxiosNormal";
 import { Helmet } from "react-helmet";
 
 const MainLayout = () => {

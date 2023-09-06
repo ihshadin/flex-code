@@ -1,6 +1,5 @@
 import React from 'react';
 import { FaArrowUp } from 'react-icons/fa';
-import useAllProblems from '../../../../Hooks/useAllProblems';
 
 const ProblemsCard = () => {
 	const { problemLength } = useAllProblems()

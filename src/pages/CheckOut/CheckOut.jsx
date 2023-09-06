@@ -32,10 +32,7 @@ const CheckOut = () => {
       .then((data) => {
         console.log(data);
         window.location.replace(data?.url);
-        // setLoading(false);
       });
-    // setLoading(false);
-    console.log("Main data", data);
   };
 
   return (
@@ -76,8 +73,8 @@ const CheckOut = () => {
           </div>
         </div>
       </div>
-      <div class="exploreCard border border-slate-500 hover:border-[#0fcda156] transition-all p-5 md:p-10 rounded-2xl md:w-[40%]">
-        <h1 class="text-2xl font-semibold mb-4">Payment Checkout</h1>
+      <div className="exploreCard border border-slate-500 hover:border-[#0fcda156] transition-all p-5 md:p-10 rounded-2xl md:w-[40%]">
+        <h1 className="text-2xl font-semibold mb-4">Payment Checkout</h1>
 
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3 text-slate-400">
           <div className="w-full flex items-center gap-2 border border-slate-500 px-2 rounded-lg hover:bg-[#17181B]">
@@ -91,7 +88,6 @@ const CheckOut = () => {
               id=""
               value={user?.displayName}
               placeholder="Your Name"
-            // disabled
             />
           </div>
           <div className="w-full flex items-center gap-2 border border-slate-500 px-2 rounded-lg hover:bg-[#17181B]">
@@ -105,7 +101,6 @@ const CheckOut = () => {
               id=""
               value={user?.email}
               placeholder="Email"
-            // disabled
             />
           </div>
           <div className="w-full flex items-center gap-2 border border-slate-500 px-2 rounded-lg hover:bg-[#17181B]">
@@ -140,7 +135,7 @@ const CheckOut = () => {
           </div>
 
           <div className="w-full">
-            <button type="submit" class="flexcode-button py-3 px-16 w-full">
+            <button type="submit" className="flexcode-button py-3 px-16 w-full">
               {loading ? (
                 <FaSpinner className="m-auto animate-spin" size={24} />
               ) : (
