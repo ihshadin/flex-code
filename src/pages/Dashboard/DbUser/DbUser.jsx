@@ -1,10 +1,13 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { Link } from "react-router-dom";
+import { GiRank3 } from "react-icons/gi";
+import useTopperData from "../../../Hooks/useTopperData";
 
 const DbUser = ({ mySolvedProblems }) => {
   const { user } = useContext(AuthContext);
   const [problemsByLanguage, setProblemsByLanguage] = useState({});
+  const [topperData] = useTopperData();
 
   // Calculate last week
   const currentDate = new Date();
@@ -15,6 +18,8 @@ const DbUser = ({ mySolvedProblems }) => {
   const lastWeekSolvedProblems = mySolvedProblems.filter(problem => new Date(problem.date) >= lastWeekDate);
   // Last week points
   const lastWeekTotalPoints = mySolvedProblems.filter(problem => new Date(problem.date) >= lastWeekDate).reduce((total, problem) => total + problem.points, 0);
+  // User Rank 
+  const myRank = topperData?.find(problem => problem.userEmail === user?.email)
 
   useEffect(() => {
     const problemsCount = mySolvedProblems.reduce((acc, problem) => {
@@ -46,9 +51,7 @@ const DbUser = ({ mySolvedProblems }) => {
               <div className="flex flex-1 items-end space-x-[5px] text-base text-white">
                 <span className="text-slate-300 ">Rank ~</span>
                 <span className="text-slate-200 font-medium">
-                  {
-                    mySolvedProblems.reduce((total, problem) => total + problem.points, 0)
-                  }
+                  {myRank?.rank}
                 </span>
               </div>
             </div>
@@ -63,9 +66,19 @@ const DbUser = ({ mySolvedProblems }) => {
         {/* User Info */}
 
         {/* Start Community Stats content */}
-        <div className="mt-4 mb-4 h-px w-full border-b border-divider-3"></div>
-        <div className="text-base text-white font-medium leading-6 ">Your Statistic</div>
+        <div className="mt-4 mb-4 h-px w-full border-b border-[#0fcda189] border-divider-3"></div>
+        <div className="text-base text-white font-medium leading-6">Your Statistic</div>
         <div className="mt-4 flex flex-col space-y-4">
+          {/* Ranks */}
+          <div className="flex flex-col space-y-1">
+            <div className="flex items-center space-x-2 text-[14px]">
+              <div className="text-[18px]">
+                <GiRank3 className="text-[#0fcda199]" />
+              </div>
+              <div className="text-slate-300 ">Rank</div>
+              <div className="text-white">{myRank?.rank}</div>
+            </div>
+          </div>
           {/* Solutions */}
           <div className="flex flex-col space-y-1">
             <div className="flex items-center space-x-2 text-[14px]">
@@ -125,34 +138,7 @@ const DbUser = ({ mySolvedProblems }) => {
               <span className="text-slate-400">{lastWeekTotalPoints || 0}</span>
             </div>
           </div>
-          <div className="flex flex-col space-y-1">
-            <div className="flex items-center space-x-2 text-[14px]">
-              <div className="text-[18px]">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  width="1em"
-                  height="1em"
-                  fill="currentColor"
-                  className="text-blue-400"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M1.104 12.444a1 1 0 010-.888c.13-.26.37-.693.722-1.241A18.85 18.85 0 013.88 7.652C6.184 5.176 8.896 3.667 12 3.667s5.816 1.509 8.119 3.985c.79.85 1.475 1.756 2.055 2.663.352.548.593.98.722 1.24a1 1 0 010 .89c-.13.26-.37.692-.722 1.24a18.848 18.848 0 01-2.055 2.663c-2.303 2.476-5.015 3.985-8.119 3.985s-5.816-1.509-8.119-3.985a18.846 18.846 0 01-2.055-2.663c-.352-.548-.593-.98-.722-1.24zM12 16a4 4 0 110-8 4 4 0 010 8zm0-2a2 2 0 100-4 2 2 0 000 4z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-              </div>
-              <div className="text-slate-300 ">Views</div>
-              <div className="text-white">0</div>
-            </div>
-            <div className="ml-7 space-x-1 text-xs text-slate-400">
-              <span>Last week</span>
-              <span>
-                <span className="text-slate-200">0</span>
-              </span>
-            </div>
-          </div>
+          {/* Reputation */}
           <div className="flex flex-col space-y-1">
             <div className="flex items-center space-x-2 text-[14px]">
               <div className="text-[18px]">
@@ -202,8 +188,8 @@ const DbUser = ({ mySolvedProblems }) => {
             )
           }
         </div>
+        {/* Start Skills content */}
         <div>
-          {/* Start Skills content */}
           <div className="mt-4 w-full">
             <div className="text-base text-white font-medium leading-6">Skills</div>
             <div className="mt-4 flex flex-col space-y-4">
@@ -242,8 +228,8 @@ const DbUser = ({ mySolvedProblems }) => {
               </div>
             </div>
           </div>
-          {/* End Skills content */}
         </div>
+        {/* End Skills content */}
       </div>
     </section>
   );

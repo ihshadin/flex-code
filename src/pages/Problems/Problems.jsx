@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigation } from "react-router-dom";
 import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
-import useAxiosNormal from "../../hooks/useAxiosNormal";
+import useAxiosNormal from "../../Hooks/useAxiosNormal";
 import Pagination from "../../components/Pagination/Pagination";
 import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
 import CardLoading from "../../components/FlexcodeLoading/CardLoading";

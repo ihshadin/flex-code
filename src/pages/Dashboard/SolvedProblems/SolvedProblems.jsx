@@ -19,6 +19,8 @@ const SolvedProblems = ({ mySolvedProblems }) => {
     const percentageSolvedMedium = (solvedMediumProblems.length / mediumProblems.length) * 100
     const percentageSolvedDifficult = (solvedDifficultProblems.length / difficultProblems.length) * 100
 
+    // Percentage for problems level
+
     // Cirlce
     const percentageToShow = (mySolvedProblems.length / allProblems.length) * 100
     const circumference = 2 * Math.PI * 46;
@@ -32,10 +34,10 @@ const SolvedProblems = ({ mySolvedProblems }) => {
     }, [])
 
     return (
-        <div className="bg-secondary-color rounded-lg min-h-[186px] w-1/2 p-4">
+        <div className="bg-secondary-color rounded-lg min-h-[186px] w-full md:w-1/2 p-4">
             <div className="text-xs font-medium text-white">Solved Problems</div>
-            <div className="flex items-center">
-                <div className="mr-8 mt-6 flex min-w-[100px] justify-center">
+            <div className="flex flex-col md:flex-row items-center gap-6">
+                <div className="flex min-w-[100px] justify-center mt-8 md:mt-0">
                     <div className="group transition-all shrink-1 relative max-h-[100px] max-w-[100px]">
                         {/* SVG code for the circle */}
                         <svg className="h-full w-full origin-center -rotate-90 transform" viewBox="0 0 100 100">
@@ -64,7 +66,7 @@ const SolvedProblems = ({ mySolvedProblems }) => {
                         </div>
                     </div>
                 </div>
-                <div className="flex w-full flex-col space-y-4 lc-xl:max-w-[228px]">
+                <div className="flex flex-col w-full space-y-4 mt-5 md:mt-0">
                     {/* Easy section added */}
                     <div className="space-y-2">
                         <div className="flex w-full items-end text-xs">
@@ -74,7 +76,7 @@ const SolvedProblems = ({ mySolvedProblems }) => {
                                 <span className="text-xs font-medium text-slate-300">/ {easyProblems.length}</span>
                             </div>
                             <div className="text-white">
-                                <span className="text-slate-300">Not enough data</span>
+                                <span className="text-slate-300">{percentageSolvedEasy === 0 ? "Not enough data" : `${percentageSolvedEasy.toFixed()}% problems solved`}</span>
                             </div>
                         </div>
                         <div className="relative h-2 w-full overflow-hidden rounded-full max-w-none">
@@ -91,7 +93,7 @@ const SolvedProblems = ({ mySolvedProblems }) => {
                                 <span className="text-xs font-medium text-slate-300">/ {mediumProblems.length}</span>
                             </div>
                             <div className="text-white">
-                                <span className="text-slate-300">Not enough data</span>
+                                <span className="text-slate-300">{percentageSolvedMedium === 0 ? "Not enough data" : `${percentageSolvedMedium.toFixed()}% problems solved`}</span>
                             </div>
                         </div>
                         <div className="relative h-2 w-full overflow-hidden rounded-full max-w-none">
@@ -108,7 +110,7 @@ const SolvedProblems = ({ mySolvedProblems }) => {
                                 <span className="text-xs font-medium text-slate-300">/ {difficultProblems.length}</span>
                             </div>
                             <div className="text-white">
-                                <span className="text-slate-300">Not enough data</span>
+                                <span className="text-slate-300">{percentageSolvedDifficult === 0 ? "Not enough data" : `${percentageSolvedDifficult.toFixed()}% problems solved`}</span>
                             </div>
                         </div>
                         <div className="relative h-2 w-full overflow-hidden rounded-full max-w-none">
