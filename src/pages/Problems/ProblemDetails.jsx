@@ -10,7 +10,7 @@ import "codemirror/addon/hint/show-hint.css";
 import "codemirror/addon/hint/show-hint";
 import "codemirror/addon/hint/javascript-hint";
 import { AuthContext } from "../../providers/AuthProvider";
-import useAxiosNormal from "../../hooks/useAxiosNormal";
+import useAxiosNormal from "../../Hooks/useAxiosNormal";
 
 const ProblemDetails = () => {
   const { id } = useParams();
@@ -50,12 +50,14 @@ const ProblemDetails = () => {
     functionId: singleProblem.id,
     points: 10,
   };
-
+  
   // Submit Code---------------------
   const submitCode = () => {
+    
     try {
       // Clear console output
       setConsoleOutput("");
+
 
       // Execute code
       const userCode = `${code || defaultCode}\n\n${

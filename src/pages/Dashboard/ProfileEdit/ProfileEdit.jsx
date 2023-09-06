@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 
 import Select from "react-select";
 import PageBannerTitle from "../../../components/BannerTitle/PageBannerTitle";
-import useAxiosNormal from "../../../hooks/useAxiosNormal";
+import useAxiosNormal from "../../../Hooks/useAxiosNormal";
 
 const ProfileEdit = () => {
   const { user } = useContext(AuthContext);
@@ -64,7 +64,6 @@ const ProfileEdit = () => {
     };
 
     axiosNormal.patch("/users", addProfilUpdate).then((data) => {
-      console.log(data);
       if (data.acknowledged) {
         Swal.fire({
           title: "Your Profile update Successfull!",
