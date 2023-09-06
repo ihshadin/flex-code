@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import useAxiosNormal from "../../Hooks/useAxiosNormal";
 import Pagination from "../../components/Pagination/Pagination";
 import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
 import BlogCardLoading from "../../components/FlexcodeLoading/BlogCardLoading";
@@ -8,23 +7,6 @@ import useAllBlogs from "../../Hooks/useAllBlogs";
 
 const Blog = () => {
   const { allBlogs, currentPage, setCurrentPage, totalPages, isLoading } = useAllBlogs()
-  // const [blogs, setBlogs] = useState([]);
-  // const [axiosNormal] = useAxiosNormal();
-  // const [isLoading, setIsLoading] = useState(true)
-  // const [currentPage, setCurrentPage] = useState(0)
-  // const itemsPerPage = 6;
-  // const [totalBlogs, setTotalBlogs] = useState(0);
-  // const totalPages = Math.ceil(totalBlogs / itemsPerPage);
-
-
-  // useEffect(() => {
-  //   axiosNormal.get(`/blog?page=${currentPage}&itemsPerPage=${itemsPerPage}`)
-  //     .then(data => {
-  //       setBlogs(data.data)
-  //       setTotalBlogs(data.totalCount)
-  //       setIsLoading(false)
-  //     })
-  // }, [currentPage, itemsPerPage]);
 
   return (
     <section>
