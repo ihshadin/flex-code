@@ -71,9 +71,9 @@ const Submissions = ({ mySolvedProblems }) => {
   return (
     <div className="bg-secondary-color text-white rounded-lg pb-2">
       <div className="flex flex-col md:flex-row md:flex-center justify-between text-base-300 pt-3 px-3 md:px-8">
-        <p className=""><span>{problemsSolvedLastYear}</span> submissions in the last year</p>
+        <p className="text-white"><span>{problemsSolvedLastYear}</span> submissions in the last year</p>
         <div className="flex self-end gap-x-2">
-          <p>Total active days: <span>{activeDaysCount}</span></p>
+          <p className="text-white">Total active days: <span>{activeDaysCount}</span></p>
         </div>
       </div>
       <ResponsiveContainer width="100%" height={250}>

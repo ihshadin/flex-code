@@ -51,7 +51,7 @@ const DbUser = ({ mySolvedProblems }) => {
               <div className="flex flex-1 items-end space-x-[5px] text-base text-white">
                 <span className="text-slate-300 ">Rank ~</span>
                 <span className="text-slate-200 font-medium">
-                  {myRank?.rank}
+                  {myRank?.rank || 0}
                 </span>
               </div>
             </div>
