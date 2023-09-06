@@ -6,13 +6,13 @@ import Submissions from "../Submissions/Submissions";
 import { useNavigation } from "react-router-dom";
 import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading";
 import RecentActiviy from "../RecentActiviy/RecentActiviy";
-import { AuthContext } from "../../../providers/AuthProvider";
-import useAxiosNormal from "../../../hooks/useAxiosNormal";
+import useAxiosNormal from "../../../Hooks/useAxiosNormal";
 import NavBar from "../../Shared/NavBar/NavBar";
 import Footer from "../../Shared/Footer/Footer";
+import useAuth from "../../../Hooks/useAuth";
 
 const DashboardHome = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const [mySolvedProblems, setMySolvedProblems] = useState([]);
   const [axiosNormal] = useAxiosNormal();
 
@@ -37,7 +37,7 @@ const DashboardHome = () => {
         <div className="md:w-[30%]">
           <DbUser mySolvedProblems={mySolvedProblems} />
         </div>
-        <div className="md:w-[70%] flex flex-col gap-5">
+        <div className="md:w-[70%] flex flex-col gap-3 md:gap-5">
           <div className="flex flex-col md:flex-row gap-3 md:gap-5">
             <SolvedProblems mySolvedProblems={mySolvedProblems} />
             <Badges />

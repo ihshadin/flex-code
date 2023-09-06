@@ -1,22 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Top3Card from "./Top3Card";
 import { Link } from "react-router-dom";
-import useAxiosNormal from "../../hooks/useAxiosNormal";
 import { FaUser } from "react-icons/fa";
 import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
+import useTopperData from "../../Hooks/useTopperData";
 
 const LeaderBoard = () => {
-  const [solvedProblems, setSolvedProblems] = useState([]);
-
-  const [axiosNormal] = useAxiosNormal();
-  const isSmallDevice = window.innerWidth <= 768;
-
-  useEffect(() => {
-    axiosNormal.get('/solvedProblems/leaderboard')
-      .then(data => {
-        setSolvedProblems(data);
-      })
-  }, [])
+  const [topperData] = useTopperData();
 
   return (
     <section>
@@ -101,17 +91,17 @@ const LeaderBoard = () => {
         />
         <div className="grid md:grid-cols-3 items-center justify-center gap-8 my-12">
           {
-            solvedProblems[1] && <Top3Card data={solvedProblems[1]} position={2} />
+            topperData[1] && <Top3Card data={topperData[1]} position={2} />
           }
           {
-            solvedProblems[0] && <Top3Card data={solvedProblems[0]} position={1} />
+            topperData[0] && <Top3Card data={topperData[0]} position={1} />
           }
           {
-            solvedProblems[2] && <Top3Card data={solvedProblems[2]} position={3} />
+            topperData[2] && <Top3Card data={topperData[2]} position={3} />
           }
         </div>
         {
-          solvedProblems.slice(3).length > 0 && (
+          topperData.slice(3).length > 0 && (
             <>
               <div className="flex items-center gap-x-3">
                 <h2 className="text-lg text-white font-medium">
@@ -128,7 +118,7 @@ const LeaderBoard = () => {
                     <div className='font-semibold w-[15%] text-center'>Profile</div>
                   </div>
                   {
-                    solvedProblems.slice(3, 50).map((solveProblem, index) => (
+                    topperData.slice(3, 50).map((solveProblem, index) => (
                       <div key={index} className='flex justify-between min-w-[600px] items-center whitespace-nowrap border-b-[2px] duration-300 border-[#0fcda1] hover:border-white px-6 pb-2 pt-7 rounded-3xl'>
                         <p className='w-[5%]'>{index + 4}</p>
                         <div className='w-[40%] flex items-center gap-2'>
