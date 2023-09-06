@@ -53,12 +53,14 @@ const ProblemDetails = () => {
     functionId: singleProblem.id,
     points: 10,
   };
-
+  
   // Submit Code---------------------
   const submitCode = () => {
+    
     try {
       // Clear console output
       setConsoleOutput("");
+
 
       // Execute code
       const userCode = `${code || defaultCode}\n\n${singleProblem.functionName
