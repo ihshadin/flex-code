@@ -30,11 +30,11 @@ import AdminDashboard from "../pages/AdminDashbord/AdminDashboard";
 import MyPlayGround from "../pages/MyPlayGround/MyPlayGround";
 import PlayGround from "../pages/MyPlayGround/PlayGround/PlayGround";
 import ManageUser from "../pages/AdminDashbord/ManageUser/ManageUser";
-// import Dashboard from "../layouts/Dashboard";
 import ExploreDetails from "../pages/Explore/ExploreDetails";
 import AdminCalendar from "../pages/AdminDashbord/AdminCalendar/AdminCalendar";
 import AllTestimonials from "../pages/Home/AllTestimonials/AllTestimonials";
 import Dashboard from "../layouts/Dashboard";
+import AdminMainContent from "../pages/AdminDashbord/AdminMainContent/AdminMainContent";
 
 // import ProblemDetails from "../pages/Problems/ProblemDetails";
 
@@ -64,7 +64,6 @@ const router = createBrowserRouter([
         path: "/blog/:id",
         element: <SingleBlog />,
       },
-
       {
         path: "add-note",
         element: <AddNote />,
@@ -105,7 +104,6 @@ const router = createBrowserRouter([
         path: "/notebooks",
         element: <NoteBook />,
       },
-
       {
         path: "/notebook/:id",
         element: <SingleNote />,
@@ -158,11 +156,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: <PrivateRoute><Dashboard /></PrivateRoute>,
     children: [
       {
         path: "",
-        element: <AdminDashboard />,
+        element: <AdminMainContent />,
       },
       {
         path: "manageuser",
@@ -182,6 +180,10 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: '/*',
+    element: <ErrorPage />
+  }
 ]);
 
 export default router;

@@ -129,7 +129,7 @@ const AddBlog = () => {
           <div className="w-full px-3 mb-5">
             <button
               type="submit"
-              className="block w-full max-w-xs mx-auto bg-[#1da888] hover:bg-[#2bd1aa] hover:btn-outline focus:bg-[#2c3533] text-white rounded-lg px-3 py-3 font-semibold"
+              className="w-full mx-auto flexcode-button px-3 py-3"
             >
               DONE
             </button>

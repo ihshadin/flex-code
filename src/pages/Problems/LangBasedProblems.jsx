@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLoaderData, useParams } from "react-router-dom";
-import useAxiosNormal from "../../hooks/useAxiosNormal";
+import useAxiosNormal from "../../Hooks/useAxiosNormal";
 import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
 import Pagination from "../../components/Pagination/Pagination";
 import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";

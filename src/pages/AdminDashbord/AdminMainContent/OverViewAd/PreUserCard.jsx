@@ -1,12 +1,18 @@
 import React from 'react';
 import { FaArrowUp } from 'react-icons/fa';
+import useAllUsers from '../../../../Hooks/useAllUsers';
 
 const PreUserCard = () => {
+	const [allUsers] = useAllUsers()
+
+	// Premium users
+	const premiumUsers = allUsers.filter(user => user.userRole === 'premium')
+
 	return (
-		<div className="flexcode-banner-bg relative flex flex-col md:flex-row items-center justify-between border border-slate-500 hover:border-[#0fcda18c] px-5 py-6 rounded-xl group cursor-pointer">
+		<div className="flexcode-banner-bg relative flex flex-row items-center justify-between border border-slate-500 hover:border-[#0fcda18c] px-5 py-6 rounded-xl group cursor-pointer">
 			<div className="relative">
 				<h4 className="text-5xl font-bold">
-					123
+					{premiumUsers.length}
 					<span className="group-hover:text-[#0fcda1] duration-300">
 						&#43;
 					</span>
@@ -19,7 +25,7 @@ const PreUserCard = () => {
 					<FaArrowUp />
 				</p>
 			</div>
-			<svg className="h-32 fill-[#ffffff56] group-hover:fill-[#0fcda1b1]" viewBox="0 0 682.8 690.5">
+			<svg className="h-32 -mr-7 md:mr-0 fill-[#ffffff56] group-hover:fill-[#0fcda1b1]" viewBox="0 0 682.8 690.5">
 				<path d="M337.6,304.2c2.2,0.1,1.6,1.8,1.6,2.8c0,63.6,0,127.3,0,190.9c0,3.4,0.9,4.2,5.3,4.2c20.3-0.1,35.5-7.1,45-21.4
 	c3.5-5.3,4.8-11,4.8-17c0-51.8,0-103.7,0-155.5c0-6.8,0.2-13.5,0-20.3c-0.9-26.1-15.3-46.5-42.7-60.9c-14.4-7.6-30.4-11.4-47.7-11.4
 	c-29.1-0.1-58.2-0.6-87.3,0.1c-37,1-63.9,15.3-80.8,41.4c-6.6,10.2-9.2,21.2-9.2,32.6c0,30.4,0.1,60.8,0.1,91.2
