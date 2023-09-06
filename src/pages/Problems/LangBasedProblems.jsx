@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import { Link, useLoaderData, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useAxiosNormal from "../../Hooks/useAxiosNormal";
 import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
 import Pagination from "../../components/Pagination/Pagination";
-import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
 import CardLoading from "../../components/FlexcodeLoading/CardLoading";
 import ComingSoon from "../../components/ComingSoon/ComingSoon";
 import ProblemCard from "./ProblemCard";
@@ -18,18 +17,13 @@ const LangBasedProblems = () => {
     const [totalProblems, setTotalProblems] = useState(0);
     const totalPages = Math.ceil(totalProblems / itemsPerPage)
 
-    // specific language base problems
-    const specificLanguageProblems = problems?.filter(problem => problem.language.toLowerCase() === languages)
-
-
-
     useEffect(() => {
-        axiosNormal.get(`/problem/?&page=${currentPage}&itemsPerPage=${itemsPerPage}`)
+        axiosNormal.get(`/problem/${languages}?page=${currentPage}&itemsPerPage=${itemsPerPage}`)
             .then((data) => {
-                setProblems(data.data);
+                setProblems(data.languageProblems);
+                setTotalProblems(data.totalCount)
                 setIsLoading(false)
             });
-        setTotalProblems(specificLanguageProblems.length)
     }, [currentPage, itemsPerPage]);
 
     return (
@@ -44,10 +38,10 @@ const LangBasedProblems = () => {
                         isLoading ? (
                             <CardLoading />
                         ) : (
-                            specificLanguageProblems.length > 0 ? (
+                            problems.length > 0 ? (
                                 <>
                                     <div className="grid md:grid-cols-2 gap-6">
-                                        {specificLanguageProblems?.map((problem, index) => (
+                                        {problems?.map((problem, index) => (
                                             <ProblemCard key={problem._id} problem={problem} />
                                         ))}
                                     </div>

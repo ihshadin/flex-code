@@ -30,7 +30,6 @@ const SolvedProblems = ({ mySolvedProblems }) => {
     useEffect(() => {
         axiosNormal.get('./problem')
             .then(data => {
-                console.log(data);
                 setAllProblems(data.data);
             })
     }, [])
