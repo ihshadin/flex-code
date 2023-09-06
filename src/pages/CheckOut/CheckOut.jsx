@@ -91,7 +91,7 @@ const CheckOut = () => {
               id=""
               value={user?.displayName}
               placeholder="Your Name"
-              disabled
+            // disabled
             />
           </div>
           <div className="w-full flex items-center gap-2 border border-slate-500 px-2 rounded-lg hover:bg-[#17181B]">
@@ -105,7 +105,7 @@ const CheckOut = () => {
               id=""
               value={user?.email}
               placeholder="Email"
-              disabled
+            // disabled
             />
           </div>
           <div className="w-full flex items-center gap-2 border border-slate-500 px-2 rounded-lg hover:bg-[#17181B]">

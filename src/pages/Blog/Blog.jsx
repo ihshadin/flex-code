@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import useAxiosNormal from "../../hooks/useAxiosNormal";
+import useAxiosNormal from "../../Hooks/useAxiosNormal";
 import Pagination from "../../components/Pagination/Pagination";
 import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
 import BlogCardLoading from "../../components/FlexcodeLoading/BlogCardLoading";
