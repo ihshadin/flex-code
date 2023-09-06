@@ -1,0 +1,20 @@
+.react-calendar__month-view__days__day {
+    color: white;
+}
+.react-calendar__month-view__days__day:hover,
+.react-calendar__navigation__label:hover,
+.react-calendar__navigation__arrow:hover,
+.react-calendar__century-view__decades__decade:hover,
+.react-calendar__decade-view__years__year:hover,
+.react-calendar__year-view__months__month:hover {
+    background-color: #0fcda188 !important;
+}
+
+.react-calendar__tile--active {
+    background-color: #0fcda122 !important;
+}
+
+.react-calendar__tile--now,
+.react-calendar__navigation__label {
+    background-color: #0fcda156 !important;
+}

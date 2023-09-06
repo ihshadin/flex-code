@@ -1,0 +1,3 @@
+.drawer-side .active {
+    @apply bg-[#0fcda1] bg-opacity-40
+}
