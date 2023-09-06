@@ -4,25 +4,27 @@ import useAxiosNormal from "../../Hooks/useAxiosNormal";
 import Pagination from "../../components/Pagination/Pagination";
 import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
 import BlogCardLoading from "../../components/FlexcodeLoading/BlogCardLoading";
+import useAllBlogs from "../../Hooks/useAllBlogs";
 
 const Blog = () => {
-  const [blogs, setBlogs] = useState([]);
-  const [axiosNormal] = useAxiosNormal();
-  const [isLoading, setIsLoading] = useState(true)
-  const [currentPage, setCurrentPage] = useState(0)
-  const itemsPerPage = 6;
-  const [totalBlogs, setTotalBlogs] = useState(0);
-  const totalPages = Math.ceil(totalBlogs / itemsPerPage);
+  const { allBlogs, currentPage, setCurrentPage, totalPages, isLoading } = useAllBlogs()
+  // const [blogs, setBlogs] = useState([]);
+  // const [axiosNormal] = useAxiosNormal();
+  // const [isLoading, setIsLoading] = useState(true)
+  // const [currentPage, setCurrentPage] = useState(0)
+  // const itemsPerPage = 6;
+  // const [totalBlogs, setTotalBlogs] = useState(0);
+  // const totalPages = Math.ceil(totalBlogs / itemsPerPage);
 
 
-  useEffect(() => {
-    axiosNormal.get(`/blog?page=${currentPage}&itemsPerPage=${itemsPerPage}`)
-      .then(data => {
-        setBlogs(data.data)
-        setTotalBlogs(data.totalCount)
-        setIsLoading(false)
-      })
-  }, [currentPage, itemsPerPage]);
+  // useEffect(() => {
+  //   axiosNormal.get(`/blog?page=${currentPage}&itemsPerPage=${itemsPerPage}`)
+  //     .then(data => {
+  //       setBlogs(data.data)
+  //       setTotalBlogs(data.totalCount)
+  //       setIsLoading(false)
+  //     })
+  // }, [currentPage, itemsPerPage]);
 
   return (
     <section>
@@ -37,7 +39,7 @@ const Blog = () => {
             isLoading ? (
               <BlogCardLoading />
             ) : (
-              blogs?.map(blog => (
+              allBlogs?.map(blog => (
                 <div key={blog._id} className="flexcode-banner-bg rounded-2xl border border-slate-500 hover:border-[#0fcda156] overflow-hidden group">
                   <div className="relative overflow-hidden">
                     <img

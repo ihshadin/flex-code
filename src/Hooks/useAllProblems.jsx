@@ -12,8 +12,7 @@ const useAllProblems = () => {
     const [searchText, setSearchText] = useState("");
     const [currentPage, setCurrentPage] = useState(0);
     const itemsPerPage = 10;
-    const [totalProblems, setTotalProblems] = useState(0);
-    const totalPages = Math.ceil(totalProblems / itemsPerPage)
+    const totalPages = Math.ceil(problemLength / itemsPerPage)
 
 
     useEffect(() => {
@@ -25,7 +24,7 @@ const useAllProblems = () => {
             });
     }, [filterLevel, searchText, currentPage, itemsPerPage]);
 
-    return { allProblems, problemLength };
+    return { allProblems, currentPage, totalPages, setCurrentPage, isLoading, searchText, setSearchText, filterLevel, setFilterLevel, problemLength };
 };
 
 export default useAllProblems;

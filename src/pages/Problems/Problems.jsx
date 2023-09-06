@@ -6,35 +6,17 @@ import Pagination from "../../components/Pagination/Pagination";
 import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
 import CardLoading from "../../components/FlexcodeLoading/CardLoading";
 import ProblemCard from "./ProblemCard";
+import useAllProblems from "../../Hooks/useAllProblems";
 
 const Problems = () => {
+  const { allProblems, currentPage, totalPages, setCurrentPage, isLoading, searchText, setSearchText, filterLevel, setFilterLevel } = useAllProblems()
+
+  const problemsLanguage = ['JavaScript', 'Python', 'Java', 'C++', 'Ruby', 'Swift', 'PHP', 'Go', 'TypeScript']
 
   const navigation = useNavigation();
   if (navigation.state === "loading") {
     return <FlexcodeLoading />;
   }
-
-  const [problems, setProblems] = useState([]);
-  const [filterLevel, setFilterLevel] = useState("");
-  const [searchText, setSearchText] = useState("")
-  const [axiosNormal] = useAxiosNormal();
-  const [isLoading, setIsLoading] = useState(true)
-  const [currentPage, setCurrentPage] = useState(0)
-  const itemsPerPage = 10;
-  const [totalProblems, setTotalProblems] = useState(0);
-  const totalPages = Math.ceil(totalProblems / itemsPerPage)
-
-  const problemsLanguage = ['JavaScript', 'Python', 'Java', 'C++', 'Ruby', 'Swift', 'PHP', 'Go', 'TypeScript']
-
-  useEffect(() => {
-    axiosNormal.get(`/problem/?search=${searchText}&level=${filterLevel}&page=${currentPage}&itemsPerPage=${itemsPerPage}`)
-      .then((data) => {
-        setProblems(data.data);
-        setTotalProblems(data.totalCount)
-        setIsLoading(false)
-      });
-  }, [filterLevel, searchText, currentPage, itemsPerPage]);
-
 
   return (
     <section>
@@ -119,7 +101,7 @@ const Problems = () => {
             <CardLoading />
           ) : (
             <div className="grid md:grid-cols-2 gap-6">
-              {problems?.map((problem) => (
+              {allProblems?.map((problem) => (
                 <ProblemCard key={problem._id} problem={problem} />
               ))}
             </div>

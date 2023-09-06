@@ -21,7 +21,7 @@ const useAllBlogs = () => {
             })
     }, [currentPage, itemsPerPage]);
 
-    return { allBlogs, blogsLength };
+    return { allBlogs, currentPage, setCurrentPage, totalPages, isLoading, blogsLength };
 };
 
 export default useAllBlogs;

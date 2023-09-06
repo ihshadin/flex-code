@@ -1,36 +1,23 @@
 import { useState, useEffect } from "react";
 import { Link, useLoaderData, useParams } from "react-router-dom";
-import useAxiosNormal from "../../hooks/useAxiosNormal";
+import useAxiosNormal from "../../Hooks/useAxiosNormal";
 import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
 import Pagination from "../../components/Pagination/Pagination";
 import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
 import CardLoading from "../../components/FlexcodeLoading/CardLoading";
 import ComingSoon from "../../components/ComingSoon/ComingSoon";
 import ProblemCard from "./ProblemCard";
+import useAllProblems from "../../Hooks/useAllProblems";
 
 const LangBasedProblems = () => {
     const { languages } = useParams()
-    const [problems, setProblems] = useState([])
-    const [currentPage, setCurrentPage] = useState(0)
-    const itemsPerPage = 10; // Just change the number to 10
-    const [axiosNormal] = useAxiosNormal();
-    const [isLoading, setIsLoading] = useState(true);
-    const [totalProblems, setTotalProblems] = useState(0);
-    const totalPages = Math.ceil(totalProblems / itemsPerPage)
+    const { allProblems, currentPage, setCurrentPage, isLoading, searchText, setSearchText, filterLevel, setFilterLevel } = useAllProblems()
 
     // specific language base problems
-    const specificLanguageProblems = problems?.filter(problem => problem.language.toLowerCase() === languages)
+    const specificLanguageProblems = allProblems?.filter(problem => problem.language.toLowerCase() === languages)
 
-
-
-    useEffect(() => {
-        axiosNormal.get(`/problem/?&page=${currentPage}&itemsPerPage=${itemsPerPage}`)
-            .then((data) => {
-                setProblems(data.data);
-                setIsLoading(false)
-            });
-        setTotalProblems(specificLanguageProblems.length)
-    }, [currentPage, itemsPerPage]);
+    const itemsPerPage = 10;
+    const totalPages = Math.ceil(specificLanguageProblems.length / itemsPerPage)
 
     return (
         <section>
