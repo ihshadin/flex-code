@@ -19,7 +19,7 @@ const NoteBook = () => {
                 setNotes(data)
                 setTimeout(() => {
                     setIsLoading(false);
-                }, 800);
+                }, 1000);
             })
     }, [user?.email])
 
