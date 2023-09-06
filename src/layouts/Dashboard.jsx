@@ -5,7 +5,7 @@ import NavBar from "../pages/Shared/NavBar/NavBar";
 import Footer from "../pages/Shared/Footer/Footer";
 import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 import FlexcodeLoading from "../components/FlexcodeLoading/FlexcodeLoading";
-import useAxiosNormal from "../hooks/useAxiosNormal";
+import useAxiosNormal from "../Hooks/useAxiosNormal";
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);

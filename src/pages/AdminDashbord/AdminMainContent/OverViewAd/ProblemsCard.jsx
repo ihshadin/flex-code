@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FaArrowUp } from 'react-icons/fa';
-import useAxiosNormal from '../../../../hooks/useAxiosNormal';
+import useAxiosNormal from '../../../../Hooks/useAxiosNormal';
 
 const ProblemsCard = () => {
     const [problems, setProblems] = useState([]);
