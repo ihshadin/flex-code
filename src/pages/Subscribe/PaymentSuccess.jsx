@@ -16,7 +16,7 @@ const PaymentSuccess = () => {
       .then((result) => {
         setData(result);
         axiosNormal.post(`/users/all/premium/${user?.email}`)
-        .then(res => {})
+        .then(res => {console.log("Payment success",res)})
       });
   }, []);
 
