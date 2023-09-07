@@ -1,11 +1,10 @@
 import React from "react";
-import { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { AuthContext } from "../providers/AuthProvider";
 import FlexcodeLoading from "../components/FlexcodeLoading/FlexcodeLoading";
+import useAuth from "../Hooks/useAuth";
 
 const PrivateRoute = ({ children }) => {
-  const { user, loading } = useContext(AuthContext);
+  const { user, loading } = useAuth();
   const location = useLocation();
 
   if (loading) {
