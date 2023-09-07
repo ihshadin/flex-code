@@ -1,10 +1,11 @@
-import React, { useState, useContext, useEffect } from "react";
-import axios from "axios";
-import { AuthContext } from "../../providers/AuthProvider";
-import useAxiosNormal from "../../hooks/useAxiosNormal";
+import React, { useState, useEffect } from "react";
+import useAxiosNormal from "../../Hooks/useAxiosNormal";
+import useAuth from "../../Hooks/useAuth";
+import useFlexUser from "../../Hooks/useFlexUser";
 
 const MySubmissions = () => {
-  const { user, loading, setLoading } = useContext(AuthContext);
+  const { user } = useAuth()
+  const { flexUser } = useFlexUser();
   const [mySolvedProblems, setMySolvedProblems] = useState([]);
   const [axiosNormal] = useAxiosNormal();
 
@@ -35,14 +36,23 @@ const MySubmissions = () => {
 
     return "Today";
   }
+  console.log(flexUser);
 
   useEffect(() => {
-    axiosNormal
-      .get(`/solvedProblems/userSolveProblem?email=${user?.email}`)
-      .then((data) => {
-        setMySolvedProblems(data);
-      });
-  }, [user?.email]);
+    const fetchData = async () => {
+      try {
+        if (flexUser) {
+          const response = await axiosNormal.get(`/solvedProblems/userSolveProblem/${flexUser?.email}`);
+          console.log(response);
+          setMySolvedProblems(response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [flexUser]);
 
   return (
     <section className="flexcode-banner-bg pt-16 overflow-x-auto">

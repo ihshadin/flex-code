@@ -29,7 +29,7 @@ const Blog = () => {
                       src={blog.imageUrl}
                       alt="Blog Img"
                     />
-                    <div className="opacity-0 group-hover:opacity-100 absolute -bottom-20 group-hover:bottom-0 flex gap-3 right-0 left-0 p-2 transition-all duration-300 flexcode-banner-bg" style={{ "boxShadow": "0 0 15px 0 rgba(0, 0, 0, 0.5)" }}>
+                    <div className="opacity-0 group-hover:opacity-100 absolute -bottom-20 group-hover:bottom-0 flex gap-3 right-0 left-0 p-2 transition-all duration-300 backdrop-blur-sm bg-black bg-opacity-20 flexcode-banner-bg" style={{ "boxShadow": "0 0 15px 0 rgba(0, 0, 0, 0.5)" }}>
                       <img
                         className="object-cover object-center w-10 h-10 rounded-full"
                         src={blog.userImage}
