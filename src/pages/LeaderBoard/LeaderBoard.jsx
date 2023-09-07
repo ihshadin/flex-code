@@ -2,6 +2,7 @@ import React from "react";
 import Top3Card from "./Top3Card";
 import { Link } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
+import { LiaAngleDoubleRightSolid } from "react-icons/lia";
 import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
 import useTopperData from "../../Hooks/useTopperData";
 
@@ -145,7 +146,7 @@ const LeaderBoard = () => {
                         </div>
                         <p className='w-[20%] text-center'>{solveProblem.points}</p>
                         <p className='w-[20%] text-center'>{solveProblem.problemsSolved}</p>
-                        <Link to={`/${solveProblem.username}`}><p className='w-[15%] text-center cursor-pointer'>Profile</p></Link>
+                        <p className='w-[15%] text-center cursor-pointer'><Link to={`/${solveProblem.username}`} className="hover:underline hover:text-[#0fcda1] flex items-center justify-center">View Profile <LiaAngleDoubleRightSolid className="h-4 w-4 text-[#0fcda1]" /></Link></p>
                       </div>
                     ))
                   }
