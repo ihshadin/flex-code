@@ -18,7 +18,7 @@ const LangBasedProblems = () => {
     const totalPages = Math.ceil(totalProblems / itemsPerPage)
 
     useEffect(() => {
-        axiosNormal.get(`/problem/${languages}?page=${currentPage}&itemsPerPage=${itemsPerPage}`)
+        axiosNormal.get(`/problem/language/${languages}?page=${currentPage}&itemsPerPage=${itemsPerPage}`)
             .then((data) => {
                 setProblems(data.languageProblems);
                 setTotalProblems(data.totalCount)
