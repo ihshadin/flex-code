@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { useLocation, useNavigate } from "react-router";
-import Swal from "sweetalert2";
 import { toast } from "react-hot-toast";
 import useAxiosNormal from "../../../Hooks/useAxiosNormal";
 
@@ -58,7 +57,6 @@ const SocialLogin = () => {
     signInWithGoogle()
       .then((result) => {
         const user = result.user;
-
         const saveUser = {
           name: user.displayName || 'User Name',
           email: user.email,
@@ -84,8 +82,9 @@ const SocialLogin = () => {
 
         axiosNormal.post("/users", saveUser)
           .then((data) => {
-            navigate(from, { replace: true });
           });
+          toast.success("Login Successfull!");
+          navigate(from, { replace: true });
       })
       .catch((error) => {
         toast.error("Login Failed. " + error.message);

@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import handWithPen from '../../../assets/images/hand-with-pen4.png'
-import useAxiosNormal from "../../../hooks/useAxiosNormal";
+import useAxiosNormal from "../../../Hooks/useAxiosNormal";
 import { AuthContext } from "../../../providers/AuthProvider";
 import PageBannerTitle from "../../../components/BannerTitle/PageBannerTitle";
 
@@ -11,7 +10,6 @@ const AddNode = () => {
 	const { user } = useContext(AuthContext);
 	const { register, handleSubmit, reset } = useForm();
 	const [axiosNormal] = useAxiosNormal();
-
 
 	const onSubmit = (data) => {
 		const nodeInfo = {

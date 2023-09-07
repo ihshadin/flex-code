@@ -2,7 +2,6 @@ import {
   Link,
   useLocation,
   useNavigate,
-  useNavigation,
 } from "react-router-dom";
 import { FaRegEnvelope, FaSpinner, FaUser } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
@@ -13,7 +12,7 @@ import SocialLogin from "../Shared/Social/SocialLogin";
 import "./Signup.css";
 import { toast } from "react-hot-toast";
 import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
-import useAxiosNormal from "../../hooks/useAxiosNormal";
+import useAxiosNormal from "../../Hooks/useAxiosNormal";
 const SignUp = () => {
   const { createUser, loading, setLoading, updateUserProfile, setReload } = useContext(AuthContext);
   const navigate = useNavigate();

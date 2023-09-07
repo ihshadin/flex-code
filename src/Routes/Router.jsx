@@ -4,7 +4,6 @@ import Login from "../pages/Login/Login";
 import SignUp from "../pages/Signup/SignUp";
 import Blog from "../pages/Blog/Blog";
 import Home from "../pages/Home/Home/Home";
-import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 import Explore from "../pages/Explore/Explore";
 import Problems from "../pages/Problems/Problems";
 import LangBasedProblems from "../pages/Problems/LangBasedProblems";
@@ -35,6 +34,7 @@ import AdminCalendar from "../pages/AdminDashbord/AdminCalendar/AdminCalendar";
 import AllTestimonials from "../pages/Home/AllTestimonials/AllTestimonials";
 import Dashboard from "../layouts/Dashboard";
 import AdminMainContent from "../pages/AdminDashbord/AdminMainContent/AdminMainContent";
+import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 
 // import ProblemDetails from "../pages/Problems/ProblemDetails";
 
@@ -151,6 +151,10 @@ const router = createBrowserRouter([
       {
         path: "/explore/:id",
         element: <ExploreDetails></ExploreDetails>,
+      },
+      {
+        path: "/:username",
+        element: <DashboardHome />,
       },
     ],
   },

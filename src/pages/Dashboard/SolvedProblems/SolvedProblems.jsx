@@ -1,7 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import useAxiosNormal from '../../../Hooks/useAxiosNormal';
+import useAllProblems from '../../../Hooks/useAllProblems';
 
 const SolvedProblems = ({ mySolvedProblems }) => {
+    const [axiosNormal] = useAxiosNormal();
     const [allProblems, setAllProblems] = useState([]);
 
     // Total Problems by level
@@ -14,20 +17,18 @@ const SolvedProblems = ({ mySolvedProblems }) => {
     const solvedMediumProblems = mySolvedProblems.filter(problem => problem.level === 'medium');
     const solvedDifficultProblems = mySolvedProblems.filter(problem => problem.level === 'difficult');
 
-    // Percentage for problems
-    const percentageSolvedEasy = (solvedEasyProblems.length / easyProblems.length) * 100
-    const percentageSolvedMedium = (solvedMediumProblems.length / mediumProblems.length) * 100
-    const percentageSolvedDifficult = (solvedDifficultProblems.length / difficultProblems.length) * 100
-
-    // Percentage for problems level
+    // Percentage defend on proble level
+    const percentageSolvedEasy = easyProblems.length === 0 ? 0 : (solvedEasyProblems.length / easyProblems.length) * 100;
+    const percentageSolvedMedium = mediumProblems.length === 0 ? 0 : (solvedMediumProblems.length / mediumProblems.length) * 100;
+    const percentageSolvedDifficult = difficultProblems.length === 0 ? 0 : (solvedDifficultProblems.length / difficultProblems.length) * 100;
 
     // Cirlce
-    const percentageToShow = (mySolvedProblems.length / allProblems.length) * 100
+    const percentageToShow = allProblems.length === 0 ? 0 : (mySolvedProblems.length / allProblems.length) * 100;
     const circumference = 2 * Math.PI * 46;
     const dashArray = (circumference * percentageToShow) / 100;
 
     useEffect(() => {
-        axios.get('./problems.json')
+        axiosNormal.get('./problem')
             .then(data => {
                 setAllProblems(data.data);
             })
@@ -54,13 +55,13 @@ const SolvedProblems = ({ mySolvedProblems }) => {
                         </svg>
                         <div className="opacity-100 group-hover:opacity-0 duration-1000 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform cursor-default text-center">
                             <div>
-                                <div className="text-2xl font-medium text-white dark:text-dark-label-1">{mySolvedProblems.length}</div>
+                                <div className="text-2xl font-medium text-white dark:text-dark-label-1">{mySolvedProblems.length || 0}</div>
                                 <div className="whitespace-nowrap text-xs text-slate-300 dark:text-dark-label-3">Solved</div>
                             </div>
                         </div>
                         <div className="opacity-0 group-hover:opacity-100 duration-1000 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform cursor-default text-center">
                             <div>
-                                <div className="text-xl font-medium text-white dark:text-dark-label-1">{percentageToShow.toFixed(1)}%</div>
+                                <div className="text-xl font-medium text-white dark:text-dark-label-1">{percentageToShow.toFixed() || 0}%</div>
                                 <div className="whitespace-nowrap text-xs text-slate-300 dark:text-dark-label-3">Solved</div>
                             </div>
                         </div>
@@ -72,16 +73,16 @@ const SolvedProblems = ({ mySolvedProblems }) => {
                         <div className="flex w-full items-end text-xs">
                             <div className="w-[65px] text-white">Easy</div>
                             <div className="flex flex-1 items-center">
-                                <span className="mr-[5px] text-slate-200 font-medium leading-[20px]">{solvedEasyProblems.length}</span>
-                                <span className="text-xs font-medium text-slate-300">/ {easyProblems.length}</span>
+                                <span className="mr-[5px] text-slate-200 font-medium leading-[20px]">{solvedEasyProblems.length || 0}</span>
+                                <span className="text-xs font-medium text-slate-300">/ {easyProblems.length || 0}</span>
                             </div>
                             <div className="text-white">
-                                <span className="text-slate-300">{percentageSolvedEasy === 0 ? "Not enough data" : `${percentageSolvedEasy.toFixed()}% problems solved`}</span>
+                                <span className="text-slate-300">{percentageSolvedEasy == 0 || percentageSolvedEasy == NaN ? "Not enough data" : `${percentageSolvedEasy.toFixed()}% problems solved`}</span>
                             </div>
                         </div>
                         <div className="relative h-2 w-full overflow-hidden rounded-full max-w-none">
                             <div className="absolute h-full w-full bg-[#0fcda133]"></div>
-                            <div className="absolute h-full rounded-full transition-all duration-300 ease-out bg-[#0fcda1]" style={{ width: `${percentageSolvedEasy}%` }}></div>
+                            <div className="absolute h-full rounded-full transition-all duration-300 ease-out bg-[#0fcda1]" style={{ width: `${percentageSolvedEasy || 0}%` }}></div>
                         </div>
                     </div>
                     {/* Medium section */}
@@ -89,16 +90,16 @@ const SolvedProblems = ({ mySolvedProblems }) => {
                         <div className="flex w-full items-end text-xs">
                             <div className="w-[65px] text-white">Medium</div>
                             <div className="flex flex-1 items-center">
-                                <span className="mr-[5px] text-slate-200 font-medium leading-[20px]">{solvedMediumProblems.length}</span>
-                                <span className="text-xs font-medium text-slate-300">/ {mediumProblems.length}</span>
+                                <span className="mr-[5px] text-slate-200 font-medium leading-[20px]">{solvedMediumProblems.length || 0}</span>
+                                <span className="text-xs font-medium text-slate-300">/ {mediumProblems.length || 0}</span>
                             </div>
                             <div className="text-white">
-                                <span className="text-slate-300">{percentageSolvedMedium === 0 ? "Not enough data" : `${percentageSolvedMedium.toFixed()}% problems solved`}</span>
+                                <span className="text-slate-300">{percentageSolvedMedium === 0 || percentageSolvedMedium == NaN ? "Not enough data" : `${percentageSolvedMedium.toFixed()}% problems solved`}</span>
                             </div>
                         </div>
                         <div className="relative h-2 w-full overflow-hidden rounded-full max-w-none">
                             <div className="absolute h-full w-full bg-yellow-500 bg-opacity-20"></div>
-                            <div className="absolute h-full rounded-full transition-all duration-300 ease-out bg-yellow-500" style={{ width: `${percentageSolvedMedium}%` }}></div>
+                            <div className="absolute h-full rounded-full transition-all duration-300 ease-out bg-yellow-500" style={{ width: `${percentageSolvedMedium || 0}%` }}></div>
                         </div>
                     </div>
                     {/* Hard section */}
@@ -106,16 +107,16 @@ const SolvedProblems = ({ mySolvedProblems }) => {
                         <div className="flex w-full items-end text-xs">
                             <div className="w-[65px] text-white">Hard</div>
                             <div className="flex flex-1 items-center">
-                                <span className="mr-[5px] text-slate-200 font-medium leading-[20px]">{solvedDifficultProblems.length}</span>
-                                <span className="text-xs font-medium text-slate-300">/ {difficultProblems.length}</span>
+                                <span className="mr-[5px] text-slate-200 font-medium leading-[20px]">{solvedDifficultProblems.length || 0}</span>
+                                <span className="text-xs font-medium text-slate-300">/ {difficultProblems.length || 0}</span>
                             </div>
                             <div className="text-white">
-                                <span className="text-slate-300">{percentageSolvedDifficult === 0 ? "Not enough data" : `${percentageSolvedDifficult.toFixed()}% problems solved`}</span>
+                                <span className="text-slate-300">{percentageSolvedDifficult === 0 || percentageSolvedDifficult == NaN ? "Not enough data" : `${percentageSolvedDifficult.toFixed()}% problems solved`}</span>
                             </div>
                         </div>
                         <div className="relative h-2 w-full overflow-hidden rounded-full max-w-none">
                             <div className="absolute h-full w-full bg-red-500 bg-opacity-20"></div>
-                            <div className="absolute h-full rounded-full transition-all duration-300 ease-out bg-red-500" style={{ width: `${percentageSolvedDifficult}%` }}></div>
+                            <div className="absolute h-full rounded-full transition-all duration-300 ease-out bg-red-500" style={{ width: `${percentageSolvedDifficult || 0}%` }}></div>
                         </div>
                     </div>
                 </div>

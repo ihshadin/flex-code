@@ -1,14 +1,13 @@
 import React from "react";
-import badges from "../../../assets/badges.png";
 import useTopperData from "../../../Hooks/useTopperData";
-import useAuth from "../../../Hooks/useAuth";
 
-const Badges = () => {
-  const { user } = useAuth();
+const Badges = ({username}) => {
   const [topperData] = useTopperData();
 
+  // console.log("imam---badge--10",topperData);
+
   // User Rank 
-  const myRank = topperData?.find(problem => problem.userEmail === user?.email)
+  const myRank = topperData?.find(problem => problem.username === username)
 
   const badgeImages = {
     'Flex-Mastermind': 'https://i.ibb.co/KyNxjBn/flex-mastermind.png',

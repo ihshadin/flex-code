@@ -1,13 +1,26 @@
-import React, { useEffect, useState, useContext } from "react";
-import { AuthContext } from "../../../providers/AuthProvider";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { GiRank3 } from "react-icons/gi";
 import useTopperData from "../../../Hooks/useTopperData";
+import useAxiosNormal from "../../../Hooks/useAxiosNormal";
+import useFlexUser from "../../../Hooks/useFlexUser";
 
-const DbUser = ({ mySolvedProblems }) => {
-  const { user } = useContext(AuthContext);
+const DbUserSideBar = ({ mySolvedProblems, username }) => {
+  const [user, setUser] = useState({})
   const [problemsByLanguage, setProblemsByLanguage] = useState({});
   const [topperData] = useTopperData();
+  const [axiosNormal] = useAxiosNormal();
+  const [flexUser] = useFlexUser()
+  const mainUserName = username || flexUser?.username;
+
+  useEffect(() => {
+    axiosNormal.get(`/users/${mainUserName}`)
+    .then(user => {
+      setUser(user)
+    })
+  },[mainUserName])
+  // console.log('dbuserSbar---oneuser--19',user)
+
 
   // Calculate last week
   const currentDate = new Date();
@@ -19,7 +32,7 @@ const DbUser = ({ mySolvedProblems }) => {
   // Last week points
   const lastWeekTotalPoints = mySolvedProblems.filter(problem => new Date(problem.date) >= lastWeekDate).reduce((total, problem) => total + problem.points, 0);
   // User Rank 
-  const myRank = topperData?.find(problem => problem.userEmail === user?.email)
+  const myRank = topperData?.find(problem => problem.username === username)
 
   useEffect(() => {
     const problemsCount = mySolvedProblems.reduce((acc, problem) => {
@@ -30,6 +43,10 @@ const DbUser = ({ mySolvedProblems }) => {
     setProblemsByLanguage(problemsCount);
   }, [mySolvedProblems]);
 
+  useEffect(() => {
+    
+  })
+
   return (
     <section>
       <div className="bg-secondary-color flex flex-col rounded-lg min-w-[300px] w-full px-4 py-5">
@@ -39,14 +56,14 @@ const DbUser = ({ mySolvedProblems }) => {
           <div className="flex space-x-4">
             <div className="relative flex h-20 w-20 shrink-0">
               <img
-                src={user?.photoURL}
+                src={user?.userPhotoUrl}
                 alt="Avatar"
                 className="h-20 w-20 p-1 border border-[#0fcda185] rounded-lg object-cover"
               />
             </div>
             <div className="flex flex-col py-1">
               <div className="text-lg text-white font-semibold">
-                {user?.displayName}
+                {user?.name}
               </div>
               <div className="flex flex-1 items-end space-x-[5px] text-base text-white">
                 <span className="text-slate-300 ">Rank ~</span>
@@ -58,7 +75,7 @@ const DbUser = ({ mySolvedProblems }) => {
           </div>
           <Link
             className="bg-[#0fcda1] bg-opacity-50 text-[#b0c9ec] border border-[#0fcda1] border-transparent hover:bg-transparent hover:border hover:border-[#0fcda1] hover:text-[#0fcda1] hover:transition-all hover:duration-500 w-full rounded-lg py-[7px] text-center font-medium"
-            to="/profile/"
+            to="/profile"
           >
             Edit Profile
           </Link>
@@ -235,4 +252,4 @@ const DbUser = ({ mySolvedProblems }) => {
   );
 };
 
-export default DbUser;
+export default DbUserSideBar;

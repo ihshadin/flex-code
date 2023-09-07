@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
 import { Link, useNavigation } from "react-router-dom";
 import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
-import useAxiosNormal from "../../Hooks/useAxiosNormal";
 import Pagination from "../../components/Pagination/Pagination";
 import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
 import CardLoading from "../../components/FlexcodeLoading/CardLoading";
@@ -13,7 +11,6 @@ const Problems = () => {
   const [flexUser] = useFlexUser()
   
   const { allProblems, currentPage, totalPages, setCurrentPage, isLoading, searchText, setSearchText, filterLevel, setFilterLevel } = useAllProblems()
-
   const problemsLanguage = ['JavaScript', 'Python', 'Java', 'C++', 'Ruby', 'Swift', 'PHP', 'Go', 'TypeScript']
 
   const navigation = useNavigation();

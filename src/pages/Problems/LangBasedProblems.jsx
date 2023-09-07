@@ -1,23 +1,30 @@
 import { useState, useEffect } from "react";
-import { Link, useLoaderData, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useAxiosNormal from "../../Hooks/useAxiosNormal";
 import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
 import Pagination from "../../components/Pagination/Pagination";
-import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
 import CardLoading from "../../components/FlexcodeLoading/CardLoading";
 import ComingSoon from "../../components/ComingSoon/ComingSoon";
 import ProblemCard from "./ProblemCard";
-import useAllProblems from "../../Hooks/useAllProblems";
 
 const LangBasedProblems = () => {
     const { languages } = useParams()
-    const { allProblems, currentPage, setCurrentPage, isLoading, searchText, setSearchText, filterLevel, setFilterLevel } = useAllProblems()
+    const [problems, setProblems] = useState([])
+    const [currentPage, setCurrentPage] = useState(0)
+    const itemsPerPage = 10; // Just change the number to 10
+    const [axiosNormal] = useAxiosNormal();
+    const [isLoading, setIsLoading] = useState(true);
+    const [totalProblems, setTotalProblems] = useState(0);
+    const totalPages = Math.ceil(totalProblems / itemsPerPage)
 
-    // specific language base problems
-    const specificLanguageProblems = allProblems?.filter(problem => problem.language.toLowerCase() === languages)
-
-    const itemsPerPage = 10;
-    const totalPages = Math.ceil(specificLanguageProblems.length / itemsPerPage)
+    useEffect(() => {
+        axiosNormal.get(`/problem/language/${languages}?page=${currentPage}&itemsPerPage=${itemsPerPage}`)
+            .then((data) => {
+                setProblems(data.languageProblems);
+                setTotalProblems(data.totalCount)
+                setIsLoading(false)
+            });
+    }, [currentPage, itemsPerPage]);
 
     return (
         <section>
@@ -31,10 +38,10 @@ const LangBasedProblems = () => {
                         isLoading ? (
                             <CardLoading />
                         ) : (
-                            specificLanguageProblems.length > 0 ? (
+                            problems.length > 0 ? (
                                 <>
                                     <div className="grid md:grid-cols-2 gap-6">
-                                        {specificLanguageProblems?.map((problem, index) => (
+                                        {problems?.map((problem, index) => (
                                             <ProblemCard key={problem._id} problem={problem} />
                                         ))}
                                     </div>

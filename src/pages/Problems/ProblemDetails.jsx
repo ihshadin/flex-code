@@ -9,26 +9,27 @@ import { useParams } from "react-router-dom";
 import "codemirror/addon/hint/show-hint.css";
 import "codemirror/addon/hint/show-hint";
 import "codemirror/addon/hint/javascript-hint";
-import { AuthContext } from "../../providers/AuthProvider";
 import useAxiosNormal from "../../Hooks/useAxiosNormal";
 import SinProbLoading from "../../components/FlexcodeLoading/SinProbLoading";
 import { toast } from "react-hot-toast";
+import useFlexUser from "../../Hooks/useFlexUser";
 
 const ProblemDetails = () => {
   const { id } = useParams();
-  const { user } = useContext(AuthContext);
   const [code, setCode] = useState("");
   const [consoleOutput, setConsoleOutput] = useState([]);
   const [outputMessage, setOutputMessage] = useState("");
   const [singleProblem, setSingleProblems] = useState([]);
   const [isLoading, setIsLoading] = useState(true)
   const [axiosNormal] = useAxiosNormal();
+  const [flexUser] = useFlexUser();
 
   useEffect(() => {
-    axiosNormal.get(`/problem/${id}`).then((data) => {
-      setSingleProblems(data);
-      setIsLoading(false)
-    });
+    axiosNormal.get(`/problem/${id}`)
+      .then((data) => {
+        setSingleProblems(data);
+        setIsLoading(false)
+      });
   }, []);
 
   //  Default values
@@ -45,7 +46,8 @@ const ProblemDetails = () => {
   };
 
   const userSubmission = {
-    userEmail: user?.email,
+    userEmail: flexUser?.email,
+    username: flexUser?.username,
     date: new Date(),
     title: singleProblem.title,
     functionName: singleProblem.functionName,
@@ -57,9 +59,11 @@ const ProblemDetails = () => {
 
   // Submit Code---------------------
   const submitCode = () => {
+
     try {
       // Clear console output
       setConsoleOutput("");
+
 
       // Execute code
       const userCode = `${code || defaultCode}\n\n${singleProblem.functionName
