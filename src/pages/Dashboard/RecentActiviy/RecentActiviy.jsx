@@ -37,7 +37,7 @@ const RecentActiviy = ({ mySolvedProblems }) => {
           </div>
         </div>
         <div className="flex gap-x-1 items-center self-end">
-          <Link to={'/my-submittions'}>View all submissions</Link> <FaAngleRight />
+          <Link to={'/my-submittions'}>View My Submissions</Link> <FaAngleRight />
         </div>
       </div>
       <div>

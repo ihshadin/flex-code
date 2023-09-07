@@ -81,7 +81,7 @@ const ProblemDetails = () => {
 
       //   Output Message
       if (userOutput == singleProblem.examples[0].output) {
-       
+
         // -----------------------
         axiosNormal
           .post("/solvedProblems", userSubmission)
@@ -101,23 +101,23 @@ const ProblemDetails = () => {
               </div>
             );
             // console.log(data)
-          
+
           }).catch(err => {
-            
-            console.log('My error =====>',err?.message);
-           if(err?.response.status === 403){
-            setOutputMessage(
-              <div>
-                <span className="primary-color text-2xl text-center font-semibold block">
-                  Congratulations! <br/> You again solved it 🔥.
-                </span>
-               
-              </div>
-            );
+
+            console.log('My error =====>', err?.message);
+            if (err?.response.status === 403) {
+              setOutputMessage(
+                <div>
+                  <span className="primary-color text-2xl text-center font-semibold block">
+                    That's great! <br /> You already solved it 🔥.
+                  </span>
+
+                </div>
+              );
 
 
-            toast.success("Congrats ! You solved the problem.");
-           }
+              toast.success("Congrats ! You solved the problem.");
+            }
           })
       } else {
         setOutputMessage(

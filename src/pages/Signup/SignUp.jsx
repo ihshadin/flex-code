@@ -70,9 +70,10 @@ const SignUp = () => {
               skills: ['JavaScript', 'React', 'Node.js', 'HTML', 'CSS'],
               userPhotoUrl: user.photoURL || '',
             };
-
+            console.log('73 line ', saveUser);
             axiosNormal.post("/users", saveUser)
               .then((data) => {
+                console.log(data, saveUser);
                 navigate(from, { replace: true });
               });
           })
