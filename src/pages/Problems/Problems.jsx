@@ -5,6 +5,7 @@ import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
 import CardLoading from "../../components/FlexcodeLoading/CardLoading";
 import ProblemCard from "./ProblemCard";
 import useAllProblems from "../../Hooks/useAllProblems";
+import useFlexUser from "../../Hooks/useFlexUser";
 
 const Problems = () => {
   const { allProblems, currentPage, totalPages, setCurrentPage, isLoading, searchText, setSearchText, filterLevel, setFilterLevel } = useAllProblems()

@@ -24,10 +24,11 @@ const ProblemDetails = () => {
   const [flexUser] = useFlexUser();
 
   useEffect(() => {
-    axiosNormal.get(`/problem/${id}`).then((data) => {
-      setSingleProblems(data);
-      setIsLoading(false)
-    });
+    axiosNormal.get(`/problem/${id}`)
+      .then((data) => {
+        setSingleProblems(data);
+        setIsLoading(false)
+      });
   }, []);
 
   //  Default values
@@ -54,10 +55,10 @@ const ProblemDetails = () => {
     functionId: singleProblem.id,
     points: 10,
   };
-  
+
   // Submit Code---------------------
   const submitCode = () => {
-    
+
     try {
       // Clear console output
       setConsoleOutput("");
@@ -96,7 +97,7 @@ const ProblemDetails = () => {
         // -----------------------
         axiosNormal
           .post("/solvedProblems", userSubmission)
-          .then(() => {});
+          .then(() => { });
       } else {
         setOutputMessage(
           <div>
