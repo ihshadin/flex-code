@@ -12,6 +12,7 @@ import "codemirror/addon/hint/javascript-hint";
 import { AuthContext } from "../../providers/AuthProvider";
 import useAxiosNormal from "../../Hooks/useAxiosNormal";
 import SinProbLoading from "../../components/FlexcodeLoading/SinProbLoading";
+import { toast } from "react-hot-toast";
 
 const ProblemDetails = () => {
   const { id } = useParams();
@@ -76,24 +77,44 @@ const ProblemDetails = () => {
 
       //   Output Message
       if (userOutput == singleProblem.examples[0].output) {
-        setOutputMessage(
-          <div>
-            <span className="primary-color text-2xl text-center font-semibold block">
-              Congratulations! Problem solved.
-            </span>
-            <p className="text-center mt-1">
-              You get{" "}
-              <span className="px-2 border border-[#0fcda1] text-white font-medium rounded-md">
-                10
-              </span>{" "}
-              points
-            </p>
-          </div>
-        );
+       
         // -----------------------
         axiosNormal
           .post("/solvedProblems", userSubmission)
-          .then((data) => console.log(data));
+          .then(() => {
+            setOutputMessage(
+              <div>
+                <span className="primary-color text-2xl text-center font-semibold block">
+                  Congratulations! Problem solved.
+                </span>
+                <p className="text-center mt-1">
+                  You get{" "}
+                  <span className="px-2 border border-[#0fcda1] text-white font-medium rounded-md">
+                    10
+                  </span>{" "}
+                  points
+                </p>
+              </div>
+            );
+            // console.log(data)
+          
+          }).catch(err => {
+            
+            console.log('My error =====>',err?.message);
+           if(err?.response.status === 403){
+            setOutputMessage(
+              <div>
+                <span className="primary-color text-2xl text-center font-semibold block">
+                  Congratulations! <br/> You again solved it 🔥.
+                </span>
+               
+              </div>
+            );
+
+
+            toast.success("Congrats ! You solved the problem.");
+           }
+          })
       } else {
         setOutputMessage(
           <div>
