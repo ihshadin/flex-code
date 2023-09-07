@@ -1,19 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
+import { SiAirplayaudio } from 'react-icons/si';
 
 const MyPlayGround = () => {
   return (
     <div className="flexcode-container">
-      <div className="border-b-2 border-[#0fcda185] pb-3">
-        <div>
-          <h1 className="text-white text-2xl md:text-4xl tracking-wider font-semibold">
-            My PlayGround
-          </h1>
-          <p className="text-slate-300 text-sm md:text-base mt-1">
-            Flex Your Knowladge In this PlayGround And Proved Yourself.
-          </p>
-        </div>
-      </div>
+
+        <PageBannerTitle
+          title="My PlayGround"
+          shortDesc="Flex Your Knowledge In this PlayGround And Proved Yourself"
+          btnLink={"/playground"}
+          btnText1="Click For Play"
+          btnText2="Play With HTML, Css & js"
+          btnIcon={
+            <SiAirplayaudio className="w-12 h-14 text-[#0fcda1]"/>
+          }
+        />
+
       <div className="grid grid-cols-3 gap-5 my-10">
         <Link to="/playground">
           <div className="flex flex-col justify-between border gap-3 p-5 rounded-xl border-gray-500 hover:border-[#0fcda1] transition-all exploreCard drop-shadow-md cursor-pointer">
