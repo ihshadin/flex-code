@@ -4,7 +4,7 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import { useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { toast } from "react-hot-toast";
-import useAxiosNormal from "../../../hooks/useAxiosNormal";
+import useAxiosNormal from "../../../Hooks/useAxiosNormal";
 
 const SocialLogin = () => {
   const { signInWithGoogle, signInWithGitHub } = useContext(AuthContext);
@@ -86,6 +86,7 @@ const SocialLogin = () => {
           .then((data) => {
             navigate(from, { replace: true });
           });
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         toast.error("Login Failed. " + error.message);
