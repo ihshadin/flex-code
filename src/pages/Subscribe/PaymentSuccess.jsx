@@ -10,13 +10,10 @@ const PaymentSuccess = () => {
   const [axiosNormal] = useAxiosNormal();
   const {user} = useAuth()
 
-
   useEffect(() => {
     axiosNormal.get(`/payment/${tranId}`)
       .then((result) => {
         setData(result);
-        axiosNormal.post(`/users/all/premium/${user?.email}`)
-        .then(res => {console.log("Payment success",res)})
       });
   }, []);
 
