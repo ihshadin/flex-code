@@ -5,11 +5,8 @@ import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
 import CardLoading from "../../components/FlexcodeLoading/CardLoading";
 import ProblemCard from "./ProblemCard";
 import useAllProblems from "../../Hooks/useAllProblems";
-import useFlexUser from "../../Hooks/useFlexUser";
 
 const Problems = () => {
-  const [flexUser] = useFlexUser()
-  
   const { allProblems, currentPage, totalPages, setCurrentPage, isLoading, searchText, setSearchText, filterLevel, setFilterLevel } = useAllProblems()
   const problemsLanguage = ['JavaScript', 'Python', 'Java', 'C++', 'Ruby', 'Swift', 'PHP', 'Go', 'TypeScript']
 
@@ -102,7 +99,7 @@ const Problems = () => {
           ) : (
             <div className="grid md:grid-cols-2 gap-6">
               {allProblems?.map((problem) => (
-                <ProblemCard  key={problem._id} problem={problem} role={flexUser?.userRole}/>
+                <ProblemCard key={problem._id} problem={problem} />
               ))}
             </div>
           )
