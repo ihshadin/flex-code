@@ -88,12 +88,12 @@ const Top3Card = ({ data, position }) => {
             <p className="font-medium">{data.problemsSolved}</p>
           </div>
         </div>
-        <Link to={'/dashboard'}>
+        <Link to={`/${data?.username}`}>
           <div className="flex shrink-0 items-center gap-2">
             <FaUserTie className="w-6 h-6 text-[#0fcda1b4]" />
             <div className="mt-1.5 sm:mt-0">
               <p className="text-gray-500">Go to profile</p>
-              <Link to={`/${data?.username}`}><p className="font-medium cursor-pointer">View profile</p></Link>
+              <p className="font-medium cursor-pointer">View profile</p>
             </div>
           </div>
         </Link>
