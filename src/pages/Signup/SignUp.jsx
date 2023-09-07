@@ -59,6 +59,7 @@ const SignUp = () => {
               LinkLinks: '',
               webSiteLink: '',
               mobile: null,
+              isPremium: false,
               dateOfBirth: new Date(),
               education: [
                 {
@@ -86,7 +87,6 @@ const SignUp = () => {
         setLoading(false);
         toast.error("Login Failed. " + error.message);
       });
-    console.log(name, email, password);
   };
 
   // if (navigation.state === "loading") {
