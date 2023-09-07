@@ -93,7 +93,7 @@ const Top3Card = ({ data, position }) => {
             <FaUserTie className="w-6 h-6 text-[#0fcda1b4]" />
             <div className="mt-1.5 sm:mt-0">
               <p className="text-gray-500">Go to profile</p>
-              <p className="font-medium">View profile</p>
+              <Link to={`/${data?.username}`}><p className="font-medium cursor-pointer">View profile</p></Link>
             </div>
           </div>
         </Link>

@@ -145,7 +145,7 @@ const LeaderBoard = () => {
                         </div>
                         <p className='w-[20%] text-center'>{solveProblem.points}</p>
                         <p className='w-[20%] text-center'>{solveProblem.problemsSolved}</p>
-                        <p className='w-[15%] text-center'>Profile</p>
+                        <Link to={`/${solveProblem.username}`}><p className='w-[15%] text-center cursor-pointer'>Profile</p></Link>
                       </div>
                     ))
                   }

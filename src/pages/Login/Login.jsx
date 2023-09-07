@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { useContext, useRef } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import SocialLogin from "../Shared/Social/SocialLogin";
-import Swal from "sweetalert2";
 import { toast } from "react-hot-toast";
 
 const Login = () => {

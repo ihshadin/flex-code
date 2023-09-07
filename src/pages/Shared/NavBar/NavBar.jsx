@@ -1,16 +1,18 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { FaUser, FaUserAlt } from "react-icons/fa";
 import './NavBar.css'
-import Swal from "sweetalert2";
+import { toast } from "react-hot-toast";
 const NavBar = ({setUserPaid, onLogout}) => {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [userClicked, setUserClicked] = useState(false);
 
   const location = useLocation();
+  const navigate = useNavigate();
   const dropdownRef = useRef(null);
+  const from = location.state?.from?.pathname || "/";
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -30,13 +32,8 @@ const NavBar = ({setUserPaid, onLogout}) => {
     logOut().then(() => {
       onLogout()
       setUserPaid(false)
-      Swal.fire({
-        position: "bottom-start",
-        icon: "success",
-        title: "LogOut Success",
-        showConfirmButton: false,
-        timer: 1000,
-      });
+      toast.success("LogOut Successfull!");
+      navigate(from, { replace: true })
     });
   };
 
