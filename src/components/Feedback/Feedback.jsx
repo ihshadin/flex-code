@@ -5,8 +5,9 @@ import Rating from "react-rating";
 import Swal from "sweetalert2";
 import reviewImg1 from "../../../public/20230810_120154.png";
 import { AuthContext } from "../../providers/AuthProvider";
-import useAxiosNormal from "../../hooks/useAxiosNormal";
+// import useAxiosNormal from "../../hooks/useAxiosNormal";
 import PageBannerTitle from "../BannerTitle/PageBannerTitle";
+import useAxiosNormal from "../../Hooks/useAxiosNormal";
 
 const Feedback = () => {
   const [rating, setRating] = useState(0);

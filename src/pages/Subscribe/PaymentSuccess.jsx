@@ -8,7 +8,7 @@ const PaymentSuccess = () => {
   const { tranId } = useParams();
   const [data, setData] = useState();
   const [axiosNormal] = useAxiosNormal();
-  const {user} = useAuth()
+  const { user } = useAuth()
 
   useEffect(() => {
     axiosNormal.get(`/payment/${tranId}`)
