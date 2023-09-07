@@ -10,7 +10,6 @@ const PaymentSuccess = () => {
   const [axiosNormal] = useAxiosNormal();
   const { user } = useAuth()
 
-
   useEffect(() => {
     axiosNormal.get(`/payment/${tranId}`)
       .then((result) => {
