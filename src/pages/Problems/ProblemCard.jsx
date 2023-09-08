@@ -10,7 +10,7 @@ const ProblemCard = ({ problem }) => {
     // const { user } = useContext(AuthContext);
     const [flexUser] = useFlexUser()
     const role = flexUser?.userRole;
-    console.log('problem card', role);
+    // console.log('problem card', role, flexUser);
     
     return (
         <div className="flexcode-banner-bg flex flex-col md:flex-row md:items-center justify-between border border-slate-500 hover:border-[#0fcda18c] px-5 py-6 rounded-xl">

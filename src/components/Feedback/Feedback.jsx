@@ -109,7 +109,7 @@ const Feedback = () => {
                 </button>
               </div>
             </form>
-            <div className="md:w-1/2 min-h-[400px] flex flex-col justify-between relative flexcode-banner-bg px-5 md:px-10 py-10 mt-10 md:mt-6 rounded-2xl text-white border border-slate-500 hover:border-[#0fcda156] transition-all duration-300 cursor-pointer">
+            <div className="md:w-1/2 min-h-[22rem] flex flex-col justify-between relative flexcode-banner-bg px-5 md:px-10 py-10 mt-10 md:mt-6 rounded-2xl text-white border border-slate-500 hover:border-[#0fcda156] transition-all duration-300 cursor-pointer">
               <div>
                 <h2 className="text-xl md:text-2xl font-semibold mb-5">
                   {exp === "" ? "Your Expression" : exp}
@@ -120,7 +120,7 @@ const Feedback = () => {
               </div>
               <div className="">
                 <div className="flex flex-col-reverse md:flex-row mt-8 md:items-center justify-between mb-3">
-                  <h3 className="text-md md:text-xl font-semibold mt-5 md:mt-0">
+                  <h3 className="text-md w-1/2 md:text-xl font-semibold mt-5 md:mt-0">
                     ~ {user?.displayName || "Your Name"}
                   </h3>
                   <Rating
