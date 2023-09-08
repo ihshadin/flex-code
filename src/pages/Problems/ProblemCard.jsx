@@ -51,11 +51,11 @@ const ProblemCard = ({ problem }) => {
       {/* Put this part before </body> tag */}
       <div className="modal" id="subscribeFirst">
         <div className="modal-box bg-black flexcode-banner-bg min-h-64 flex flex-col justify-center items-center border border-slate-600 hover:border-[#0fcda156]">
-          <a href='#' className='ml-auto hover:text-[#0fcda1] text-[#0fcda1] mb-8 btn btn-circle btn-outline border-[#0fcda18c] bg-transparent'>
+          <a href='#' className='ml-auto hover:text-[#0fcda1] text-[#0fcda1] mb-8 border-[#0fcda18c] bg-transparent'>
             X
           </a>
           <div>
-            <h3 className='text-xl text-center mb-5'>You have to <span className='text-amber-400'>Subscribe</span> first to <br /> solve our <span className='text-[#0fcda1]'>premium</span> problems.</h3>
+            <h3 className='text-xl text-center mb-10'>You have to <span className='text-amber-400'>Subscribe</span> first to <br /> solve our <span className='text-[#0fcda1]'>premium</span> problems.</h3>
           </div>
           <Link to="/checkout">
             <button className="p-container">

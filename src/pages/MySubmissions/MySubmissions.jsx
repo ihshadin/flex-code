@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import useAxiosNormal from "../../Hooks/useAxiosNormal";
-import useAuth from "../../Hooks/useAuth";
 import useFlexUser from "../../Hooks/useFlexUser";
 
 const MySubmissions = () => {
-  const { user } = useAuth()
-  const { flexUser } = useFlexUser();
+  const [flexUser] = useFlexUser();
   const [mySolvedProblems, setMySolvedProblems] = useState([]);
   const [axiosNormal] = useAxiosNormal();
 
@@ -36,23 +34,14 @@ const MySubmissions = () => {
 
     return "Today";
   }
-  console.log(flexUser);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        if (flexUser) {
-          const response = await axiosNormal.get(`/solvedProblems/userSolveProblem/${flexUser?.email}`);
-          console.log(response);
-          setMySolvedProblems(response.data);
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, [flexUser]);
+    axiosNormal
+      .get(`/solvedProblems/userSolveProblem/${flexUser?.username}`)
+      .then((data) => {
+        setMySolvedProblems(data);
+      });
+  }, [flexUser?.username]);
 
   return (
     <section className="flexcode-banner-bg pt-16 overflow-x-auto">
