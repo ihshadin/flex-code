@@ -7,7 +7,7 @@ const useBlog = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const url = "http://localhost:5000/blog";
+    const url = "https://flex-code-server-ihshadin.vercel.app/blog";
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

@@ -13,7 +13,7 @@ const ManageUser = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/users/all")
+      .get("https://flex-code-server-ihshadin.vercel.app/users/all")
       .then((data) => setUsers(data.data));
     setLoading(false);
   }, [makeloading]);
@@ -26,7 +26,7 @@ const ManageUser = () => {
   const handleMakeAdmin = async (email) => {
     try {
       const res = await axios.post(
-        `http://localhost:5000/users/all/admin/${email}`
+        `https://flex-code-server-ihshadin.vercel.app/users/all/admin/${email}`
       );
       if (res.data.user.modifiedCount > 0) {
         toast.success("User role updated to admin!", {
@@ -50,7 +50,7 @@ const ManageUser = () => {
   const handleMakeUser = async (email) => {
     try {
       const res = await axios.post(
-        `http://localhost:5000/users/all/genarel/${email}`
+        `https://flex-code-server-ihshadin.vercel.app/users/all/genarel/${email}`
       );
 
       if (res.data.user.modifiedCount > 0) {

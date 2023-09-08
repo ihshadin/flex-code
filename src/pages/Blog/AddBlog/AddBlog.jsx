@@ -15,7 +15,7 @@ const AddBlog = () => {
       userImage: user?.photoURL,
       userName: user?.displayName,
     };
-    fetch("http://localhost:5000/blog", {
+    fetch("https://flex-code-server-ihshadin.vercel.app/blog", {
       method: "POST",
       headers: {
         "content-type": "application/json",
