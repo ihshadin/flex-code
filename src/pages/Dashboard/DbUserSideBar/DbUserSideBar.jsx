@@ -93,10 +93,10 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
             </Link>
           }
           <div className="flex text-gray-400 items-center justify-center gap-4 text-lg">
-            {fullUserDetails.fbLinks && <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.fbLinks}><FaFacebook /></a>}
-            {fullUserDetails.github && <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.github}><FaGithub /></a>}
-            {fullUserDetails.LinkLinks && <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.LinkLinks}><FaLinkedin /></a>}
-            {fullUserDetails.webSiteLink && <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.webSiteLink}><FaGlobe /></a>}
+            {fullUserDetails?.fbLinks && <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.fbLinks}><FaFacebook /></a>}
+            {fullUserDetails?.github && <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.github}><FaGithub /></a>}
+            {fullUserDetails?.LinkLinks && <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.LinkLinks}><FaLinkedin /></a>}
+            {fullUserDetails?.webSiteLink && <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.webSiteLink}><FaGlobe /></a>}
           </div>
         </div>
         {/* User Info */}
@@ -113,7 +113,7 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
           </div>
           {/* Address */}
           {
-            fullUserDetails.address && (
+            fullUserDetails?.address && (
               <div className="flex items-center space-x-2 text-[14px]">
                 <div className="text-[18px]">
                   <FaHome className="text-[#0fcda199]" />
@@ -157,7 +157,7 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
                 <GiRank3 className="text-[#0fcda199]" />
               </div>
               <div className="text-slate-300 ">Rank</div>
-              <div className="text-white">{myRank?.rank || 'N/A'}</div>
+              <div className="text-white">{myRank?.rank || 0}</div>
             </div>
           </div>
           {/* Solutions */}
@@ -182,12 +182,12 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
               <div className="text-slate-300 ">
                 Solution
               </div>
-              <div className="text-white">{mySolvedProblems.length || 'N/A'}</div>
+              <div className="text-white">{mySolvedProblems.length || 0}</div>
             </div>
             <div className="ml-7 space-x-1 text-xs text-slate-400">
               <span>Last week</span>
               <span>
-                <span className="text-slate-200">{lastWeekSolvedProblems.length || 'N/A'}</span>
+                <span className="text-slate-200">{lastWeekSolvedProblems.length || 0}</span>
               </span>
             </div>
           </div>
