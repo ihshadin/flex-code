@@ -1,16 +1,12 @@
 import { FaCrown } from 'react-icons/fa6';
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-// import { AuthContext } from '../../providers/AuthProvider';
 import '../Subscribe/Subscribe.css'
 import useFlexUser from '../../Hooks/useFlexUser';
 
 const ProblemCard = ({ problem }) => {
-  // console.log(role);
-  // const { user } = useContext(AuthContext);
   const [flexUser] = useFlexUser()
-  const role = flexUser?.userRole;
-  // console.log('problem card', role, flexUser);
+  const isPremium = flexUser?.isPremium;
 
   return (
     <div className="flexcode-banner-bg flex flex-col md:flex-row md:items-center justify-between border border-slate-500 hover:border-[#0fcda18c] px-5 py-6 rounded-xl">
@@ -39,10 +35,10 @@ const ProblemCard = ({ problem }) => {
         </div>
       </div>
       <div className="mt-3 md:mt-0 text-center shrink-0">
-        {problem?.isPremium === true && role !== 'premium' &&
+        {problem?.isPremium === true && isPremium !== true &&
           <a href="#subscribeFirst" className="flexcode-button text-xs py-2 px-3" >Solve Problem</a>
         }
-        {problem?.isPremium === true && role === 'premium' &&
+        {problem?.isPremium === true && isPremium === true &&
           <Link to={`/problem/${problem._id}`} className="flexcode-button text-xs py-2 px-3" >Solve Problem</Link>
         }
         {problem?.isPremium !== true &&
