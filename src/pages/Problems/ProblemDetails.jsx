@@ -13,6 +13,7 @@ import useAxiosNormal from "../../Hooks/useAxiosNormal";
 import SinProbLoading from "../../components/FlexcodeLoading/SinProbLoading";
 import { toast } from "react-hot-toast";
 import useFlexUser from "../../Hooks/useFlexUser";
+import ConfettiExplosion from "react-confetti-explosion";
 
 const ProblemDetails = () => {
   const { id } = useParams();
@@ -21,6 +22,7 @@ const ProblemDetails = () => {
   const [outputMessage, setOutputMessage] = useState("");
   const [singleProblem, setSingleProblems] = useState([]);
   const [isLoading, setIsLoading] = useState(true)
+  const [isExplosion, setIsExplosion] = useState(false)
   const [axiosNormal] = useAxiosNormal();
   const [flexUser] = useFlexUser();
 
@@ -81,7 +83,7 @@ const ProblemDetails = () => {
 
       //   Output Message
       if (userOutput == singleProblem.examples[0].output) {
-
+       setIsExplosion(true)
         // -----------------------
         axiosNormal
           .post("/solvedProblems", userSubmission)
@@ -101,23 +103,23 @@ const ProblemDetails = () => {
               </div>
             );
             // console.log(data)
-
+          
           }).catch(err => {
+            
+            console.log('My error =====>',err?.message);
+           if(err?.response.status === 403){
+            setOutputMessage(
+              <div>
+                <span className="primary-color text-2xl text-center font-semibold block">
+                  Congratulations! <br/> You again solved it 🔥.
+                </span>
+               
+              </div>
+            );
 
-            console.log('My error =====>', err?.message);
-            if (err?.response.status === 403) {
-              setOutputMessage(
-                <div>
-                  <span className="primary-color text-2xl text-center font-semibold block">
-                    That's great! <br /> You already solved it 🔥.
-                  </span>
 
-                </div>
-              );
-
-
-              toast.success("Congrats ! You solved the problem.");
-            }
+            toast.success("Congrats ! You solved the problem.");
+           }
           })
       } else {
         setOutputMessage(
@@ -173,6 +175,7 @@ const ProblemDetails = () => {
 
   return (
     <section id="problemDetails">
+      
       <div className="flexcode-container">
         {
           isLoading ? (
@@ -232,11 +235,13 @@ const ProblemDetails = () => {
                   ))}
                 </div>
               </div >
+              
+              {isExplosion && <ConfettiExplosion/>}
               <div className="problem-exmaple w-1/2 flex flex-col md:overflow-y-scroll">
                 <Split
                   className="flex flex-col h-screen"
                   direction="vertical"
-                  sizes={[75, 25]}
+                  sizes={[60, 40]}
                   minSize={0}
                   expandToMin={false}
                   gutterSize={10}

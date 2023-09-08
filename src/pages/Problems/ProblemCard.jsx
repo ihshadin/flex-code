@@ -1,12 +1,16 @@
-import React from 'react';
 import { FaCrown } from 'react-icons/fa6';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+// import { AuthContext } from '../../providers/AuthProvider';
 import '../Subscribe/Subscribe.css'
 import useFlexUser from '../../Hooks/useFlexUser';
 
 const ProblemCard = ({ problem }) => {
+  // console.log(role);
+  // const { user } = useContext(AuthContext);
   const [flexUser] = useFlexUser()
-  const isPremium = flexUser?.isPremium;
+  const role = flexUser?.userRole;
+  // console.log('problem card', role, flexUser);
 
   return (
     <div className="flexcode-banner-bg flex flex-col md:flex-row md:items-center justify-between border border-slate-500 hover:border-[#0fcda18c] px-5 py-6 rounded-xl">
@@ -35,10 +39,10 @@ const ProblemCard = ({ problem }) => {
         </div>
       </div>
       <div className="mt-3 md:mt-0 text-center shrink-0">
-        {problem?.isPremium === true && isPremium !== true &&
+        {problem?.isPremium === true && role !== 'premium' &&
           <a href="#subscribeFirst" className="flexcode-button text-xs py-2 px-3" >Solve Problem</a>
         }
-        {problem?.isPremium === true && isPremium === true &&
+        {problem?.isPremium === true && role === 'premium' &&
           <Link to={`/problem/${problem._id}`} className="flexcode-button text-xs py-2 px-3" >Solve Problem</Link>
         }
         {problem?.isPremium !== true &&
@@ -85,7 +89,7 @@ const ProblemCard = ({ problem }) => {
                   <path
                     d="M345.441 248.292L151.154 442.573c-12.359 12.365-32.397 12.365-44.75 0-12.354-12.354-12.354-32.391 0-44.744L278.318 225.92 106.409 54.017c-12.354-12.359-12.354-32.394 0-44.748 12.354-12.359 32.391-12.359 44.75 0l194.287 194.284c6.177 6.18 9.262 14.271 9.262 22.366 0 8.099-3.091 16.196-9.267 22.373z"
                     data-original="#000000"
-                    className="active-path"
+                    class="active-path"
                     data-old_color="#000000"
                     fill="#00000"
                   />

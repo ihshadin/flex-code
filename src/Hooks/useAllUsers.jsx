@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import useAxiosNormal from './useAxiosNormal';
+import React, { useEffect, useState } from "react";
+import useAxiosNormal from "./useAxiosNormal";
 
 const useAllUsers = () => {
-    const [allUsers, setAllUsers] = useState([]);
-    const [axiosNormal] = useAxiosNormal();
+  const [allUsers, setAllUsers] = useState([]);
+  const [axiosNormal] = useAxiosNormal();
 
+  useEffect(() => {
+    axiosNormal.get(`/users/all`).then((data) => {
+      setAllUsers(data);
+    });
+  }, []);
 
-    useEffect(() => {
-        axiosNormal.get(`/users/all`)
-            .then(data => {
-                setAllUsers(data);
-            })
-    }, [])
-
-    return [allUsers];
+  return [allUsers];
 };
 
 export default useAllUsers;

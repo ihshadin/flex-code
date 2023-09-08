@@ -1,24 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { GiRank3 } from "react-icons/gi";
+import { GiFemaleVampire, GiNurseFemale, GiRank3 } from "react-icons/gi";
 import useTopperData from "../../../Hooks/useTopperData";
 import useAxiosNormal from "../../../Hooks/useAxiosNormal";
 import useFlexUser from "../../../Hooks/useFlexUser";
+import useAuth from "../../../Hooks/useAuth";
+import { FaBirthdayCake, FaCrown, FaFacebook, FaFemale, FaGithub, FaGithubAlt, FaHome, FaLinkedin, FaMale, FaUser } from "react-icons/fa";
+import { FaGlobe } from "react-icons/fa6";
 
 const DbUserSideBar = ({ mySolvedProblems, username }) => {
-  const [user, setUser] = useState({})
+  const [fullUserDetails, setFullUserDetails] = useState({})
   const [problemsByLanguage, setProblemsByLanguage] = useState({});
   const [topperData] = useTopperData();
   const [axiosNormal] = useAxiosNormal();
   const [flexUser] = useFlexUser()
+  const { user } = useAuth()
   const mainUserName = username || flexUser?.username;
-
+  const userEmail = user?.email;
+  const flexUserEmail = fullUserDetails?.email;
+  console.log('profile ====>', fullUserDetails);
   useEffect(() => {
     axiosNormal.get(`/users/${mainUserName}`)
-    .then(user => {
-      setUser(user)
-    })
-  },[mainUserName])
+      .then(user => {
+        setFullUserDetails(user)
+      })
+  }, [mainUserName])
   // console.log('dbuserSbar---oneuser--19',user)
 
 
@@ -26,7 +32,11 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
   const currentDate = new Date();
   const lastWeekDate = new Date();
   lastWeekDate.setDate(currentDate.getDate() - 7);
-
+  const formattedDate = (fullUserDetails?.dateOfBirth)?.slice(0, 10);
+  // const parts = date?.split("-"); // ["2005", "08", "31"]
+  // console.log(parts);
+  // const formattedDate = `${parts[2] || 'dd'}/ ${parts[1] || 'mm'}/ ${parts[0] || 'yyyy'}` || 'la la laaa';
+  // const formattedDate = '31/08/2005'
   // Last week solutions
   const lastWeekSolvedProblems = mySolvedProblems.filter(problem => new Date(problem.date) >= lastWeekDate);
   // Last week points
@@ -44,7 +54,7 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
   }, [mySolvedProblems]);
 
   useEffect(() => {
-    
+
   })
 
   return (
@@ -56,14 +66,14 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
           <div className="flex space-x-4">
             <div className="relative flex h-20 w-20 shrink-0">
               <img
-                src={user?.userPhotoUrl}
+                src={fullUserDetails?.userPhotoUrl}
                 alt="Avatar"
                 className="h-20 w-20 p-1 border border-[#0fcda185] rounded-lg object-cover"
               />
             </div>
             <div className="flex flex-col py-1">
-              <div className="text-lg text-white font-semibold">
-                {user?.name}
+              <div className="text-lg text-white font-semibold ">
+                {fullUserDetails?.name} {fullUserDetails?.isPremium === true && <FaCrown className="text-amber-400 inline ml-1 mb-2" />}
               </div>
               <div className="flex flex-1 items-end space-x-[5px] text-base text-white">
                 <span className="text-slate-300 ">Rank ~</span>
@@ -73,18 +83,72 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
               </div>
             </div>
           </div>
-          <Link
-            className="bg-[#0fcda1] bg-opacity-50 text-[#b0c9ec] border border-[#0fcda1] border-transparent hover:bg-transparent hover:border hover:border-[#0fcda1] hover:text-[#0fcda1] hover:transition-all hover:duration-500 w-full rounded-lg py-[7px] text-center font-medium"
-            to="/profile"
-          >
-            Edit Profile
-          </Link>
+          {
+            userEmail === flexUserEmail &&
+            <Link
+              className="bg-[#0fcda1] bg-opacity-50 text-[#b0c9ec] border border-[#0fcda1] border-transparent hover:bg-transparent hover:border hover:border-[#0fcda1] hover:text-[#0fcda1] hover:transition-all hover:duration-500 w-full rounded-lg py-[7px] text-center font-medium"
+              to="/profile"
+            >
+              Edit Profile
+            </Link>
+          }
+          <div className="flex text-gray-400 items-center justify-center gap-4 text-lg">
+            {fullUserDetails.fbLinks && <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.fbLinks}><FaFacebook /></a>}
+            {fullUserDetails.github && <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.github}><FaGithub /></a>}
+            {fullUserDetails.LinkLinks && <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.LinkLinks}><FaLinkedin /></a>}
+            {fullUserDetails.webSiteLink && <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.webSiteLink}><FaGlobe /></a>}
+          </div>
         </div>
         {/* User Info */}
 
-        {/* Start Community Stats content */}
         <div className="mt-4 mb-4 h-px w-full border-b border-[#0fcda189] border-divider-3"></div>
-        <div className="text-base text-white font-medium leading-6">Your Statistic</div>
+        <div className="text-base text-white font-medium leading-6">Info</div>
+        <div className="my-4 flex flex-col space-y-4">
+          {/* User name */}
+          <div className="flex items-center space-x-2 text-[14px]">
+            <div className="text-[18px]">
+              <FaUser className="text-[#0fcda199]" />
+            </div>
+            <div className="text-white">{fullUserDetails?.username}</div>
+          </div>
+          {/* Address */}
+          {
+            fullUserDetails.address && (
+              <div className="flex items-center space-x-2 text-[14px]">
+                <div className="text-[18px]">
+                  <FaHome className="text-[#0fcda199]" />
+                </div>
+
+                <div className="text-white">{fullUserDetails?.address}</div>
+              </div>
+            )
+          }
+          {/* DOB */}
+          {
+            fullUserDetails?.dateOfBirth && (
+              <div className="flex items-center space-x-2 text-[14px]">
+                <div className="text-[18px]">
+                  <FaBirthdayCake className="text-[#0fcda199]" />
+                </div>
+                <div className="text-white">{formattedDate || 'N/A'}</div>
+              </div>
+            )
+          }
+          {/* Gender */}
+          {
+            fullUserDetails?.gender && (
+              <div className="flex items-center capitalize space-x-2 text-[14px]">
+                <div className="text-[18px]">
+                  {fullUserDetails?.gender === 'male' && <GiNurseFemale className="text-[#0fcda199]" />}
+                  {fullUserDetails?.gender === 'female' && <GiFemaleVampire className="text-pink-500" />}
+                  {fullUserDetails?.gender !== 'male' && fullUserDetails?.gender !== 'female' && <FaUser className="text-slate-500" />}
+                </div>
+                <div className="text-white">{fullUserDetails?.gender || 'N/A'}</div>
+              </div>
+            )
+          }
+        </div>
+        <div className="text-base text-white font-medium leading-6">Statistic</div>
         <div className="mt-4 flex flex-col space-y-4">
           {/* Ranks */}
           <div className="flex flex-col space-y-1">
@@ -93,7 +157,7 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
                 <GiRank3 className="text-[#0fcda199]" />
               </div>
               <div className="text-slate-300 ">Rank</div>
-              <div className="text-white">{myRank?.rank}</div>
+              <div className="text-white">{myRank?.rank || 'N/A'}</div>
             </div>
           </div>
           {/* Solutions */}
@@ -118,12 +182,12 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
               <div className="text-slate-300 ">
                 Solution
               </div>
-              <div className="text-white">{mySolvedProblems.length}</div>
+              <div className="text-white">{mySolvedProblems.length || 'N/A'}</div>
             </div>
             <div className="ml-7 space-x-1 text-xs text-slate-400">
               <span>Last week</span>
               <span>
-                <span className="text-slate-200">{lastWeekSolvedProblems.length}</span>
+                <span className="text-slate-200">{lastWeekSolvedProblems.length || 'N/A'}</span>
               </span>
             </div>
           </div>
@@ -206,44 +270,12 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
           }
         </div>
         {/* Start Skills content */}
-        <div>
-          <div className="mt-4 w-full">
-            <div className="text-base text-white font-medium leading-6">Skills</div>
-            <div className="mt-4 flex flex-col space-y-4">
-              <div>
-                <div className="flex items-center text-xs">
-                  <span className="mr-1.5 flex">
-                    <span className="inline-block h-1 w-1 rounded-full bg-orange-300"></span>
-                  </span>
-                  <span className="font-medium">Advanced</span>
-                </div>
-                <div className="mt-3 flex items-center justify-center text-xs text-slate-400">
-                  Not enough data
-                </div>
-              </div>
-              <div>
-                <div className="flex items-center text-xs">
-                  <span className="mr-1.5 flex">
-                    <span className="inline-block h-1 w-1 rounded-full bg-yellow-300"></span>
-                  </span>
-                  <span className="font-medium">Intermediate</span>
-                </div>
-                <div className="mt-3 flex items-center justify-center text-xs text-slate-400">
-                  Not enough data
-                </div>
-              </div>
-              <div className="pb-4">
-                <div className="flex items-center text-xs">
-                  <span className="mr-1.5 flex">
-                    <span className="inline-block h-1 w-1 rounded-full bg-green-300"></span>
-                  </span>
-                  <span className="font-medium">Fundamental</span>
-                </div>
-                <div className="mt-3 flex items-center justify-center text-xs text-slate-400">
-                  Not enough data
-                </div>
-              </div>
-            </div>
+        <div className="mt-5 w-full">
+          <div className="text-base text-white font-medium leading-6">Skills</div>
+          <div className="my-3 flex items-center flex-wrap gap-1">
+            {
+              fullUserDetails?.skills?.map(skill => <span className="py-1 px-3 bg-slate-700 rounded-md cursor-pointer">{skill}</span>)
+            }
           </div>
         </div>
         {/* End Skills content */}
