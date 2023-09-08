@@ -31,14 +31,14 @@ const SocialLogin = () => {
           LinkLinks: '',
           webSiteLink: '',
           mobile: user.phoneNumber || null,
-          dateOfBirth: new Date(),
+          dateOfBirth: null,
           education: [
             {
               degreeTitle: '',
               InstituteName: '',
             }
           ],
-          skills: ['JavaScript', 'React', 'Node.js', 'HTML', 'CSS'],
+          skills: [],
           userPhotoUrl: user.photoURL || '',
         };
 
@@ -70,14 +70,14 @@ const SocialLogin = () => {
           webSiteLink: '',
           mobile: user.phoneNumber || null,
           isPremium: false,
-          dateOfBirth: new Date(),
+          dateOfBirth: null,
           education: [
             {
               degreeTitle: '',
               InstituteName: '',
             }
           ],
-          skills: ['JavaScript', 'React', 'Node.js', 'HTML', 'CSS'],
+          skills: [],
           userPhotoUrl: user.photoURL || '',
         };
 

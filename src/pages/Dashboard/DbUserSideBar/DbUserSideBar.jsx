@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { GiRank3 } from "react-icons/gi";
+import { GiFemaleVampire, GiNurseFemale, GiRank3 } from "react-icons/gi";
 import useTopperData from "../../../Hooks/useTopperData";
 import useAxiosNormal from "../../../Hooks/useAxiosNormal";
 import useFlexUser from "../../../Hooks/useFlexUser";
@@ -14,17 +14,17 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
   const [topperData] = useTopperData();
   const [axiosNormal] = useAxiosNormal();
   const [flexUser] = useFlexUser()
-  const {user} = useAuth()
+  const { user } = useAuth()
   const mainUserName = username || flexUser?.username;
   const userEmail = user?.email;
   const flexUserEmail = fullUserDetails?.email;
   console.log('profile ====>', fullUserDetails);
   useEffect(() => {
     axiosNormal.get(`/users/${mainUserName}`)
-    .then(user => {
-      setFullUserDetails(user)
-    })
-  },[mainUserName])
+      .then(user => {
+        setFullUserDetails(user)
+      })
+  }, [mainUserName])
   // console.log('dbuserSbar---oneuser--19',user)
 
 
@@ -32,11 +32,11 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
   const currentDate = new Date();
   const lastWeekDate = new Date();
   lastWeekDate.setDate(currentDate.getDate() - 7);
-  const formattedDate = (fullUserDetails?.dateOfBirth)?.slice(0,10);
-// const parts = date?.split("-"); // ["2005", "08", "31"]
-// console.log(parts);
-// const formattedDate = `${parts[2] || 'dd'}/ ${parts[1] || 'mm'}/ ${parts[0] || 'yyyy'}` || 'la la laaa';
-// const formattedDate = '31/08/2005'
+  const formattedDate = (fullUserDetails?.dateOfBirth)?.slice(0, 10);
+  // const parts = date?.split("-"); // ["2005", "08", "31"]
+  // console.log(parts);
+  // const formattedDate = `${parts[2] || 'dd'}/ ${parts[1] || 'mm'}/ ${parts[0] || 'yyyy'}` || 'la la laaa';
+  // const formattedDate = '31/08/2005'
   // Last week solutions
   const lastWeekSolvedProblems = mySolvedProblems.filter(problem => new Date(problem.date) >= lastWeekDate);
   // Last week points
@@ -54,7 +54,7 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
   }, [mySolvedProblems]);
 
   useEffect(() => {
-    
+
   })
 
   return (
@@ -73,7 +73,7 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
             </div>
             <div className="flex flex-col py-1">
               <div className="text-lg text-white font-semibold ">
-                {fullUserDetails?.name} {fullUserDetails?.userRole === 'premium' && <FaCrown className="text-amber-400 inline ml-1 mb-2" />}
+                {fullUserDetails?.name} {fullUserDetails?.isPremium === true && <FaCrown className="text-amber-400 inline ml-1 mb-2" />}
               </div>
               <div className="flex flex-1 items-end space-x-[5px] text-base text-white">
                 <span className="text-slate-300 ">Rank ~</span>
@@ -86,18 +86,17 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
           {
             userEmail === flexUserEmail &&
             <Link
-            className="bg-[#0fcda1] bg-opacity-50 text-[#b0c9ec] border border-[#0fcda1] border-transparent hover:bg-transparent hover:border hover:border-[#0fcda1] hover:text-[#0fcda1] hover:transition-all hover:duration-500 w-full rounded-lg py-[7px] text-center font-medium"
-            to="/profile"
-          >
-            Edit Profile
-          </Link>
+              className="bg-[#0fcda1] bg-opacity-50 text-[#b0c9ec] border border-[#0fcda1] border-transparent hover:bg-transparent hover:border hover:border-[#0fcda1] hover:text-[#0fcda1] hover:transition-all hover:duration-500 w-full rounded-lg py-[7px] text-center font-medium"
+              to="/profile"
+            >
+              Edit Profile
+            </Link>
           }
           <div className="flex text-gray-400 items-center justify-center gap-4 text-lg">
-            <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.fbLinks}><FaFacebook/></a>
-            <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.github}><FaGithub/></a>
-            <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.LinkLinks}><FaLinkedin/></a>
-            <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.webSiteLink}><FaGlobe/></a>
-           
+            {fullUserDetails.fbLinks && <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.fbLinks}><FaFacebook /></a>}
+            {fullUserDetails.github && <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.github}><FaGithub /></a>}
+            {fullUserDetails.LinkLinks && <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.LinkLinks}><FaLinkedin /></a>}
+            {fullUserDetails.webSiteLink && <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.webSiteLink}><FaGlobe /></a>}
           </div>
         </div>
         {/* User Info */}
@@ -105,39 +104,50 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
         <div className="mt-4 mb-4 h-px w-full border-b border-[#0fcda189] border-divider-3"></div>
         <div className="text-base text-white font-medium leading-6">Info</div>
         <div className="my-4 flex flex-col space-y-4">
- {/* User name */}
-            <div className="flex items-center space-x-2 text-[14px]">
-              <div className="text-[18px]">
-                <FaUser className="text-[#0fcda199]" />
-              </div>
-              
-              <div className="text-white">{fullUserDetails?.username || 'N/A'}</div>
+          {/* User name */}
+          <div className="flex items-center space-x-2 text-[14px]">
+            <div className="text-[18px]">
+              <FaUser className="text-[#0fcda199]" />
             </div>
- {/* Address */}
-            <div className="flex items-center space-x-2 text-[14px]">
-              <div className="text-[18px]">
-                <FaHome className="text-[#0fcda199]" />
-              </div>
-              
-              <div className="text-white">{fullUserDetails?.address || 'N/A'}</div>
-            </div>
- {/* DOB */}
-            <div className="flex items-center space-x-2 text-[14px]">
-              <div className="text-[18px]">
-                <FaBirthdayCake className="text-[#0fcda199]" />
-              </div>
-              
-              <div className="text-white">{formattedDate || 'N/A'}</div>
-            </div>
- {/* Gender */}
-            <div className="flex items-center space-x-2 text-[14px]">
-              <div className="text-[18px]">
-              { fullUserDetails?.gender === 'male' ? <FaMale className="text-[#0fcda199]" /> : <FaFemale className="text-[#0fcda199]" /> }
-              </div>
-              
-              <div className="text-white">{fullUserDetails?.gender || 'N/A'}</div>
-            </div>
+            <div className="text-white">{fullUserDetails?.username}</div>
           </div>
+          {/* Address */}
+          {
+            fullUserDetails.address && (
+              <div className="flex items-center space-x-2 text-[14px]">
+                <div className="text-[18px]">
+                  <FaHome className="text-[#0fcda199]" />
+                </div>
+
+                <div className="text-white">{fullUserDetails?.address}</div>
+              </div>
+            )
+          }
+          {/* DOB */}
+          {
+            fullUserDetails?.dateOfBirth && (
+              <div className="flex items-center space-x-2 text-[14px]">
+                <div className="text-[18px]">
+                  <FaBirthdayCake className="text-[#0fcda199]" />
+                </div>
+                <div className="text-white">{formattedDate || 'N/A'}</div>
+              </div>
+            )
+          }
+          {/* Gender */}
+          {
+            fullUserDetails?.gender && (
+              <div className="flex items-center capitalize space-x-2 text-[14px]">
+                <div className="text-[18px]">
+                  {fullUserDetails?.gender === 'male' && <GiNurseFemale className="text-[#0fcda199]" />}
+                  {fullUserDetails?.gender === 'female' && <GiFemaleVampire className="text-pink-500" />}
+                  {fullUserDetails?.gender !== 'male' && fullUserDetails?.gender !== 'female' && <FaUser className="text-slate-500" />}
+                </div>
+                <div className="text-white">{fullUserDetails?.gender || 'N/A'}</div>
+              </div>
+            )
+          }
+        </div>
         <div className="text-base text-white font-medium leading-6">Statistic</div>
         <div className="mt-4 flex flex-col space-y-4">
           {/* Ranks */}
@@ -260,50 +270,12 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
           }
         </div>
         {/* Start Skills content */}
-        <div>
-          <div className="mt-4 w-full">
-            <div className="text-base text-white font-medium leading-6">Skills</div>
-            <div className="my-4 flex items-center flex-wrap gap-3">
-              {
-                fullUserDetails?.skills?.map(skill =>  <span className="px-2 border border-[#0fcda1] primary-color font-medium rounded-md cursor-pointer">{skill}</span>)
-              }
-           
-            </div>
-            <div className="mt-4 flex flex-col space-y-4">
-              <div>
-                <div className="flex items-center text-xs">
-                  <span className="mr-1.5 flex">
-                    <span className="inline-block h-1 w-1 rounded-full bg-orange-300"></span>
-                  </span>
-                  <span className="font-medium">Advanced</span>
-                </div>
-                <div className="mt-3 flex items-center justify-center text-xs text-slate-400">
-                  Not enough data
-                </div>
-              </div>
-              <div>
-                <div className="flex items-center text-xs">
-                  <span className="mr-1.5 flex">
-                    <span className="inline-block h-1 w-1 rounded-full bg-yellow-300"></span>
-                  </span>
-                  <span className="font-medium">Intermediate</span>
-                </div>
-                <div className="mt-3 flex items-center justify-center text-xs text-slate-400">
-                  Not enough data
-                </div>
-              </div>
-              <div className="pb-4">
-                <div className="flex items-center text-xs">
-                  <span className="mr-1.5 flex">
-                    <span className="inline-block h-1 w-1 rounded-full bg-green-300"></span>
-                  </span>
-                  <span className="font-medium">Fundamental</span>
-                </div>
-                <div className="mt-3 flex items-center justify-center text-xs text-slate-400">
-                  Not enough data
-                </div>
-              </div>
-            </div>
+        <div className="mt-5 w-full">
+          <div className="text-base text-white font-medium leading-6">Skills</div>
+          <div className="my-3 flex items-center flex-wrap gap-1">
+            {
+              fullUserDetails?.skills?.map(skill => <span className="py-1 px-3 bg-slate-700 rounded-md cursor-pointer">{skill}</span>)
+            }
           </div>
         </div>
         {/* End Skills content */}

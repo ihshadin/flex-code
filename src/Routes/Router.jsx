@@ -25,7 +25,6 @@ import PrivateRoute from "./PrivateRoute";
 import PaymentSuccess from "../pages/Subscribe/PaymentSuccess";
 import PaymentFail from "../pages/Subscribe/PaymentFail";
 import MySubmissions from "../pages/MySubmissions/MySubmissions";
-import AdminDashboard from "../pages/AdminDashbord/AdminDashboard";
 import MyPlayGround from "../pages/MyPlayGround/MyPlayGround";
 import PlayGround from "../pages/MyPlayGround/PlayGround/PlayGround";
 import ManageUser from "../pages/AdminDashbord/ManageUser/ManageUser";
@@ -35,8 +34,7 @@ import AllTestimonials from "../pages/Home/AllTestimonials/AllTestimonials";
 import Dashboard from "../layouts/Dashboard";
 import AdminMainContent from "../pages/AdminDashbord/AdminMainContent/AdminMainContent";
 import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
-
-// import ProblemDetails from "../pages/Problems/ProblemDetails";
+import SendEmail from "../pages/AdminDashbord/SendEmail/SendEmail";
 
 const router = createBrowserRouter([
   {
@@ -181,6 +179,10 @@ const router = createBrowserRouter([
       {
         path: "calendar",
         element: <AdminCalendar />,
+      },
+      {
+        path: "contacts",
+        element: <SendEmail />,
       },
     ],
   },

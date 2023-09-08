@@ -60,14 +60,14 @@ const SignUp = () => {
               webSiteLink: '',
               mobile: null,
               isPremium: false,
-              dateOfBirth: new Date(),
+              dateOfBirth: null,
               education: [
                 {
                   degreeTitle: '',
                   InstituteName: '',
                 }
               ],
-              skills: ['JavaScript', 'React', 'Node.js', 'HTML', 'CSS'],
+              skills: [],
               userPhotoUrl: user.photoURL || '',
             };
             console.log('73 line ', saveUser);
