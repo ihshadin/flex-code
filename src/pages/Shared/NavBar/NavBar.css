@@ -1,16 +1,44 @@
 .nav-effect {
-    position: relative;
+  position: relative;
 }
 .nav-effect::after {
-    content: "";
-    background-color: #0fcda1;
-    height: 2px;
-    width: 0;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    transition: 0.5s;
+  content: "";
+  background-color: #0fcda1;
+  height: 2px;
+  width: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: 0.5s;
 }
 .nav-effect:hover::after {
-    width: 100%;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .flexcode-menu-animation {
+    animation: menuAnimation 0.5s ease-out;
+  }
+}
+
+.flexcode-dropdown-animation {
+  animation: dropdownAnimation 0.5s ease-out;
+}
+
+@keyframes menuAnimation {
+  from {
+    margin-top: -50px;
+  }
+  to {
+    margin-top: 16px;
+  }
+}
+
+@keyframes dropdownAnimation {
+  from {
+    margin-right: -50px;
+  }
+  to {
+    margin-right: 0px;
+  }
 }
