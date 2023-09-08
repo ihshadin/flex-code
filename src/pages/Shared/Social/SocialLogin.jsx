@@ -69,6 +69,7 @@ const SocialLogin = () => {
           LinkLinks: '',
           webSiteLink: '',
           mobile: user.phoneNumber || null,
+          isPremium: false,
           dateOfBirth: new Date(),
           education: [
             {
@@ -82,9 +83,10 @@ const SocialLogin = () => {
 
         axiosNormal.post("/users", saveUser)
           .then((data) => {
+            console.log(saveUser);
           });
-          toast.success("Login Successfull!");
-          navigate(from, { replace: true });
+        toast.success("Login Successfull!");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         toast.error("Login Failed. " + error.message);

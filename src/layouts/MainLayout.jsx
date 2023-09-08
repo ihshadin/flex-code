@@ -23,36 +23,30 @@ const MainLayout = () => {
   useEffect(() => {
     if (user) {
       axiosNormal.get(`/payment/email?email=${user?.email}`).then((data) => {
-        console.log(data);
         if (data.paidStatus === "paid") {
           setUserPaid(true);
-          console.log("main----29",userPaid);
         } else {
           setUserPaid(false)
         }
-        // if(data.paidStatus !== "paid"){
-        //   setUserPaid(false);
-        //   console.log("main----33",userPaid);
-        // }
       });
     }
   }, [user?.email, userPaid]);
 
-   // Function to handle user logout
-   const handleLogout = () => {
+  // Function to handle user logout
+  const handleLogout = () => {
     // Add your logout logic here
     setUserPaid(false); // Set userPaid to false when user logs out
   };
 
   return (
     <>
-      { userPaid &&
+      {userPaid &&
         <Helmet>
-          <link rel="icon" href={ premiumlogo } />
+          <link rel="icon" href={premiumlogo} />
         </Helmet>
       }
 
-      <NavBar setUserPaid={setUserPaid} onLogout={handleLogout}/>
+      <NavBar setUserPaid={setUserPaid} onLogout={handleLogout} />
       <main className="min-h-[calc(100vh-515px)]">
         <Outlet />
       </main>

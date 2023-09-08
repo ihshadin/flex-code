@@ -59,6 +59,7 @@ const SignUp = () => {
               LinkLinks: '',
               webSiteLink: '',
               mobile: null,
+              isPremium: false,
               dateOfBirth: new Date(),
               education: [
                 {
@@ -69,9 +70,10 @@ const SignUp = () => {
               skills: ['JavaScript', 'React', 'Node.js', 'HTML', 'CSS'],
               userPhotoUrl: user.photoURL || '',
             };
-
+            console.log('73 line ', saveUser);
             axiosNormal.post("/users", saveUser)
               .then((data) => {
+                console.log(data, saveUser);
                 navigate(from, { replace: true });
               });
           })
@@ -86,7 +88,6 @@ const SignUp = () => {
         setLoading(false);
         toast.error("Login Failed. " + error.message);
       });
-    console.log(name, email, password);
   };
 
   // if (navigation.state === "loading") {

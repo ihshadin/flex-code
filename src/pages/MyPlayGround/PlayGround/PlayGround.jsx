@@ -83,7 +83,7 @@ const PlayGround = () => {
   return (
     <div className="relative p-4 overflow-hidden ">
       <Split
-        className="flex flex-col h-[100vh]"
+        className="flex flex-col md:h-[100vh]"
         direction="vertical"
         sizes={[55, 55]}
         minSize={0}
@@ -94,8 +94,8 @@ const PlayGround = () => {
         dragInterval={1}
         cursor="col-resize"
       >
-        <div className="md:flex w-full gap-3">
-          <div className="w-full bg-slate-600 bg-opacity-10 rounded-xl overflow-hidden border border-gray-500 hover:border-[#0fcda1]">
+        <div className="flex flex-col md:flex-row w-full gap-3">
+          <div className="w-full h-[16rem] md:h-full bg-slate-600 bg-opacity-10 rounded-xl overflow-hidden border border-gray-500 hover:border-[#0fcda1]">
             <div className="bg-secondary-color flex items-end">
               <div className="flex items-center gap-2 px-4 py-3">
                 <div className="w-3 h-3 bg-red-500 rounded-full"></div>
@@ -123,7 +123,7 @@ const PlayGround = () => {
               }}
             />
           </div>
-          <div className="w-full bg-slate-600 bg-opacity-10 rounded-xl overflow-hidden border border-gray-700 hover:border-[#0fcda1]">
+          <div className="w-full h-[16rem] md:h-full bg-slate-600 bg-opacity-10 rounded-xl overflow-hidden border border-gray-700 hover:border-[#0fcda1]">
             <div className="bg-secondary-color flex items-end">
               <div className="flex items-center gap-2 px-4 py-3">
                 <div className="w-3 h-3 bg-red-500 rounded-full"></div>
@@ -151,7 +151,7 @@ const PlayGround = () => {
               }}
             />
           </div>
-          <div className="w-full bg-slate-600 bg-opacity-10 rounded-xl overflow-hidden border border-gray-700 hover:border-[#0fcda1]">
+          <div className="w-full h-[16rem] md:h-full bg-slate-600 bg-opacity-10 rounded-xl overflow-hidden border border-gray-700 hover:border-[#0fcda1]">
             <div className="bg-secondary-color flex items-end">
               <div className="flex items-center gap-2 px-4 py-3">
                 <div className="w-3 h-3 bg-red-500 rounded-full"></div>

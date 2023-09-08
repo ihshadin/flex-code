@@ -2,14 +2,11 @@ import React, { useEffect, useState } from "react";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import useAxiosNormal from "../../Hooks/useAxiosNormal";
-import useAuth from "../../Hooks/useAuth";
 
 const PaymentSuccess = () => {
   const { tranId } = useParams();
   const [data, setData] = useState();
   const [axiosNormal] = useAxiosNormal();
-  const { user } = useAuth()
-
 
   useEffect(() => {
     axiosNormal.get(`/payment/${tranId}`)

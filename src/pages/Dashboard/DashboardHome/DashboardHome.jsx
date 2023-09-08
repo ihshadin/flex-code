@@ -9,19 +9,15 @@ import RecentActiviy from "../RecentActiviy/RecentActiviy";
 import useAxiosNormal from "../../../Hooks/useAxiosNormal";
 import NavBar from "../../Shared/NavBar/NavBar";
 import Footer from "../../Shared/Footer/Footer";
-import useAuth from "../../../Hooks/useAuth";
 import DbUserSideBar from "../DbUserSideBar/DbUserSideBar";
 import useFlexUser from "../../../Hooks/useFlexUser";
 
 const DashboardHome = () => {
-  // const { user } = useAuth();
   const { username } = useParams()
   const [mySolvedProblems, setMySolvedProblems] = useState([]);
   const [axiosNormal] = useAxiosNormal();
   const [flexUser] = useFlexUser()
   const mainUserName = username || flexUser?.username;
-  
-  console.log("flex-user----23",flexUser);
 
   const navigation = useNavigation();
 
@@ -34,7 +30,6 @@ const DashboardHome = () => {
       .get(`/solvedProblems/userSolveProblem/${mainUserName}`)
       .then((data) => {
         setMySolvedProblems(data);
-        console.log('dbHome--32--Myproblems',data);
       });
   }, [mainUserName]);
 
@@ -57,13 +52,13 @@ const DashboardHome = () => {
         <div className="md:w-[70%] flex flex-col gap-3 md:gap-5">
           <div className="flex flex-col md:flex-row gap-3 md:gap-5">
             <SolvedProblems username={mainUserName} mySolvedProblems={mySolvedProblems} />
-            <Badges username={mainUserName}/>
+            <Badges username={mainUserName} />
           </div>
           <Submissions username={mainUserName} mySolvedProblems={mySolvedProblems} />
           <RecentActiviy username={mainUserName} mySolvedProblems={mySolvedProblems} />
         </div>
       </div>
-      {username ?<></> : <Footer />}
+      {username ? <></> : <Footer />}
     </section>
   );
 };
