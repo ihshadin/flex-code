@@ -18,7 +18,7 @@ const MyPlayGround = () => {
           }
         />
 
-      <div className="grid grid-cols-3 gap-5 my-10">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 my-10">
         <Link to="/playground">
           <div className="flex flex-col justify-between border gap-3 p-5 rounded-xl border-gray-500 hover:border-[#0fcda1] transition-all exploreCard drop-shadow-md cursor-pointer">
             <p className="flex gap-2 text-[0.85rem] tracking-wide font-thin items-center text-[#0fcda1]">
