@@ -9,17 +9,15 @@ const Dashboard = () => {
 
   return (
     <>
-      {
-        flexUser ? (
-          flexUser?.userRole === 'admin' ? (
-            <AdminDashboard />
-          ) : (
-            <DashboardHome />
-          )
+      {flexUser ? (
+        flexUser?.userRole === "admin" ? (
+          <AdminDashboard />
         ) : (
-          <FlexcodeLoading />
+          <DashboardHome />
         )
-      }
+      ) : (
+        <FlexcodeLoading />
+      )}
     </>
   );
 };
