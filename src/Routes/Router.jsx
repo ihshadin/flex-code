@@ -40,7 +40,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    // errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -158,38 +158,67 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <PrivateRoute><Dashboard /></PrivateRoute>,
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "",
-        element: <AdminMainContent />,
+        element: (
+          <PrivateRoute>
+            <AdminMainContent />
+          </PrivateRoute>
+        ),
       },
       {
         path: "manageuser",
-        element: <ManageUser />,
+        element: (
+          <PrivateRoute>
+            <ManageUser />
+          </PrivateRoute>
+        ),
       },
       {
         path: "add-problems",
-        element: <AddProblemSolving />,
+
+        element: (
+          <PrivateRoute>
+            <AddProblemSolving />
+          </PrivateRoute>
+        ),
       },
       {
         path: "add-blog",
-        element: <AddBlog />,
+        element: (
+          <PrivateRoute>
+            <AddBlog />
+          </PrivateRoute>
+        ),
       },
       {
         path: "calendar",
-        element: <AdminCalendar />,
+        element: (
+          <PrivateRoute>
+            <AdminCalendar />
+          </PrivateRoute>
+        ),
       },
       {
         path: "contacts",
-        element: <SendEmail />,
+        element: (
+          <PrivateRoute>
+            <SendEmail />
+          </PrivateRoute>
+        ),
       },
     ],
   },
   {
-    path: '/*',
-    element: <ErrorPage />
-  }
+    path: "/*",
+    element: <ErrorPage />,
+  },
 ]);
 
 export default router;
