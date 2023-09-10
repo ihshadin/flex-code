@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosNormal = axios.create({
-  baseURL: "https://flex-code-server-ihshadin.vercel.app/",
+  baseURL: "http://localhost:5000/",
 });
 
 axiosNormal.interceptors.response.use(

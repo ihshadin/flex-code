@@ -3,14 +3,14 @@ import { FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { useLocation, useNavigate } from "react-router";
 import { toast } from "react-hot-toast";
-import useAxiosNormal from "../../../Hooks/useAxiosNormal";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const SocialLogin = () => {
   const { signInWithGoogle, signInWithGitHub } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  const [axiosNormal] = useAxiosNormal()
+  const [axiosSecure] = useAxiosSecure();
 
   const clickSignInWithGitHub = () => {
     signInWithGitHub()
@@ -20,71 +20,72 @@ const SocialLogin = () => {
         navigate(from, { replace: true });
 
         const saveUser = {
-          name: user.displayName || 'User Name',
+          name: user.displayName || "User Name",
           email: user.email,
-          username: `${user.email.split('@')[0]}${Math.floor(Math.random() * (999 - 100 + 1)) + 100}`,
+          username: `${user.email.split("@")[0]}${
+            Math.floor(Math.random() * (999 - 100 + 1)) + 100
+          }`,
           date: new Date(),
-          userRole: 'general',
-          gender: '',
-          address: '',
-          fbLinks: '',
-          LinkLinks: '',
-          webSiteLink: '',
+          userRole: "general",
+          gender: "",
+          address: "",
+          fbLinks: "",
+          LinkLinks: "",
+          webSiteLink: "",
           mobile: user.phoneNumber || null,
           dateOfBirth: null,
           education: [
             {
-              degreeTitle: '',
-              InstituteName: '',
-            }
+              degreeTitle: "",
+              InstituteName: "",
+            },
           ],
           skills: [],
-          userPhotoUrl: user.photoURL || '',
+          userPhotoUrl: user.photoURL || "",
         };
 
-        axiosNormal.post("/users", saveUser)
-          .then((data) => {
-            console.log(data);
-            navigate(from, { replace: true });
-          });
+        axiosSecure.post("/users", saveUser).then((data) => {
+          console.log(data);
+          navigate(from, { replace: true });
+        });
       })
       .catch((error) => {
         toast.error("Login Failed. " + error.message);
       });
   };
   const clickSignInWithGoogle = () => {
-
     signInWithGoogle()
       .then((result) => {
         const user = result.user;
         const saveUser = {
-          name: user.displayName || 'User Name',
+          name: user.displayName || "User Name",
           email: user.email,
-          username: `${user.email.split('@')[0]}${Math.floor(Math.random() * (999 - 100 + 1)) + 100}`,
+          username: `${user.email.split("@")[0]}${
+            Math.floor(Math.random() * (999 - 100 + 1)) + 100
+          }`,
           date: new Date(),
-          userRole: 'general',
-          gender: '',
-          address: '',
-          fbLinks: '',
-          LinkLinks: '',
-          webSiteLink: '',
+          userRole: "general",
+          gender: "",
+          address: "",
+          fbLinks: "",
+          LinkLinks: "",
+          webSiteLink: "",
           mobile: user.phoneNumber || null,
           isPremium: false,
           dateOfBirth: null,
           education: [
             {
-              degreeTitle: '',
-              InstituteName: '',
-            }
+              degreeTitle: "",
+              InstituteName: "",
+            },
           ],
           skills: [],
-          userPhotoUrl: user.photoURL || '',
+          userPhotoUrl: user.photoURL || "",
         };
 
-        axiosNormal.post("/users", saveUser)
-          .then((data) => {
-            console.log(saveUser);
-          });
+        axiosSecure.post("/users", saveUser).then((data) => {
+          console.log(saveUser);
+        });
         toast.success("Login Successfull!");
         navigate(from, { replace: true });
       })

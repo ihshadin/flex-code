@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import useAxiosNormal from "./useAxiosNormal";
+import useAxiosSecure from "./useAxiosSecure";
 
 const useAllUsers = () => {
   const [allUsers, setAllUsers] = useState([]);
-  const [axiosNormal] = useAxiosNormal();
+  const [axiosSecure] = useAxiosSecure();
 
   useEffect(() => {
-    axiosNormal.get(`/users/all`).then((data) => {
-      setAllUsers(data);
+    axiosSecure.get(`/users/all`).then((data) => {
+      setAllUsers(data.data);
     });
   }, []);
 
