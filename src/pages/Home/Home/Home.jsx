@@ -7,6 +7,7 @@ import Banner from "../Banner/Banner";
 import CodeEditor from "../CodeEditor/CodeEditor";
 import { useNavigation } from "react-router-dom";
 import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading";
+import BlogSection from "../BlogSection/BlogSection";
 
 const Home = () => {
   const navigation = useNavigation();
@@ -22,6 +23,7 @@ const Home = () => {
       <Faq></Faq>
       <CodeEditor />
       <Testimonials />
+      <BlogSection />
     </div>
   );
 };
