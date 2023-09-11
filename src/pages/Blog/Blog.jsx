@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import 'quill/dist/quill.snow.css';
 import Pagination from "../../components/Pagination/Pagination";
 import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
 import BlogCardLoading from "../../components/FlexcodeLoading/BlogCardLoading";
@@ -7,7 +8,7 @@ import useAllBlogs from "../../Hooks/useAllBlogs";
 
 const Blog = () => {
   const { allBlogs, currentPage, setCurrentPage, totalPages, isLoading } = useAllBlogs()
-
+console.log(allBlogs);
   return (
     <section>
       <div className="flexcode-container">
@@ -54,14 +55,15 @@ const Blog = () => {
 
                     <div className="max-w-[150px] flex justify-center border-2 border-[#0fcda1] rounded my-5"></div>
 
-                    <p className="text-sm text-slate-300 mb-5">
-                      {blog.details.length > 140 ? (
+                    {/* <p className="text-sm text-slate-300 mb-5">
+                      
+                    </p> */}
+                    <p className="text-sm text-slate-300 mb-5" dangerouslySetInnerHTML={{ __html: blog.details.length > 140 ? (
                         blog.details.slice(0, 140) + '...'
                       ) : (
                         blog.details
                       )
-                      }
-                    </p>
+                      } }/>
                     <Link to={`/blog/${blog._id}`} className="inline-block transition-all duration-300 primary-color text-right tracking-wider btn-effect">
                       Read More
                     </Link>

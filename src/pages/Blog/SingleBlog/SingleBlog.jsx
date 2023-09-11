@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigation, useParams } from "react-router-dom";
-import useAxiosNormal from "../../../hooks/useAxiosNormal";
+import useAxiosNormal from "../../../Hooks/useAxiosNormal";
+import Quill from 'quill';
+import 'quill/dist/quill.snow.css';
 import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading";
 
 const SingleBlog = () => {
@@ -65,9 +67,8 @@ const SingleBlog = () => {
                   </p>
                 </div>
               </div>
-              <p className=" text-white mt-5 text-justify mb-5">
-                {singleBlog?.details}
-              </p>
+              <p className=" text-white mt-5 text-justify mb-5" dangerouslySetInnerHTML={{__html: singleBlog?.details}}/>
+                
             </div>
           </div>
 
