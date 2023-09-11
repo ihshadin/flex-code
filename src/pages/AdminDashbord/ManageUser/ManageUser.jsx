@@ -56,7 +56,6 @@ const ManageUser = () => {
     }
   };
 
-  console.log(allUsers);
 
   return (
     <section className="text-white md:mx-7 md:my-5">
@@ -107,7 +106,7 @@ const ManageUser = () => {
                     <button
                       onClick={() => handleMakeAdmin(data?.email)}
                       className="text-sm px-2 bg-[#0fcda188] rounded-lg capitalize"
-                      // disabled={makeloading || user.userRole === "admin"}
+                    // disabled={makeloading || user.userRole === "admin"}
                     >
                       Make admin
                     </button>

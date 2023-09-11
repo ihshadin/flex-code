@@ -5,6 +5,7 @@ import { FaUser } from "react-icons/fa";
 import "./NavBar.css";
 import { toast } from "react-hot-toast";
 import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading";
+
 const NavBar = ({ setUserPaid, onLogout }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [userClicked, setUserClicked] = useState(false);
@@ -61,11 +62,10 @@ const NavBar = ({ setUserPaid, onLogout }) => {
 
   return (
     <nav
-      className={`top-0 backdrop-blur-sm z-10 w-full fixed ${
-        location.pathname === "/" || location.pathname === "/my-submittions"
-          ? "md:fixed"
-          : "md:sticky"
-      }`}
+      className={`top-0 backdrop-blur-sm z-10 w-full fixed ${location.pathname === "/" || location.pathname === "/my-submittions"
+        ? "md:fixed"
+        : "md:sticky"
+        }`}
     >
       <div className="relative max-w-[1280px] w-full mx-auto bg-inherit py-2 px-3 lg:flex justify-between items-center">
         <div className="flex items-center justify-between">
@@ -122,9 +122,8 @@ const NavBar = ({ setUserPaid, onLogout }) => {
         </div>
         <div className="flex items-center">
           <div
-            className={`${
-              isMenuOpen ? "block" : "hidden"
-            } lg:flex lg:w-auto mt-4 lg:mt-0 flexcode-menu-animation  transition-all duration-300 `}
+            className={`${isMenuOpen ? "block" : "hidden"
+              } lg:flex lg:w-auto mt-4 lg:mt-0 flexcode-menu-animation  transition-all duration-300 `}
             id="mobile-menu"
           >
             <ul className="flex flex-col gap-3 md:gap-0 md:mt-[1.5px] lg:text-left lg:flex-row lg:space-x-8 lg:items-center">
@@ -132,11 +131,10 @@ const NavBar = ({ setUserPaid, onLogout }) => {
                 <Link
                   to="/"
                   onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 nav-effect${
-                    isActiveRoute("/")
-                      ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
-                      : ""
-                  }`}
+                  className={`text-white hover:text-gray-300 pb-1 nav-effect${isActiveRoute("/")
+                    ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
+                    : ""
+                    }`}
                 >
                   Home
                 </Link>
@@ -145,11 +143,10 @@ const NavBar = ({ setUserPaid, onLogout }) => {
                 <Link
                   to="/problems"
                   onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 nav-effect${
-                    isActiveRoute("/problems")
-                      ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
-                      : ""
-                  }`}
+                  className={`text-white hover:text-gray-300 pb-1 nav-effect${isActiveRoute("/problems")
+                    ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
+                    : ""
+                    }`}
                 >
                   Problems
                 </Link>
@@ -158,11 +155,10 @@ const NavBar = ({ setUserPaid, onLogout }) => {
                 <Link
                   to="/blog"
                   onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 nav-effect${
-                    isActiveRoute("/blog")
-                      ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
-                      : ""
-                  }`}
+                  className={`text-white hover:text-gray-300 pb-1 nav-effect${isActiveRoute("/blog")
+                    ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
+                    : ""
+                    }`}
                 >
                   Blogs
                 </Link>
@@ -171,11 +167,10 @@ const NavBar = ({ setUserPaid, onLogout }) => {
                 <Link
                   to="/subscribe"
                   onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 nav-effect${
-                    isActiveRoute("/subscribe")
-                      ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
-                      : ""
-                  }`}
+                  className={`text-white hover:text-gray-300 pb-1 nav-effect${isActiveRoute("/subscribe")
+                    ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
+                    : ""
+                    }`}
                 >
                   Subscribe
                 </Link>
@@ -184,13 +179,24 @@ const NavBar = ({ setUserPaid, onLogout }) => {
                 <Link
                   to="/explore"
                   onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 nav-effect${
-                    isActiveRoute("/explore")
-                      ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
-                      : ""
-                  }`}
+                  className={`text-white hover:text-gray-300 pb-1 nav-effect${isActiveRoute("/explore")
+                    ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
+                    : ""
+                    }`}
                 >
                   Explore
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/playground"
+                  onClick={closeMenu}
+                  className={`text-white hover:text-gray-300 pb-1 nav-effect${isActiveRoute("/playground")
+                    ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
+                    : ""
+                    }`}
+                >
+                  Playground
                 </Link>
               </li>
 
@@ -199,18 +205,16 @@ const NavBar = ({ setUserPaid, onLogout }) => {
                   <button
                     ref={dropdownRef}
                     onClick={handleUserClick}
-                    className={`flex items-center ${
-                      userClicked ? "text-gray-300" : "text-white"
-                    }`}
+                    className={`flex items-center ${userClicked ? "text-gray-300" : "text-white"
+                      }`}
                   >
                     {user.photoURL ? (
                       <>
                         <img
-                          className={`h-9 w-9 rounded-full ${
-                            userClicked
-                              ? "border-2 border-[#0fcda1]"
-                              : "border-2 border-transparent"
-                          } `}
+                          className={`h-9 w-9 rounded-full ${userClicked
+                            ? "border-2 border-[#0fcda1]"
+                            : "border-2 border-transparent"
+                            } `}
                           title={user?.displayName}
                           src={user?.photoURL}
                           alt=""
@@ -218,11 +222,10 @@ const NavBar = ({ setUserPaid, onLogout }) => {
                       </>
                     ) : (
                       <FaUser
-                        className={`h-8 w-8 rounded-full p-1 ${
-                          userClicked
-                            ? "border-2 border-[#0fcda1]"
-                            : "border-2 border-white"
-                        } `}
+                        className={`h-8 w-8 rounded-full p-1 ${userClicked
+                          ? "border-2 border-[#0fcda1]"
+                          : "border-2 border-white"
+                          } `}
                         title={user?.displayName}
                       ></FaUser>
                     )}
@@ -231,9 +234,8 @@ const NavBar = ({ setUserPaid, onLogout }) => {
                   {/* start user dropdown  */}
                   {user?.email && (
                     <div
-                      className={`absolute -right-8 md:right-0 mt-2 z-10 flexcode-dropdown-animation ${
-                        userClicked ? "block" : "hidden"
-                      }`}
+                      className={`absolute -right-8 md:right-0 mt-2 z-10 flexcode-dropdown-animation ${userClicked ? "block" : "hidden"
+                        }`}
                     >
                       <div className="bg-[#1e2d40] bg-opacity-95 transition-all duration-700 w-[18rem] py-2 rounded-md shadow-md overflow-hidden">
                         <div className="px-4 py-2">
@@ -335,11 +337,10 @@ const NavBar = ({ setUserPaid, onLogout }) => {
                     <Link
                       to="/login"
                       onClick={closeMenu}
-                      className={`text-white hover:text-gray-300 pb-1 nav-effect${
-                        isActiveRoute("/login")
-                          ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
-                          : ""
-                      }`}
+                      className={`text-white hover:text-gray-300 pb-1 nav-effect${isActiveRoute("/login")
+                        ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
+                        : ""
+                        }`}
                     >
                       Sing In
                     </Link>
@@ -348,11 +349,10 @@ const NavBar = ({ setUserPaid, onLogout }) => {
                     <Link
                       to="/signup"
                       onClick={closeMenu}
-                      className={`text-white hover:text-gray-300 pb-1 nav-effect${
-                        isActiveRoute("/signup")
-                          ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
-                          : ""
-                      }`}
+                      className={`text-white hover:text-gray-300 pb-1 nav-effect${isActiveRoute("/signup")
+                        ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
+                        : ""
+                        }`}
                     >
                       Sign Up
                     </Link>

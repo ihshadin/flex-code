@@ -69,7 +69,7 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
     setProblemsByLanguage(problemsCount);
   }, [mySolvedProblems]);
 
-  useEffect(() => {});
+  useEffect(() => { });
 
   return (
     <section>
@@ -107,44 +107,49 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
               Edit Profile
             </Link>
           )}
-          <div className="flex text-gray-400 items-center justify-center gap-4 text-lg">
-            {fullUserDetails?.fbLinks && (
-              <a
-                className="hover:text[#ffc306]"
-                target="_blank"
-                href={fullUserDetails?.fbLinks}
-              >
-                <FaFacebook />
-              </a>
-            )}
-            {fullUserDetails?.github && (
-              <a
-                className="hover:text[#ffc306]"
-                target="_blank"
-                href={fullUserDetails?.github}
-              >
-                <FaGithub />
-              </a>
-            )}
-            {fullUserDetails?.LinkLinks && (
-              <a
-                className="hover:text[#ffc306]"
-                target="_blank"
-                href={fullUserDetails?.LinkLinks}
-              >
-                <FaLinkedin />
-              </a>
-            )}
-            {fullUserDetails?.webSiteLink && (
-              <a
-                className="hover:text[#ffc306]"
-                target="_blank"
-                href={fullUserDetails?.webSiteLink}
-              >
-                <FaGlobe />
-              </a>
-            )}
-          </div>
+          {
+            (fullUserDetails?.fbLinks || fullUserDetails?.github || fullUserDetails?.LinkLinks || fullUserDetails?.webSiteLink) && (
+              <div className="flex text-gray-400 items-center justify-center gap-4 text-lg">
+                {fullUserDetails?.fbLinks && (
+                  <a
+                    className="hover:text[#ffc306]"
+                    target="_blank"
+                    href={fullUserDetails?.fbLinks}
+                  >
+                    <FaFacebook />
+                  </a>
+                )}
+                {fullUserDetails?.github && (
+                  <a
+                    className="hover:text[#ffc306]"
+                    target="_blank"
+                    href={fullUserDetails?.github}
+                  >
+                    <FaGithub />
+                  </a>
+                )}
+                {fullUserDetails?.LinkLinks && (
+                  <a
+                    className="hover:text[#ffc306]"
+                    target="_blank"
+                    href={fullUserDetails?.LinkLinks}
+                  >
+                    <FaLinkedin />
+                  </a>
+                )}
+                {fullUserDetails?.webSiteLink && (
+                  <a
+                    className="hover:text[#ffc306]"
+                    target="_blank"
+                    href={fullUserDetails?.webSiteLink}
+                  >
+                    <FaGlobe />
+                  </a>
+                )}
+              </div>
+            )
+          }
+
         </div>
         {/* User Info */}
 
@@ -337,8 +342,8 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
             Skills
           </div>
           <div className="my-3 flex items-center flex-wrap gap-1">
-            {fullUserDetails?.skills?.map((skill) => (
-              <span className="py-1 px-3 bg-slate-700 rounded-md cursor-pointer">
+            {fullUserDetails?.skills?.map((skill, index) => (
+              <span key={index} className="py-1 px-3 bg-slate-700 text-slate-300 text-xs rounded-md cursor-pointer">
                 {skill}
               </span>
             ))}

@@ -8,19 +8,19 @@ import ExploreCardLoading from "../../../components/FlexcodeLoading/ExploreCardL
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const NoteBook = () => {
-  const { user } = useContext(AuthContext);
-  const [notes, setNotes] = useState([]);
-  const [axiosSecure] = useAxiosSecure();
-  const [isLoading, setIsLoading] = useState(true);
+    const { user } = useContext(AuthContext);
+    const [notes, setNotes] = useState([]);
+    const [axiosSecure] = useAxiosSecure();
+    const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    axiosSecure.get(`/notebooks?email=${user?.email}`).then((data) => {
-      setNotes(data.data);
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 1000);
-    });
-  }, [user?.email]);
+    useEffect(() => {
+        axiosSecure.get(`/notebooks?email=${user?.email}`).then((data) => {
+            setNotes(data.data);
+            setTimeout(() => {
+                setIsLoading(false);
+            }, 1000);
+        });
+    }, [user?.email]);
 
     return (
         <section>
@@ -66,8 +66,8 @@ const NoteBook = () => {
                             </div>
                         ) : (
                             notes?.map(note => (
-                                <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-12'>
-                                    <div key={note._id} className="flex flex-col border gap-2 p-5 rounded-xl border-gray-500 hover:border-[#0fcda1] transition-all bg-[#1e2d40]">
+                                <div key={note._id} className='grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-12'>
+                                    <div className="flex flex-col border gap-2 p-5 rounded-xl border-gray-500 hover:border-[#0fcda1] transition-all bg-[#1e2d40]">
                                         <h1 className="text-lg font-semibold text-white">
                                             {note.title}
                                         </h1>
@@ -113,9 +113,9 @@ const NoteBook = () => {
                         </div>
                     )
                 } */}
-      </div>
-    </section>
-  );
+            </div>
+        </section>
+    );
 };
 
 export default NoteBook;

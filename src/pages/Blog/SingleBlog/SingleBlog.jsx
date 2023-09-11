@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigation, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useAxiosNormal from "../../../Hooks/useAxiosNormal";
-import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading";
 import useAllBlogs from "../../../Hooks/useAllBlogs";
@@ -60,18 +59,32 @@ const SingleBlog = () => {
                   </p>
                 </div>
               </div>
-              <p className=" text-white mt-5 text-justify mb-5" dangerouslySetInnerHTML={{__html: singleBlog?.details}}/>
-                
+              <p className=" text-white mt-5 text-justify mb-5" dangerouslySetInnerHTML={{ __html: singleBlog?.details }} />
+
             </div>
           </div>
 
           {/* List of Blog Side side */}
           <div className="mt-8 lg:w-[30%] lg:mt-0 lg:px-6">
             <h2 className="text-2xl font-semibold pb-5">Recent Blogs</h2>
+
             {
               isLoading ? (
                 <>
-                  <p>jahid</p>
+                  <div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-4 w-[80%] rounded"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-2 w-full rounded mt-3"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-2 w-1/2 rounded mt-2"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-1 w-full rounded my-7"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-4 w-[80%] rounded"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-2 w-full rounded mt-3"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-2 w-1/2 rounded mt-2"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-1 w-full rounded my-7"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-4 w-[80%] rounded"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-2 w-full rounded mt-3"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-2 w-1/2 rounded mt-2"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-1 w-full rounded my-7"></div>
+                  </div>
                 </>
               ) : (
                 allBlogs?.slice(0, 5).map((blog) => (
