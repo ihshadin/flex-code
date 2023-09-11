@@ -28,7 +28,7 @@ const SingleBlog = () => {
 
   return (
     <section>
-      <div className="flexcode-container">
+      <div className="flexcode-container !pt-16 md:!pt-10">
         <div className="lg:flex">
 
           {/* Single Blog details side */}

@@ -35,6 +35,7 @@ import Dashboard from "../layouts/Dashboard";
 import AdminMainContent from "../pages/AdminDashbord/AdminMainContent/AdminMainContent";
 import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 import SendEmail from "../pages/AdminDashbord/SendEmail/SendEmail";
+import PreProject from "../pages/MyPlayGround/PreProject/PreProject";
 import FooterSection from "../pages/Shared/FooterSection/FooterSection";
 
 const router = createBrowserRouter([
@@ -96,6 +97,10 @@ const router = createBrowserRouter([
         element: <MyPlayGround />,
       },
       {
+        path: "/pre-project/:id",
+        element: <PreProject />,
+      },
+      {
         path: "/playground",
         element: <PlayGround />,
       },
@@ -145,7 +150,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/explore/:id",
-        element: <ExploreDetails></ExploreDetails>,
+        element: <ExploreDetails />,
       },
       {
         path: "/:username",

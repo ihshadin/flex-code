@@ -25,7 +25,7 @@ const Explore = () => {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 3 }}
-        className="flexcode-container"
+        className="flexcode-container !pt-16 md:!pt-10"
       >
         <PageBannerTitle
           title="About Us"

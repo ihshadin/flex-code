@@ -39,6 +39,8 @@ const MainLayout = () => {
     setUserPaid(false); // Set userPaid to false when user logs out
   };
 
+  
+
   return (
     <>
       <AnimatePresence>

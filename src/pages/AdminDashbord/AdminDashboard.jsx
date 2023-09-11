@@ -12,7 +12,7 @@ const AdminDashboard = () => {
   return (
     <section>
       <NavBar />
-      <div className="drawer lg:drawer-open flexcode-container !py-2">
+      <div className="drawer lg:drawer-open flexcode-container !pt-16 !pb-5 md:!py-2">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
 
         <div className="drawer-content flex flex-col items-center mb-10 overflow-x-auto">
