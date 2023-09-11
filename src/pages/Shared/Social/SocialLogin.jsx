@@ -6,7 +6,7 @@ import { toast } from "react-hot-toast";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const SocialLogin = () => {
-  const { signInWithGoogle, signInWithGitHub } = useContext(AuthContext);
+  const { signInWithGoogle, signInWithGitHub, setLoading } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -50,7 +50,9 @@ const SocialLogin = () => {
         });
       })
       .catch((error) => {
+        setLoading(false)
         toast.error("Login Failed. " + error.message);
+        setLoading(false);
       });
   };
   const clickSignInWithGoogle = () => {
@@ -85,12 +87,14 @@ const SocialLogin = () => {
 
         axiosSecure.post("/users", saveUser).then((data) => {
           console.log(saveUser);
+          setLoading(false)
         });
         toast.success("Login Successfull!");
         navigate(from, { replace: true });
       })
       .catch((error) => {
         toast.error("Login Failed. " + error.message);
+        setLoading(false)
       });
   };
 
