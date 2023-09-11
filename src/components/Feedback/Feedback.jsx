@@ -39,28 +39,17 @@ const Feedback = () => {
   return (
     <>
       {user && (
-        <>
+        <section className="flexcode-container">
           <PageBannerTitle
             title={"Leave Feedback"}
             shortDesc={"Share your opinion with others."}
           />
           <div className="md:flex gap-10 items-start relative my-5 md:my-16">
             <form onSubmit={handleSubmit(onSubmit)} className="md:w-1/2">
-              <div className="w-full mb-5">
-                <label htmlFor="" className="font-medium p-1">
-                  Your name
-                </label>
-                <input
-                  defaultValue={user?.displayName}
-                  readOnly
-                  type="text"
-                  className="w-full px-6 bg-secondary-color py-3 rounded-xl border-2 border-slate-500 outline-none"
-                  placeholder="John doe"
-                />
-              </div>
-              <div className="w-full mb-5">
+            
+              <div className="w-full my-5">
                 <label htmlFor="thumbExp" className="font-medium p-1">
-                  Your thumb expression
+                   Thumb expression
                 </label>
                 <input
                   onKeyUp={(e) => setExp(e.target.value)}
@@ -145,7 +134,7 @@ const Feedback = () => {
               </div>
             </div>
           </div>
-        </>
+        </section>
       )}
     </>
   );

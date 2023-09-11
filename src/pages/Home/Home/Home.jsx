@@ -8,6 +8,7 @@ import CodeEditor from "../CodeEditor/CodeEditor";
 import { useNavigation } from "react-router-dom";
 import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading";
 import BlogSection from "../BlogSection/BlogSection";
+import { motion } from "framer-motion";
 
 const Home = () => {
   const navigation = useNavigation();
@@ -15,7 +16,12 @@ const Home = () => {
     return <FlexcodeLoading />;
   }
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 3 }}
+    >
       <Banner />
       <OurPartners />
       <ExploreUs />
@@ -24,7 +30,7 @@ const Home = () => {
       <CodeEditor />
       <Testimonials />
       <BlogSection />
-    </div>
+    </motion.div>
   );
 };
 export default Home;

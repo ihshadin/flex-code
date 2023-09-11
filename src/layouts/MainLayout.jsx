@@ -8,6 +8,7 @@ import normallogo from "/20230810_125620.png";
 import { AuthContext } from "../providers/AuthProvider";
 import useAxiosNormal from "../Hooks/useAxiosNormal";
 import { Helmet } from "react-helmet";
+import { motion, AnimatePresence } from "framer-motion";
 
 const MainLayout = () => {
   const [userPaid, setUserPaid] = useState(false);
@@ -26,7 +27,7 @@ const MainLayout = () => {
         if (data.paidStatus === "paid") {
           setUserPaid(true);
         } else {
-          setUserPaid(false)
+          setUserPaid(false);
         }
       });
     }
@@ -42,18 +43,28 @@ const MainLayout = () => {
 
   return (
     <>
-      {userPaid &&
-        <Helmet>
-          <link rel="icon" href={premiumlogo} />
-        </Helmet>
-      }
+      <AnimatePresence>
+        {userPaid && (
+          <Helmet>
+            <link rel="icon" href={premiumlogo} />
+          </Helmet>
+        )}
 
-      <NavBar setUserPaid={setUserPaid} onLogout={handleLogout} />
-      <main className="min-h-[calc(100vh-515px)]">
-        <Outlet />
-      </main>
-      <Footer />
-      <ScrollRestoration></ScrollRestoration>
+        <NavBar setUserPaid={setUserPaid} onLogout={handleLogout} />
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 3 }}
+        >
+          <main className="min-h-[calc(100vh-515px)]">
+            <Outlet />
+          </main>
+        </motion.div>
+        <Footer />
+        <ScrollRestoration />
+      </AnimatePresence>
     </>
   );
 };
