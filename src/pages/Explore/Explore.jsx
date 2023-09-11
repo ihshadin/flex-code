@@ -5,6 +5,8 @@ import About from "./About";
 import useAxiosNormal from "../../Hooks/useAxiosNormal";
 import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
 import ExploreCardLoading from "../../components/FlexcodeLoading/ExploreCardLoading";
+import OurTeam from "./OurTeam";
+
 import { motion } from "framer-motion";
 const Explore = () => {
   const [axiosNormal] = useAxiosNormal();
@@ -31,7 +33,16 @@ const Explore = () => {
           title="About Us"
           shortDesc="Who we are and what we do,"
         />
-        <About></About>
+        <About/>
+
+        <div className="my-8 md:my-16">
+        <PageBannerTitle
+          title="Our Team"
+          shortDesc="Explore our genius team members "
+        />
+        <OurTeam/>
+        </div>
+
         <div className="my-8 md:my-16">
           <PageBannerTitle
             title="Explore"
