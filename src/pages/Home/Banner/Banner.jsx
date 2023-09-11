@@ -34,7 +34,7 @@ const Banner = () => {
             <br /> in your own environment
           </h2>
           <div className="mt-10">
-            <Link to="/explore">
+            <Link to="/problemsP">
               <button className="flexcode-button px-8 py-3">
                 Get Start Now
               </button>
