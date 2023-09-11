@@ -30,7 +30,6 @@ const CheckOut = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         window.location.replace(data?.url);
       });
   };

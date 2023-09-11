@@ -39,24 +39,23 @@ const MainLayout = () => {
     setUserPaid(false); // Set userPaid to false when user logs out
   };
 
-  
+
 
   return (
-    <>
-      <AnimatePresence>
-        {userPaid && (
-          <Helmet>
-            <link rel="icon" href={premiumlogo} />
-          </Helmet>
-        )}
-
-        <NavBar />
-
+    <AnimatePresence>
+      {userPaid && (
+        <Helmet>
+          <link rel="icon" href={premiumlogo} />
+        </Helmet>
+      )}
+      <>
+        <NavBar setUserPaid={setUserPaid} onLogout={handleLogout} />
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 3 }}
+          key="main-content"
         >
           <main className="min-h-[calc(100vh-515px)]">
             <Outlet />
@@ -64,8 +63,8 @@ const MainLayout = () => {
         </motion.div>
         <Footer />
         <ScrollRestoration />
-      </AnimatePresence>
-    </>
+      </>
+    </AnimatePresence>
   );
 };
 

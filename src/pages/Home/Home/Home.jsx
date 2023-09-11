@@ -16,21 +16,24 @@ const Home = () => {
     return <FlexcodeLoading />;
   }
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 3 }}
-    >
-      <Banner />
-      <OurPartners />
-      <ExploreUs />
-      <UserCount />
-      <Faq></Faq>
-      <CodeEditor />
-      <Testimonials />
-      <BlogSection />
-    </motion.div>
+    <>
+      <motion.div
+        key="flex_5"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 3 }}
+      >
+        <Banner />
+        <OurPartners />
+        <ExploreUs />
+        <UserCount />
+        <Faq />
+        <CodeEditor />
+        <Testimonials />
+        <BlogSection />
+      </motion.div>
+    </>
   );
 };
 export default Home;
