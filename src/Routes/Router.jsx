@@ -35,12 +35,13 @@ import Dashboard from "../layouts/Dashboard";
 import AdminMainContent from "../pages/AdminDashbord/AdminMainContent/AdminMainContent";
 import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 import SendEmail from "../pages/AdminDashbord/SendEmail/SendEmail";
+import PreProject from "../pages/MyPlayGround/PreProject/PreProject";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    // errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -95,6 +96,10 @@ const router = createBrowserRouter([
         element: <MyPlayGround />,
       },
       {
+        path: "/pre-project/:id",
+        element: <PreProject />,
+      },
+      {
         path: "/playground",
         element: <PlayGround />,
       },
@@ -124,7 +129,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/checkout",
-        element: <CheckOut />,
+        element: (
+          <PrivateRoute>
+            <CheckOut />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/payment/success/:tranId",
@@ -148,7 +157,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/explore/:id",
-        element: <ExploreDetails></ExploreDetails>,
+        element: <ExploreDetails />,
       },
       {
         path: "/:username",
@@ -158,38 +167,67 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <PrivateRoute><Dashboard /></PrivateRoute>,
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "",
-        element: <AdminMainContent />,
+        element: (
+          <PrivateRoute>
+            <AdminMainContent />
+          </PrivateRoute>
+        ),
       },
       {
         path: "manageuser",
-        element: <ManageUser />,
+        element: (
+          <PrivateRoute>
+            <ManageUser />
+          </PrivateRoute>
+        ),
       },
       {
         path: "add-problems",
-        element: <AddProblemSolving />,
+
+        element: (
+          <PrivateRoute>
+            <AddProblemSolving />
+          </PrivateRoute>
+        ),
       },
       {
         path: "add-blog",
-        element: <AddBlog />,
+        element: (
+          <PrivateRoute>
+            <AddBlog />
+          </PrivateRoute>
+        ),
       },
       {
         path: "calendar",
-        element: <AdminCalendar />,
+        element: (
+          <PrivateRoute>
+            <AdminCalendar />
+          </PrivateRoute>
+        ),
       },
       {
         path: "contacts",
-        element: <SendEmail />,
+        element: (
+          <PrivateRoute>
+            <SendEmail />
+          </PrivateRoute>
+        ),
       },
     ],
   },
   {
-    path: '/*',
-    element: <ErrorPage />
-  }
+    path: "/*",
+    element: <ErrorPage />,
+  },
 ]);
 
 export default router;

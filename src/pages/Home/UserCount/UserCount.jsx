@@ -1,12 +1,20 @@
 import CountUp from "react-countup";
-import useAllUsers from "../../../Hooks/useAllUsers";
 import useAllProblems from "../../../Hooks/useAllProblems";
 import useAllBlogs from "../../../Hooks/useAllBlogs";
+import { useEffect, useState } from "react";
+import useAxiosNormal from "../../../Hooks/useAxiosNormal";
 
 const UserCount = () => {
-  const [allUsers] = useAllUsers()
+  const [userCount, setUserCount] = useState(0);
   const { problemLength } = useAllProblems();
   const { blogsLength } = useAllBlogs();
+  const [axiosNormal] = useAxiosNormal();
+
+  useEffect(() => {
+    axiosNormal.get("/users/count").then((data) => {
+      setUserCount(data);
+    });
+  }, []);
 
   return (
     <section>
@@ -14,7 +22,7 @@ const UserCount = () => {
         <div className="rounded-xl py-16 px-5 md:px-0 text-center border-gray-500 transition-all duration-300 hover:border-[#0fcda156] border-2 drop-shadow-lg grid gap-8 md:gap-0 md:grid-cols-3 justify-center text-white divide-y-2 md:divide-y-0 divide-x-0 md:divide-x-2 hover:divide-[#0fcda156] divide-gray-500 group">
           <div className="flex flex-col gap-2 md:gap-5 justify-center items-center">
             <h2 className="text-5xl md:text-7xl font-bold">
-              <CountUp start={0} end={allUsers.length || 0} duration={4} />
+              <CountUp start={0} end={userCount || 0} duration={4} />
               <span className="group-hover:text-[#0fcda1] duration-300">
                 &#43;
               </span>

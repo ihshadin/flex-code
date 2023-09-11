@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useAuth from "./useAuth";
-import useAxiosNormal from "./useAxiosNormal";
+import useAxiosSecure from "./useAxiosSecure";
 
 const useFlexUser = () => {
   const { user, setLoading } = useAuth();
   const [flexUser, setFlexUser] = useState(null);
-  const [axiosNormal] = useAxiosNormal();
+  const [axiosSecure] = useAxiosSecure();
 
   useEffect(() => {
-    axiosNormal.get(`/users?email=${user?.email}`).then((data) => {
-      setFlexUser(data);
+    axiosSecure.get(`/users?email=${user?.email}`).then((data) => {
+      setFlexUser(data.data);
       setLoading(false);
     });
   }, [user?.email]);

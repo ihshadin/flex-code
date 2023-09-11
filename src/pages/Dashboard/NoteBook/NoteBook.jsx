@@ -1,27 +1,26 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import './NoteBook.css'
-import { AuthContext } from '../../../providers/AuthProvider';
-import useAxiosNormal from '../../../Hooks/useAxiosNormal';
-import handWithPen from '../../../assets/images/hand-with-pen.png'
-import PageBannerTitle from '../../../components/BannerTitle/PageBannerTitle';
-import ExploreCardLoading from '../../../components/FlexcodeLoading/ExploreCardLoading';
+import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import "./NoteBook.css";
+import { AuthContext } from "../../../providers/AuthProvider";
+import handWithPen from "../../../assets/images/hand-with-pen.png";
+import PageBannerTitle from "../../../components/BannerTitle/PageBannerTitle";
+import ExploreCardLoading from "../../../components/FlexcodeLoading/ExploreCardLoading";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const NoteBook = () => {
-    const { user } = useContext(AuthContext);
-    const [notes, setNotes] = useState([])
-    const [axiosNormal] = useAxiosNormal();
-    const [isLoading, setIsLoading] = useState(true);
+  const { user } = useContext(AuthContext);
+  const [notes, setNotes] = useState([]);
+  const [axiosSecure] = useAxiosSecure();
+  const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        axiosNormal.get(`/notebooks?email=${user?.email}`)
-            .then(data => {
-                setNotes(data)
-                setTimeout(() => {
-                    setIsLoading(false);
-                }, 1000);
-            })
-    }, [user?.email])
+  useEffect(() => {
+    axiosSecure.get(`/notebooks?email=${user?.email}`).then((data) => {
+      setNotes(data.data);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
+    });
+  }, [user?.email]);
 
     return (
         <section>
@@ -114,9 +113,9 @@ const NoteBook = () => {
                         </div>
                     )
                 } */}
-            </div>
-        </section>
-    );
+      </div>
+    </section>
+  );
 };
 
 export default NoteBook;

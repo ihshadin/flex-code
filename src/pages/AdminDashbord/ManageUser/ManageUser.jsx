@@ -1,33 +1,17 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading";
 import { toast } from "react-hot-toast";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAllUsers from "../../../Hooks/useAllUsers";
 
 const ManageUser = () => {
   const [loading, setLoading] = useState(true);
-  const [makeloading, setMakeLoading] = useState([]);
-  const [users, setUsers] = useState([]);
+  const [axiosSecure] = useAxiosSecure();
   const [allUsers] = useAllUsers();
-  // console.log(allUsers);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:5000/users/all")
-      .then((data) => setUsers(data.data));
-    setLoading(false);
-  }, [makeloading]);
-
-  useEffect(() => {
-    const filterUser = users.find((data) => data.userRole === "genarel");
-    setMakeLoading(filterUser);
-  }, [makeloading]);
 
   const handleMakeAdmin = async (email) => {
     try {
-      const res = await axios.post(
-        `http://localhost:5000/users/all/admin/${email}`
-      );
+      const res = await axiosSecure.post(`/users/all/admin/${email}`);
       if (res.data.user.modifiedCount > 0) {
         toast.success("User role updated to admin!", {
           position: "top-center",
@@ -39,8 +23,6 @@ const ManageUser = () => {
           progress: 1,
           theme: "dark",
         });
-        const filterUser = users.find((data) => data.userRole === "genarel");
-        setMakeLoading(filterUser);
       }
     } catch (error) {
       console.error(error);
@@ -49,9 +31,7 @@ const ManageUser = () => {
 
   const handleMakeUser = async (email) => {
     try {
-      const res = await axios.post(
-        `http://localhost:5000/users/all/genarel/${email}`
-      );
+      const res = await axiosSecure.post(`/users/all/genarel/${email}`);
 
       if (res.data.user.modifiedCount > 0) {
         toast.success("Admin role updated to user!", {
@@ -64,13 +44,13 @@ const ManageUser = () => {
           progress: 1,
           theme: "dark",
         });
-        const filterUser = users.find((data) => data.userRole === "admin");
-        setMakeLoading(filterUser);
       }
     } catch (error) {
       console.error(error);
     }
   };
+
+  console.log(allUsers);
 
   return (
     <section className="text-white md:mx-7 md:my-5">
@@ -94,17 +74,21 @@ const ManageUser = () => {
               <div className="font-semibold w-[15%] text-center">Role</div>
               <div className="font-semibold w-[15%] text-center">Action</div>
             </div>
-            {users?.map((data, index) => (
+            {allUsers?.map((data, index) => (
               <div
                 key={index}
                 className="flex justify-between min-w-[800px] items-center whitespace-nowrap border-b-[2px] duration-300 border-[#0fcda1] hover:border-white px-6 pb-2 pt-7 rounded-3xl"
               >
                 <p className="w-[5%]">{index + 1}</p>
                 <div className="w-[30%]">
-                  <h2 className="font-medium overflow-hidden text-ellipsis max-w-[19ch]">{data?.name}</h2>
+                  <h2 className="font-medium overflow-hidden text-ellipsis max-w-[19ch]">
+                    {data?.name}
+                  </h2>
                 </div>
                 <p className="w-[35%]">{data?.email}</p>
-                <p className="w-[15%] text-center capitalize">{data?.userRole}</p>
+                <p className="w-[15%] text-center capitalize">
+                  {data?.userRole}
+                </p>
                 <p className="w-[15%] text-center">
                   {data.userRole === "admin" ? (
                     <button
@@ -117,7 +101,7 @@ const ManageUser = () => {
                     <button
                       onClick={() => handleMakeAdmin(data?.email)}
                       className="text-sm px-2 bg-[#0fcda188] rounded-lg capitalize"
-                    // disabled={makeloading || user.userRole === "admin"}
+                      // disabled={makeloading || user.userRole === "admin"}
                     >
                       Make admin
                     </button>

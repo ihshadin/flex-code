@@ -2,46 +2,63 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { GiFemaleVampire, GiNurseFemale, GiRank3 } from "react-icons/gi";
 import useTopperData from "../../../Hooks/useTopperData";
-import useAxiosNormal from "../../../Hooks/useAxiosNormal";
 import useFlexUser from "../../../Hooks/useFlexUser";
 import useAuth from "../../../Hooks/useAuth";
-import { FaBirthdayCake, FaCrown, FaFacebook, FaFemale, FaGithub, FaGithubAlt, FaHome, FaLinkedin, FaMale, FaUser } from "react-icons/fa";
+import {
+  FaBirthdayCake,
+  FaCrown,
+  FaFacebook,
+  FaFemale,
+  FaGithub,
+  FaGithubAlt,
+  FaHome,
+  FaLinkedin,
+  FaMale,
+  FaUser,
+} from "react-icons/fa";
 import { FaGlobe } from "react-icons/fa6";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const DbUserSideBar = ({ mySolvedProblems, username }) => {
-  const [fullUserDetails, setFullUserDetails] = useState({})
+  const [fullUserDetails, setFullUserDetails] = useState({});
   const [problemsByLanguage, setProblemsByLanguage] = useState({});
   const [topperData] = useTopperData();
-  const [axiosNormal] = useAxiosNormal();
-  const [flexUser] = useFlexUser()
-  const { user } = useAuth()
+  const [axiosSecure] = useAxiosSecure();
+  const [flexUser] = useFlexUser();
+  const { user } = useAuth();
   const mainUserName = username || flexUser?.username;
   const userEmail = user?.email;
   const flexUserEmail = fullUserDetails?.email;
 
   useEffect(() => {
-    axiosNormal.get(`/users/${mainUserName}`)
-      .then(user => {
-        setFullUserDetails(user)
-      })
-  }, [mainUserName])
+    axiosSecure.get(`/users/${mainUserName}`).then((user) => {
+      setFullUserDetails(user.data);
+    });
+  }, [mainUserName]);
 
+  // console.log("dbuserSbar---oneuser--fullUserDetails", fullUserDetails);
+  // console.log("dbuserSbar---oneuser--name", flexUser);
+  // console.log("dbuserSbar---oneuser--userEmail", userEmail);
 
   // Calculate last week
   const currentDate = new Date();
   const lastWeekDate = new Date();
   lastWeekDate.setDate(currentDate.getDate() - 7);
-  const formattedDate = (fullUserDetails?.dateOfBirth)?.slice(0, 10);
+  const formattedDate = fullUserDetails?.dateOfBirth?.slice(0, 10);
   // const parts = date?.split("-"); // ["2005", "08", "31"]
   // console.log(parts);
   // const formattedDate = `${parts[2] || 'dd'}/ ${parts[1] || 'mm'}/ ${parts[0] || 'yyyy'}` || 'la la laaa';
   // const formattedDate = '31/08/2005'
   // Last week solutions
-  const lastWeekSolvedProblems = mySolvedProblems.filter(problem => new Date(problem.date) >= lastWeekDate);
+  const lastWeekSolvedProblems = mySolvedProblems.filter(
+    (problem) => new Date(problem.date) >= lastWeekDate
+  );
   // Last week points
-  const lastWeekTotalPoints = mySolvedProblems.filter(problem => new Date(problem.date) >= lastWeekDate).reduce((total, problem) => total + problem.points, 0);
-  // User Rank 
-  const myRank = topperData?.find(problem => problem.username === username)
+  const lastWeekTotalPoints = mySolvedProblems
+    .filter((problem) => new Date(problem.date) >= lastWeekDate)
+    .reduce((total, problem) => total + problem.points, 0);
+  // User Rank
+  const myRank = topperData?.find((problem) => problem.username === username);
 
   useEffect(() => {
     const problemsCount = mySolvedProblems.reduce((acc, problem) => {
@@ -52,14 +69,11 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
     setProblemsByLanguage(problemsCount);
   }, [mySolvedProblems]);
 
-  useEffect(() => {
-
-  })
+  useEffect(() => {});
 
   return (
     <section>
       <div className="bg-secondary-color flex flex-col rounded-lg min-w-[300px] w-full px-4 py-5">
-
         {/* User Info */}
         <div className="text-slate-300  flex flex-col space-y-4">
           <div className="flex space-x-4">
@@ -72,7 +86,10 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
             </div>
             <div className="flex flex-col py-1">
               <div className="text-lg text-white font-semibold ">
-                {fullUserDetails?.name} {fullUserDetails?.isPremium === true && <FaCrown className="text-amber-400 inline ml-1 mb-2" />}
+                {fullUserDetails?.name}{" "}
+                {fullUserDetails?.isPremium === true && (
+                  <FaCrown className="text-amber-400 inline ml-1 mb-2" />
+                )}
               </div>
               <div className="flex flex-1 items-end space-x-[5px] text-base text-white">
                 <span className="text-slate-300 ">Rank ~</span>
@@ -82,20 +99,51 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
               </div>
             </div>
           </div>
-          {
-            userEmail === flexUserEmail &&
+          {userEmail === flexUserEmail && (
             <Link
               className="bg-[#0fcda1] bg-opacity-50 text-[#b0c9ec] border border-[#0fcda1] border-transparent hover:bg-transparent hover:border hover:border-[#0fcda1] hover:text-[#0fcda1] hover:transition-all hover:duration-500 w-full rounded-lg py-[7px] text-center font-medium"
               to="/profile"
             >
               Edit Profile
             </Link>
-          }
+          )}
           <div className="flex text-gray-400 items-center justify-center gap-4 text-lg">
-            {fullUserDetails?.fbLinks && <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.fbLinks}><FaFacebook /></a>}
-            {fullUserDetails?.github && <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.github}><FaGithub /></a>}
-            {fullUserDetails?.LinkLinks && <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.LinkLinks}><FaLinkedin /></a>}
-            {fullUserDetails?.webSiteLink && <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.webSiteLink}><FaGlobe /></a>}
+            {fullUserDetails?.fbLinks && (
+              <a
+                className="hover:text[#ffc306]"
+                target="_blank"
+                href={fullUserDetails?.fbLinks}
+              >
+                <FaFacebook />
+              </a>
+            )}
+            {fullUserDetails?.github && (
+              <a
+                className="hover:text[#ffc306]"
+                target="_blank"
+                href={fullUserDetails?.github}
+              >
+                <FaGithub />
+              </a>
+            )}
+            {fullUserDetails?.LinkLinks && (
+              <a
+                className="hover:text[#ffc306]"
+                target="_blank"
+                href={fullUserDetails?.LinkLinks}
+              >
+                <FaLinkedin />
+              </a>
+            )}
+            {fullUserDetails?.webSiteLink && (
+              <a
+                className="hover:text[#ffc306]"
+                target="_blank"
+                href={fullUserDetails?.webSiteLink}
+              >
+                <FaGlobe />
+              </a>
+            )}
           </div>
         </div>
         {/* User Info */}
@@ -111,43 +159,48 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
             <div className="text-white">{fullUserDetails?.username}</div>
           </div>
           {/* Address */}
-          {
-            fullUserDetails?.address && (
-              <div className="flex items-center space-x-2 text-[14px]">
-                <div className="text-[18px]">
-                  <FaHome className="text-[#0fcda199]" />
-                </div>
+          {fullUserDetails?.address && (
+            <div className="flex items-center space-x-2 text-[14px]">
+              <div className="text-[18px]">
+                <FaHome className="text-[#0fcda199]" />
+              </div>
 
-                <div className="text-white">{fullUserDetails?.address}</div>
-              </div>
-            )
-          }
+              <div className="text-white">{fullUserDetails?.address}</div>
+            </div>
+          )}
           {/* DOB */}
-          {
-            fullUserDetails?.dateOfBirth && (
-              <div className="flex items-center space-x-2 text-[14px]">
-                <div className="text-[18px]">
-                  <FaBirthdayCake className="text-[#0fcda199]" />
-                </div>
-                <div className="text-white">{formattedDate || 'N/A'}</div>
+          {fullUserDetails?.dateOfBirth && (
+            <div className="flex items-center space-x-2 text-[14px]">
+              <div className="text-[18px]">
+                <FaBirthdayCake className="text-[#0fcda199]" />
               </div>
-            )
-          }
+              <div className="text-white">{formattedDate || "N/A"}</div>
+            </div>
+          )}
           {/* Gender */}
-          {
-            fullUserDetails?.gender && (
-              <div className="flex items-center capitalize space-x-2 text-[14px]">
-                <div className="text-[18px]">
-                  {fullUserDetails?.gender === 'male' && <GiNurseFemale className="text-[#0fcda199]" />}
-                  {fullUserDetails?.gender === 'female' && <GiFemaleVampire className="text-pink-500" />}
-                  {fullUserDetails?.gender !== 'male' && fullUserDetails?.gender !== 'female' && <FaUser className="text-slate-500" />}
-                </div>
-                <div className="text-white">{fullUserDetails?.gender || 'N/A'}</div>
+          {fullUserDetails?.gender && (
+            <div className="flex items-center capitalize space-x-2 text-[14px]">
+              <div className="text-[18px]">
+                {fullUserDetails?.gender === "male" && (
+                  <GiNurseFemale className="text-[#0fcda199]" />
+                )}
+                {fullUserDetails?.gender === "female" && (
+                  <GiFemaleVampire className="text-pink-500" />
+                )}
+                {fullUserDetails?.gender !== "male" &&
+                  fullUserDetails?.gender !== "female" && (
+                    <FaUser className="text-slate-500" />
+                  )}
               </div>
-            )
-          }
+              <div className="text-white">
+                {fullUserDetails?.gender || "N/A"}
+              </div>
+            </div>
+          )}
         </div>
-        <div className="text-base text-white font-medium leading-6">Statistic</div>
+        <div className="text-base text-white font-medium leading-6">
+          Statistic
+        </div>
         <div className="mt-4 flex flex-col space-y-4">
           {/* Ranks */}
           <div className="flex flex-col space-y-1">
@@ -156,7 +209,7 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
                 <GiRank3 className="text-[#0fcda199]" />
               </div>
               <div className="text-slate-300 ">Rank</div>
-              <div className="text-white">{myRank?.rank || 'N/A'}</div>
+              <div className="text-white">{myRank?.rank || 0}</div>
             </div>
           </div>
           {/* Solutions */}
@@ -178,15 +231,15 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
                   ></path>
                 </svg>
               </div>
-              <div className="text-slate-300 ">
-                Solution
-              </div>
-              <div className="text-white">{mySolvedProblems.length || 'N/A'}</div>
+              <div className="text-slate-300 ">Solution</div>
+              <div className="text-white">{mySolvedProblems.length || 0}</div>
             </div>
             <div className="ml-7 space-x-1 text-xs text-slate-400">
               <span>Last week</span>
               <span>
-                <span className="text-slate-200">{lastWeekSolvedProblems.length || 'N/A'}</span>
+                <span className="text-slate-200">
+                  {lastWeekSolvedProblems.length || 0}
+                </span>
               </span>
             </div>
           </div>
@@ -211,7 +264,12 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
                 </svg>
               </div>
               <div className="text-slate-300 ">Points</div>
-              <div className="text-white">{mySolvedProblems.reduce((total, problem) => total + problem.points, 0) || 0}</div>
+              <div className="text-white">
+                {mySolvedProblems.reduce(
+                  (total, problem) => total + problem.points,
+                  0
+                ) || 0}
+              </div>
             </div>
             <div className="ml-7 space-x-1 text-xs text-slate-400">
               <span>Last week</span>
@@ -237,9 +295,7 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
                   ></path>
                 </svg>
               </div>
-              <div className="text-slate-300 ">
-                Reputation
-              </div>
+              <div className="text-slate-300 ">Reputation</div>
               <div className="text-white">0</div>
             </div>
             <div className="ml-7 space-x-1 text-xs text-slate-400">
@@ -253,28 +309,39 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
         {/* End Community Stats content */}
 
         <div className="mt-4 mb-4 h-px w-full border-b border-divider-3"></div>
-        <div className="text-base text-white font-medium leading-6">Languages</div>
+        <div className="text-base text-white font-medium leading-6">
+          Languages
+        </div>
         <div className="mt-3 space-y-2 text-xs text-slate-300">
-          {
-            problemsByLanguage ? (
-              Object.keys(problemsByLanguage).map((language, index) => (
-                <div className="flex justify-between items-center" key={index}>
-                  <span className="py-1 px-3 bg-slate-700 rounded-md cursor-pointer">{language}</span>
-                  <p><span className="font-semibold primary-color">{problemsByLanguage[language]}</span> Problems solved</p>
-                </div>
-              ))
-            ) : (
-              <p className="text-center">Not enough data</p>
-            )
-          }
+          {problemsByLanguage ? (
+            Object.keys(problemsByLanguage).map((language, index) => (
+              <div className="flex justify-between items-center" key={index}>
+                <span className="py-1 px-3 bg-slate-700 rounded-md cursor-pointer">
+                  {language}
+                </span>
+                <p>
+                  <span className="font-semibold primary-color">
+                    {problemsByLanguage[language]}
+                  </span>{" "}
+                  Problems solved
+                </p>
+              </div>
+            ))
+          ) : (
+            <p className="text-center">Not enough data</p>
+          )}
         </div>
         {/* Start Skills content */}
         <div className="mt-5 w-full">
-          <div className="text-base text-white font-medium leading-6">Skills</div>
+          <div className="text-base text-white font-medium leading-6">
+            Skills
+          </div>
           <div className="my-3 flex items-center flex-wrap gap-1">
-            {
-              fullUserDetails?.skills?.map(skill => <span className="py-1 px-3 bg-slate-700 rounded-md cursor-pointer">{skill}</span>)
-            }
+            {fullUserDetails?.skills?.map((skill) => (
+              <span className="py-1 px-3 bg-slate-700 rounded-md cursor-pointer">
+                {skill}
+              </span>
+            ))}
           </div>
         </div>
         {/* End Skills content */}

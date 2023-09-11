@@ -4,6 +4,7 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import { FaUser } from "react-icons/fa";
 import "./NavBar.css";
 import { toast } from "react-hot-toast";
+import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading";
 const NavBar = ({ setUserPaid, onLogout }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [userClicked, setUserClicked] = useState(false);
@@ -21,7 +22,7 @@ const NavBar = ({ setUserPaid, onLogout }) => {
     setIsMenuOpen(false);
   };
 
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, loading } = useContext(AuthContext);
 
   const isActiveRoute = (routePath) => {
     return location.pathname === routePath;
@@ -53,6 +54,10 @@ const NavBar = ({ setUserPaid, onLogout }) => {
       document.removeEventListener("click", handleClickOutsideDropdown);
     };
   }, []);
+
+  if (loading) {
+    return <FlexcodeLoading />;
+  }
 
   return (
     <nav
