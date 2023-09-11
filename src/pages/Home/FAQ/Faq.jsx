@@ -23,7 +23,7 @@ const Faq = () => {
                         <div className='mx-auto md:w-[60%]'>
                             <div className="collapse collapse-plus flexcode-banner-bg rounded-lg shadow-2xl border-teal-950 border-[2px] mb-4">
                                 <input type="radio" name="my-accordion-3" />
-                                <div className="collapse-title text-xl font-medium">
+                                <div className="collapse-title text-xl font-medium" >
                                     <span className='mr-4 text-lg font-normal'>01</span>What is FlexCode?
                                 </div>
                                 <div className="collapse-content">
