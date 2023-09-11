@@ -5,7 +5,7 @@ import { FaUser } from "react-icons/fa";
 import "./NavBar.css";
 import { toast } from "react-hot-toast";
 import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading";
-const NavBar = ({ setUserPaid, onLogout }) => {
+const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [userClicked, setUserClicked] = useState(false);
 
@@ -30,8 +30,6 @@ const NavBar = ({ setUserPaid, onLogout }) => {
 
   const handleSignOut = () => {
     logOut().then(() => {
-      onLogout();
-      setUserPaid(false);
       toast.success("LogOut Successfull!");
       navigate(from, { replace: true });
     });
@@ -56,7 +54,7 @@ const NavBar = ({ setUserPaid, onLogout }) => {
   }, []);
 
   if (loading) {
-    return <FlexcodeLoading />;
+    return '';
   }
 
   return (

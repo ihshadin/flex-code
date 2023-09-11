@@ -50,7 +50,7 @@ const MainLayout = () => {
           </Helmet>
         )}
 
-        <NavBar setUserPaid={setUserPaid} onLogout={handleLogout} />
+        <NavBar />
 
         <motion.div
           initial={{ opacity: 0 }}
