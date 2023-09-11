@@ -16,7 +16,7 @@ const PaymentSuccess = () => {
   }, []);
 
   return (
-    <div className="flex justify-center mt-4 md:mt-9 mb-6 md:mb-12">
+    <div className="flex justify-center pt-16 md:pt-9 pb-6 md:pb-12">
       <div className="bg-[#1E2D40] rounded-md">
         <h1 className="flex justify-center pt-8 pb-1">
           <FaRegCheckCircle size={45} className="text-center text-[#0fcda1]" />

@@ -10,7 +10,7 @@ const Blog = () => {
 
   return (
     <section>
-      <div className="flexcode-container">
+      <div className="flexcode-container !pt-16 md:!pt-10">
         <PageBannerTitle
           title="Read our Blogs gain your knowledge"
           shortDesc="Unlock knowledge and insights with our thought-provoking blogs."

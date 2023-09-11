@@ -25,7 +25,7 @@ const NoteBook = () => {
 
     return (
         <section>
-            <div className='flexcode-container'>
+            <div className='flexcode-container !pt-16 md:!pt-10'>
                 <PageBannerTitle
                     title='My NoteBooks'
                     shortDesc='A notebook is a blank book that you can write in and save it.'

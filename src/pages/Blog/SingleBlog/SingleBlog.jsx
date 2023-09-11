@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigation, useParams } from "react-router-dom";
-import useAxiosNormal from "../../../hooks/useAxiosNormal";
+import useAxiosNormal from "../../../Hooks/useAxiosNormal";
 import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading";
 
 const SingleBlog = () => {
@@ -33,7 +33,7 @@ const SingleBlog = () => {
 
   return (
     <section>
-      <div className="flexcode-container">
+      <div className="flexcode-container !pt-16 md:!pt-10">
         <div className="lg:flex">
 
           {/* Single Blog details side */}

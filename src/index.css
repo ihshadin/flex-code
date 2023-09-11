@@ -77,6 +77,7 @@ body::-webkit-scrollbar-thumb:hover {
 .flexcode-container {
   @apply max-w-[1280px] w-full mx-auto py-10 md:py-12 lg:py-20 px-3;
 }
+
 .flexcode-button {
   @apply relative inline-block shadow-2xl border-2 rounded-md border-[#0fcda1] font-bold uppercase tracking-widest text-white;
 }

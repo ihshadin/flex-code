@@ -56,10 +56,10 @@ const NavBar = ({ setUserPaid, onLogout }) => {
 
   return (
     <nav
-      className={`top-0 backdrop-blur-sm z-10 w-full ${
+      className={`top-0 backdrop-blur-sm z-10 w-full fixed ${
         location.pathname === "/" || location.pathname === "/my-submittions"
-          ? "fixed"
-          : "sticky"
+          ? "md:fixed"
+          : "md:sticky"
       }`}
     >
       <div className="relative max-w-[1280px] w-full mx-auto bg-inherit py-2 px-3 lg:flex justify-between items-center">
@@ -142,7 +142,7 @@ const NavBar = ({ setUserPaid, onLogout }) => {
                   onClick={closeMenu}
                   className={`text-white hover:text-gray-300 pb-1 nav-effect${
                     isActiveRoute("/problems")
-                      ? "font-bold md:border-b-2 pb-[1.9px] border-[#0fcda1]"
+                      ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
                       : ""
                   }`}
                 >
@@ -155,7 +155,7 @@ const NavBar = ({ setUserPaid, onLogout }) => {
                   onClick={closeMenu}
                   className={`text-white hover:text-gray-300 pb-1 nav-effect${
                     isActiveRoute("/blog")
-                      ? "font-bold md:border-b-2 pb-[1.9px] border-[#0fcda1]"
+                      ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
                       : ""
                   }`}
                 >
@@ -168,7 +168,7 @@ const NavBar = ({ setUserPaid, onLogout }) => {
                   onClick={closeMenu}
                   className={`text-white hover:text-gray-300 pb-1 nav-effect${
                     isActiveRoute("/subscribe")
-                      ? "font-bold md:border-b-2 pb-[1.9px] border-[#0fcda1]"
+                      ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
                       : ""
                   }`}
                 >
@@ -181,7 +181,7 @@ const NavBar = ({ setUserPaid, onLogout }) => {
                   onClick={closeMenu}
                   className={`text-white hover:text-gray-300 pb-1 nav-effect${
                     isActiveRoute("/explore")
-                      ? "font-bold md:border-b-2 pb-[1.9px] border-[#0fcda1]"
+                      ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
                       : ""
                   }`}
                 >
@@ -332,7 +332,7 @@ const NavBar = ({ setUserPaid, onLogout }) => {
                       onClick={closeMenu}
                       className={`text-white hover:text-gray-300 pb-1 nav-effect${
                         isActiveRoute("/login")
-                          ? "font-bold md:border-b-2 pb-[1.9px] border-[#0fcda1]"
+                          ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
                           : ""
                       }`}
                     >
@@ -345,7 +345,7 @@ const NavBar = ({ setUserPaid, onLogout }) => {
                       onClick={closeMenu}
                       className={`text-white hover:text-gray-300 pb-1 nav-effect${
                         isActiveRoute("/signup")
-                          ? "font-bold md:border-b-2 pb-[1.9px] border-[#0fcda1]"
+                          ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
                           : ""
                       }`}
                     >

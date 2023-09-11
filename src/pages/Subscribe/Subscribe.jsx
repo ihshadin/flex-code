@@ -5,10 +5,10 @@ import './Subscribe.css'
 const Subscribe = () => {
   return (
     <section>
-      <div className="mt-8 mb-8 md:mt-12 md:mb-16 max-h-screen px-5">
+      <div className="pt-16 pb-8 md:pt-12 md:mb-16 max-h-screen px-4">
         <div className="flex justify-center items-center ">
           <div className="text-center">
-            <div className="h-[10rem] w-[10rem] md:h-[15rem] md:w-[15rem] mx-auto">
+            <div className="h-[9rem] w-[9rem] md:h-[15rem] md:w-[15rem] mx-auto">
               <img src={img} alt="" />
             </div>
             <h1 className="text-2xl md:text-4xl text-white font-bold mt-2">Premium</h1>

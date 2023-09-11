@@ -17,7 +17,7 @@ const Problems = () => {
 
   return (
     <section>
-      <div className="flexcode-container ">
+      <div className="flexcode-container !pt-16 md:!pt-10">
         <PageBannerTitle
           title="Most Popular languages"
           shortDesc="A collection of most popular problems."

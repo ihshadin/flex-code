@@ -5,7 +5,7 @@ import { SiAirplayaudio } from 'react-icons/si';
 
 const MyPlayGround = () => {
   return (
-    <div className="flexcode-container">
+    <div className="flexcode-container !pt-16 md:!pt-10">
 
         <PageBannerTitle
           title="My PlayGround"

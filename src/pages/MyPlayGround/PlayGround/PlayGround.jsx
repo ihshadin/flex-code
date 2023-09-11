@@ -1,5 +1,5 @@
 import "codemirror/theme/dracula.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Controlled } from "react-codemirror2";
 import Split from "react-split";
 import "codemirror/lib/codemirror.css";
@@ -11,14 +11,37 @@ import "codemirror/addon/hint/show-hint.css";
 import "codemirror/addon/hint/show-hint";
 import "codemirror/addon/hint/javascript-hint";
 import "./PlayGround.css";
+import projectsCode from "../../../../public/projects.json";
 
 const PlayGround = () => {
-  const [htmlCode, setHtmlCode] = useState("");
-  const [cssCode, setCssCode] = useState("");
-  const [jsCode, setJsCode] = useState("");
+  const [htmlCode, setHtmlCode] = useState(""); //projectsCode[0].htmlCode ||
+  const [cssCode, setCssCode] = useState(""); //projectsCode[0].cssCode ||
+  const [jsCode, setJsCode] = useState(""); //projectsCode[0].jsCode ||
   const [consoleOutput, setConsoleOutput] = useState("");
   const [errorOutput, setErrorOutput] = useState("");
   const [isConsoleOpen, setIsConsoleOpen] = useState(false);
+  const [splitSizes, setSplitSizes] = useState([55, 55]);
+
+  useEffect(() => {
+    const updateSplitSizes = () => {
+      const isLargeDevice = window.innerWidth >= 768;
+
+      if (isLargeDevice) {
+        setSplitSizes([55, 55]);
+      } else {
+        setSplitSizes([70, 30]);
+      }
+    };
+
+    // Initial update based on window size
+    updateSplitSizes();
+
+    window.addEventListener("resize", updateSplitSizes);
+
+    return () => {
+      window.removeEventListener("resize", updateSplitSizes);
+    };
+  }, []);
 
   const openConsole = () => {
     setIsConsoleOpen(true);
@@ -83,9 +106,9 @@ const PlayGround = () => {
   return (
     <div className="relative p-4 overflow-hidden ">
       <Split
-        className="flex flex-col md:h-[100vh]"
+        className="flex flex-col h-[160vh] md:h-[100vh] pt-16 md:pt-0"
         direction="vertical"
-        sizes={[55, 55]}
+        sizes={splitSizes}
         minSize={0}
         expandToMin={false}
         gutterSize={10}
@@ -240,7 +263,6 @@ const PlayGround = () => {
           )}
         </div>
       </Split>
-
     </div>
   );
 };

@@ -21,7 +21,7 @@ const Explore = () => {
 
   return (
     <section>
-      <div className="flexcode-container">
+      <div className="flexcode-container !pt-16 md:!pt-10">
         <PageBannerTitle
           title="About Us"
           shortDesc="Who we are and what we do,"

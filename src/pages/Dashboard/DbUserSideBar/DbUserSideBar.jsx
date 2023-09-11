@@ -18,14 +18,13 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
   const mainUserName = username || flexUser?.username;
   const userEmail = user?.email;
   const flexUserEmail = fullUserDetails?.email;
-  console.log('profile ====>', fullUserDetails);
+
   useEffect(() => {
     axiosNormal.get(`/users/${mainUserName}`)
       .then(user => {
         setFullUserDetails(user)
       })
   }, [mainUserName])
-  // console.log('dbuserSbar---oneuser--19',user)
 
 
   // Calculate last week
@@ -93,10 +92,10 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
             </Link>
           }
           <div className="flex text-gray-400 items-center justify-center gap-4 text-lg">
-            {fullUserDetails.fbLinks && <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.fbLinks}><FaFacebook /></a>}
-            {fullUserDetails.github && <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.github}><FaGithub /></a>}
-            {fullUserDetails.LinkLinks && <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.LinkLinks}><FaLinkedin /></a>}
-            {fullUserDetails.webSiteLink && <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.webSiteLink}><FaGlobe /></a>}
+            {fullUserDetails?.fbLinks && <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.fbLinks}><FaFacebook /></a>}
+            {fullUserDetails?.github && <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.github}><FaGithub /></a>}
+            {fullUserDetails?.LinkLinks && <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.LinkLinks}><FaLinkedin /></a>}
+            {fullUserDetails?.webSiteLink && <a className="hover:text[#ffc306]" target="_blank" href={fullUserDetails?.webSiteLink}><FaGlobe /></a>}
           </div>
         </div>
         {/* User Info */}
@@ -113,7 +112,7 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
           </div>
           {/* Address */}
           {
-            fullUserDetails.address && (
+            fullUserDetails?.address && (
               <div className="flex items-center space-x-2 text-[14px]">
                 <div className="text-[18px]">
                   <FaHome className="text-[#0fcda199]" />
