@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../providers/AuthProvider";
 import PageBannerTitle from "../../../components/BannerTitle/PageBannerTitle";
+import toast from 'react-hot-toast';
 
 
 const AddBlog = () => {
@@ -61,21 +62,15 @@ const AddBlog = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.message === "success") {
-          console.log(blogDetails);
-          Swal.fire({
-            title: "Success Your Submit!",
-            text: "Do you want to continue",
-            icon: "success",
-            confirmButtonText: "OK",
-          });
+          toast.success("Submitted your blog successfully")
           reset();
         }
       });
   };
 
   return (
-    <div className="flexcode-container">
-      <section className="py-6">
+    <div className="py-5 px-10">
+      <div>
         <PageBannerTitle
           title="Add Blogs"
           shortDesc={"Share your knowledge with everyone"}
@@ -83,7 +78,7 @@ const AddBlog = () => {
           btnText1={"Our Blogs"}
           btnText2={"View All Blogs"}
         />
-      </section>
+      </div>
       <form onSubmit={handleSubmit(onSubmit)} className="w-5/6 mx-auto my-5 ">
         <div className="">
           <div className="w-full mb-5">
@@ -144,8 +139,8 @@ const AddBlog = () => {
           </div>
         </div>
 
-        <div className="flex -mx-3">
-          <div className="w-full px-3 mb-5">
+        <div className="flex">
+          <div className="w-full mb-5">
             <button
               type="submit"
               className="w-full mx-auto flexcode-button px-3 py-3"
