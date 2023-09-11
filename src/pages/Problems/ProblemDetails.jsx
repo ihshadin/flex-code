@@ -5,7 +5,7 @@ import "codemirror/mode/javascript/javascript";
 import "codemirror/theme/dracula.css";
 import Split from "react-split";
 import "./ProblemDetails.css";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "codemirror/addon/hint/show-hint.css";
 import "codemirror/addon/hint/show-hint";
 import "codemirror/addon/hint/javascript-hint";
@@ -23,17 +23,20 @@ const ProblemDetails = () => {
   const [singleProblem, setSingleProblems] = useState([]);
   const [isLoading, setIsLoading] = useState(true)
   const [isExplosion, setIsExplosion] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   const [axiosNormal] = useAxiosNormal();
   const [flexUser] = useFlexUser();
 
+  const showFeedback = sessionStorage.getItem('showFeedback');
   useEffect(() => {
     axiosNormal.get(`/problem/${id}`)
-      .then((data) => {
-        setSingleProblems(data);
-        setIsLoading(false)
-      });
+    .then((data) => {
+      setSingleProblems(data);
+      setIsLoading(false)
+    });
   }, []);
 
+ 
   //  Default values
   const defaultCode = `function ${singleProblem.functionName}(${singleProblem.parameterName}){
 // Your solution logic
@@ -81,9 +84,19 @@ const ProblemDetails = () => {
         userOutput = JSON.stringify(userOutput);
       }
 
+      console.log('isOPen', isOpen);
       //   Output Message
       if (userOutput == singleProblem.examples[0].output) {
-       setIsExplosion(true)
+        setIsExplosion(true)
+
+       if (!showFeedback) {
+         sessionStorage.setItem('showFeedback', true)
+         setTimeout(() => {
+           setIsOpen(true);
+
+        }, 5000);
+        }
+    
         // -----------------------
         axiosNormal
           .post("/solvedProblems", userSubmission)
@@ -315,6 +328,20 @@ const ProblemDetails = () => {
           )
         }
       </div >
+
+      <div className={`modal ${isOpen === true && 'modal-open'}`} id="subscribeFirst">
+        <div className="modal-box bg-black flexcode-banner-bg min-h-64 flex flex-col justify-center items-center border border-slate-600 hover:border-[#0fcda156]">
+          <a href='#' onClick={() => setIsOpen(false)} className='ml-auto hover:text-[#0fcda1] text-[#0fcda1] mb-8 border-[#0fcda18c] bg-transparent'>
+            X
+          </a>
+          <div>
+            <h3 className='text-xl text-center mb-10'>Share your experience with us. <br />
+            Give your valuable <span className='text-amber-400'>Feedback</span>.</h3>
+         <Link to={'/feedback'} className="flexcode-button py-2 px-3 ml-14">Give Feedback</Link>
+          </div>
+       
+        </div>
+      </div>
     </section>
   );
 };

@@ -3,6 +3,7 @@ import logo from '../../../assets/flex-code1.png'
 import { toast } from 'react-hot-toast';
 import emailjs from '@emailjs/browser';
 import useAxiosNormal from '../../../Hooks/useAxiosNormal';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     const [axiosNormal] = useAxiosNormal();
@@ -46,40 +47,43 @@ const Footer = () => {
                             FlexCode is a problem-solving platform that helps coding enthusiasts improve their skills through engaging challenges and interactive learning. Keep an eye on tech news sources and programming blogs, as they might cover new and emerging platforms.
                         </p>
                     </div>
-                    <div className='w-full md:w-2/6 flex justify-between'>
-                        <div className='w-1/2 flex flex-col'>
-                            <span className="font-semibold text-xl mb-2">Services</span>
-                            <a className="link link-hover mb-1">Branding</a>
-                            <a className="link link-hover mb-1">Design</a>
-                            <a className="link link-hover mb-1">Marketing</a>
-                            <a className="link link-hover mb-1">Advertisement</a>
-                            <a className="link link-hover mb-1">Custom Solutions</a>
-                            <a className="link link-hover mb-1">Consultation</a>
-                            <a className="link link-hover mb-1">Client Testimonials</a>
-                        </div>
-                        {/* <div>
-                        <span className="">Company</span>
-                        <a className="link link-hover mb-1">About us</a>
-                        <a className="link link-hover mb-1">Contact</a>
-                        <a className="link link-hover mb-1">Jobs</a>
-                        <a className="link link-hover mb-1">Press kit</a>
-                        <a className="link link-hover mb-1">Our Team</a>
-                        <a className="link link-hover mb-1">Locations</a>
-                        <a className="link link-hover mb-1">FAQs</a>
-                    </div> */}
-                        <div className='w-1/2 flex flex-col gap-1'>
-                            <span className="font-semibold text-xl mb-2">Legal</span>
-                            <a className="link link-hover mb-1">Terms of use</a>
-                            <a className="link link-hover mb-1">Privacy policy</a>
-                            <a className="link link-hover mb-1">Cookie policy</a>
-                            <a className="link link-hover mb-1">Disclaimer</a>
-                            <a className="link link-hover mb-1">Legal Jurisdiction</a>
-                            <a className="link link-hover mb-1">Copyright Notice</a>
-                            <a className="link link-hover mb-1">GDPR Compliance</a>
+                    <div className='md:w-2/5'>
+                        <div className='md:w-3/4 flex flex-col gap-4 md:ml-4'>
+                            <span className="text-xl font-semibold md:ml-4 mt-3">Legal</span>
+                            <div className='flex md:gap-3 md:ml-4'>
+                                <div className=' mt-2 md:mt-4 space-y-3 w-1/2'>
+                                    <p>
+                                        <Link to='/allMenuFooter' className="link link-hover mb-1">Terms of use</Link>
+                                    </p>
+                                    <p>
+                                        <Link to='/allMenuFooter' className="link link-hover mb-1">Privacy policy</Link>
+                                    </p>
+                                    <p>
+                                        <Link to='/allMenuFooter' className="link link-hover mb-1">Design</Link>
+                                    </p>
+                                    <p>
+                                        <Link to='/allMenuFooter' className="link link-hover mb-1">Services</Link>
+                                    </p>
+                                </div>
+                                <div className='mt-2 md:mt-4  space-y-3 w-1/2'>
+                                    <p>
+                                        <Link to='/allMenuFooter' className="link link-hover mb-1">Client Testimonials</Link>
+                                    </p>
+                                    <p>
+                                        <Link to='/allMenuFooter' className="link link-hover mb-1">Contact</Link>
+                                    </p>
+                                    <p>
+                                        <Link to='/allMenuFooter' className="link link-hover mb-1">FlexCode About</Link>
+                                    </p>
+                                    <p>
+                                        <Link to='/allMenuFooter' className="link link-hover mb-1">Copyright Notice</Link>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className='w-full md:w-2/6'>
-                        <h2 className="text-xl md:text-2xl font-semibold mb-3">
+                        <h2 className="text-xl md:text-2xl font-semibold mt-1 mb-3">
                             Contact Us
                         </h2>
                         <form ref={form} onSubmit={sendEmail}>
@@ -119,7 +123,7 @@ const Footer = () => {
                     </ul>
                 </div>
             </div>
-        </footer>
+        </footer >
     );
 };
 

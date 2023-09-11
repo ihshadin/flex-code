@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "quill/dist/quill.snow.css";
 import Pagination from "../../components/Pagination/Pagination";
 import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
 import BlogCardLoading from "../../components/FlexcodeLoading/BlogCardLoading";
@@ -9,7 +10,7 @@ import { motion } from "framer-motion";
 const Blog = () => {
   const { allBlogs, currentPage, setCurrentPage, totalPages, isLoading } =
     useAllBlogs();
-
+  console.log(allBlogs);
   return (
     <section>
       <motion.div
@@ -54,6 +55,34 @@ const Blog = () => {
                       </h1>
                       <span className="text-sm text-slate-200">Author</span>
                     </div>
+                  </div>
+                  <div className="p-5">
+                    <Link to={`/blog/${blog._id}`}>
+                      <h1 className="text-lg md:text-xl font-semibold primary-color">
+                        {blog.title}
+                      </h1>
+                    </Link>
+
+                    <div className="max-w-[150px] flex justify-center border-2 border-[#0fcda1] rounded my-5"></div>
+
+                    {/* <p className="text-sm text-slate-300 mb-5">
+                      
+                    </p> */}
+                    <p
+                      className="text-sm text-slate-300 mb-5"
+                      dangerouslySetInnerHTML={{
+                        __html:
+                          blog.details.length > 140
+                            ? blog.details.slice(0, 140) + "..."
+                            : blog.details,
+                      }}
+                    />
+                    <Link
+                      to={`/blog/${blog._id}`}
+                      className="inline-block transition-all duration-300 primary-color text-right tracking-wider btn-effect"
+                    >
+                      Read More
+                    </Link>
                   </div>
                 </div>
                 <div className="p-5">

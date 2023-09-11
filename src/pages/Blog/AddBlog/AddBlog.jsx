@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
+import Quill from 'quill';
+import 'quill/dist/quill.snow.css';
+import './AddBlog.css';
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
@@ -9,9 +12,42 @@ import PageBannerTitle from "../../../components/BannerTitle/PageBannerTitle";
 const AddBlog = () => {
   const { user } = useContext(AuthContext)
   const { register, handleSubmit, reset } = useForm();
+
+  const [editorState, setEditorState] = useState('');
+
+  const handleEditorChange = (content, delta, source, editor) => {
+    setEditorState(content);
+  };
+
+  useEffect(() => {
+    const quill = new Quill('#editor', {
+      modules: {
+        toolbar: [
+          [{ 'header': [1, 2, 3] }],
+          ['bold', 'italic', 'underline'],
+          [{ 'color': [] }, { 'background': [] }],
+          [{ 'align': [] }],
+          [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+          ['link'],
+          [{ 'code': 'inline' }],
+          ['clean']
+        ]
+      },
+      theme: 'snow',
+      formats: {
+        fontSize: '58px'
+      }
+    });
+    quill.on('text-change', (delta, oldDelta, source) => {
+      handleEditorChange(quill.root.innerHTML, delta, source, quill);
+    });
+  }, []);
+
   const onSubmit = (data) => {
+    console.log(editorState);
     const blogDetails = {
       ...data,
+      details: editorState,
       userImage: user?.photoURL,
       userName: user?.displayName,
     };
@@ -112,15 +148,18 @@ const AddBlog = () => {
               Blog Details
             </label>
             <div className="flex">
-              <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                <i className="mdi mdi-lock-outline text-gray-400 text-lg"></i>
-              </div>
-              <textarea
+             
+              {/* <textarea
                 rows={7}
                 className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border  text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
                 placeholder="Write details your blog"
                 {...register("details", { required: true })}
-              />
+              /> */}
+    <div className='w-full h-64 my-3'>
+  <div id="editor" style={{ height: '100%' }} />
+</div>
+
+    
             </div>
           </div>
         </div>

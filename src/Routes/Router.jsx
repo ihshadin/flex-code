@@ -35,6 +35,7 @@ import Dashboard from "../layouts/Dashboard";
 import AdminMainContent from "../pages/AdminDashbord/AdminMainContent/AdminMainContent";
 import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 import SendEmail from "../pages/AdminDashbord/SendEmail/SendEmail";
+import FooterSection from "../pages/Shared/FooterSection/FooterSection";
 
 const router = createBrowserRouter([
   {
@@ -150,6 +151,10 @@ const router = createBrowserRouter([
         path: "/:username",
         element: <DashboardHome />,
       },
+      {
+        path: "/allMenuFooter",
+        element: <FooterSection />
+      }
     ],
   },
   {
