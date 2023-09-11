@@ -11,7 +11,7 @@ const useAllUsers = () => {
     });
   }, []);
 
-  return [allUsers];
+  return [allUsers, setAllUsers];
 };
 
 export default useAllUsers;
