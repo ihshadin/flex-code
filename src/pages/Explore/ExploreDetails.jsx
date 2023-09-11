@@ -18,7 +18,7 @@ const ExploreDetails = () => {
 
   return (
     <section>
-      <div className="my-12 w-[95%] md:w-full md:max-w-[80%] mx-auto">
+      <div className="pt-16 md:pt-12 pb-12 w-[95%] md:w-full md:max-w-[80%] mx-auto">
         {isLoading ? (
           <SinExpLoading />
         ) : (

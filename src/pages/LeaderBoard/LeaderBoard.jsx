@@ -9,9 +9,10 @@ import useTopperData from "../../Hooks/useTopperData";
 const LeaderBoard = () => {
   const [topperData] = useTopperData();
 
+
   return (
     <section>
-      <div className="flexcode-container">
+      <div className="flexcode-container !pt-16 md:!pt-10">
         <PageBannerTitle
           title="Top Problem Solvers"
           shortDesc="Meet the Brilliant Minds Behind the Solutions"
@@ -146,7 +147,7 @@ const LeaderBoard = () => {
                         </div>
                         <p className='w-[20%] text-center'>{solveProblem.points}</p>
                         <p className='w-[20%] text-center'>{solveProblem.problemsSolved}</p>
-                        <p className='w-[15%] text-center cursor-pointer'><Link to={`/${solveProblem.username}`} className="hover:underline hover:text-[#0fcda1] flex items-center justify-center">View Profile <LiaAngleDoubleRightSolid className="h-4 w-4 text-[#0fcda1]" /></Link></p>
+                        <p className='w-[15%] text-center cursor-pointer'><Link to={solveProblem.username ? `/${solveProblem.username}` : '*'} className="hover:underline hover:text-[#0fcda1] flex items-center justify-center">View Profile <LiaAngleDoubleRightSolid className="h-4 w-4 text-[#0fcda1]" /></Link></p>
                       </div>
                     ))
                   }

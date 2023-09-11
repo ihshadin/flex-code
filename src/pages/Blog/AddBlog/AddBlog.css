@@ -1,0 +1,11 @@
+#editor, .ql-toolbar{
+    
+    border: 1px solid #0fcda1 !important;
+}
+
+.ql-editor p{
+    font-size: 16px;
+}
+.ql-editor code{
+    color: #272822;
+}
