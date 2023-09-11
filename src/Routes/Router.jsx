@@ -116,19 +116,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/subscribe",
-        element: (
-          <PrivateRoute>
-            <Subscribe />
-          </PrivateRoute>
-        ),
+        element: <Subscribe />,
       },
       {
         path: "/checkout",
-        element: (
-          <PrivateRoute>
-            <CheckOut />
-          </PrivateRoute>
-        ),
+        element: <CheckOut />,
       },
       {
         path: "/payment/success/:tranId",

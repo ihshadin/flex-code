@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading";
 import { toast } from "react-hot-toast";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
@@ -8,6 +8,12 @@ const ManageUser = () => {
   const [loading, setLoading] = useState(true);
   const [axiosSecure] = useAxiosSecure();
   const [allUsers] = useAllUsers();
+
+  useEffect(() => {
+    if (allUsers.length > 0) {
+      setLoading(false);
+    }
+  }, [allUsers]);
 
   const handleMakeAdmin = async (email) => {
     try {
