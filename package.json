@@ -12,6 +12,7 @@
     "@codemirror/lang-javascript": "^6.1.9",
     "@emailjs/browser": "^3.11.0",
     "@esbuild/win32-ia32": "^0.19.2",
+    "@tomickigrzegorz/react-circular-progress-bar": "^1.1.2",
     "@uiw/codemirror-theme-vscode": "^4.21.9",
     "@uiw/react-codemirror": "^4.21.9",
     "axios": "^1.4.0",
