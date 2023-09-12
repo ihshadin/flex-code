@@ -1,21 +1,29 @@
 import { Link } from "react-router-dom";
 import img from "../../assets/5.png";
-import './Subscribe.css';
+import "./Subscribe.css";
 import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
+import { motion } from "framer-motion";
 
 const Subscribe = () => {
   return (
-    <section className="flexcode-container">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 3 }}
+      className="flexcode-container"
+    >
       <PageBannerTitle
         title="Premium Subscription"
         shortDesc="FlexCode provides detailed descriptions of various products, including electronics, books, clothing, and more."
       />
       <div className="md:flex items-center w-full flexcode-banner-bg rounded-2xl shadow-2xl pt-2 pb-10 px-4 md:px-16 justify-between mt-8">
         <div className="mb-8 md:mb-16 max-h-screen md:px-5 md:w-[40%]">
-          <h1 className="text-2xl md:text-3xl text-white font-bold mt-2 premium-desc">Premium Service</h1>
+          <h1 className="text-2xl md:text-3xl text-white font-bold mt-2 premium-desc">
+            Premium Service
+          </h1>
           <p className="md:text-lg font-normal mt-6 premium-desc">
-            Get started with a{" "}
-            <span className="text-[#0fcda1]">Flex</span>code
+            Get started with a <span className="text-[#0fcda1]">Flex</span>code
             Subscription that works for you.
           </p>
 
@@ -64,7 +72,7 @@ const Subscribe = () => {
           </div>
         </div>
       </div>
-    </section>
+    </motion.div>
   );
 };
 
