@@ -27,7 +27,7 @@ const Login = () => {
         const user = result.user;
         toast.success("Login Successfull!");
         navigate(from, { replace: true });
-        setLoading(false);
+        setLoading(true);
       })
       .catch((error) => {
         setLoading(false);

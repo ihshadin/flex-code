@@ -47,6 +47,7 @@ const SocialLogin = () => {
         axiosSecure.post("/users", saveUser).then((data) => {
           console.log(data);
           navigate(from, { replace: true });
+          setLoading(false);
         });
       })
       .catch((error) => {
@@ -86,7 +87,7 @@ const SocialLogin = () => {
         };
 
         axiosSecure.post("/users", saveUser).then((data) => {
-          console.log(saveUser);
+          // console.log(saveUser);
           setLoading(false)
         });
         toast.success("Login Successfull!");
