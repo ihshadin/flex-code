@@ -4,10 +4,24 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import { FaUser } from "react-icons/fa";
 import "./NavBar.css";
 import { toast } from "react-hot-toast";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [userClicked, setUserClicked] = useState(false);
+  const { user, logOut, loading } = useContext(AuthContext);
+  const [flexUser, setFlexUser] = useState(null);
+  const [axiosSecure] = useAxiosSecure();
+
+  useEffect(() => {
+    if (user) {
+      axiosSecure.get(`/users?email=${user?.email}`).then((data) => {
+        setFlexUser(data.data);
+      });
+    } else {
+      setFlexUser(null);
+    }
+  }, [axiosSecure]);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -21,8 +35,6 @@ const NavBar = () => {
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
-
-  const { user, logOut, loading } = useContext(AuthContext);
 
   const isActiveRoute = (routePath) => {
     return location.pathname === routePath;
@@ -52,6 +64,8 @@ const NavBar = () => {
       document.removeEventListener("click", handleClickOutsideDropdown);
     };
   }, []);
+
+  console.log('navBar--68', flexUser);
 
   if (loading) {
     return '';
