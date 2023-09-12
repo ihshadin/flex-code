@@ -28,19 +28,20 @@ const Explore = () => {
         exit={{ opacity: 0 }}
         transition={{ duration: 3 }}
         className="flexcode-container !pt-16 md:!pt-10"
+        key="flex_4"
       >
         <PageBannerTitle
           title="About Us"
           shortDesc="Who we are and what we do,"
         />
-        <About/>
+        <About />
 
         <div className="my-8 md:my-16">
-        <PageBannerTitle
-          title="Our Team"
-          shortDesc="Explore our genius team members "
-        />
-        <OurTeam/>
+          <PageBannerTitle
+            title="Our Team"
+            shortDesc="Explore our genius team members "
+          />
+          <OurTeam />
         </div>
 
         <div className="my-8 md:my-16">

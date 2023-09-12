@@ -10,7 +10,6 @@ const SendEmail = () => {
   useEffect(() => {
     axiosSecure.get("/sendEmail").then((data) => {
       setMessages(data.data);
-      console.log(data);
     });
   }, []);
 
@@ -27,26 +26,26 @@ const SendEmail = () => {
       </div>
       {/* Email Accordion */}
       {
-        messages.map((message,index) =>(
-            <div key={message._id} className="md:flex justify-between mt-3">
-        <div className="mx-auto md:w-[80%]">
-          <div className="collapse collapse-plus flexcode-banner-bg rounded-lg shadow-2xl border-teal-950 border-2">
-            <input type="radio" name="my-accordion-3" />
-            <div className="collapse-title text-lg font-medium">
-              <span className="mr-4 text-lg font-normal">{index+1}</span>{message.email}
-            </div>
-            <div className="collapse-content">
-             <h2 className="text-slate-300 ml-9 text-md font-bold mr-4 mb-3">{message.name}</h2>
-              <p className="text-slate-300 ml-9 text-md font-normal mr-4">
-               {message.message}
-              </p>
+        messages.map((message, index) => (
+          <div key={message._id} className="md:flex justify-between mt-3">
+            <div className="mx-auto md:w-[80%]">
+              <div className="collapse collapse-plus flexcode-banner-bg rounded-lg shadow-2xl border-teal-950 border-2">
+                <input type="radio" name="my-accordion-3" />
+                <div className="collapse-title text-lg font-medium">
+                  <span className="mr-4 text-lg font-normal">{index + 1}</span>{message.email}
+                </div>
+                <div className="collapse-content">
+                  <h2 className="text-slate-300 ml-9 text-md font-bold mr-4 mb-3">{message.name}</h2>
+                  <p className="text-slate-300 ml-9 text-md font-normal mr-4">
+                    {message.message}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
         ))
       }
-      
+
     </section>
   );
 };
