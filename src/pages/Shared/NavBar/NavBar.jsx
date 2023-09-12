@@ -10,6 +10,8 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [userClicked, setUserClicked] = useState(false);
+  const [flexUser, setFlexUser] = useState(null);
+  const [axiosSecure] = useAxiosSecure();
   const { user, logOut, loading } = useAuth();
 
   const location = useLocation();

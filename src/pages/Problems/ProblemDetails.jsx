@@ -84,9 +84,8 @@ const ProblemDetails = () => {
       setConsoleOutput("");
 
       // Execute code
-      const userCode = `${code || defaultCode}\n\n${
-        singleProblem.functionName
-      }(${singleProblem.examples[0].input});`;
+      const userCode = `${code || defaultCode}\n\n${singleProblem.functionName
+        }(${singleProblem.examples[0].input});`;
 
       let userOutput = eval(userCode);
 
@@ -183,9 +182,8 @@ const ProblemDetails = () => {
       };
 
       // Execute code
-      const userCode = `${code || defaultCode}\n\nconsole.log(${
-        singleProblem.functionName
-      }(${singleProblem.examples[0].input}));`;
+      const userCode = `${code || defaultCode}\n\nconsole.log(${singleProblem.functionName
+        }(${singleProblem.examples[0].input}));`;
 
       eval(userCode);
       console.log = originalLog;
@@ -349,16 +347,16 @@ const ProblemDetails = () => {
                     {consoleOutput == false
                       ? ""
                       : consoleOutput.map((output, index) => (
-                          <div
-                            key={index}
-                            className="flex items-center gap-x-5"
-                          >
-                            <span className="bg-secondary-color text-gray-500 w-8 py-2">
-                              {index + 1}
-                            </span>
-                            <span>{output}</span>
-                          </div>
-                        ))}
+                        <div
+                          key={index}
+                          className="flex items-center gap-x-5"
+                        >
+                          <span className="bg-secondary-color text-gray-500 w-8 py-2">
+                            {index + 1}
+                          </span>
+                          <span>{output}</span>
+                        </div>
+                      ))}
                   </span>
                   <div>{outputMessage}</div>
                 </div>
