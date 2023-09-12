@@ -13,6 +13,7 @@ import "codemirror/addon/hint/javascript-hint";
 import "./PlayGround.css";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import { motion } from "framer-motion";
 import useAuth from "../../../Hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -154,7 +155,14 @@ const PlayGround = () => {
 
 
   return (
-    <div className="relative p-4 overflow-hidden ">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 2 }}
+      key="flex_8"
+      className="relative p-4 overflow-hidden "
+    >
       <Split
         className="flex flex-col h-[160vh] md:h-[100vh] pt-16 md:pt-0"
         direction="vertical"
@@ -333,9 +341,8 @@ const PlayGround = () => {
                     ) : (
                       <button
                         onClick={exportCode}
-                        className={`flexcode-button text-md py-1 px-6 mt-14 ${
-                          projectName ? "" : "opacity-20 cursor-not-allowed"
-                        }`}
+                        className={`flexcode-button text-md py-1 px-6 mt-14 ${projectName ? "" : "opacity-20 cursor-not-allowed"
+                          }`}
                         disabled={!projectName}
                       >
                         Export
@@ -345,7 +352,7 @@ const PlayGround = () => {
                 </div>
               </div>
               {user ? (
-                
+
                 <button
                   onClick={() => setModalIsOpen(true)}
                   className="text-xs px-2 btn-ghost bg-slate-500 rounded mr-1"
@@ -379,11 +386,11 @@ const PlayGround = () => {
                 >
                   Export
                 </button>
-                
+
                 // <Link to="/login" className="text-xs px-2 btn-ghost bg-slate-500 rounded mr-1">
                 //     Export
                 // </Link>
-              )}  
+              )}
 
               <button
                 onClick={openConsole}
@@ -395,7 +402,7 @@ const PlayGround = () => {
           )}
         </div>
       </Split>
-    </div>
+    </motion.div>
   );
 };
 

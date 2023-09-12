@@ -1,13 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import OverViewAd from "./OverViewAd/OverViewAd";
 import UserRationChart from "./UserRatioChart/UserRationChart";
+import { motion } from "framer-motion";
 
 const AdminMainContent = () => {
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://static.elfsight.com/platform/platform.js";
+    script.setAttribute("data-use-service-core", "");
+    script.defer = true;
+
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
   return (
-    <div className="px-4 grid gap-3">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 2 }}
+      key="flex_046445"
+      className="px-4 grid gap-3"
+    >
       <OverViewAd />
       <UserRationChart />
-    </div>
+    </motion.div>
   );
 };
 

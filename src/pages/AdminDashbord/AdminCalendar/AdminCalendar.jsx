@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import './AdminCalendar.css'
+import "./AdminCalendar.css";
+import { motion } from "framer-motion";
 
 const AdminCalendar = () => {
   const [date, setDate] = useState(new Date());
@@ -16,7 +17,14 @@ const AdminCalendar = () => {
   // console.log("start", endDate, startDate);
 
   return (
-    <div className="mt-14">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 2 }}
+      key="flex_046445"
+      className="mt-14"
+    >
       <h1 className="text-2xl md:text-3xl font-semibold mb-4 text-center">
         My Calendar App
       </h1>
@@ -35,7 +43,7 @@ const AdminCalendar = () => {
           {date.toString().slice(0, 15)}
         </span>
       </p>
-    </div>
+    </motion.div>
   );
 };
 

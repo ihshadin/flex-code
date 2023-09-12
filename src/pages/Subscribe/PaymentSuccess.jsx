@@ -16,7 +16,7 @@ const PaymentSuccess = () => {
   }, []);
 
   return (
-    <>
+    
       <div className=" relative flex justify-center mt-4 md:mt-9 mb-6 md:mb-12">
         <div className=" absolute top-5 right-1/2 ">
           <ConfettiExplosion />
@@ -71,7 +71,7 @@ const PaymentSuccess = () => {
           </div>
         </div>
       </div>
-    </>
+    
   );
 };
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import useAxiosNormal from "../../Hooks/useAxiosNormal";
 import useFlexUser from "../../Hooks/useFlexUser";
+import { motion } from "framer-motion";
 
 const MySubmissions = () => {
   const [flexUser] = useFlexUser();
@@ -44,7 +45,14 @@ const MySubmissions = () => {
   }, [flexUser?.username]);
 
   return (
-    <section className="flexcode-banner-bg pt-16 overflow-x-auto">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 2 }}
+      key="flex_0989"
+      className="flexcode-banner-bg pt-16 overflow-x-auto"
+    >
       <div className="flexcode-container">
         <div className="border-b-2 border-[#0fcda185] pb-3">
           <h1 className="text-white text-2xl md:text-4xl tracking-wider font-semibold">
@@ -100,7 +108,7 @@ const MySubmissions = () => {
           </table>
         </div>
       </div>
-    </section>
+    </motion.div>
   );
 };
 
