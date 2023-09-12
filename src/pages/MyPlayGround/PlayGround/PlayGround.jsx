@@ -33,17 +33,6 @@ const PlayGround = () => {
   const [flexUser, setFlexUser] = useState(null);
   const navigate = useNavigate();
 
-  // checkUser are here or not 
-  useEffect(() => {
-    if (user) {
-      axiosSecure.get(`/users?email=${user?.email}`).then((data) => {
-        setFlexUser(data.data);
-      });
-    } else {
-      setFlexUser(null);
-    }
-  }, [user]);
-
   //responsive spit for small devices
   useEffect(() => {
     const updateSplitSizes = () => {

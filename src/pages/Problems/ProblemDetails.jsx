@@ -28,10 +28,10 @@ const ProblemDetails = () => {
   const [isOpen, setIsOpen] = useState(false);
   const showFeedback = sessionStorage.getItem("showFeedback");
   const [axiosNormal] = useAxiosNormal();
-  const [axiosSecure] = useAxiosSecure();
   const { user } = useAuth();
   const [flexUser, setFlexUser] = useState(null);
   const navigate = useNavigate();
+  const [axiosSecure] = useAxiosSecure();
 
   // check user is here or not
   useEffect(() => {
