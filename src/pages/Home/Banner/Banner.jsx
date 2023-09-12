@@ -3,6 +3,7 @@ import banner from "/flex-code-banner2.0.png";
 import "./Banner.css";
 import bannerBgBottom from "../../../assets/banner-bottom.png";
 import { useEffect } from "react";
+import { motion } from "framer-motion";
 const Banner = () => {
   useEffect(() => {
     const script = document.createElement("script");
@@ -29,10 +30,18 @@ const Banner = () => {
       </div>
       <div className="flexcode-container w-full md:h-screen pt-16 flex flex-col-reverse md:flex-row items-center justify-center">
         <div className="relative pt-20 pb-10 md:py-40 px-3 w-full md:w-1/2 h-full sm:h-1/2 md:h-full flex flex-col justify-center items-center md:items-start text-center md:text-left text-white">
-          <h2 className="banner-title text-3xl md:text-6xl font-semibold ">
-            Feel like coding
-            <br /> in your own environment
-          </h2>
+          <motion.div
+            initial={{ opacity: 0, x: -60 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 0 }}
+            transition={{ delay: 0.2, duration: 2 }}
+          >
+            <h1 className="banner-title font-black text-3xl md:text-6xl ">
+              Feel like coding <br />
+              in your own environment
+            </h1>
+          </motion.div>
+
           <div className="mt-10">
             <Link to="/problems">
               <button className="flexcode-button px-8 py-3">

@@ -78,7 +78,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/problem/:id",
-        element: <PrivateRoute><ProblemDetails /></PrivateRoute>,
+        element: <ProblemDetails />,
       },
       {
         path: "/explore",
@@ -126,7 +126,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/checkout",
-        element: <CheckOut />,
+        element: <PrivateRoute><CheckOut /></PrivateRoute>,
       },
       {
         path: "/payment/success/:tranId",
