@@ -60,7 +60,6 @@ const SingleBlog = () => {
                 </div>
               </div>
               <p className=" text-white mt-5 text-justify mb-5" dangerouslySetInnerHTML={{ __html: singleBlog?.details }} />
-
             </div>
           </div>
 
@@ -94,7 +93,11 @@ const SingleBlog = () => {
                         {blog?.title}
                       </h2>
                     </Link>
-                    <p className="text-sm text-slate-400 pt-1">{blog.details.length > 50 ? blog.details.slice(0, 50) : blog.details}</p>
+                    <p className="text-sm text-slate-300 mb-5" dangerouslySetInnerHTML={{
+                      __html: blog.details.length > 50
+                        ? blog.details.slice(0, 50) + "..."
+                        : blog.details
+                    }} />
                     <hr className="my-6 border border-[#0fcda18c]" />
                   </div>
                 ))

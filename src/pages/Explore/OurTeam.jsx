@@ -2,9 +2,8 @@ import React from 'react';
 
 const OurTeam = () => {
     return (
-        <div>
-            <section className="">
-                <div className="container px-6 py-10 mx-auto">
+        <section className="">
+            {/* <div className="container px-6 py-10 mx-auto">
                     <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-3 xl:grid-cols-3">
                         <div className="px-12 py-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-[#0fcda1] ">
                             <div className="flex flex-col sm:-mx-4 sm:flex-row">
@@ -178,13 +177,12 @@ const OurTeam = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
+
+            <p>dkss</p>
 
 
-
-
-            </section>
-        </div>
+        </section>
     );
 };
 
