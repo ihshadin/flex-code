@@ -39,8 +39,6 @@ const MainLayout = () => {
     setUserPaid(false); // Set userPaid to false when user logs out
   };
 
-
-
   return (
     <AnimatePresence>
       {userPaid && (
@@ -54,7 +52,7 @@ const MainLayout = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 3 }}
+          transition={{ duration: 2 }}
           key="main-content"
         >
           <main className="min-h-[calc(100vh-515px)]">

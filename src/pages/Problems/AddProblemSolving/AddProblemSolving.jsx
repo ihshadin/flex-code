@@ -7,6 +7,7 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import { FaPlus } from "react-icons/fa";
 import useAxiosNormal from "../../../Hooks/useAxiosNormal";
 import PageBannerTitle from "../../../components/BannerTitle/PageBannerTitle";
+import { motion } from "framer-motion";
 const AddProblemSolving = () => {
   const { user } = useContext(AuthContext);
   const [axiosNormal] = useAxiosNormal();
@@ -43,20 +44,19 @@ const AddProblemSolving = () => {
       language: data.language,
     };
 
-    axiosNormal.post("/problem", AddProblems)
-      .then((data) => {
-        if (data.message === "success") {
-          console.log(AddProblems);
+    axiosNormal.post("/problem", AddProblems).then((data) => {
+      if (data.message === "success") {
+        console.log(AddProblems);
 
-          Swal.fire({
-            title: "Success Your Submit!",
-            text: "Do you want to continue",
-            icon: "success",
-            confirmButtonText: "OK",
-          });
-          reset();
-        }
-      });
+        Swal.fire({
+          title: "Success Your Submit!",
+          text: "Do you want to continue",
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+        reset();
+      }
+    });
   };
 
   const customStyles = {
@@ -68,7 +68,14 @@ const AddProblemSolving = () => {
   };
 
   return (
-    <div className="flexcode-container">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 2 }}
+      key="flex_046445"
+      className="flexcode-container"
+    >
       <section className="py-6">
         <PageBannerTitle
           title="Add Problems"
@@ -157,7 +164,7 @@ const AddProblemSolving = () => {
                 styles={customStyles} // Apply custom styles
                 isMulti
                 onChange={setSelectedOption}
-              // Other props...
+                // Other props...
               />
 
               {/* <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
@@ -175,77 +182,80 @@ const AddProblemSolving = () => {
         </div>
 
         <div>
-
           {/* Example 1 */}
-          {
-            visibleDivs.map((isVisible, index) => (
-              isVisible && <div key={index} className="border p-6 my-5">
-                <div className="flex -mx-3">
-                  <div className="w-full px-3 mb-5">
-                    <label htmlFor="" className="text-sm font-semibold px-1">
-                      Example - {`${index + 1}`}
-                    </label>
-                    <div className="flex">
-                      <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                        <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
-                      </div>
-                      <input
-                        type="text"
-                        className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border
+          {visibleDivs.map(
+            (isVisible, index) =>
+              isVisible && (
+                <div key={index} className="border p-6 my-5">
+                  <div className="flex -mx-3">
+                    <div className="w-full px-3 mb-5">
+                      <label htmlFor="" className="text-sm font-semibold px-1">
+                        Example - {`${index + 1}`}
+                      </label>
+                      <div className="flex">
+                        <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                          <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
+                        </div>
+                        <input
+                          type="text"
+                          className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border
                  text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
-                        placeholder={`Type example ${index + 1} `}
-                        {...register(`example${index}`, { required: true })}
-                      />
+                          placeholder={`Type example ${index + 1} `}
+                          {...register(`example${index}`, { required: true })}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex -mx-3">
+                    <div className="w-full px-3 mb-5">
+                      <label htmlFor="" className="text-sm font-semibold px-1">
+                        Input
+                      </label>
+                      <div className="flex">
+                        <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                          <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
+                        </div>
+                        <input
+                          type="text"
+                          className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border
+                 text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
+                          placeholder={`Input for example ${index + 1} `}
+                          {...register(`input${index}`, { required: true })}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex -mx-3">
+                    <div className="w-full px-3 mb-5">
+                      <label htmlFor="" className="text-sm font-semibold px-1">
+                        Output
+                      </label>
+                      <div className="flex">
+                        <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                          <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
+                        </div>
+                        <input
+                          type="text"
+                          className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border
+                 text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
+                          placeholder={`Output for example ${index + 1} `}
+                          {...register(`output${index}`, { required: true })}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
-
-                <div className="flex -mx-3">
-                  <div className="w-full px-3 mb-5">
-                    <label htmlFor="" className="text-sm font-semibold px-1">
-                      Input
-                    </label>
-                    <div className="flex">
-                      <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                        <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
-                      </div>
-                      <input
-                        type="text"
-                        className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border
-                 text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
-                        placeholder={`Input for example ${index + 1} `}
-                        {...register(`input${index}`, { required: true })}
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex -mx-3">
-                  <div className="w-full px-3 mb-5">
-                    <label htmlFor="" className="text-sm font-semibold px-1">
-                      Output
-                    </label>
-                    <div className="flex">
-                      <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                        <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
-                      </div>
-                      <input
-                        type="text"
-                        className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border
-                 text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
-                        placeholder={`Output for example ${index + 1} `}
-                        {...register(`output${index}`, { required: true })}
-                      />
-                    </div>
-                  </div>
-                </div>
-
-              </div>))}
-          <div onClick={handleButtonClick} className="flex items-center gap-3 border-b w-1/4 px-3 mb-10 cursor-pointer">
-            <FaPlus className="text-3xl font-thin" />  Add Example
+              )
+          )}
+          <div
+            onClick={handleButtonClick}
+            className="flex items-center gap-3 border-b w-1/4 px-3 mb-10 cursor-pointer"
+          >
+            <FaPlus className="text-3xl font-thin" /> Add Example
           </div>
           {/* Example 2 */}
-
         </div>
 
         {/* Parameter Name */}
@@ -346,7 +356,7 @@ const AddProblemSolving = () => {
                       className="radio  bg-white checked:bg-[#00ffc3]"
                       onClick={() => setIsPremium(false)}
 
-                    // {...register("isPremium", { required: true })}
+                      // {...register("isPremium", { required: true })}
                     />
                   </label>
                 </div>
@@ -366,7 +376,7 @@ const AddProblemSolving = () => {
           </div>
         </div>
       </form>
-    </div>
+    </motion.div>
   );
 };
 

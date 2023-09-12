@@ -34,7 +34,7 @@ const Banner = () => {
             initial={{ opacity: 0, x: -60 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 0 }}
-            transition={{ delay: 0.2, duration: 2 }}
+            transition={{ duration: 1 }}
           >
             <h1 className="banner-title font-black text-3xl md:text-6xl ">
               Feel like coding <br />
