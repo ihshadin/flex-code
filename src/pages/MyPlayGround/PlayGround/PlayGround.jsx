@@ -330,9 +330,8 @@ const PlayGround = () => {
                     ) : (
                       <button
                         onClick={exportCode}
-                        className={`flexcode-button text-md py-1 px-6 mt-14 ${
-                          projectName ? "" : "opacity-20 cursor-not-allowed"
-                        }`}
+                        className={`flexcode-button text-md py-1 px-6 mt-14 ${projectName ? "" : "opacity-20 cursor-not-allowed"
+                          }`}
                         disabled={!projectName}
                       >
                         Export
@@ -342,7 +341,7 @@ const PlayGround = () => {
                 </div>
               </div>
               {user ? (
-                
+
                 <button
                   onClick={() => setModalIsOpen(true)}
                   className="text-xs px-2 btn-ghost bg-slate-500 rounded mr-1"
@@ -376,11 +375,11 @@ const PlayGround = () => {
                 >
                   Export
                 </button>
-                
+
                 // <Link to="/login" className="text-xs px-2 btn-ghost bg-slate-500 rounded mr-1">
                 //     Export
                 // </Link>
-              )}  
+              )}
 
               <button
                 onClick={openConsole}

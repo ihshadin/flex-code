@@ -22,9 +22,8 @@ const SocialLogin = () => {
         const saveUser = {
           name: user.displayName || "User Name",
           email: user.email,
-          username: `${user.email.split("@")[0]}${
-            Math.floor(Math.random() * (999 - 100 + 1)) + 100
-          }`,
+          username: `${user.email.split("@")[0]}${Math.floor(Math.random() * (999 - 100 + 1)) + 100
+            }`,
           date: new Date(),
           userRole: "general",
           gender: "",
@@ -63,9 +62,8 @@ const SocialLogin = () => {
         const saveUser = {
           name: user.displayName || "User Name",
           email: user.email,
-          username: `${user.email.split("@")[0]}${
-            Math.floor(Math.random() * (999 - 100 + 1)) + 100
-          }`,
+          username: `${user.email.split("@")[0]}${Math.floor(Math.random() * (999 - 100 + 1)) + 100
+            }`,
           date: new Date(),
           userRole: "general",
           gender: "",
