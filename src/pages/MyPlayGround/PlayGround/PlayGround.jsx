@@ -11,9 +11,15 @@ import "codemirror/addon/hint/show-hint.css";
 import "codemirror/addon/hint/show-hint";
 import "codemirror/addon/hint/javascript-hint";
 import "./PlayGround.css";
-import useFlexUser from "../../../Hooks/useFlexUser";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+<<<<<<< HEAD
+import { motion } from "framer-motion";
+=======
+import useAuth from "../../../Hooks/useAuth";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+>>>>>>> 1f5b5ac406953fe560141472b0305de0ffd86357
 
 const PlayGround = () => {
   const [htmlCode, setHtmlCode] = useState("");
@@ -23,11 +29,27 @@ const PlayGround = () => {
   const [errorOutput, setErrorOutput] = useState("");
   const [isConsoleOpen, setIsConsoleOpen] = useState(false);
   const [splitSizes, setSplitSizes] = useState([55, 55]);
-  const [flexUser] = useFlexUser();
   const [axiosSecure] = useAxiosSecure();
   const [loading, setLoading] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const { user } = useAuth();
+  const [flexUser, setFlexUser] = useState(null);
+  const navigate = useNavigate();
 
+<<<<<<< HEAD
+=======
+  // checkUser are here or not 
+  useEffect(() => {
+    if (user) {
+      axiosSecure.get(`/users?email=${user?.email}`).then((data) => {
+        setFlexUser(data.data);
+      });
+    } else {
+      setFlexUser(null);
+    }
+  }, [user]);
 
+>>>>>>> 1f5b5ac406953fe560141472b0305de0ffd86357
   //responsive spit for small devices
   useEffect(() => {
     const updateSplitSizes = () => {
@@ -129,15 +151,27 @@ const PlayGround = () => {
       toast.success("Export Successfull!");
       console.log(data);
       setLoading(false);
-      setProjectName('')
-      setHtmlCode('')
-      setCssCode('')
-      setJsCode('')
+      setProjectName("");
+      setHtmlCode("");
+      setCssCode("");
+      setJsCode("");
+<<<<<<< HEAD
+=======
+      setModalIsOpen(false);
+>>>>>>> 1f5b5ac406953fe560141472b0305de0ffd86357
     });
   };
 
+
   return (
-    <div className="relative p-4 overflow-hidden ">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 2 }}
+      key="flex_8"
+      className="relative p-4 overflow-hidden "
+    >
       <Split
         className="flex flex-col h-[160vh] md:h-[100vh] pt-16 md:pt-0"
         direction="vertical"
@@ -274,15 +308,17 @@ const PlayGround = () => {
             </div>
           ) : (
             <div className="flex justify-end absolute top-0 bg-[#1e2d40] bg-opacity-90 w-full py-1">
-              <div className="modal" id="exportModal">
+              <div
+                className={`modal ${modalIsOpen && "modal-open"}`}
+                id="exportModal"
+              >
                 <div className="relative modal-box bg-black flexcode-banner-bg min-h-64 flex flex-col justify-center items-center border border-slate-600 hover:border-[#0fcda156]">
-                  <a
-                    href="#"
+                  <button
+                    onClick={() => setModalIsOpen(false)}
                     className="ml-auto hover:text-[#0fcda1] text-[#0fcda1] mb-8 border-[#0fcda18c] bg-transparent"
                   >
-                    {" "}
-                    X{" "}
-                  </a>
+                    X
+                  </button>
                   <div className="mb-10 absolute ">
                     <h2 className="text-xl font-bold mb-2  border-b-2 border-[#0fcda1]">
                       Enter Project Name
@@ -325,18 +361,46 @@ const PlayGround = () => {
                   </div>
                 </div>
               </div>
-              {/* <button
-                onClick={exportCode}
-                className="text-xs px-2 btn-ghost bg-slate-500 rounded mr-1"
-              >
-                Export
-              </button> */}
-              <a
-                href="#exportModal"
-                className="text-xs px-2 btn-ghost bg-slate-500 rounded mr-1"
-              >
-                Export
-              </a>
+              {user ? (
+                
+                <button
+                  onClick={() => setModalIsOpen(true)}
+                  className="text-xs px-2 btn-ghost bg-slate-500 rounded mr-1"
+                >
+                  Export
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    Swal.fire({
+                      title: "Want to Export?",
+                      text: "You need to login first!",
+                      icon: 'warning',
+                      showCancelButton: true,
+                      confirmButtonColor: 'transparent',
+                      cancelButtonColor: 'red',
+                      confirmButtonText: 'Yes, Login!',
+                      // backdrop: '#17181b99',
+                      background: '#1e2d40',
+                      color: 'white',
+                      customClass: {
+                        confirmButton: 'flexcode-button',
+                      },
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        navigate('/login')
+                      }
+                    })
+                  }}
+                  className="text-xs px-2 btn-ghost bg-slate-500 rounded mr-1"
+                >
+                  Export
+                </button>
+                
+                // <Link to="/login" className="text-xs px-2 btn-ghost bg-slate-500 rounded mr-1">
+                //     Export
+                // </Link>
+              )}  
 
               <button
                 onClick={openConsole}
@@ -348,7 +412,7 @@ const PlayGround = () => {
           )}
         </div>
       </Split>
-    </div>
+    </motion.div>
   );
 };
 

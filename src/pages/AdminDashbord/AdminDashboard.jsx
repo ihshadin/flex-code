@@ -3,14 +3,21 @@ import NavBar from "../Shared/NavBar/NavBar";
 import Footer from "../Shared/Footer/Footer";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
-import { AiOutlineMenuUnfold } from "react-icons/ai"
-import './AdminDashboard.css'
+import { AiOutlineMenuUnfold } from "react-icons/ai";
+import "./AdminDashboard.css";
+import { motion } from "framer-motion";
 
 const AdminDashboard = () => {
   const { user } = useAuth();
 
   return (
-    <section>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 2 }}
+      key="flex_046445"
+    >
       <NavBar />
       <div className="drawer lg:drawer-open flexcode-container !pt-16 !pb-5 md:!py-2">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -23,9 +30,16 @@ const AdminDashboard = () => {
             <AiOutlineMenuUnfold /> Admin Menu
           </label>
           {/* Page content here */}
-          <div className="w-full">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 2 }}
+            key="flex_046445"
+            className="w-full"
+          >
             <Outlet />
-          </div>
+          </motion.div>
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
@@ -111,7 +125,7 @@ const AdminDashboard = () => {
         </div>
       </div>
       <Footer />
-    </section>
+    </motion.div>
   );
 };
 

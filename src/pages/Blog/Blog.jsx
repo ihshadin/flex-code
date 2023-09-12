@@ -8,7 +8,8 @@ import useAllBlogs from "../../Hooks/useAllBlogs";
 import { motion } from "framer-motion";
 
 const Blog = () => {
-  const { allBlogs, currentPage, setCurrentPage, totalPages, isLoading } = useAllBlogs();
+  const { allBlogs, currentPage, setCurrentPage, totalPages, isLoading } =
+    useAllBlogs();
 
   return (
     <section>

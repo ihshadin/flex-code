@@ -2,17 +2,18 @@ import React, { useContext, useMemo, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading";
 import { Link, useNavigate, useNavigation } from "react-router-dom";
-import './ProfileEdit.css';
+import "./ProfileEdit.css";
 import Swal from "sweetalert2";
-import countryList from 'react-select-country-list'
+import countryList from "react-select-country-list";
 import Select from "react-select";
 import PageBannerTitle from "../../../components/BannerTitle/PageBannerTitle";
 import useAxiosNormal from "../../../Hooks/useAxiosNormal";
 import useFlexUser from "../../../Hooks/useFlexUser";
+import { motion } from "framer-motion";
 
 const ProfileEdit = () => {
   const { user } = useContext(AuthContext);
-  const [flexUser] = useFlexUser()
+  const [flexUser] = useFlexUser();
   const [selectedOption, setSelectedOption] = useState(flexUser?.gender);
   const [selectedSkills, setSelectedSkills] = useState(flexUser?.skills);
   const navigation = useNavigation();
@@ -20,12 +21,12 @@ const ProfileEdit = () => {
   const inputSkills = selectedSkills?.map((item) => item?.value);
   const [axiosNormal] = useAxiosNormal();
 
-  const [value, setValue] = useState('')
-  const options = useMemo(() => countryList().getData(), [])
+  const [value, setValue] = useState("");
+  const options = useMemo(() => countryList().getData(), []);
 
-  const changeHandler = value => {
-    setValue(value)
-  }
+  const changeHandler = (value) => {
+    setValue(value);
+  };
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
   };
@@ -90,7 +91,14 @@ const ProfileEdit = () => {
   };
 
   return (
-    <section className="-mt-10">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 2 }}
+      key="flex_09009"
+      className="-mt-10"
+    >
       <div className="flexcode-container">
         <div className="flex gap-10">
           <div className="flexcode-banner-bg sticky top-24 p-4 w-80 text-white py-5 rounded-lg h-screen">
@@ -236,7 +244,7 @@ const ProfileEdit = () => {
                     </label>
                     <label className="">
                       <input
-                      required
+                        required
                         type="text"
                         name="name"
                         disabled
@@ -253,7 +261,7 @@ const ProfileEdit = () => {
                     </label>
                     <label className="">
                       <input
-                      required
+                        required
                         type="email"
                         name="email"
                         autoComplete="off"
@@ -273,8 +281,8 @@ const ProfileEdit = () => {
                     </label>
                     <label className="">
                       <input
-                      defaultValue={flexUser?.address}
-                      required
+                        defaultValue={flexUser?.address}
+                        required
                         autoComplete="off"
                         type="text"
                         name="address"
@@ -289,8 +297,8 @@ const ProfileEdit = () => {
                     </label>
                     <label className="">
                       <input
-                      defaultValue={flexUser?.mobile}
-                      required
+                        defaultValue={flexUser?.mobile}
+                        required
                         type="number"
                         autoComplete="off"
                         name="mobile"
@@ -323,7 +331,7 @@ const ProfileEdit = () => {
                       <span className="">Select Your Gender</span>
                     </label>
                     <select
-                    defaultValue={flexUser?.gender}
+                      defaultValue={flexUser?.gender}
                       value={selectedOption}
                       className="w-full border-2 border-gray-500 p-2 bg-[#1e2d40] hover:bg-[#17181B] text-sm outline-none py-2 focus:border-[#0fcda1]"
                       onChange={handleOptionChange}
@@ -343,8 +351,8 @@ const ProfileEdit = () => {
                     </label>
                     <label className="">
                       <input
-                      defaultValue={flexUser?.dateOfBirth}
-                      required
+                        defaultValue={flexUser?.dateOfBirth}
+                        required
                         type="date"
                         name="date"
                         placeholder="date"
@@ -366,28 +374,31 @@ const ProfileEdit = () => {
                         className="w-full border-2 border-gray-500 p-2 bg-[#1e2d40] hover:bg-[#17181B] text-sm outline-none py-2 focus:border-[#0fcda1]"
                       /> */}
                       <Select
-                       className="w-full bg-[#1e2d40] text-black hover:bg-[#17181B] text-sm outline-none focus:border-[#0fcda1]"
-                      options={options} value={value} onChange={changeHandler} />
+                        className="w-full bg-[#1e2d40] text-black hover:bg-[#17181B] text-sm outline-none focus:border-[#0fcda1]"
+                        options={options}
+                        value={value}
+                        onChange={changeHandler}
+                      />
                     </label>
                   </div>
                 </div>
 
                 <div className="form-control w-full px-5 mx-auto">
-                    <label className="label">
-                      <span className="">Personal WebSite</span>
-                    </label>
-                    <label className="">
-                      <input
+                  <label className="label">
+                    <span className="">Personal WebSite</span>
+                  </label>
+                  <label className="">
+                    <input
                       defaultValue={flexUser?.webSiteLink}
                       required
-                        type="text"
-                        name="personal"
-                        autoComplete="off"
-                        placeholder="personal website here"
-                        className="w-full border-2 border-gray-500 p-2 bg-[#1e2d40] hover:bg-[#17181B] text-sm outline-none py-2 focus:border-[#0fcda1]"
-                      />
-                    </label>
-                  </div>
+                      type="text"
+                      name="personal"
+                      autoComplete="off"
+                      placeholder="personal website here"
+                      className="w-full border-2 border-gray-500 p-2 bg-[#1e2d40] hover:bg-[#17181B] text-sm outline-none py-2 focus:border-[#0fcda1]"
+                    />
+                  </label>
+                </div>
                 <div className="form-control w-full px-5 mx-auto">
                   <label className="label">
                     <span className="">Facebook Account</span>
@@ -395,7 +406,7 @@ const ProfileEdit = () => {
                   <label className="">
                     <input
                       defaultValue={flexUser?.fbLinks}
-                    required
+                      required
                       type="text"
                       name="facebook"
                       autoComplete="off"
@@ -411,7 +422,7 @@ const ProfileEdit = () => {
                   <label className="">
                     <input
                       defaultValue={flexUser?.LinkLinks}
-                    required
+                      required
                       type="text"
                       name="linkedin"
                       autoComplete="off"
@@ -427,7 +438,7 @@ const ProfileEdit = () => {
                   <label className="">
                     <input
                       defaultValue={flexUser?.github}
-                    required
+                      required
                       type="text"
                       name="github"
                       autoComplete="off"
@@ -450,7 +461,7 @@ const ProfileEdit = () => {
           </div>
         </div>
       </div>
-    </section>
+    </motion.div>
   );
 };
 

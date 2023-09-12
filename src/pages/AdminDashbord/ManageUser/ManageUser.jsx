@@ -3,6 +3,7 @@ import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading
 import { toast } from "react-hot-toast";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAllUsers from "../../../Hooks/useAllUsers";
+import { motion } from "framer-motion";
 
 const ManageUser = () => {
   const [loading, setLoading] = useState(true);
@@ -59,7 +60,7 @@ const ManageUser = () => {
           }
           return user;
         });
-        setAllUsers(updatedUsers)
+        setAllUsers(updatedUsers);
         toast.success("Admin role updated to user!", {
           position: "top-center",
           autoClose: 10000,
@@ -76,9 +77,15 @@ const ManageUser = () => {
     }
   };
 
-
   return (
-    <section className="text-white md:mx-7 md:my-5">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 2 }}
+      key="flex_046445"
+      className="text-white md:mx-7 md:my-5"
+    >
       <div className="border-b-2 border-[#0fcda185] pb-3 mb-8 ">
         <h1 className="text-white text-2xl md:text-4xl tracking-wider font-semibold">
           All user
@@ -126,7 +133,7 @@ const ManageUser = () => {
                     <button
                       onClick={() => handleMakeAdmin(data?.email)}
                       className="text-sm px-2 bg-[#0fcda188] rounded-lg capitalize"
-                    // disabled={makeloading || user.userRole === "admin"}
+                      // disabled={makeloading || user.userRole === "admin"}
                     >
                       Make admin
                     </button>
@@ -137,7 +144,7 @@ const ManageUser = () => {
           </div>
         </div>
       )}
-    </section>
+    </motion.div>
   );
 };
 
