@@ -78,7 +78,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/problem/:id",
-        element: <PrivateRoute><ProblemDetails /></PrivateRoute>,
+        element: <ProblemDetails />,
       },
       {
         path: "/explore",

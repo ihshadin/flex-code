@@ -90,3 +90,7 @@ body::-webkit-scrollbar-thumb:hover {
 .flexcode-button:focus {
   @apply border-white;
 }
+
+.swal2-backdrop-show {
+  backdrop-filter: blur(3px) !important;
+}
