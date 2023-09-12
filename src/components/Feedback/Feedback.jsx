@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import Rating from "react-rating";
@@ -6,15 +6,29 @@ import reviewImg1 from "../../../public/20230810_120154.png";
 import PageBannerTitle from "../BannerTitle/PageBannerTitle";
 import useAxiosNormal from "../../Hooks/useAxiosNormal";
 import toast from "react-hot-toast";
-import useFlexUser from "../../Hooks/useFlexUser";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAuth from "../../Hooks/useAuth";
 
 const Feedback = () => {
   const [rating, setRating] = useState(0);
   const [exp, setExp] = useState("");
   const [details, setDetails] = useState("");
-  const [flexUser] = useFlexUser();
   const [axiosNormal] = useAxiosNormal();
   const { register, handleSubmit, reset } = useForm();
+  const { user } = useAuth();
+  const [flexUser, setFlexUser] = useState(null);
+  const [axiosSecure] = useAxiosSecure();
+
+  // check user is here or not 
+  useEffect(() => {
+    if (user) {
+      axiosSecure.get(`/users?email=${user?.email}`).then((data) => {
+        setFlexUser(data.data);
+      });
+    } else {
+      setFlexUser(null);
+    }
+  }, [user]);
 
   const onSubmit = (data) => {
     const feedbackDetails = {
