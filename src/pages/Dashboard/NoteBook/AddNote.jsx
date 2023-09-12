@@ -33,7 +33,7 @@ const AddNode = () => {
 
 	return (
 		<section>
-			<div className="flexcode-container">
+			<div className="flexcode-container !pt-16 md:!pt-10">
 				<PageBannerTitle
 					title='Write your Notes Notes'
 					shortDesc='A notebook is a blank book that you can write in and save it.'

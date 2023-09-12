@@ -11,8 +11,7 @@ import "swiper/css/navigation";
 import Rating from "react-rating";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
-import axios from "axios";
-import useAxiosNormal from "../../../hooks/useAxiosNormal";
+import useAxiosNormal from "../../../Hooks/useAxiosNormal";
 import { Link } from "react-router-dom";
 
 const Testimonials = () => {
@@ -22,7 +21,7 @@ const Testimonials = () => {
   useEffect(() => {
     axiosNormal.get("/feedback")
       .then((data) => {
-        setFeedbacks(data?.result);
+        setFeedbacks(data);
       });
   }, []);
 

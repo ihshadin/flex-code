@@ -43,7 +43,7 @@ const Banner = () => {
           </motion.div>
 
           <div className="mt-10">
-            <Link to="/problemsP">
+            <Link to="/problems">
               <button className="flexcode-button px-8 py-3">
                 Get Start Now
               </button>

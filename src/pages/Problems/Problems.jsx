@@ -19,6 +19,7 @@ const Problems = () => {
     filterLevel,
     setFilterLevel,
   } = useAllProblems();
+
   const problemsLanguage = [
     "JavaScript",
     "Python",
@@ -43,7 +44,8 @@ const Problems = () => {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 3 }}
-        className="flexcode-container "
+        className="flexcode-container !pt-16 md:!pt-10"
+        key="flex_2"
       >
         <PageBannerTitle
           title="Most Popular languages"
@@ -56,14 +58,12 @@ const Problems = () => {
             <Link
               to={`${problem.toLowerCase()}`}
               key={index}
-              className={`${
-                problemsLanguage.reduce((total, i) => total + index, 0) - 3 <=
+              className={`${problemsLanguage.reduce((total, i) => total + index, 0) - 3 <=
                 index
-                  ? "border-b"
-                  : ""
-              } ${[6, 7, 8].includes(index) ? "" : "border-b"} ${
-                [1, 4, 7, 10, 13].includes(index) ? "border-x" : ""
-              } cursor-pointer border-[#0fcda1] hover:bg-[#0fcda1] hover:text-[#17181b] transition-all flex justify-center items-center`}
+                ? "border-b"
+                : ""
+                } ${[6, 7, 8].includes(index) ? "" : "border-b"} ${[1, 4, 7, 10, 13].includes(index) ? "border-x" : ""
+                } cursor-pointer border-[#0fcda1] hover:bg-[#0fcda1] hover:text-[#17181b] transition-all flex justify-center items-center`}
             >
               <p className="md:text-lg font-medium text-center py-5">
                 {problem}

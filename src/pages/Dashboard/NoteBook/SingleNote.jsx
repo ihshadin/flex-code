@@ -1,33 +1,31 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import useAxiosNormal from '../../../Hooks/useAxiosNormal';
 import PageBannerTitle from '../../../components/BannerTitle/PageBannerTitle';
 import useAuth from '../../../Hooks/useAuth';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const SingleNote = () => {
     const { id } = useParams();
     const { user } = useAuth();
     const [notes, setNotes] = useState([]);
     const [note, setNote] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [axiosNormal] = useAxiosNormal();
+    const [axiosSecure] = useAxiosSecure();
 
     useEffect(() => {
-        axiosNormal.get(`/notebooks/${id}`)
+        axiosSecure.get(`/notebooks/${id}`)
             .then(data => {
-                setNote(data)
-                setLoading(false)
+                setNote(data?.data)
             })
     }, [id])
 
     useEffect(() => {
-        axiosNormal.get(`notebooks?email=${user?.email}`)
+        axiosSecure.get(`/notebooks?email=${user?.email}`)
             .then(data => {
-                setNotes(data)
-                setLoading(false)
+                console.log(data.data);
+                setNotes(data?.data)
             })
-    }, [])
+    }, [user?.email])
 
     return (
         <section>

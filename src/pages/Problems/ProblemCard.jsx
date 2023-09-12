@@ -1,11 +1,12 @@
 import { FaCrown } from "react-icons/fa6";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../Subscribe/Subscribe.css";
 import useFlexUser from "../../Hooks/useFlexUser";
 
 const ProblemCard = ({ problem }) => {
   const [flexUser] = useFlexUser();
+
   const isPremium = flexUser?.isPremium;
 
   return (
@@ -63,7 +64,7 @@ const ProblemCard = ({ problem }) => {
           </Link>
         )}
       </div>
-      {/* The button to open modal */}
+      {/* The button to open modal
 
       {/* Put this part before </body> tag */}
       <div className="modal" id="subscribeFirst">

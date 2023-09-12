@@ -7,7 +7,7 @@ import useAllUsers from "../../../Hooks/useAllUsers";
 const ManageUser = () => {
   const [loading, setLoading] = useState(true);
   const [axiosSecure] = useAxiosSecure();
-  const [allUsers] = useAllUsers();
+  const [allUsers, setAllUsers] = useAllUsers();
 
   useEffect(() => {
     if (allUsers.length > 0) {
@@ -19,6 +19,16 @@ const ManageUser = () => {
     try {
       const res = await axiosSecure.post(`/users/all/admin/${email}`);
       if (res.data.user.modifiedCount > 0) {
+        const updatedUsers = allUsers.map((user) => {
+          if (user.email === email) {
+            return {
+              ...user,
+              userRole: "admin",
+            };
+          }
+          return user;
+        });
+        setAllUsers(updatedUsers);
         toast.success("User role updated to admin!", {
           position: "top-center",
           autoClose: 10000,
@@ -40,6 +50,16 @@ const ManageUser = () => {
       const res = await axiosSecure.post(`/users/all/genarel/${email}`);
 
       if (res.data.user.modifiedCount > 0) {
+        const updatedUsers = allUsers.map((user) => {
+          if (user.email === email) {
+            return {
+              ...user,
+              userRole: "general",
+            };
+          }
+          return user;
+        });
+        setAllUsers(updatedUsers)
         toast.success("Admin role updated to user!", {
           position: "top-center",
           autoClose: 10000,
@@ -56,7 +76,6 @@ const ManageUser = () => {
     }
   };
 
-  console.log(allUsers);
 
   return (
     <section className="text-white md:mx-7 md:my-5">
@@ -107,7 +126,7 @@ const ManageUser = () => {
                     <button
                       onClick={() => handleMakeAdmin(data?.email)}
                       className="text-sm px-2 bg-[#0fcda188] rounded-lg capitalize"
-                      // disabled={makeloading || user.userRole === "admin"}
+                    // disabled={makeloading || user.userRole === "admin"}
                     >
                       Make admin
                     </button>

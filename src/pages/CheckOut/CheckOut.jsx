@@ -34,13 +34,12 @@ const CheckOut = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         window.location.replace(data?.url);
       });
   };
 
   return (
-    <div className="flexcode-container text-white flex flex-col md:flex-row items-stretch gap-y-5 md:gap-x-6">
+    <div className="flexcode-container !pt-16 md:!pt-10 text-white flex flex-col md:flex-row items-stretch gap-y-5 md:gap-x-6">
       <div className="exploreCard border border-slate-500 hover:border-[#0fcda156] transition-all p-5 md:p-10 rounded-2xl md:w-[60%]">
         <div>
           <div className="flex flex-col md:flex-row gap-y-2 justify-between mb-6">
