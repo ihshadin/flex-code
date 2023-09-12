@@ -14,6 +14,7 @@ import "./PlayGround.css";
 import useFlexUser from "../../../Hooks/useFlexUser";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import { motion } from "framer-motion";
 
 const PlayGround = () => {
   const [htmlCode, setHtmlCode] = useState("");
@@ -26,7 +27,6 @@ const PlayGround = () => {
   const [flexUser] = useFlexUser();
   const [axiosSecure] = useAxiosSecure();
   const [loading, setLoading] = useState(false);
-
 
   //responsive spit for small devices
   useEffect(() => {
@@ -129,15 +129,22 @@ const PlayGround = () => {
       toast.success("Export Successfull!");
       console.log(data);
       setLoading(false);
-      setProjectName('')
-      setHtmlCode('')
-      setCssCode('')
-      setJsCode('')
+      setProjectName("");
+      setHtmlCode("");
+      setCssCode("");
+      setJsCode("");
     });
   };
 
   return (
-    <div className="relative p-4 overflow-hidden ">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 2 }}
+      key="flex_8"
+      className="relative p-4 overflow-hidden "
+    >
       <Split
         className="flex flex-col h-[160vh] md:h-[100vh] pt-16 md:pt-0"
         direction="vertical"
@@ -348,7 +355,7 @@ const PlayGround = () => {
           )}
         </div>
       </Split>
-    </div>
+    </motion.div>
   );
 };
 
