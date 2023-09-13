@@ -14,6 +14,9 @@ import "./PlayGround.css";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
+import useAuth from "../../../Hooks/useAuth";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const PlayGround = () => {
   const [htmlCode, setHtmlCode] = useState("");

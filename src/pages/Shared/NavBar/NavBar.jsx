@@ -4,13 +4,14 @@ import { FaCrown, FaUser } from "react-icons/fa";
 import { VscSignIn } from "react-icons/vsc";
 import "./NavBar.css";
 import { toast } from "react-hot-toast";
+import useFlexUser from "../../../Hooks/useFlexUser";
 import useAuth from "../../../Hooks/useAuth";
-import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [userClicked, setUserClicked] = useState(false);
   const { user, logOut, loading } = useAuth();
+  const [flexUser] = useFlexUser();
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -24,7 +25,6 @@ const NavBar = () => {
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
-
 
   const isActiveRoute = (routePath) => {
     return location.pathname === routePath;
@@ -55,16 +55,19 @@ const NavBar = () => {
     };
   }, []);
 
-  if (loading) {
-    return '';
-  }
+  // console.log('navBar--68', flexUser);
+
+  // if (loading) {
+  //   return "";
+  // }
 
   return (
     <nav
-      className={`top-0 backdrop-blur-sm z-10 w-full fixed ${location.pathname === "/" || location.pathname === "/my-submittions"
-        ? "md:fixed"
-        : "md:sticky"
-        }`}
+      className={`top-0 backdrop-blur-sm z-10 w-full fixed ${
+        location.pathname === "/" || location.pathname === "/my-submittions"
+          ? "md:fixed"
+          : "md:sticky"
+      }`}
     >
       <div className="relative max-w-[1280px] w-full mx-auto bg-inherit py-2 px-3 lg:flex justify-between items-center">
         <div className="flex items-center justify-between">
@@ -121,8 +124,9 @@ const NavBar = () => {
         </div>
         <div className="flex items-center">
           <div
-            className={`${isMenuOpen ? "block" : "hidden"
-              } lg:flex lg:w-auto mt-4 lg:mt-0 flexcode-menu-animation  transition-all duration-300 `}
+            className={`${
+              isMenuOpen ? "block" : "hidden"
+            } lg:flex lg:w-auto mt-4 lg:mt-0 flexcode-menu-animation  transition-all duration-300 `}
             id="mobile-menu"
           >
             <ul className="flex flex-col gap-3 md:gap-8 md:mt-[1.5px] lg:text-left lg:flex-row lg:items-center">
@@ -130,10 +134,11 @@ const NavBar = () => {
                 <Link
                   to="/"
                   onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 nav-effect${isActiveRoute("/")
-                    ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
-                    : ""
-                    }`}
+                  className={`text-white hover:text-gray-300 pb-1 nav-effect${
+                    isActiveRoute("/")
+                      ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
+                      : ""
+                  }`}
                 >
                   Home
                 </Link>
@@ -142,10 +147,11 @@ const NavBar = () => {
                 <Link
                   to="/problems"
                   onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 nav-effect${isActiveRoute("/problems")
-                    ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
-                    : ""
-                    }`}
+                  className={`text-white hover:text-gray-300 pb-1 nav-effect${
+                    isActiveRoute("/problems")
+                      ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
+                      : ""
+                  }`}
                 >
                   Problems
                 </Link>
@@ -154,10 +160,11 @@ const NavBar = () => {
                 <Link
                   to="/blog"
                   onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 nav-effect${isActiveRoute("/blog")
-                    ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
-                    : ""
-                    }`}
+                  className={`text-white hover:text-gray-300 pb-1 nav-effect${
+                    isActiveRoute("/blog")
+                      ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
+                      : ""
+                  }`}
                 >
                   Blogs
                 </Link>
@@ -166,10 +173,11 @@ const NavBar = () => {
                 <Link
                   to="/explore"
                   onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 nav-effect${isActiveRoute("/explore")
-                    ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
-                    : ""
-                    }`}
+                  className={`text-white hover:text-gray-300 pb-1 nav-effect${
+                    isActiveRoute("/explore")
+                      ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
+                      : ""
+                  }`}
                 >
                   Explore
                 </Link>
@@ -178,43 +186,46 @@ const NavBar = () => {
                 <Link
                   to="/playground"
                   onClick={closeMenu}
-                  className={`text-white hover:text-gray-300 pb-1 nav-effect${isActiveRoute("/playground")
-                    ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
-                    : ""
-                    }`}
+                  className={`text-white hover:text-gray-300 pb-1 nav-effect${
+                    isActiveRoute("/playground")
+                      ? "font-bold border-b-2 pb-[1.9px] border-[#0fcda1]"
+                      : ""
+                  }`}
                 >
                   PlayGround
                 </Link>
               </li>
-              {/* {
-                !flexUser?.isPremium && ( */}
-              <li>
-                <Link
-                  to="/subscribe"
-                  onClick={closeMenu}
-                  className={`text-white pb-1`}
-                >
-                  <button className="md:-mr-5 py-1 px-5 border border-[#ffbc2ab5] rounded-lg font-medium flex items-center gap-1"><FaCrown className="text-[#ffbc2a]" /> Upgrade</button>
-                </Link>
-              </li>
-              {/* )
-              } */}
+              {!flexUser?.isPremium && (
+                <li>
+                  <Link
+                    to="/subscribe"
+                    onClick={closeMenu}
+                    className={`text-white pb-1`}
+                  >
+                    <button className="md:-mr-5 py-1 px-5 border border-[#ffbc2ab5] rounded-lg font-medium flex items-center gap-1">
+                      <FaCrown className="text-[#ffbc2a]" /> Upgrade
+                    </button>
+                  </Link>
+                </li>
+              )}
 
               {user?.email ? (
                 <li className="absolute top-3 md:top-auto right-14 md:right-auto md:relative">
                   <button
                     ref={dropdownRef}
                     onClick={handleUserClick}
-                    className={`flex items-center ${userClicked ? "text-gray-300" : "text-white"
-                      }`}
+                    className={`flex items-center ${
+                      userClicked ? "text-gray-300" : "text-white"
+                    }`}
                   >
                     {user.photoURL ? (
                       <>
                         <img
-                          className={`h-9 w-9 rounded-full ${userClicked
-                            ? "border-2 border-[#0fcda1]"
-                            : "border-2 border-transparent"
-                            } `}
+                          className={`h-9 w-9 rounded-full ${
+                            userClicked
+                              ? "border-2 border-[#0fcda1]"
+                              : "border-2 border-transparent"
+                          } `}
                           title={user?.displayName}
                           src={user?.photoURL}
                           alt=""
@@ -222,10 +233,11 @@ const NavBar = () => {
                       </>
                     ) : (
                       <FaUser
-                        className={`h-8 w-8 rounded-full p-1 ${userClicked
-                          ? "border-2 border-[#0fcda1]"
-                          : "border-2 border-white"
-                          } `}
+                        className={`h-8 w-8 rounded-full p-1 ${
+                          userClicked
+                            ? "border-2 border-[#0fcda1]"
+                            : "border-2 border-white"
+                        } `}
                         title={user?.displayName}
                       ></FaUser>
                     )}
@@ -234,8 +246,9 @@ const NavBar = () => {
                   {/* start user dropdown  */}
                   {user?.email && (
                     <div
-                      className={`absolute -right-8 md:right-0 mt-2 z-10 flexcode-dropdown-animation ${userClicked ? "block" : "hidden"
-                        }`}
+                      className={`absolute -right-8 md:right-0 mt-2 z-10 flexcode-dropdown-animation ${
+                        userClicked ? "block" : "hidden"
+                      }`}
                     >
                       <div className="bg-[#1e2d40] bg-opacity-95 transition-all duration-700 w-[18rem] py-2 rounded-md shadow-md overflow-hidden">
                         <div className="px-4 py-2">
@@ -337,18 +350,22 @@ const NavBar = () => {
                     <button
                       ref={dropdownRef}
                       onClick={handleUserClick}
-                      className={`flex items-center ${userClicked ? "text-gray-300" : "text-white"
-                        }`}
+                      className={`flex items-center ${
+                        userClicked ? "text-gray-300" : "text-white"
+                      }`}
                     >
                       <VscSignIn
-                        className={`h-8 w-8 rounded-full p-1 ${userClicked
-                          ? "border-2 border-[#0fcda1]"
-                          : ""
-                          } `}
+                        className={`h-8 w-8 rounded-full p-1 ${
+                          userClicked ? "border-2 border-[#0fcda1]" : ""
+                        } `}
                         title={user?.displayName}
                       />
                     </button>
-                    <div className={`absolute -right-8 md:right-0 mt-2 z-10 flexcode-dropdown-animation ${userClicked ? "block" : "hidden"}`} >
+                    <div
+                      className={`absolute -right-8 md:right-0 mt-2 z-10 flexcode-dropdown-animation ${
+                        userClicked ? "block" : "hidden"
+                      }`}
+                    >
                       <div className="bg-[#1e2d40] bg-opacity-95 backdrop-blur-sm transition-all duration-700 w-[10rem] py-2 rounded-md shadow-md overflow-hidden">
                         <div>
                           <Link

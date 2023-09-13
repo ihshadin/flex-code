@@ -22,9 +22,8 @@ const SocialLogin = () => {
         const saveUser = {
           name: user.displayName || "User Name",
           email: user.email,
-          username: `${user.email.split("@")[0]}${
-            Math.floor(Math.random() * (999 - 100 + 1)) + 100
-          }`,
+          username: `${user.email.split("@")[0]}${Math.floor(Math.random() * (999 - 100 + 1)) + 100
+            }`,
           date: new Date(),
           userRole: "general",
           gender: "",
@@ -47,6 +46,7 @@ const SocialLogin = () => {
         axiosSecure.post("/users", saveUser).then((data) => {
           console.log(data);
           navigate(from, { replace: true });
+          setLoading(false);
         });
       })
       .catch((error) => {
@@ -62,9 +62,8 @@ const SocialLogin = () => {
         const saveUser = {
           name: user.displayName || "User Name",
           email: user.email,
-          username: `${user.email.split("@")[0]}${
-            Math.floor(Math.random() * (999 - 100 + 1)) + 100
-          }`,
+          username: `${user.email.split("@")[0]}${Math.floor(Math.random() * (999 - 100 + 1)) + 100
+            }`,
           date: new Date(),
           userRole: "general",
           gender: "",
@@ -86,7 +85,7 @@ const SocialLogin = () => {
         };
 
         axiosSecure.post("/users", saveUser).then((data) => {
-          console.log(saveUser);
+          // console.log(saveUser);
           setLoading(false)
         });
         toast.success("Login Successfull!");

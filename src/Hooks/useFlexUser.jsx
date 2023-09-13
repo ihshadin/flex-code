@@ -8,10 +8,14 @@ const useFlexUser = () => {
   const [axiosSecure] = useAxiosSecure();
 
   useEffect(() => {
-    axiosSecure.get(`/users?email=${user?.email}`).then((data) => {
-      setFlexUser(data.data);
+    if (user?.email) { 
+      axiosSecure.get(`/users?email=${user.email}`).then((data) => {
+        setFlexUser(data.data);
+        setLoading(false);
+      });
+    } else {
       setLoading(false);
-    });
+    }
   }, [user?.email]);
 
   return [flexUser];

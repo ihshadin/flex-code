@@ -1,25 +1,11 @@
 import { FaCrown } from "react-icons/fa6";
-import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../Subscribe/Subscribe.css";
-import useAuth from "../../Hooks/useAuth";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
+
+import useFlexUser from "../../Hooks/useFlexUser";
 
 const ProblemCard = ({ problem }) => {
-  const { user } = useAuth();
-  const [flexUser, setFlexUser] = useState(null);
-  const [axiosSecure] = useAxiosSecure();
-
-  useEffect(() => {
-    if (user) {
-      axiosSecure.get(`/users?email=${user?.email}`).then((data) => {
-        setFlexUser(data.data);
-      });
-    } else {
-      setFlexUser(null);
-    }
-  }, [user]);
-
+  const [flexUser] = useFlexUser();
   const isPremium = flexUser?.isPremium;
 
   return (
