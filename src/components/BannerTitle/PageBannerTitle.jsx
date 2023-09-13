@@ -31,7 +31,7 @@ const PageBannerTitle = ({
 
   return (
     <section>
-      <div className="flex flex-col md:flex-row gap-5 md:gap-2 justify-between items-center border-b-2 border-[#0fcda185] pb-3">
+      <div className="flex flex-col md:flex-row gap-5 md:gap-2 justify-between md:items-center border-b-2 border-[#0fcda185] pb-3">
         <div>
           <h1
             ref={animatedTextRef}
