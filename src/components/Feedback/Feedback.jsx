@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import Rating from "react-rating";
-import reviewImg1 from "../../../public/20230810_120154.png";
+import reviewImg1 from "/20230810_120154.png";
 import PageBannerTitle from "../BannerTitle/PageBannerTitle";
 import useAxiosNormal from "../../Hooks/useAxiosNormal";
 import toast from "react-hot-toast";

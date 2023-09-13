@@ -3,9 +3,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import image1 from "../../../../public/image-1.jpg";
-import image2 from "../../../../public/image-2.jpg";
-import image3 from "../../../../public/image-3.jpg";
+import image1 from "/image-1.jpg";
+import image2 from "/image-2.jpg";
+import image3 from "/image-3.jpg";
 
 const Slider = () => {
   return (

@@ -13,13 +13,10 @@ import "codemirror/addon/hint/javascript-hint";
 import "./PlayGround.css";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
-<<<<<<< HEAD
 import { motion } from "framer-motion";
-=======
 import useAuth from "../../../Hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
->>>>>>> 1f5b5ac406953fe560141472b0305de0ffd86357
 
 const PlayGround = () => {
   const [htmlCode, setHtmlCode] = useState("");
@@ -36,8 +33,6 @@ const PlayGround = () => {
   const [flexUser, setFlexUser] = useState(null);
   const navigate = useNavigate();
 
-<<<<<<< HEAD
-=======
   // checkUser are here or not 
   useEffect(() => {
     if (user) {
@@ -49,7 +44,6 @@ const PlayGround = () => {
     }
   }, [user]);
 
->>>>>>> 1f5b5ac406953fe560141472b0305de0ffd86357
   //responsive spit for small devices
   useEffect(() => {
     const updateSplitSizes = () => {
@@ -155,10 +149,7 @@ const PlayGround = () => {
       setHtmlCode("");
       setCssCode("");
       setJsCode("");
-<<<<<<< HEAD
-=======
       setModalIsOpen(false);
->>>>>>> 1f5b5ac406953fe560141472b0305de0ffd86357
     });
   };
 
