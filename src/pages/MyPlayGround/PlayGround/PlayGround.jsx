@@ -142,7 +142,6 @@ const PlayGround = () => {
     });
   };
 
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -330,8 +329,9 @@ const PlayGround = () => {
                     ) : (
                       <button
                         onClick={exportCode}
-                        className={`flexcode-button text-md py-1 px-6 mt-14 ${projectName ? "" : "opacity-20 cursor-not-allowed"
-                          }`}
+                        className={`flexcode-button text-md py-1 px-6 mt-14 ${
+                          projectName ? "" : "opacity-20 cursor-not-allowed"
+                        }`}
                         disabled={!projectName}
                       >
                         Export
@@ -341,7 +341,6 @@ const PlayGround = () => {
                 </div>
               </div>
               {user ? (
-
                 <button
                   onClick={() => setModalIsOpen(true)}
                   className="text-xs px-2 btn-ghost bg-slate-500 rounded mr-1"
@@ -354,22 +353,22 @@ const PlayGround = () => {
                     Swal.fire({
                       title: "Want to Export?",
                       text: "You need to login first!",
-                      icon: 'warning',
+                      icon: "warning",
                       showCancelButton: true,
-                      confirmButtonColor: 'transparent',
-                      cancelButtonColor: 'red',
-                      confirmButtonText: 'Yes, Login!',
+                      confirmButtonColor: "transparent",
+                      cancelButtonColor: "red",
+                      confirmButtonText: "Yes, Login!",
                       // backdrop: '#17181b99',
-                      background: '#1e2d40',
-                      color: 'white',
+                      background: "#1e2d40",
+                      color: "white",
                       customClass: {
-                        confirmButton: 'flexcode-button',
+                        confirmButton: "flexcode-button",
                       },
                     }).then((result) => {
                       if (result.isConfirmed) {
-                        navigate('/login')
+                        navigate("/login");
                       }
-                    })
+                    });
                   }}
                   className="text-xs px-2 btn-ghost bg-slate-500 rounded mr-1"
                 >
