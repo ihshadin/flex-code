@@ -70,7 +70,7 @@ const AuthProvider = ({ children }) => {
       // setUser(currentUser);
       if (currentUser) {
         axios
-          .post("https://flex-code-server-ihshadin.vercel.app/jwt", {
+          .post("http://localhost:5000/jwt", {
             email: currentUser.email,
           })
           .then((data) => {
