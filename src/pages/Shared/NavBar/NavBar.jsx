@@ -6,6 +6,9 @@ import "./NavBar.css";
 import { toast } from "react-hot-toast";
 import useFlexUser from "../../../Hooks/useFlexUser";
 import useAuth from "../../../Hooks/useAuth";
+import { Helmet } from "react-helmet";
+import premiumlogo from "/premiumlogo.png";
+import normallogo from "/20230810_125620.png";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,6 +36,7 @@ const NavBar = () => {
   const handleSignOut = () => {
     logOut().then(() => {
       toast.success("LogOut Successfull!");
+      flexUser.isPremium = null;
       navigate(from, { replace: true });
     });
   };
@@ -69,6 +73,17 @@ const NavBar = () => {
           : "md:sticky"
       }`}
     >
+      {/* set Premium logo in halmate  */}
+      {flexUser?.isPremium ? (
+          <Helmet>
+            <title>Flex-Code Premium</title>
+            <link rel="icon" href={premiumlogo} />
+          </Helmet>
+        ) : (
+          <Helmet>
+            <link rel="icon" href={normallogo} />
+          </Helmet>
+        )}
       <div className="relative max-w-[1280px] w-full mx-auto bg-inherit py-2 px-3 lg:flex justify-between items-center">
         <div className="flex items-center justify-between">
           <Link to="/" className="text-white text-xl font-semibold">
@@ -218,7 +233,7 @@ const NavBar = () => {
                       userClicked ? "text-gray-300" : "text-white"
                     }`}
                   >
-                    {user.photoURL ? (
+                    {user?.photoURL ? (
                       <>
                         <img
                           className={`h-9 w-9 rounded-full ${
