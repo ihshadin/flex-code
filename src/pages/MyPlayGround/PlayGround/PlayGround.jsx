@@ -13,13 +13,7 @@ import "codemirror/addon/hint/javascript-hint";
 import "./PlayGround.css";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
-<<<<<<< HEAD
 import { motion } from "framer-motion";
-=======
-import useAuth from "../../../Hooks/useAuth";
-import { Link, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
->>>>>>> 1f5b5ac406953fe560141472b0305de0ffd86357
 
 const PlayGround = () => {
   const [htmlCode, setHtmlCode] = useState("");
@@ -36,20 +30,6 @@ const PlayGround = () => {
   const [flexUser, setFlexUser] = useState(null);
   const navigate = useNavigate();
 
-<<<<<<< HEAD
-=======
-  // checkUser are here or not 
-  useEffect(() => {
-    if (user) {
-      axiosSecure.get(`/users?email=${user?.email}`).then((data) => {
-        setFlexUser(data.data);
-      });
-    } else {
-      setFlexUser(null);
-    }
-  }, [user]);
-
->>>>>>> 1f5b5ac406953fe560141472b0305de0ffd86357
   //responsive spit for small devices
   useEffect(() => {
     const updateSplitSizes = () => {
@@ -155,13 +135,9 @@ const PlayGround = () => {
       setHtmlCode("");
       setCssCode("");
       setJsCode("");
-<<<<<<< HEAD
-=======
       setModalIsOpen(false);
->>>>>>> 1f5b5ac406953fe560141472b0305de0ffd86357
     });
   };
-
 
   return (
     <motion.div
@@ -362,7 +338,6 @@ const PlayGround = () => {
                 </div>
               </div>
               {user ? (
-                
                 <button
                   onClick={() => setModalIsOpen(true)}
                   className="text-xs px-2 btn-ghost bg-slate-500 rounded mr-1"
@@ -375,32 +350,32 @@ const PlayGround = () => {
                     Swal.fire({
                       title: "Want to Export?",
                       text: "You need to login first!",
-                      icon: 'warning',
+                      icon: "warning",
                       showCancelButton: true,
-                      confirmButtonColor: 'transparent',
-                      cancelButtonColor: 'red',
-                      confirmButtonText: 'Yes, Login!',
+                      confirmButtonColor: "transparent",
+                      cancelButtonColor: "red",
+                      confirmButtonText: "Yes, Login!",
                       // backdrop: '#17181b99',
-                      background: '#1e2d40',
-                      color: 'white',
+                      background: "#1e2d40",
+                      color: "white",
                       customClass: {
-                        confirmButton: 'flexcode-button',
+                        confirmButton: "flexcode-button",
                       },
                     }).then((result) => {
                       if (result.isConfirmed) {
-                        navigate('/login')
+                        navigate("/login");
                       }
-                    })
+                    });
                   }}
                   className="text-xs px-2 btn-ghost bg-slate-500 rounded mr-1"
                 >
                   Export
                 </button>
-                
+
                 // <Link to="/login" className="text-xs px-2 btn-ghost bg-slate-500 rounded mr-1">
                 //     Export
                 // </Link>
-              )}  
+              )}
 
               <button
                 onClick={openConsole}
