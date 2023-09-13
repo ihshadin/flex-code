@@ -27,7 +27,6 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [reload, setReload] = useState(null);
 
-  // console.log("From AuthProvider", user);
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -59,6 +58,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const updateUserProfile = (name, photo) => {
+    setLoading(true);
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo,
@@ -67,16 +67,21 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-
+      // setUser(currentUser);
       if (currentUser) {
-        axios.post('https://flex-code-server.vercel.app/jwt', { email: currentUser.email })
-          .then(data => {
-            localStorage.setItem('access-token', data.data.token);
-            setLoading(false);
+        axios
+          .post("http://localhost:5000/jwt", {
+            email: currentUser.email,
           })
+          .then((data) => {
+            localStorage.setItem("access-token", data?.data?.token);
+            setUser(currentUser);
+            setLoading(true);
+          });
       } else {
-        localStorage.removeItem('access-token')
+        localStorage.removeItem("access-token");
+        setUser(currentUser);
+        setLoading(false)
       }
       setLoading(false);
     });

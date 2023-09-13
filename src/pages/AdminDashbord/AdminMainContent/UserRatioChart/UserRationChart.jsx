@@ -27,8 +27,8 @@ const UserRationChart = () => {
   ];
 
   return (
-    <div className="elfsight-app-57516a4c-1b1e-432e-abd5-7e089746d675 border border-slate-500 hover:border-[#0fcda18c] rounded-lg mx-6 text-center py-8">
-      <div className="elfsight-app-57516a4c-1b1e-432e-abd5-7e089746d675"></div>
+    <div className="elfsight-app-57516a4c-1b1e-432e-abd5-7e089746d675 border border-slate-500 flexcode-banner-bg  hover:border-[#0fcda18c] rounded-lg w-full text-center py-8">
+      <div className="elfsight-app-57516a4c-1b1e-432e-abd5-7e089746d675 min-w-full"></div>
     </div>
 
     // <ResponsiveContainer width="100%" height={200}>

@@ -4,7 +4,6 @@ import Login from "../pages/Login/Login";
 import SignUp from "../pages/Signup/SignUp";
 import Blog from "../pages/Blog/Blog";
 import Home from "../pages/Home/Home/Home";
-import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 import Explore from "../pages/Explore/Explore";
 import Problems from "../pages/Problems/Problems";
 import LangBasedProblems from "../pages/Problems/LangBasedProblems";
@@ -26,24 +25,26 @@ import PrivateRoute from "./PrivateRoute";
 import PaymentSuccess from "../pages/Subscribe/PaymentSuccess";
 import PaymentFail from "../pages/Subscribe/PaymentFail";
 import MySubmissions from "../pages/MySubmissions/MySubmissions";
-import AdminDashboard from "../pages/AdminDashbord/AdminDashboard";
 import MyPlayGround from "../pages/MyPlayGround/MyPlayGround";
 import PlayGround from "../pages/MyPlayGround/PlayGround/PlayGround";
 import ManageUser from "../pages/AdminDashbord/ManageUser/ManageUser";
-// import Dashboard from "../layouts/Dashboard";
 import ExploreDetails from "../pages/Explore/ExploreDetails";
 import AdminCalendar from "../pages/AdminDashbord/AdminCalendar/AdminCalendar";
 import AllTestimonials from "../pages/Home/AllTestimonials/AllTestimonials";
 import Dashboard from "../layouts/Dashboard";
-
-// import ProblemDetails from "../pages/Problems/ProblemDetails";
+import AdminMainContent from "../pages/AdminDashbord/AdminMainContent/AdminMainContent";
+import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
+import SendEmail from "../pages/AdminDashbord/SendEmail/SendEmail";
+import PreProject from "../pages/MyPlayGround/PreProject/PreProject";
+import FooterSection from "../pages/Shared/FooterSection/FooterSection";
+import FlexCodeAbout from "../pages/FlexCodeDetails/FlexCodeAbout/FlexCodeAbout";
+import FlexCodeFAQ from "../pages/FlexCodeDetails/FlexCodeFAQ/FlexCodeFAQ";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
     errorElement: <ErrorPage />,
-
     children: [
       {
         path: "/",
@@ -60,15 +61,11 @@ const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog />,
-        loader: () => fetch(`https://flex-code-server.vercel.app/blog/all`),
       },
       {
         path: "/blog/:id",
         element: <SingleBlog />,
-        loader: ({ params }) =>
-          fetch(`https://flex-code-server.vercel.app/blog/${params.id}`),
       },
-
       {
         path: "add-note",
         element: <AddNote />,
@@ -80,24 +77,22 @@ const router = createBrowserRouter([
       {
         path: "/problems/:languages",
         element: <LangBasedProblems />,
-        loader: () => fetch(`https://flex-code-server.vercel.app/problem/all`),
       },
       {
         path: "/problem/:id",
         element: <ProblemDetails />,
-        // loader: ({ params }) => fetch(`http://localhost:5173/problems.json/${params.id}`)
       },
-      // {
-      //   path: "/dashboard",
-      //   element: <DashboardHome />,
-      // },
       {
         path: "/explore",
         element: <Explore />,
       },
       {
         path: "/feedback",
-        element: <Feedback />,
+        element: (
+          <PrivateRoute>
+            <Feedback />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/profile",
@@ -108,6 +103,10 @@ const router = createBrowserRouter([
         element: <MyPlayGround />,
       },
       {
+        path: "/pre-project/:id",
+        element: <PreProject />,
+      },
+      {
         path: "/playground",
         element: <PlayGround />,
       },
@@ -115,7 +114,6 @@ const router = createBrowserRouter([
         path: "/notebooks",
         element: <NoteBook />,
       },
-
       {
         path: "/notebook/:id",
         element: <SingleNote />,
@@ -130,15 +128,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/subscribe",
-        element: (
-          <PrivateRoute>
-            <Subscribe />
-          </PrivateRoute>
-        ),
+        element: <Subscribe />,
       },
       {
         path: "/checkout",
-        element: <CheckOut />,
+        element: (
+          <PrivateRoute>
+            <CheckOut />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/payment/success/:tranId",
@@ -161,36 +159,89 @@ const router = createBrowserRouter([
         element: <AllTestimonials />,
       },
       {
-        path: "/exploreDetails/:id",
-        element: <ExploreDetails></ExploreDetails>,
+        path: "/explore/:id",
+        element: <ExploreDetails />,
+      },
+      {
+        path: "/:username",
+        element: <DashboardHome />,
+      },
+      {
+        path: "/allMenuFooter",
+        element: <FooterSection />,
+      },
+      {
+        path: "/about",
+        element: <FlexCodeAbout />,
+      },
+      {
+        path: "/faq",
+        element: <FlexCodeFAQ />,
       },
     ],
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "",
-        element: <AdminDashboard />,
+        element: (
+          <PrivateRoute>
+            <AdminMainContent />
+          </PrivateRoute>
+        ),
       },
       {
         path: "manageuser",
-        element: <ManageUser />,
+        element: (
+          <PrivateRoute>
+            <ManageUser />
+          </PrivateRoute>
+        ),
       },
       {
         path: "add-problems",
-        element: <AddProblemSolving />,
+
+        element: (
+          <PrivateRoute>
+            <AddProblemSolving />
+          </PrivateRoute>
+        ),
       },
       {
         path: "add-blog",
-        element: <AddBlog />,
+        element: (
+          <PrivateRoute>
+            <AddBlog />
+          </PrivateRoute>
+        ),
       },
       {
         path: "calendar",
-        element: <AdminCalendar />,
+        element: (
+          <PrivateRoute>
+            <AdminCalendar />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "contacts",
+        element: (
+          <PrivateRoute>
+            <SendEmail />
+          </PrivateRoute>
+        ),
       },
     ],
+  },
+  {
+    path: "/*",
+    element: <ErrorPage />,
   },
 ]);
 

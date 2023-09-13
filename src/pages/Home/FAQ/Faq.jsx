@@ -15,15 +15,15 @@ const Faq = () => {
 
                         </p>
                     </div> */}
-                    <SectionTitle 
-                    title="Frequntly Ask Questions" 
-                    descrition="A brief list of common questions and answers, simplifying information access and reducing repetitive queries for users or customers."
+                    <SectionTitle
+                        title="Frequntly Ask Questions"
+                        descrition="A brief list of common questions and answers, simplifying information access and reducing repetitive queries for users or customers."
                     />
-                    <div className='md:flex justify-between items-center gap-20'>
-                        <div className='mx-auto md:w-[60%] mt-10'>
+                    <div className='md:flex justify-between gap-20 mt-5'>
+                        <div className='mx-auto md:w-[60%]'>
                             <div className="collapse collapse-plus flexcode-banner-bg rounded-lg shadow-2xl border-teal-950 border-[2px] mb-4">
                                 <input type="radio" name="my-accordion-3" />
-                                <div className="collapse-title text-xl font-medium">
+                                <div className="collapse-title text-xl font-medium" >
                                     <span className='mr-4 text-lg font-normal'>01</span>What is FlexCode?
                                 </div>
                                 <div className="collapse-content">
@@ -76,7 +76,7 @@ const Faq = () => {
                                 </div>
                             </div> */}
                         </div>
-                        <div className='md:w-[40%] mt-8'>
+                        <div className='w-full md:w-[40%] pt-5'>
                             <img className='rounded-lg w-[380px]' src={faqImg} alt="" />
                         </div>
                     </div>

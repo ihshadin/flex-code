@@ -1,10 +1,10 @@
-import React, { useState, useContext, useEffect } from "react";
-import axios from "axios";
-import { AuthContext } from "../../providers/AuthProvider";
-import useAxiosNormal from "../../hooks/useAxiosNormal";
+import React, { useState, useEffect } from "react";
+import useAxiosNormal from "../../Hooks/useAxiosNormal";
+import useFlexUser from "../../Hooks/useFlexUser";
+import { motion } from "framer-motion";
 
 const MySubmissions = () => {
-  const { user, loading, setLoading } = useContext(AuthContext);
+  const [flexUser] = useFlexUser();
   const [mySolvedProblems, setMySolvedProblems] = useState([]);
   const [axiosNormal] = useAxiosNormal();
 
@@ -38,14 +38,21 @@ const MySubmissions = () => {
 
   useEffect(() => {
     axiosNormal
-      .get(`/solvedProblems/userSolveProblem?email=${user?.email}`)
+      .get(`/solvedProblems/userSolveProblem/${flexUser?.username}`)
       .then((data) => {
         setMySolvedProblems(data);
       });
-  }, [user?.email]);
+  }, [flexUser?.username]);
 
   return (
-    <section className="flexcode-banner-bg pt-16 overflow-x-auto">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 2 }}
+      key="flex_0989"
+      className="flexcode-banner-bg pt-16 overflow-x-auto"
+    >
       <div className="flexcode-container">
         <div className="border-b-2 border-[#0fcda185] pb-3">
           <h1 className="text-white text-2xl md:text-4xl tracking-wider font-semibold">
@@ -101,7 +108,7 @@ const MySubmissions = () => {
           </table>
         </div>
       </div>
-    </section>
+    </motion.div>
   );
 };
 

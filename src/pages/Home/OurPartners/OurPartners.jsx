@@ -1,18 +1,25 @@
 import React from "react";
 import Marquee from "react-fast-marquee";
-import './Partner.css'
+import "./Partner.css";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
 const OurPartners = () => {
   const partners = [
-    { pic: "https://i.ibb.co/ScQyB8R/partner-8.png" },
-    { pic: "https://i.ibb.co/K61rVW0/partner-7.png" },
-    { pic: "https://i.ibb.co/pzy6SkD/partner-6.png" },
-    { pic: "https://i.ibb.co/y6Yq3KH/partner-5.png" },
-    { pic: "https://i.ibb.co/yhKGKVz/partner-3.png" },
-    { pic: "https://i.ibb.co/1sn5Sd4/partner-4.png" },
-    { pic: "https://i.ibb.co/pzy6SkD/partner-6.png" },
-    { pic: "https://i.ibb.co/gFfQwt3/partner-2.png" },
+    { _id: 7283748, pic: "https://i.ibb.co/K61rVW0/partner-7.png" },
+    { _id: 4748448, pic: "https://i.ibb.co/pzy6SkD/partner-6.png" },
+    { _id: 849448, pic: "https://i.ibb.co/y6Yq3KH/partner-5.png" },
+    { _id: 47383, pic: "https://i.ibb.co/pzy6SkD/partner-6.png" },
+    {
+      _id: 47485,
+      pic: "https://i.ibb.co/GTTnfFF/40-404470-blavity-logo-architecture.png",
+    },
+    { _id: 58449, pic: "https://i.ibb.co/tJGx7rL/amazon.png" },
+    { _id: 57549, pic: "https://i.ibb.co/GphCd3d/aribnb.png" },
+    { _id: 8449, pic: "https://i.ibb.co/J3m17my/google-white-logo.png" },
+    { _id: 485948, pic: "https://i.ibb.co/71zKRJZ/Intel-Symbol.png" },
+    { _id: 765, pic: "https://i.ibb.co/4KZRMw7/netflix.png" },
+    { _id: 954849, pic: "https://i.ibb.co/2PGzFMy/tesla.png" },
+    { _id: 876569, pic: "https://i.ibb.co/Z8CTvFW/uber.png" },
   ];
   return (
     <section className="">
@@ -23,14 +30,31 @@ const OurPartners = () => {
         />
         <Marquee
           pauseOnClick
-          speed={200}
+          speed={100}
           gradient={true}
           gradientColor={[23, 24, 27]}
           children={null}
           className="grayscale"
         >
+          {partners?.map((partner) => (
+            <img
+              key={partner._id}
+              src={partner.pic}
+              className="w-1/2 opacity-50"
+            />
+          ))}
+        </Marquee>
+        <Marquee
+          pauseOnClick
+          speed={100}
+          gradient={true}
+          gradientColor={[23, 24, 27]}
+          children={null}
+          className="grayscale mt-5 md:mt-10"
+          direction="right"
+        >
           {partners?.map((partner, index) => (
-            <img key={index} src={partner.pic} className="w-1/2" />
+            <img key={index} src={partner.pic} className="w-1/2 opacity-50" />
           ))}
         </Marquee>
       </div>

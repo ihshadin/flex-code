@@ -1,45 +1,76 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Quill from "quill";
+import "quill/dist/quill.snow.css";
+import "./AddBlog.css";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import Swal from "sweetalert2";
 import { AuthContext } from "../../../providers/AuthProvider";
 import PageBannerTitle from "../../../components/BannerTitle/PageBannerTitle";
-
+import toast from 'react-hot-toast';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import { motion } from "framer-motion";
 
 const AddBlog = () => {
-  const { user } = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
   const { register, handleSubmit, reset } = useForm();
+  const [editorState, setEditorState] = useState('');
+  const [axiosSecure] = useAxiosSecure()
+
+  const handleEditorChange = (content, delta, source, editor) => {
+    setEditorState(content);
+  };
+
+  useEffect(() => {
+    const quill = new Quill("#editor", {
+      modules: {
+        toolbar: [
+          [{ header: [1, 2, 3] }],
+          ["bold", "italic", "underline"],
+          [{ color: [] }, { background: [] }],
+          [{ align: [] }],
+          [{ list: "ordered" }, { list: "bullet" }],
+          ["link"],
+          [{ code: "inline" }],
+          ["clean"],
+        ],
+      },
+      theme: "snow",
+      formats: {
+        fontSize: "58px",
+      },
+    });
+    quill.on("text-change", (delta, oldDelta, source) => {
+      handleEditorChange(quill.root.innerHTML, delta, source, quill);
+    });
+  }, []);
+
   const onSubmit = (data) => {
+    console.log(editorState);
     const blogDetails = {
       ...data,
+      details: editorState,
       userImage: user?.photoURL,
       userName: user?.displayName,
     };
-    fetch("https://flex-code-server.vercel.app/blog", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(blogDetails),
-    })
-      .then((res) => res.json())
+    axiosSecure.post("/blog", blogDetails)
       .then((data) => {
         if (data.message === "success") {
-          console.log(blogDetails);
-          Swal.fire({
-            title: "Success Your Submit!",
-            text: "Do you want to continue",
-            icon: "success",
-            confirmButtonText: "OK",
-          });
+          toast.success("Submitted your blog successfully");
           reset();
         }
       });
   };
 
   return (
-    <div className="flexcode-container">
-      <section className="py-6">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 2 }}
+      key="flex_046445"
+      className="py-5 px-10"
+    >
+      <div>
         <PageBannerTitle
           title="Add Blogs"
           shortDesc={"Share your knowledge with everyone"}
@@ -47,96 +78,79 @@ const AddBlog = () => {
           btnText1={"Our Blogs"}
           btnText2={"View All Blogs"}
         />
-      </section>
+      </div>
       <form onSubmit={handleSubmit(onSubmit)} className="w-5/6 mx-auto my-5 ">
-        <div className="-mx-3">
-          <div className="w-full px-3 mb-5">
-            <label htmlFor="" className="text-sm font-semibold px-1">
+        <div className="">
+          <div className="w-full mb-5">
+            <label htmlFor="" className="font-medium p-1">
               Your Name
             </label>
             <div className="flex">
-              <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                <i className="mdi mdi-account-outline text-gray-400 text-lg"></i>
-              </div>
               <input
                 defaultValue={user?.displayName}
                 readOnly
                 type="text"
-                className="w-full -ml-10 pl-10 pr-3 bg-[#1e2d40] py-2 rounded-lg border text-white border-gray-500 outline-none"
+                className="w-full px-8 py-3 bg-[#1e2d40] rounded-xl border text-white border-slate-500 outline-none"
                 placeholder="John doe"
               />
             </div>
           </div>
         </div>
-        <div className="flex -mx-3">
-          <div className="w-full px-3 mb-5">
-            <label htmlFor="" className="text-sm font-semibold px-1">
+        <div className="flex">
+          <div className="w-full mb-5">
+            <label htmlFor="" className="font-medium p-1">
               Title
             </label>
             <div className="flex">
-              <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
-              </div>
               <input
                 type="text"
-                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border 
-                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
+                className="w-full px-8 py-3 rounded-xl text-white border border-slate-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
                 placeholder="Write your blog title"
                 {...register("title", { required: true })}
               />
             </div>
           </div>
         </div>
-        <div className="flex -mx-3">
-          <div className="w-full px-3 mb-5">
-            <label htmlFor="" className="text-sm font-semibold px-1">
+        <div className="flex">
+          <div className="w-full mb-5">
+            <label htmlFor="" className="font-medium p-1">
               Image url
             </label>
             <div className="flex">
-              <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
-              </div>
               <input
                 type="url"
-                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border 
-                text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
+                className="w-full pl-8 py-3 rounded-xl border text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
                 placeholder="Keep a image url"
                 {...register("imageUrl", { required: true })}
               />
             </div>
           </div>
         </div>
-        <div className="flex -mx-3">
-          <div className="w-full px-3 mb-12">
-            <label htmlFor="" className="text-sm font-semibold px-1">
+        <div className="flex">
+          <div className="w-full mb-12">
+            <label htmlFor="" className="font-medium p-1">
               Blog Details
             </label>
             <div className="flex">
-              <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                <i className="mdi mdi-lock-outline text-gray-400 text-lg"></i>
+              <div className="w-full h-64 rounded-xl overflow-hidden border border-slate-500 hover:border-[#0fcda156]">
+                <div id="editor" style={{ height: "100%" }} />
               </div>
-              <textarea
-                rows={7}
-                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border  text-white border-gray-500 bg-[#1e2d40] outline-none focus:border-[#0fcda156] hover:border-[#0fcda156]"
-                placeholder="Write details your blog"
-                {...register("details", { required: true })}
-              />
             </div>
           </div>
         </div>
 
-        <div className="flex -mx-3">
-          <div className="w-full px-3 mb-5">
+        <div className="flex">
+          <div className="w-full mb-5">
             <button
               type="submit"
-              className="block w-full max-w-xs mx-auto bg-[#1da888] hover:bg-[#2bd1aa] hover:btn-outline focus:bg-[#2c3533] text-white rounded-lg px-3 py-3 font-semibold"
+              className="w-full mx-auto flexcode-button px-3 py-3"
             >
               DONE
             </button>
           </div>
         </div>
       </form>
-    </div>
+    </motion.div>
   );
 };
 

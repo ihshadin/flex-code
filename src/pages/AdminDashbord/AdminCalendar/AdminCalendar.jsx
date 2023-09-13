@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import "./AdminCalendar.css";
+import { motion } from "framer-motion";
 
 const AdminCalendar = () => {
   const [date, setDate] = useState(new Date());
@@ -10,31 +12,38 @@ const AdminCalendar = () => {
   };
 
   // const startDate = new date().getFullYear();
-  const startDate = new Date(date.getFullYear(), date.getMonth(), 4);
-  const endDate = new Date(date.getFullYear(), date.getMonth(), 25);
-  console.log("start", endDate, startDate);
+  // const startDate = new Date(date.getFullYear(), date.getMonth(), 4);
+  // const endDate = new Date(date.getFullYear(), date.getMonth(), 25);
+  // console.log("start", endDate, startDate);
 
   return (
-    <div className="mt-14">
-      <h1 className="text-2xl font-semibold mb-4 text-center">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 2 }}
+      key="flex_046445"
+      className="mt-14"
+    >
+      <h1 className="text-2xl md:text-3xl font-semibold mb-4 text-center">
         My Calendar App
       </h1>
       <Calendar
+        goToRangeStartOnSelect={true}
         onChange={handleDateChange}
         value={date}
         // minDate={startDate}
         // maxDate={endDate}
         activeStartDate={date}
-        tileClassName="!border-b-2 border-red-500"
-        className="border border-red-500 !bg-[#1e2d40] text-black !w-2/3 !h-3/4 mx-auto text-center p-4"
+        tileClassName=""
+        className="border !border-slate-500 rounded-2xl !bg-[#1e2d40] text-white !w-2/3 !h-3/4 mx-auto text-center p-4"
       />
-      <p className="text-center pt-2 text-lg">
-        Today's date is:{" "}
-        <span className="text-green-400 font-semibold">
+      <p className="text-center pt-2 text-xl md:text-2xl">
+        <span className="primary-color font-semibold">
           {date.toString().slice(0, 15)}
         </span>
       </p>
-    </div>
+    </motion.div>
   );
 };
 

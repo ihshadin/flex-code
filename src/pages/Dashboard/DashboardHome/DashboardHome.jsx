@@ -1,20 +1,23 @@
-import React, { useEffect, useState, useContext } from "react";
-import DbUser from "../DbUser/DbUser";
+import React, { useEffect, useState } from "react";
+// import DbUser from "../DbUser/DbUser";
 import SolvedProblems from "../SolvedProblems/SolvedProblems";
 import Badges from "../Badges/Badges";
 import Submissions from "../Submissions/Submissions";
-import { useNavigation } from "react-router-dom";
+import { useNavigation, useParams } from "react-router-dom";
 import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading";
 import RecentActiviy from "../RecentActiviy/RecentActiviy";
-import { AuthContext } from "../../../providers/AuthProvider";
-import useAxiosNormal from "../../../hooks/useAxiosNormal";
+import useAxiosNormal from "../../../Hooks/useAxiosNormal";
 import NavBar from "../../Shared/NavBar/NavBar";
 import Footer from "../../Shared/Footer/Footer";
+import DbUserSideBar from "../DbUserSideBar/DbUserSideBar";
+import useFlexUser from "../../../Hooks/useFlexUser";
 
 const DashboardHome = () => {
-  const { user } = useContext(AuthContext);
+  const { username } = useParams()
   const [mySolvedProblems, setMySolvedProblems] = useState([]);
   const [axiosNormal] = useAxiosNormal();
+  const [flexUser] = useFlexUser()
+  const mainUserName = username || flexUser?.username;
 
   const navigation = useNavigation();
 
@@ -24,29 +27,38 @@ const DashboardHome = () => {
 
   useEffect(() => {
     axiosNormal
-      .get(`/solvedProblems/userSolveProblem?email=${user?.email}`)
+      .get(`/solvedProblems/userSolveProblem/${mainUserName}`)
       .then((data) => {
         setMySolvedProblems(data);
       });
-  }, [user?.email]);
+  }, [mainUserName]);
+
+  // useEffect(() => {
+  //   axiosNormal
+  //     .get(`/solvedProblems/userSolveProblem?email=${user?.email}`)
+  //     .then((data) => {
+  //       setMySolvedProblems(data);
+  //     });
+  // }, [user?.email]);
 
   return (
     <section>
-      <NavBar />
-      <div className="flexcode-container -mt-10 flex flex-col md:flex-row gap-3 md:gap-5">
+      {username ? <></> : <NavBar />}
+
+      <div className="flexcode-container !pt-16 md:!pt-10 md:-mt-5 flex flex-col md:flex-row gap-3 md:gap-5">
         <div className="md:w-[30%]">
-          <DbUser mySolvedProblems={mySolvedProblems} />
+          <DbUserSideBar username={mainUserName} mySolvedProblems={mySolvedProblems} />
         </div>
-        <div className="md:w-[70%] flex flex-col gap-5">
+        <div className="md:w-[70%] flex flex-col gap-3 md:gap-5">
           <div className="flex flex-col md:flex-row gap-3 md:gap-5">
-            <SolvedProblems mySolvedProblems={mySolvedProblems} />
-            <Badges />
+            <SolvedProblems username={mainUserName} mySolvedProblems={mySolvedProblems} />
+            <Badges username={mainUserName} />
           </div>
-          <Submissions mySolvedProblems={mySolvedProblems} />
-          <RecentActiviy mySolvedProblems={mySolvedProblems} />
+          <Submissions username={mainUserName} mySolvedProblems={mySolvedProblems} />
+          <RecentActiviy username={mainUserName} mySolvedProblems={mySolvedProblems} />
         </div>
       </div>
-      <Footer />
+      {username ? <></> : <Footer />}
     </section>
   );
 };

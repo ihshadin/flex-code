@@ -1,97 +1,52 @@
-import React from 'react';
-import IconBox from '../../../components/IconBox/IconBox';
-import image1 from '../../../../public/image-1.jpg'
+import React, { useEffect, useState } from "react";
 
 // CSS connect
-import './ExploreUs.css'
-import { FaShieldAlt } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import "./ExploreUs.css";
+import useAxiosNormal from "../../../Hooks/useAxiosNormal";
+import ExploreCardLoading from "../../../components/FlexcodeLoading/ExploreCardLoading";
+import ExploreCard from "../../Explore/ExploreCard";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+import { Link } from "react-router-dom";
 
 const ExploreUs = () => {
-    return (
-        <section>
-            <div className='flexcode-container'>
-                <div>
-                    <h2 className='text-3xl md:text-5xl text-center text-white font-bold'>
-                        Explore solutions.
-                    </h2>
-                    <p className='max-w-xl w-full text-center mx-auto mt-2 mb-10 text-white'>Learn from the best with our highly acclaimed instructors who bring expertise and passion to every class.</p>
-                </div>
-                <div className='grid grid-cols-1 md:grid-cols-3 gap-5 my-10'>
-                    <div className="flex flex-col justify-between border gap-3 p-5 rounded-xl border-gray-500 hover:border-[#0fcda1] transition-all exploreCard drop-shadow-md cursor-pointer">
-                        <p className="flex gap-2 text-[0.85rem] tracking-wide font-thin items-center text-[#0fcda1]">
-                            <FaShieldAlt />
-                            Problem
-                        </p>
-                        <h1 className="text-xl text-white font-semibold tracking-wider flex gap-2 items-center">
-                            <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                            JavaScript
-                        </h1>
-                        <p className="text-[0.9rem] text-gray-400 mt-1 tracking-wider">
-                            A compilation of advanced React concepts.
-                        </p>
-                        <a className="text-[0.9rem] mt-6 hover:underline text-gray-400 tracking-wider" href="#">
-                            flexCode.com
-                        </a>
-                    </div>
-                    <div className="flex flex-col justify-between border gap-3 p-5 rounded-xl border-gray-500 hover:border-[#0fcda1] transition-all exploreCard drop-shadow-md cursor-pointer">
-                        <p className="flex gap-2 text-[0.85rem] tracking-wide font-thin items-center text-[#0fcda1]">
-                            <FaShieldAlt />
-                            Problem
-                        </p>
-                        <h1 className="text-xl text-white font-semibold tracking-wider flex gap-2 items-center">
-                            <div className="w-3 h-3 bg-orange-400 rounded-full"></div>
-                            Python
-                        </h1>
-                        <p className="text-[0.9rem] text-gray-400 mt-1 tracking-wider">
-                            A compilation of advanced React concepts.
-                        </p>
-                        <a className="text-[0.9rem] mt-6 hover:underline text-gray-400 tracking-wider" href="#">
-                            flexCode.com
-                        </a>
-                    </div>
-                    <div className="flex flex-col justify-between border gap-3 p-5 rounded-xl border-gray-500 hover:border-[#0fcda1] transition-all exploreCard drop-shadow-md cursor-pointer">
-                        <p className="flex gap-2 text-[0.85rem] tracking-wide font-thin items-center text-[#0fcda1]">
-                            <FaShieldAlt />
-                            Problem
-                        </p>
-                        <h1 className="text-xl text-white font-semibold tracking-wider flex gap-2 items-center">
-                            <div className="w-3 h-3 bg-blue-400 rounded-full"></div>
-                            C++
-                        </h1>
-                        <p className="text-[0.9rem] text-gray-400 mt-1 tracking-wider">
-                            A compilation of advanced React concepts.
-                        </p>
-                        <a className="text-[0.9rem] mt-6 hover:underline text-gray-400 tracking-wider" href="#">
-                            flexCode.com
-                        </a>
-                    </div>
-                </div>
-                <div className='text-center'>
-                    <Link to='explore'>
-                        <button className='flexcode-button px-8 py-3'>
-                            Explore All
-                        </button>
-                    </Link>
-                </div>
-            </div>
-            {/* <div className='flexcode-container flex flex-col md:flex-row gap-20 items-center'>
-                <div className='md:w-1/2 text-right text-white'>
-                    <div className='flex gap-10 justify-end items-center'>
-                        <h2 className='text-3xl font-bold'>Start Exploring</h2>
-                        <IconBox />
-                    </div>
-                    <p className='mt-2 md:mt-4'>
-                        Explore is a well-organized tool that helps you get the most out of LeetCode by providing structure to guide your progress towards the next step in your programming career.
-                    </p>
-                    <button className='bg-primary-color text-black py-2 px-5 text-lg rounded-md font-medium mt-3 md:mt-5 ms-auto block'>View Details</button>
-                </div>
-                <div className='md:w-1/2'>
-                    <img className='w-[300px] h-[400px] object-cover rounded-lg mx-auto explore-animation' src={image1} alt="" />
-                </div>
-            </div> */}
-        </section>
-    );
+  const [axiosNormal] = useAxiosNormal();
+  const [technologies, setTechnologies] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    axiosNormal.get("/explore").then((data) => {
+      setTechnologies(data);
+      setIsLoading(false);
+    });
+  }, []);
+  return (
+    <section>
+      <div className="flexcode-container">
+        <div className="">
+          <SectionTitle
+            title="Explore solutions."
+            descrition="Learn from the best with our highly acclaimed instructors who bring expertise and passion to every class."
+          ></SectionTitle>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5 ">
+            {isLoading ? (
+              <ExploreCardLoading />
+            ) : (
+              technologies
+                ?.slice(0, 3)
+                .map((technology, index) => (
+                  <ExploreCard key={index} technology={technology} />
+                ))
+            )}
+          </div>
+        </div>
+        <div className="text-center mt-8">
+          <Link to="/explore">
+            <button className="flexcode-button px-8 py-3">See more</button>
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default ExploreUs;

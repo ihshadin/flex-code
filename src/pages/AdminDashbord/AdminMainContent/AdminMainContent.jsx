@@ -1,20 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import OverViewAd from "./OverViewAd/OverViewAd";
-import ProblemsChart from "./ProblemSChart/ProblemsChart";
 import UserRationChart from "./UserRatioChart/UserRationChart";
+import { motion } from "framer-motion";
 
 const AdminMainContent = () => {
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://static.elfsight.com/platform/platform.js";
+    script.setAttribute("data-use-service-core", "");
+    script.defer = true;
+
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
   return (
-    <div className="px-4 grid gap-5">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 2 }}
+      key="flex_046445"
+      className="px-4 grid gap-3"
+    >
       <OverViewAd />
       <UserRationChart />
-
-      {/* Problem Chart */}
-      {/* <div className="mt-6 w-[30%] bg-secondary-color p-5">
-        <h3 className="text-xl font-semibold mb-4">Problem Distribution</h3>
-        <ProblemsChart></ProblemsChart>
-      </div> */}
-    </div>
+    </motion.div>
   );
 };
 

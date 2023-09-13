@@ -3,9 +3,9 @@ import { FaUser, FaUserTie } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Top3Card = ({ data, position }) => {
-  console.log(data.userPhoto);
+  ;
   return (
-    <div className={`w-full p-4 flexcode-banner-bg border flex flex-col gap-8 pt-10 rounded-xl border-gray-500 hover:border-[#0fcda156] transition-all drop-shadow-md ${position === 1 && 'scale-100 -mt-4' || position === 2 && 'scale-100 -skew-y-2' || position === 3 && 'scale-100 skew-y-2'}`}>
+    <div className={`w-full p-4 flexcode-banner-bg border flex flex-col gap-8 pt-10 rounded-xl border-gray-500 hover:border-[#0fcda156] transition-all drop-shadow-md ${position === 1 && 'md:-mt-4 md:order-1' || position === 2 && 'md:-skew-y-2 order-2 md:order-1' || position === 3 && 'md:skew-y-2 order-2 md:order-1'}`}>
       <div className="flex flex-col gap-3">
         <h2 className="font-semibold text-xl text-center tracking-widest">
           Score: <span className="primary-color">{data.points}</span>
@@ -88,12 +88,12 @@ const Top3Card = ({ data, position }) => {
             <p className="font-medium">{data.problemsSolved}</p>
           </div>
         </div>
-        <Link to={'/dashboard'}>
+        <Link to={`/${data?.username}`}>
           <div className="flex shrink-0 items-center gap-2">
             <FaUserTie className="w-6 h-6 text-[#0fcda1b4]" />
             <div className="mt-1.5 sm:mt-0">
               <p className="text-gray-500">Go to profile</p>
-              <p className="font-medium">View profile</p>
+              <p className="font-medium cursor-pointer">View profile</p>
             </div>
           </div>
         </Link>

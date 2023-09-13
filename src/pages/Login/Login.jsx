@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { useContext, useRef } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import SocialLogin from "../Shared/Social/SocialLogin";
-import Swal from "sweetalert2";
 import { toast } from "react-hot-toast";
 
 const Login = () => {
@@ -28,6 +27,7 @@ const Login = () => {
         const user = result.user;
         toast.success("Login Successfull!");
         navigate(from, { replace: true });
+        setLoading(true);
       })
       .catch((error) => {
         setLoading(false);
@@ -52,57 +52,59 @@ const Login = () => {
   };
 
   return (
-    <div className="justify-center items-center flex pt-10">
-      <div className="bg-[#1e2d40] shadow-2xl md:w-2/4 max-w-md mx-auto rounded-xl px-7 my-14">
-        <>
-          <div className="flex items-center justify-center text-white text-2xl  font-bold py-8">
-            <img className="w-16 h-16" src="/20230810_125620.png" alt="img" />
-            <span className="text-[#00ffc3] mr-1">Flex </span>Code
-          </div>
-          <SocialLogin />
-          <div className="max-w-[150px] flex justify-center border-2 border-[#0fcda1] rounded mx-auto my-8"></div>
-        </>
+    <div className="flexcode-container">
+      <div className="bg-secondary-color shadow-2xl md:w-2/4 max-w-md mx-auto rounded-xl px-7 my-5">
+        <div className="flex justify-center py-8">
+          <img
+            className="w-44 md:w-48"
+            src="/flex-codelogo.png"
+            alt="logo"
+          />
+        </div>
+        <SocialLogin />
+        <div className="max-w-[150px] flex justify-center border-2 border-[#0fcda1] rounded mx-auto my-8"></div>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex items-center border-2 border-gray-500 text-gray-400 px-2 font-semibold rounded-md mb-5 hover:bg-[#17181B] cursor-pointer">
-            <FaRegEnvelope className="text-2xl mr-2" />
-            <input
-              className="flex-1 bg-[#1e2d40] hover:bg-[#17181B] text-sm outline-none py-2"
-              type="email"
-              autoComplete="off"
-              name="email"
-              {...register("email", { required: true })}
-              id=""
-              placeholder="Email"
-              style={{ background: "transparent !important" }}
-            />
-            {errors?.email && (
-              <span className="text-red-500">Email is required</span>
-            )}
+          <div className="flex flex-col items-start gap-3">
+            <div className="w-full flex items-center gap-2 border border-slate-500 hover:border-[#0fcda18c] px-2 rounded-lg hover:bg-[#17181B] cursor-pointer">
+              <FaRegEnvelope className="w-5 h-5 text-[#0fcda156]" />
+              <input
+                className="flex-1 bg-transparent text-base outline-none py-2"
+                type="email"
+                autoComplete="off"
+                name="email"
+                {...register("email", { required: true })}
+                id=""
+                placeholder="Email"
+              />
+              {errors?.email && (
+                <span className="text-red-500 text-xs mt-1">Email is required</span>
+              )}
+            </div>
+            <div className="w-full flex items-center gap-2 border border-slate-500 hover:border-[#0fcda18c] px-2 rounded-lg hover:bg-[#17181B] cursor-pointer">
+              <MdLockOutline className="w-5 h-5 text-[#0fcda156]" />
+              <input
+                className="flex-1 bg-transparent text-base outline-none py-2"
+                type="password"
+                name="password"
+                autoComplete="off"
+                {...register("password", { required: true })}
+                id=""
+                placeholder="Password"
+              />
+              {errors?.password?.type === "required" && (
+                <p className="text-red-500 text-xs mt-1">Password is required</p>
+              )}
+            </div>
           </div>
-          <div className="flex items-center border-2 border-gray-500 text-gray-400 px-2 font-semibold rounded-md mb-3 hover:bg-[#17181B] cursor-pointer">
-            <MdLockOutline className="text-2xl mr-2" />
-            <input
-              className="flex-1 bg-[#1e2d40] hover:bg-[#17181B] text-sm outline-none py-2"
-              type="password"
-              name="password"
-              autoComplete="off"
-              {...register("password", { required: true })}
-              id=""
-              placeholder="Password"
-            />
-            {errors?.password?.type === "required" && (
-              <p className="text-red-500 text-sm mt-1">Password is required</p>
-            )}
-          </div>
-          <div className="flex justify-end">
-            <p
+          <div className="flex justify-end mt-1">
+            <span
               onClick={() => {
                 handleReset(errors.email ? "" : getValues("email")); // Use getValues from react-hook-form
               }}
-              className="text-right inline-block cursor-pointer hover:link text-gray-300 hover:text-blue-500 text-sm"
+              className="text-right cursor-pointer hover:link text-gray-300 hover:text-blue-500 text-sm"
             >
               Forgot your password?
-            </p>
+            </span>
           </div>
           <button
             type="submit"
@@ -115,14 +117,10 @@ const Login = () => {
             )}
           </button>
         </form>
-
-        <div className="text-center text-gray-300 pb-10">
-          <Link to="/signup">
-            {" "}
-            <span className="cursor-pointer link text-gray-300 hover:text-blue-500 ">
-              Sign up
-            </span>
-          </Link>{" "}
+        <div className="text-center pb-10 text-sm text-slate-300">
+          <Link to="/signup" className="cursor-pointer link hover:text-blue-500 mr-1">
+            Sign up
+          </Link>
           if you don't have an account yet.
         </div>
       </div>

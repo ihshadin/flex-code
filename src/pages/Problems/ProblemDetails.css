@@ -40,3 +40,8 @@
     background-color: transparent;
     border-radius: 20px;
 }
+@media (max-width: 767px) {
+    #problemDetails .problem-exmaple {
+    width: 100% !important;
+}
+}

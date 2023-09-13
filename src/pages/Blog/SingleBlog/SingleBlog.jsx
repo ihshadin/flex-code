@@ -1,97 +1,108 @@
-import axios from "axios";
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
-import { Link, useNavigation, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import useAxiosNormal from "../../../Hooks/useAxiosNormal";
+import 'quill/dist/quill.snow.css';
 import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading";
+import useAllBlogs from "../../../Hooks/useAllBlogs";
 
 const SingleBlog = () => {
   const { id } = useParams();
-  const [data, setData] = useState({});
-  const [loading, setLoading] = useState(true);
-
-  const navigation = useNavigation();
-  if (navigation.state === "loading") {
-    return <FlexcodeLoading />;
-  }
+  const [axiosNormal] = useAxiosNormal();
+  const [singleBlog, setSingleBlog] = useState({});
+  const [isloading, setIsLoading] = useState(true);
+  const { allBlogs, isLoading } = useAllBlogs()
 
   useEffect(() => {
-    axios.get(`https://flex-code-server.vercel.app/blog/${id}`)
+    axiosNormal.get(`/blog/${id}`)
       .then((data) => {
-        setData(data?.data?.result);
-        setLoading(false);
+        setSingleBlog(data);
+        setIsLoading(false);
       })
   }, [id]);
 
-  const [blogs, setBlogs] = useState([]);
-  useEffect(() => {
-    axios("https://flex-code-server.vercel.app/blog")
-      .then((data) => {
-        setBlogs(data?.data);
-      });
-  }, []);
+
+  if (isloading) {
+    return <FlexcodeLoading />;
+  }
 
   return (
     <section>
-      <div className="flexcode-container">
-        <div className="lg:flex lg:-mx-6">
-          {/* Single Blog details side */}
+      <div className="flexcode-container !pt-16 md:!pt-10">
+        <div className="lg:flex">
 
-          <div className="lg:w-3/4 lg:px-10  bg-[#1e2d40] py-10 mx-6 md:px-6 rounded-xl">
+          {/* Single Blog details side */}
+          <div className="lg:w-[70%] lg:px-10 bg-secondary-color md:py-10 md:px-6 rounded-xl">
             <img
               className="object-cover object-center w-full h-80 xl:h-[28rem] rounded-xl"
-              src={data?.imageUrl}
-              alt=""
+              src={singleBlog?.imageUrl}
+              alt="Blog Image"
             />
-
-            <div>
-              <p className="mt-6 text-sm text-white uppercase">
+            <div className="p-3 md:p-0">
+              <p className="md:mt-6 text-sm text-white uppercase">
                 Want to know
               </p>
-
-              <h1 className="max-w-lg mt-4 text-2xl font-semibold leading-tight text-[#08ecb8] dark:text-white">
-                {data?.title}
+              <h1 className="mt-2 md:mt-4 text-lg md:text-2xl font-semibold leading-tight primary-color">
+                {singleBlog?.title}
               </h1>
-
               <div className="flex items-center mt-6">
                 <img
                   className="object-cover object-center w-10 h-10 rounded-full"
-                  src={data?.userImage}
-                  alt=""
+                  src={singleBlog?.userImage}
+                  alt={singleBlog?.userName}
                 />
                 <div className="mx-4">
-                  <h1 className="text-sm text-white dark:text-gray-200">
-                    {data?.userName}
+                  <h1 className="text-sm text-white">
+                    {singleBlog?.userName}
                   </h1>
-                  <p className="text-sm text-white dark:text-gray-400">
+                  <p className="text-sm text-white">
                     Author
                   </p>
                 </div>
               </div>
-              <p className=" text-white mt-5 text-justify mb-10">
-                {data?.details}
-              </p>
+              <p className=" text-white mt-5 text-justify mb-5" dangerouslySetInnerHTML={{ __html: singleBlog?.details }} />
             </div>
           </div>
 
           {/* List of Blog Side side */}
-          <div className="mt-8 lg:w-1/4 lg:mt-0 lg:px-6">
-            {blogs?.map((blog) => (
-              <div key={blog._id}>
-                <h3 className="text-[#08ecb8] capitalize">
-                  Design instument
-                </h3>
-                <Link to={`/blog/${blog._id}`}>
-                  <h2
-                    href="#"
-                    className="block mt-2 font-medium text-white hover:underline hover:text-gray-500 dark:text-gray-400 "
-                  >
-                    {blog?.title}
-                  </h2>
-                </Link>
-                <hr className="my-6 border-gray-200 dark:border-gray-700" />
-              </div>
-            ))}
+          <div className="mt-8 lg:w-[30%] lg:mt-0 lg:px-6">
+            <h2 className="text-2xl font-semibold pb-5">Recent Blogs</h2>
+
+            {
+              isLoading ? (
+                <>
+                  <div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-4 w-[80%] rounded"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-2 w-full rounded mt-3"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-2 w-1/2 rounded mt-2"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-1 w-full rounded my-7"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-4 w-[80%] rounded"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-2 w-full rounded mt-3"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-2 w-1/2 rounded mt-2"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-1 w-full rounded my-7"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-4 w-[80%] rounded"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-2 w-full rounded mt-3"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-2 w-1/2 rounded mt-2"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-1 w-full rounded my-7"></div>
+                  </div>
+                </>
+              ) : (
+                allBlogs?.slice(0, 5).map((blog) => (
+                  <div key={blog._id}>
+                    <Link to={`/blog/${blog._id}`}>
+                      <h2 className="block mt-2 font-medium text-white hover:underline hover:text-[#0fcda1]">
+                        {blog?.title}
+                      </h2>
+                    </Link>
+                    <p className="text-sm text-slate-300 mb-5" dangerouslySetInnerHTML={{
+                      __html: blog.details.length > 50
+                        ? blog.details.slice(0, 50) + "..."
+                        : blog.details
+                    }} />
+                    <hr className="my-6 border border-[#0fcda18c]" />
+                  </div>
+                ))
+              )
+            }
           </div>
         </div>
       </div>

@@ -29,15 +29,15 @@ const RecentActiviy = ({ mySolvedProblems }) => {
   }
 
   return (
-    <div className="bg-secondary-color text-white rounded-lg overflow-hidden py-3 px-5 h-[250px]">
-      <div className="flex justify-between">
+    <div className="bg-secondary-color text-white rounded-lg overflow-hidden pb-10 md:pb-0 py-3 px-5 md:h-[250px]">
+      <div className="flex flex-col md:flex-row gap-1 justify-between">
         <div className="flex gap-8">
-          <div className="flex gap-x-1 items-center">
+          <div className="flex gap-x-1 md:items-center">
             <FaRegListAlt /> <p>Recent Solved Problem</p>
           </div>
         </div>
-        <div className="flex gap-x-1 items-center">
-          <Link to={'/my-submittions'}>View all submissions</Link> <FaAngleRight />
+        <div className="flex gap-x-1 items-center self-end">
+          <Link to={'/my-submittions'}>View My Submissions</Link> <FaAngleRight />
         </div>
       </div>
       <div>

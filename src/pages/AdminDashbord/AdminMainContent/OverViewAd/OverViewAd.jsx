@@ -5,7 +5,7 @@ import PreUserCard from "./PreUserCard";
 
 const OverViewAd = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
       <UserCard />
       <ProblemsCard />
       <BlogCard />

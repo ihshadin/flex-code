@@ -1,123 +1,92 @@
-import React, { useEffect, useState } from "react";
-import BlogCta from "./BlogCta/BlogCta";
-import { Link, useLoaderData, useNavigation } from "react-router-dom";
-import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
-import useAxiosNormal from "../../hooks/useAxiosNormal";
+import React from "react";
+import { Link } from "react-router-dom";
+import "quill/dist/quill.snow.css";
 import Pagination from "../../components/Pagination/Pagination";
-import Skeleton from "react-loading-skeleton";
-import 'react-loading-skeleton/dist/skeleton.css'
+import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
+import BlogCardLoading from "../../components/FlexcodeLoading/BlogCardLoading";
+import useAllBlogs from "../../Hooks/useAllBlogs";
+import { motion } from "framer-motion";
+
 const Blog = () => {
-  const user = { role: "admin" };
-
-  const [blogs, setBlogs] = useState([])
-  const [currentPage, setCurrentPage] = useState(0)
-  const itemsPerPage = 3;
-  const [axiosNormal] = useAxiosNormal();
-
-
-  useEffect(() => {
-    axiosNormal.get(`/blog?page=${currentPage}&limit=${itemsPerPage}`)
-      .then(data => {
-        setBlogs(data)
-      })
-  }, [currentPage, itemsPerPage]);
-
-  
-
-  const { result } = useLoaderData()
-  const totalBlogs = result?.length;
-
-  const totalPage = Math.ceil(totalBlogs / itemsPerPage)
-  // const pageNumber = [...Array(totalPage).keys()]
-
-  const navigation = useNavigation();
-  if (navigation.state === "loading") {
-    return <FlexcodeLoading />;
-  }
+  const { allBlogs, currentPage, setCurrentPage, totalPages, isLoading } =
+    useAllBlogs();
 
   return (
     <section>
-      <div className="flexcode-container">
-        <div className="max-w-[600px] mx-auto mb-6 md:mb-12 ">
-          <h2 className="text-center font-bold text-2xl md:text-4xl text-white">
-            Proactive Problem Solving
-          </h2>
-          <p className="text-white text-center mt-2 md:mt-4">
-            Explore our insightful blog, where we dissect challenges, share
-            actionable strategies, and empower you to conquer obstacles with
-            confidence.
-          </p>
-        </div>
-        <div>
-          <BlogCta />
-        </div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 2 }}
+        className="flexcode-container"
+      >
+        <PageBannerTitle
+          title="Read our Blogs gain your knowledge"
+          shortDesc="Unlock knowledge and insights with our thought-provoking blogs."
+        />
         {/* New Blog Articles */}
-        <section className=" dark:bg-gray-900">
-          <div className="container  mx-auto">
-            <div className="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2 xl:grid-cols-3 min-h-[75vh]">
-         
-              {/* 1s blog card */}
-
-              {blogs?.map(blog => <div key={blog._id} className="bg-[#1e2d40] shadow-md shadow-[#111111] rounded-lg border border-gray-500 hover:border-[#0fcda1]">
-                <div className="relative">
+        <div className="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2 xl:grid-cols-3">
+          {isLoading ? (
+            <BlogCardLoading />
+          ) : (
+            allBlogs?.map((blog) => (
+              <div
+                key={blog._id}
+                className="flexcode-banner-bg rounded-2xl border border-slate-500 hover:border-[#0fcda156] overflow-hidden group"
+              >
+                <div className="relative overflow-hidden">
                   <img
-                    className="object-cover object-center w-full h-64 rounded-lg lg:h-80"
+                    className="object-cover object-center w-full h-48 lg:h-60"
                     src={blog.imageUrl}
-                    alt=""
+                    alt="Blog Img"
                   />
-                  <div className="absolute bottom-0 flex p-3 bg-white shadow-lg shadow-slate-900 dark:bg-gray-900 ">
+                  <div
+                    className="opacity-0 group-hover:opacity-100 absolute -bottom-20 group-hover:bottom-0 flex gap-3 right-0 left-0 p-2 transition-all duration-300 backdrop-blur-sm bg-black bg-opacity-20 flexcode-banner-bg"
+                    style={{ boxShadow: "0 0 15px 0 rgba(0, 0, 0, 0.5)" }}
+                  >
                     <img
                       className="object-cover object-center w-10 h-10 rounded-full"
                       src={blog.userImage}
                       alt=""
                     />
-                    <div className="mx-4">
-                      <h1 className="text-sm text-gray-700 dark:text-gray-200">
+                    <div>
+                      <h1 className="text-sm font-semibold text-white">
                         {blog.userName}
                       </h1>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
-                        Author
-                      </p>
+                      <span className="text-sm text-slate-200">Author</span>
                     </div>
                   </div>
                 </div>
-                <div className="mx-5 mb-6 h-[200px] relative">
-                  <Link to={`/blog/${blog._id}`}><h1 className="mt-6 text-xl font-semibold text-white dark:text-white">
-                    {blog.title}
-                  </h1></Link>
-
-                  <hr className="w-32 my-6 text-blue-500" />
-
-                  <p className="text-sm text-white dark:text-gray-400">
-                    {blog.details.length > 140 ?
-                      (
-                        blog.details.slice(0, 140) + '....'
-                      ) :
-                      blog.details
-                    }
-
-                  </p>
+                <div className="p-5">
                   <Link to={`/blog/${blog._id}`}>
-                    <div
-
-                      className="absolute bottom-0 inline-block mt-4 text-blue-500 underline hover:text-blue-400"
-                    >
-                      Read more
-                    </div>
+                    <h1 className="text-lg md:text-xl font-semibold primary-color">
+                      {blog.title}
+                    </h1>
                   </Link>
 
-
+                  <div className="max-w-[150px] flex justify-center border-2 border-[#0fcda1] rounded my-5"></div>
+                  <p className="text-sm text-slate-300 mb-5" dangerouslySetInnerHTML={{
+                    __html: blog.details.length > 140
+                      ? blog.details.slice(0, 140) + "..."
+                      : blog.details
+                  }} />
+                  <Link
+                    to={`/blog/${blog._id}`}
+                    className="inline-block transition-all duration-300 primary-color text-right tracking-wider btn-effect"
+                  >
+                    Read More
+                  </Link>
                 </div>
-              </div>)
-              }
-            </div>
-            <div className="pt-10">
-              <Pagination currentPage={currentPage} totalPage={totalPage} setCurrentPage={setCurrentPage} />
-            </div>
-         
-          </div>
-        </section>
-      </div>
+              </div>
+            ))
+          )}
+        </div>
+        <Pagination
+          currentPage={currentPage}
+          totalPage={totalPages}
+          setCurrentPage={setCurrentPage}
+        />
+      </motion.div>
     </section>
   );
 };
