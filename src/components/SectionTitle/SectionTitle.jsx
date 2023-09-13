@@ -9,8 +9,8 @@ const SectionTitle = ({ title, descrition }) => {
         if (entries[0].isIntersecting) {
           gsap.fromTo(
             animatedTextRef.current,
-            { opacity: 0, y: -40 },
-            { opacity: 1, y: 0, duration: 2, stagger: 0.1 }
+            { opacity: 0, x: 80 },
+            { opacity: 1, x: 0, duration: 1, stagger: 0.1 }
           );
         }
       },
@@ -29,7 +29,7 @@ const SectionTitle = ({ title, descrition }) => {
           gsap.fromTo(
             animatedTextDesRef.current,
             { opacity: 0, y: 30 },
-            { opacity: 1, y: 0, duration: 2, stagger: 0.1 }
+            { opacity: 1, y: 0, duration: 0.5, stagger: 0.1 }
           );
         }
       },

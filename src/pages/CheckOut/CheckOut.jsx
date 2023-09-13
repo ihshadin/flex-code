@@ -1,4 +1,3 @@
-import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   FaPhone,
@@ -8,10 +7,12 @@ import {
   FaTrophy,
   FaUser,
 } from "react-icons/fa";
-import { AuthContext } from "../../providers/AuthProvider";
+import useAuth from "../../Hooks/useAuth";
+import useAxiosNormal from "../../Hooks/useAxiosNormal";
 
 const CheckOut = () => {
-  const { user, loading } = useContext(AuthContext);
+  const { user, loading } = useAuth();
+  const [axiosNormal] = useAxiosNormal();
   const {
     register,
     handleSubmit,
@@ -25,14 +26,7 @@ const CheckOut = () => {
     data.number = number;
     data.currency = "BDT";
 
-    fetch("http://localhost:5000/payment", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
+    axiosNormal.post("/payment", data)
       .then((data) => {
         window.location.replace(data?.url);
       });
