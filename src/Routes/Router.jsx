@@ -37,6 +37,8 @@ import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 import SendEmail from "../pages/AdminDashbord/SendEmail/SendEmail";
 import PreProject from "../pages/MyPlayGround/PreProject/PreProject";
 import FooterSection from "../pages/Shared/FooterSection/FooterSection";
+import FlexCodeAbout from "../pages/FlexCodeDetails/FlexCodeAbout/FlexCodeAbout";
+import FlexCodeFAQ from "../pages/FlexCodeDetails/FlexCodeFAQ/FlexCodeFAQ";
 
 const router = createBrowserRouter([
   {
@@ -86,7 +88,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/feedback",
-        element: <PrivateRoute><Feedback /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <Feedback />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/profile",
@@ -126,7 +132,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/checkout",
-        element: <PrivateRoute><CheckOut /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <CheckOut />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/payment/success/:tranId",
@@ -158,8 +168,16 @@ const router = createBrowserRouter([
       },
       {
         path: "/allMenuFooter",
-        element: <FooterSection />
-      }
+        element: <FooterSection />,
+      },
+      {
+        path: "/about",
+        element: <FlexCodeAbout />,
+      },
+      {
+        path: "/faq",
+        element: <FlexCodeFAQ />,
+      },
     ],
   },
   {
