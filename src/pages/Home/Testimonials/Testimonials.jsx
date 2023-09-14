@@ -55,30 +55,27 @@ const Testimonials = () => {
           {feedbacks?.map((feedback) => (
             <SwiperSlide key={feedback._id}>
               <div className="flexcode-banner-bg p-5 md:p-5 mb-9 rounded-2xl text-white border border-slate-500 hover:border-[#0fcda156] transition-all duration-300 cursor-pointer">
-                <h2 className="text-xl font-semibold mb-5">
+                <h2 className="text-xl font-semibold mb-5 line-clamp-1">
                   {feedback.thumbExpression}
                 </h2>
-                <p className="min-h-[160px]">
-                  {feedback.details.length > 400
-                    ? feedback.details.slice(0, 400) + "...."
-                    : feedback.details}
+                <p className="line-clamp-6">
+                  {
+                    feedback.details
+                  }
                 </p>
-                <span className="flex mt-8 items-center justify-between">
-                  <h3 className="text-xl font-semibold mb-4">
-                    ~{" "}
-                    {feedback.userName.length > 9
-                      ? feedback.userName.slice(0, 9) + "...."
-                      : feedback.userName}
+                <span className="flex flex-col-reverse mt-8 justify-between">
+                  <h3 className="text-xl font-semibold mb-4 line-clamp-1">
+                    ~ {feedback.userName}
                   </h3>
                   <Rating
                     initialRating={feedback.rating}
                     readonly
                     className="flex items-center justify-center"
                     emptySymbol={
-                      <FaRegStar className="text-xl mr-2 text-amber-500" />
+                      <FaRegStar className="text-lg mr-1 text-amber-500" />
                     }
                     fullSymbol={
-                      <FaStar className="text-xl mr-2 text-amber-500" />
+                      <FaStar className="text-lg mr-1 text-amber-500" />
                     }
                   />
                 </span>
