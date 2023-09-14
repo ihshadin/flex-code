@@ -5,18 +5,18 @@ import bannerBgBottom from "../../../assets/banner-bottom.png";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 const Banner = () => {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://static.elfsight.com/platform/platform.js";
-    script.setAttribute("data-use-service-core", "");
-    script.defer = true;
+  // useEffect(() => {
+  //   const script = document.createElement("script");
+  //   script.src = "https://static.elfsight.com/platform/platform.js";
+  //   script.setAttribute("data-use-service-core", "");
+  //   script.defer = true;
 
-    document.head.appendChild(script);
+  //   document.head.appendChild(script);
 
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, []);
+  //   return () => {
+  //     document.head.removeChild(script);
+  //   };
+  // }, []);
 
   return (
     <div className="relative flexcode-banner-bg bg-gradient-to-t from-[#05040b] to-[#17181b]">
