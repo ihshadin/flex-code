@@ -8,7 +8,7 @@ import "./CodeEditor.css";
 const CodeEditor = () => {
   const [code, setCode] = useState('console.log("Hello, world!");');
   const [consoleOutput, setConsoleOutput] = useState([]);
-  const [selectedLanguage, setSelectedLanguage] = useState("javascript");
+  // const [selectedLanguage, setSelectedLanguage] = useState("javascript");
 
   const runCode = () => {
     try {

@@ -20,9 +20,14 @@ const Testimonials = () => {
   const [axiosNormal] = useAxiosNormal();
 
   useEffect(() => {
-    axiosNormal.get("/feedback")
-      .then((data) => {
-        setFeedbacks(data?.result);
+    axiosNormal
+      .get("/feedback")
+      .then((response) => {
+        setFeedbacks(response?.data?.result);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        // Handle the error, e.g., display an error message to the user
       });
   }, []);
 
