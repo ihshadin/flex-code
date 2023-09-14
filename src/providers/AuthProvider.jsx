@@ -58,7 +58,6 @@ const AuthProvider = ({ children }) => {
   };
 
   const updateUserProfile = (name, photo) => {
-    setLoading(true);
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo,
@@ -67,7 +66,7 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      // setUser(currentUser);
+      setUser(currentUser);
       if (currentUser) {
         axios
           .post("http://localhost:5000/jwt", {
@@ -80,8 +79,8 @@ const AuthProvider = ({ children }) => {
           });
       } else {
         localStorage.removeItem("access-token");
+        setLoading(false)   
         setUser(currentUser);
-        setLoading(false)
       }
       setLoading(false);
     });

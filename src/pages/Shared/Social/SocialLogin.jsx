@@ -17,7 +17,7 @@ const SocialLogin = () => {
       .then((result) => {
         const user = result.user;
         toast.success("Login Successfull!");
-        navigate(from, { replace: true });
+        // navigate(from, { replace: true });
 
         const saveUser = {
           name: user.displayName || "User Name",
@@ -44,13 +44,11 @@ const SocialLogin = () => {
         };
 
         axiosSecure.post("/users", saveUser).then((data) => {
-          console.log(data);
           navigate(from, { replace: true });
           setLoading(false);
         });
       })
       .catch((error) => {
-        setLoading(false)
         toast.error("Login Failed. " + error.message);
         setLoading(false);
       });
