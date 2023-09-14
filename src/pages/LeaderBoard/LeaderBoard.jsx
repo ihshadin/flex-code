@@ -5,13 +5,20 @@ import { FaUser } from "react-icons/fa";
 import { LiaAngleDoubleRightSolid } from "react-icons/lia";
 import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
 import useTopperData from "../../Hooks/useTopperData";
+import { motion } from "framer-motion";
 
 const LeaderBoard = () => {
   const [topperData] = useTopperData();
 
   return (
-    <section>
-      <div className="flexcode-container">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 2 }}
+      key="flex_090"
+    >
+      <div className="flexcode-container !pt-16 md:!pt-10">
         <PageBannerTitle
           title="Top Problem Solvers"
           shortDesc="Meet the Brilliant Minds Behind the Solutions"
@@ -91,72 +98,81 @@ const LeaderBoard = () => {
           }
         />
         <div className="grid md:grid-cols-3 items-center justify-center gap-8 my-12">
-          {
-            topperData[1] && <Top3Card data={topperData[1]} position={2} />
-          }
-          {
-            topperData[0] && <Top3Card data={topperData[0]} position={1} />
-          }
-          {
-            topperData[2] && <Top3Card data={topperData[2]} position={3} />
-          }
+          {topperData[1] && <Top3Card data={topperData[1]} position={2} />}
+          {topperData[0] && <Top3Card data={topperData[0]} position={1} />}
+          {topperData[2] && <Top3Card data={topperData[2]} position={3} />}
         </div>
-        {
-          topperData.slice(3).length > 0 && (
-            <>
-              <div className="flex items-center gap-x-3">
-                <h2 className="text-lg text-white font-medium">
-                  Rest Solver
-                </h2>
-              </div>
-              <div className="text-white mt-5 rounded-2xl overflow-x-auto">
-                <div className='overflow-x-auto'>
-                  <div className='flex justify-between items-center min-w-[600px] px-6 py-3 whitespace-nowrap'>
-                    <div className='font-semibold w-[5%]'>SL</div>
-                    <div className='font-semibold w-[40%]'>User Info</div>
-                    <div className='font-semibold w-[20%] text-center'>Points</div>
-                    <div className='font-semibold w-[20%] text-center'>Solved</div>
-                    <div className='font-semibold w-[15%] text-center'>Profile</div>
+        {topperData.slice(3).length > 0 && (
+          <>
+            <div className="flex items-center gap-x-3">
+              <h2 className="text-lg text-white font-medium">Rest Solver</h2>
+            </div>
+            <div className="text-white mt-5 rounded-2xl overflow-x-auto">
+              <div className="overflow-x-auto">
+                <div className="flex justify-between items-center min-w-[600px] px-6 py-3 whitespace-nowrap">
+                  <div className="font-semibold w-[5%]">SL</div>
+                  <div className="font-semibold w-[40%]">User Info</div>
+                  <div className="font-semibold w-[20%] text-center">
+                    Points
                   </div>
-                  {
-                    topperData.slice(3, 50).map((solveProblem, index) => (
-                      <div key={index} className='flex justify-between min-w-[600px] items-center whitespace-nowrap border-b-[2px] duration-300 border-[#0fcda1] hover:border-white px-6 pb-2 pt-7 rounded-3xl'>
-                        <p className='w-[5%]'>{index + 4}</p>
-                        <div className='w-[40%] flex items-center gap-2'>
-                          {
-                            solveProblem.userPhoto ? (
-                              <img
-                                alt="Developer"
-                                src={solveProblem.userPhoto}
-                                className="object-cover w-10 h-10 rounded-full"
-                              />
-                            ) : <FaUser
-                              className="object-cover primary-color bg-secondary-color w-10 h-10 rounded-full"
-                            />
-                          }
-                          <div>
-                            <h2 className="font-medium whitespace-nowrap overflow-hidden text-ellipsis md:text-clip max-w-[19ch] md:max-w-full">
-                              {/* {solveProblem?.displayName.length > 17 ? solveProblem.displayName.slice(0, 17) + ".." : solveProblem.displayName} */}
-                              {solveProblem.displayName}
-                            </h2>
-                            <p className="text-sm text-slate-400">
-                              @{solveProblem.username}
-                            </p>
-                          </div>
-                        </div>
-                        <p className='w-[20%] text-center'>{solveProblem.points}</p>
-                        <p className='w-[20%] text-center'>{solveProblem.problemsSolved}</p>
-                        <p className='w-[15%] text-center cursor-pointer'><Link to={`/${solveProblem.username}`} className="hover:underline hover:text-[#0fcda1] flex items-center justify-center">View Profile <LiaAngleDoubleRightSolid className="h-4 w-4 text-[#0fcda1]" /></Link></p>
-                      </div>
-                    ))
-                  }
+                  <div className="font-semibold w-[20%] text-center">
+                    Solved
+                  </div>
+                  <div className="font-semibold w-[15%] text-center">
+                    Profile
+                  </div>
                 </div>
+                {topperData.slice(3, 50).map((solveProblem, index) => (
+                  <div
+                    key={index}
+                    className="flex justify-between min-w-[600px] items-center whitespace-nowrap border-b-[2px] duration-300 border-[#0fcda1] hover:border-white px-6 pb-2 pt-7 rounded-3xl"
+                  >
+                    <p className="w-[5%]">{index + 4}</p>
+                    <div className="w-[40%] flex items-center gap-2">
+                      {solveProblem.userPhoto ? (
+                        <img
+                          alt="Developer"
+                          src={solveProblem.userPhoto}
+                          className="object-cover w-10 h-10 rounded-full"
+                        />
+                      ) : (
+                        <FaUser className="object-cover primary-color bg-secondary-color w-10 h-10 rounded-full" />
+                      )}
+                      <div>
+                        <h2 className="font-medium whitespace-nowrap overflow-hidden text-ellipsis md:text-clip max-w-[19ch] md:max-w-full">
+                          {/* {solveProblem?.displayName.length > 17 ? solveProblem.displayName.slice(0, 17) + ".." : solveProblem.displayName} */}
+                          {solveProblem.displayName}
+                        </h2>
+                        <p className="text-sm text-slate-400">
+                          @{solveProblem.username}
+                        </p>
+                      </div>
+                    </div>
+                    <p className="w-[20%] text-center">{solveProblem.points}</p>
+                    <p className="w-[20%] text-center">
+                      {solveProblem.problemsSolved}
+                    </p>
+                    <p className="w-[15%] text-center cursor-pointer">
+                      <Link
+                        to={
+                          solveProblem.username
+                            ? `/${solveProblem.username}`
+                            : "*"
+                        }
+                        className="hover:underline hover:text-[#0fcda1] flex items-center justify-center"
+                      >
+                        View Profile{" "}
+                        <LiaAngleDoubleRightSolid className="h-4 w-4 text-[#0fcda1]" />
+                      </Link>
+                    </p>
+                  </div>
+                ))}
               </div>
-            </>
-          )
-        }
+            </div>
+          </>
+        )}
       </div>
-    </section>
+    </motion.div>
   );
 };
 

@@ -1,19 +1,19 @@
 .test1 {
     margin: 0 auto;
-    columns: 4;
-    column-gap: 15px;
+    -moz-columns: 3;
+         columns: 3;
+    -moz-column-gap: 15px;
+         column-gap: 15px;
 }
-
-.box {
-    border: 1px solid #0fcda185;
-    margin-bottom: 15px;
-    break-inside: avoid;
+@media (max-width: 1024px) {
+    .test1 {
+        -moz-columns: 2;
+             columns: 2;
+    }
 }
-
-.box:hover {
-    border: 1px solid #a5c8c085;
-}
-
-.box img {
-    object-fit: contain;
+@media (max-width: 767px) {
+    .test1 {
+        -moz-columns: 1;
+             columns: 1;
+    }
 }

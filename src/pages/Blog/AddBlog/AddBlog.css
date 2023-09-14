@@ -1,0 +1,20 @@
+#editor {
+    border: 0 solid #6b7280 !important;
+}
+
+.ql-toolbar{
+    border: 0 solid #6b7280 !important;
+    background-color: #1e2d40 !important;
+    color: #ffffffae !important;
+}
+.ql-toolbar .ql-formats  * {
+    color: #ffffffae !important;
+    /* fill: white; */
+    stroke: #ffffffae;
+}
+.ql-editor p{
+    font-size: 16px;
+}
+.ql-editor code{
+    color: #272822;
+}

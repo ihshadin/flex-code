@@ -1,5 +1,5 @@
 import "codemirror/theme/dracula.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Controlled } from "react-codemirror2";
 import Split from "react-split";
 import "codemirror/lib/codemirror.css";
@@ -11,6 +11,12 @@ import "codemirror/addon/hint/show-hint.css";
 import "codemirror/addon/hint/show-hint";
 import "codemirror/addon/hint/javascript-hint";
 import "./PlayGround.css";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import toast from "react-hot-toast";
+import { motion } from "framer-motion";
+import useAuth from "../../../Hooks/useAuth";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const PlayGround = () => {
   const [htmlCode, setHtmlCode] = useState("");
@@ -19,6 +25,34 @@ const PlayGround = () => {
   const [consoleOutput, setConsoleOutput] = useState("");
   const [errorOutput, setErrorOutput] = useState("");
   const [isConsoleOpen, setIsConsoleOpen] = useState(false);
+  const [splitSizes, setSplitSizes] = useState([55, 55]);
+  const [axiosSecure] = useAxiosSecure();
+  const [loading, setLoading] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const { user } = useAuth();
+  const [flexUser, setFlexUser] = useState(null);
+  const navigate = useNavigate();
+
+  //responsive spit for small devices
+  useEffect(() => {
+    const updateSplitSizes = () => {
+      const isLargeDevice = window.innerWidth >= 768;
+
+      if (isLargeDevice) {
+        setSplitSizes([55, 55]);
+      } else {
+        setSplitSizes([70, 30]);
+      }
+    };
+
+    updateSplitSizes();
+
+    window.addEventListener("resize", updateSplitSizes);
+
+    return () => {
+      window.removeEventListener("resize", updateSplitSizes);
+    };
+  }, []);
 
   const openConsole = () => {
     setIsConsoleOpen(true);
@@ -80,12 +114,47 @@ const PlayGround = () => {
     }
   };
 
+  const [projectName, setProjectName] = useState("");
+
+  const handleProjectNameChange = (e) => {
+    setProjectName(e.target.value);
+  };
+
+  const exportCode = () => {
+    setLoading(true);
+    const dataToSend = {
+      projectName,
+      htmlCode,
+      cssCode,
+      jsCode,
+      username: flexUser?.username,
+    };
+
+    axiosSecure.post("playground", dataToSend).then((data) => {
+      toast.success("Export Successfull!");
+      console.log(data);
+      setLoading(false);
+      setProjectName("");
+      setHtmlCode("");
+      setCssCode("");
+      setJsCode("");
+      setModalIsOpen(false);
+    });
+  };
+
   return (
-    <div className="relative p-4 overflow-hidden ">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 2 }}
+      key="flex_8"
+      className="relative p-4 overflow-hidden "
+    >
       <Split
-        className="flex flex-col md:h-[100vh]"
+        className="flex flex-col h-[160vh] md:h-[100vh] pt-16 md:pt-0"
         direction="vertical"
-        sizes={[55, 55]}
+        sizes={splitSizes}
         minSize={0}
         expandToMin={false}
         gutterSize={10}
@@ -178,12 +247,6 @@ const PlayGround = () => {
                 },
               }}
             />
-            {/* <button
-            className="mt-2 px-4 py-2 bg-blue-500 text-white rounded"
-            onClick={runCode}
-          >
-            Run
-          </button> */}
           </div>
         </div>
 
@@ -218,18 +281,105 @@ const PlayGround = () => {
                 <h1 className="ml-2">Console</h1>
               </div>
               <div className="h-full bg-[#1c1f23] text-white p-2">
-                {/* {consoleOutput?.map((output, index) => (
-               <div key={index} className="mb-1">
-                 {output}
-               </div>
-             ))} */}
-
                 <div>{consoleOutput}</div>
                 <div className="text-red-500">{errorOutput}</div>
               </div>
             </div>
           ) : (
             <div className="flex justify-end absolute top-0 bg-[#1e2d40] bg-opacity-90 w-full py-1">
+              <div
+                className={`modal ${modalIsOpen && "modal-open"}`}
+                id="exportModal"
+              >
+                <div className="relative modal-box bg-black flexcode-banner-bg min-h-64 flex flex-col justify-center items-center border border-slate-600 hover:border-[#0fcda156]">
+                  <button
+                    onClick={() => setModalIsOpen(false)}
+                    className="ml-auto hover:text-[#0fcda1] text-[#0fcda1] mb-8 border-[#0fcda18c] bg-transparent"
+                  >
+                    X
+                  </button>
+                  <div className="mb-10 absolute ">
+                    <h2 className="text-xl font-bold mb-2  border-b-2 border-[#0fcda1]">
+                      Enter Project Name
+                    </h2>
+                    <input
+                      type="text"
+                      className="w-full block px-5 py-1 rounded-lg border border-slate-500 bg-secondary-color outline-none focus:border-[#0fcda1]"
+                      placeholder="Enter project name"
+                      value={projectName}
+                      onChange={handleProjectNameChange}
+                    />
+                  </div>
+                  {/* <button
+                    onClick={exportCode}
+                    className={`flexcode-button text-md py-1 px-6 mt-14 ${projectName ? '' : 'opacity-20'}`}
+                    disabled={!projectName}
+                  >
+                    Export
+                  </button> */}
+                  <div>
+                    {/* Render the button based on the loading state */}
+                    {loading ? (
+                      <button
+                        className="flexcode-button text-md py-1 px-6 mt-14 opacity-50 cursor-not-allowed"
+                        disabled={true}
+                      >
+                        Loading...
+                      </button>
+                    ) : (
+                      <button
+                        onClick={exportCode}
+                        className={`flexcode-button text-md py-1 px-6 mt-14 ${
+                          projectName ? "" : "opacity-20 cursor-not-allowed"
+                        }`}
+                        disabled={!projectName}
+                      >
+                        Export
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+              {user ? (
+                <button
+                  onClick={() => setModalIsOpen(true)}
+                  className="text-xs px-2 btn-ghost bg-slate-500 rounded mr-1"
+                >
+                  Export
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    Swal.fire({
+                      title: "Want to Export?",
+                      text: "You need to login first!",
+                      icon: "warning",
+                      showCancelButton: true,
+                      confirmButtonColor: "transparent",
+                      cancelButtonColor: "red",
+                      confirmButtonText: "Yes, Login!",
+                      // backdrop: '#17181b99',
+                      background: "#1e2d40",
+                      color: "white",
+                      customClass: {
+                        confirmButton: "flexcode-button",
+                      },
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        navigate("/login");
+                      }
+                    });
+                  }}
+                  className="text-xs px-2 btn-ghost bg-slate-500 rounded mr-1"
+                >
+                  Export
+                </button>
+
+                // <Link to="/login" className="text-xs px-2 btn-ghost bg-slate-500 rounded mr-1">
+                //     Export
+                // </Link>
+              )}
+
               <button
                 onClick={openConsole}
                 className="text-xs px-2 btn-ghost bg-slate-500 rounded mr-1"
@@ -240,8 +390,7 @@ const PlayGround = () => {
           )}
         </div>
       </Split>
-
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,8 +1,4 @@
-import {
-  Link,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaRegEnvelope, FaSpinner, FaUser } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
 import { useForm } from "react-hook-form";
@@ -14,12 +10,13 @@ import { toast } from "react-hot-toast";
 import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
 import useAxiosNormal from "../../Hooks/useAxiosNormal";
 const SignUp = () => {
-  const { createUser, loading, setLoading, updateUserProfile, setReload } = useContext(AuthContext);
+  const { createUser, loading, setLoading, updateUserProfile, setReload } =
+    useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const [isChecked, setIsChecked] = useState(false);
   const from = location.state?.from?.pathname || "/";
-  const [axiosNormal] = useAxiosNormal()
+  const [axiosNormal] = useAxiosNormal();
   const {
     register,
     handleSubmit,
@@ -44,49 +41,49 @@ const SignUp = () => {
         const user = result.user;
         updateUserProfile(name)
           .then(() => {
-            setReload(new Date().getTime());
-            toast.success("Login Successfull!");
-
             const saveUser = {
-              name: name || 'User Name',
+              name: name || "User Name",
               email: email,
-              username: `${email.split('@')[0]}${Math.floor(Math.random() * (999 - 100 + 1)) + 100}`,
+              username: `${email.split("@")[0]}${
+                Math.floor(Math.random() * (999 - 100 + 1)) + 100
+              }`,
               date: new Date(),
-              userRole: 'general',
-              gender: '',
-              address: '',
-              fbLinks: '',
-              LinkLinks: '',
-              webSiteLink: '',
+              userRole: "general",
+              gender: "",
+              address: "",
+              fbLinks: "",
+              LinkLinks: "",
+              webSiteLink: "",
               mobile: null,
               isPremium: false,
               dateOfBirth: null,
               education: [
                 {
-                  degreeTitle: '',
-                  InstituteName: '',
-                }
+                  degreeTitle: "",
+                  InstituteName: "",
+                },
               ],
               skills: [],
-              userPhotoUrl: user.photoURL || '',
+              userPhotoUrl: user.photoURL || "",
             };
-            console.log('73 line ', saveUser);
-            axiosNormal.post("/users", saveUser)
-              .then((data) => {
-                console.log(data, saveUser);
-                navigate(from, { replace: true });
-              });
+            console.log("73 line ", saveUser);
+            axiosNormal.post("/users", saveUser).then((data) => {
+              console.log(data, saveUser);
+              navigate(from, { replace: true });
+              toast.success("Login Successfull!");
+              setReload(new Date().getTime());
+              setLoading(false);
+              reset();
+            });
           })
           .catch((error) => {
             toast.error("Login Failed. " + error.message);
+            setLoading(false);
           });
-        reset();
-        setLoading(false);
-        toast.success("Login Successfull!");
       })
       .catch((error) => {
-        setLoading(false);
         toast.error("Login Failed. " + error.message);
+        setLoading(false);
       });
   };
 
@@ -98,11 +95,7 @@ const SignUp = () => {
     <div className="flexcode-container">
       <div className="bg-secondary-color shadow-2xl md:w-2/4 max-w-md mx-auto rounded-xl px-7 my-5">
         <div className="flex justify-center py-8">
-          <img
-            className="w-44 md:w-48"
-            src="/flex-codelogo.png"
-            alt="logo"
-          />
+          <img className="w-44 md:w-48" src="/flex-codelogo.png" alt="logo" />
         </div>
         <SocialLogin />
         <div className="max-w-[150px] flex justify-center border-2 border-[#0fcda1] rounded mx-auto my-8"></div>
@@ -155,10 +148,14 @@ const SignUp = () => {
                 placeholder="Password"
               />{" "}
               {errors.password?.type === "required" && (
-                <p className="text-red-500 text-xs mt-1">Password is required</p>
+                <p className="text-red-500 text-xs mt-1">
+                  Password is required
+                </p>
               )}
               {errors.password?.type === "minLength" && (
-                <p className="text-red-500 text-xs mt-1">Must be 6 characters</p>
+                <p className="text-red-500 text-xs mt-1">
+                  Must be 6 characters
+                </p>
               )}
             </div>
           </div>
@@ -185,10 +182,11 @@ const SignUp = () => {
             </div>
             <button
               type="submit"
-              className={`${isChecked
-                ? " px-6 py-[6px] flexcode-button cursor-pointer mt-3 mb-6"
-                : " px-6 py-[6px] flexcode-button opacity-40 mt-3 mb-6 cursor-not-allowed"
-                }`}
+              className={`${
+                isChecked
+                  ? " px-6 py-[6px] flexcode-button cursor-pointer mt-3 mb-6"
+                  : " px-6 py-[6px] flexcode-button opacity-40 mt-3 mb-6 cursor-not-allowed"
+              }`}
               onClick={() => {
                 if (isChecked) {
                 }
@@ -203,7 +201,10 @@ const SignUp = () => {
           </div>
         </form>
         <div className="text-center pb-10 text-sm text-gray-300">
-          <Link to="/login" className="cursor-pointer link hover:text-blue-500 mr-1">
+          <Link
+            to="/login"
+            className="cursor-pointer link hover:text-blue-500 mr-1"
+          >
             Sign in
           </Link>
           <span> if you have an account yet.</span>

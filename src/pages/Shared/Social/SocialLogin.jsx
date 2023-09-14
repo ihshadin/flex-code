@@ -6,7 +6,7 @@ import { toast } from "react-hot-toast";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const SocialLogin = () => {
-  const { signInWithGoogle, signInWithGitHub } = useContext(AuthContext);
+  const { signInWithGoogle, signInWithGitHub, setLoading } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -17,14 +17,13 @@ const SocialLogin = () => {
       .then((result) => {
         const user = result.user;
         toast.success("Login Successfull!");
-        navigate(from, { replace: true });
+        // navigate(from, { replace: true });
 
         const saveUser = {
           name: user.displayName || "User Name",
           email: user.email,
-          username: `${user.email.split("@")[0]}${
-            Math.floor(Math.random() * (999 - 100 + 1)) + 100
-          }`,
+          username: `${user.email.split("@")[0]}${Math.floor(Math.random() * (999 - 100 + 1)) + 100
+            }`,
           date: new Date(),
           userRole: "general",
           gender: "",
@@ -45,12 +44,13 @@ const SocialLogin = () => {
         };
 
         axiosSecure.post("/users", saveUser).then((data) => {
-          console.log(data);
           navigate(from, { replace: true });
+          setLoading(false);
         });
       })
       .catch((error) => {
         toast.error("Login Failed. " + error.message);
+        setLoading(false);
       });
   };
   const clickSignInWithGoogle = () => {
@@ -60,9 +60,8 @@ const SocialLogin = () => {
         const saveUser = {
           name: user.displayName || "User Name",
           email: user.email,
-          username: `${user.email.split("@")[0]}${
-            Math.floor(Math.random() * (999 - 100 + 1)) + 100
-          }`,
+          username: `${user.email.split("@")[0]}${Math.floor(Math.random() * (999 - 100 + 1)) + 100
+            }`,
           date: new Date(),
           userRole: "general",
           gender: "",
@@ -84,13 +83,15 @@ const SocialLogin = () => {
         };
 
         axiosSecure.post("/users", saveUser).then((data) => {
-          console.log(saveUser);
+          // console.log(saveUser);
+          setLoading(false)
         });
         toast.success("Login Successfull!");
         navigate(from, { replace: true });
       })
       .catch((error) => {
         toast.error("Login Failed. " + error.message);
+        setLoading(false)
       });
   };
 

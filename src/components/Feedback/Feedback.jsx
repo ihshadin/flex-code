@@ -1,66 +1,68 @@
-import { useContext, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import Rating from "react-rating";
-import Swal from "sweetalert2";
 import reviewImg1 from "../../../public/20230810_120154.png";
-import { AuthContext } from "../../providers/AuthProvider";
-// import useAxiosNormal from "../../hooks/useAxiosNormal";
 import PageBannerTitle from "../BannerTitle/PageBannerTitle";
 import useAxiosNormal from "../../Hooks/useAxiosNormal";
+import toast from "react-hot-toast";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAuth from "../../Hooks/useAuth";
 
 const Feedback = () => {
   const [rating, setRating] = useState(0);
   const [exp, setExp] = useState("");
   const [details, setDetails] = useState("");
-  const { user } = useContext(AuthContext);
   const [axiosNormal] = useAxiosNormal();
-
   const { register, handleSubmit, reset } = useForm();
+  const { user } = useAuth();
+  const [flexUser, setFlexUser] = useState(null);
+  const [axiosSecure] = useAxiosSecure();
+
+  // check user is here or not 
+  useEffect(() => {
+    if (user) {
+      axiosSecure.get(`/users?email=${user?.email}`).then((data) => {
+        setFlexUser(data.data);
+      });
+    } else {
+      setFlexUser(null);
+    }
+  }, [user]);
+
   const onSubmit = (data) => {
     const feedbackDetails = {
       ...data,
       rating,
-      image: user?.photoURL,
-      userName: user?.displayName,
+      image: flexUser?.userPhotoUrl,
+      userName: flexUser?.name,
+      username: flexUser?.username
     };
     axiosNormal.post("/feedback", feedbackDetails).then((data) => {
       if (data.message === "success") {
-        Swal.fire({
-          title: "Wow! You Leave a feedback!",
-          text: "Submit you feedback successfully",
-          icon: "success",
-          confirmButtonText: "OK",
-        });
+        toast.success("Wow! You Leave a feedback!")
         reset();
       }
     });
   };
+
   return (
     <>
-      {user && (
-        <>
+      {flexUser && (
+        <section className="flexcode-container">
           <PageBannerTitle
-            title={"Leave Feedback"}
-            shortDesc={"Share your opinion with others."}
+            title='Leave Feedback'
+            shortDesc='Share your opinion with others.'
+            btnLink='/allTestimonials'
+            btnText1='Share you experiance'
+            btnText2='View All Testimonials'
           />
           <div className="md:flex gap-10 items-start relative my-5 md:my-16">
             <form onSubmit={handleSubmit(onSubmit)} className="md:w-1/2">
-              <div className="w-full mb-5">
-                <label htmlFor="" className="font-medium p-1">
-                  Your name
-                </label>
-                <input
-                  defaultValue={user?.displayName}
-                  readOnly
-                  type="text"
-                  className="w-full px-6 bg-secondary-color py-3 rounded-xl border-2 border-slate-500 outline-none"
-                  placeholder="John doe"
-                />
-              </div>
-              <div className="w-full mb-5">
+
+              <div className="w-full my-5">
                 <label htmlFor="thumbExp" className="font-medium p-1">
-                  Your thumb expression
+                  Thumb expression
                 </label>
                 <input
                   onKeyUp={(e) => setExp(e.target.value)}
@@ -121,7 +123,7 @@ const Feedback = () => {
               <div className="">
                 <div className="flex flex-col-reverse md:flex-row mt-8 md:items-center justify-between mb-3">
                   <h3 className="text-md w-1/2 md:text-xl font-semibold mt-5 md:mt-0">
-                    ~ {user?.displayName || "Your Name"}
+                    ~ {flexUser?.name || "Your Name"}
                   </h3>
                   <Rating
                     initialRating={rating}
@@ -137,7 +139,7 @@ const Feedback = () => {
                 </div>
                 <div className="w-20 h-20 object-cover rounded-full border border-[#0fcda156] p-1 bg-secondary-color absolute">
                   <img
-                    src={user?.photoURL || reviewImg1}
+                    src={flexUser?.userPhotoUrl || reviewImg1}
                     className="rounded-full"
                     alt=""
                   />
@@ -145,7 +147,7 @@ const Feedback = () => {
               </div>
             </div>
           </div>
-        </>
+        </section>
       )}
     </>
   );

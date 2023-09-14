@@ -35,7 +35,10 @@ import Dashboard from "../layouts/Dashboard";
 import AdminMainContent from "../pages/AdminDashbord/AdminMainContent/AdminMainContent";
 import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 import SendEmail from "../pages/AdminDashbord/SendEmail/SendEmail";
+import PreProject from "../pages/MyPlayGround/PreProject/PreProject";
 import FooterSection from "../pages/Shared/FooterSection/FooterSection";
+import FlexCodeAbout from "../pages/FlexCodeDetails/FlexCodeAbout/FlexCodeAbout";
+import FlexCodeFAQ from "../pages/FlexCodeDetails/FlexCodeFAQ/FlexCodeFAQ";
 
 const router = createBrowserRouter([
   {
@@ -85,7 +88,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/feedback",
-        element: <Feedback />,
+        element: (
+          <PrivateRoute>
+            <Feedback />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/profile",
@@ -94,6 +101,10 @@ const router = createBrowserRouter([
       {
         path: "/My-playground",
         element: <MyPlayGround />,
+      },
+      {
+        path: "/pre-project/:id",
+        element: <PreProject />,
       },
       {
         path: "/playground",
@@ -117,11 +128,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/subscribe",
-        element: (
-          <PrivateRoute>
-            <Subscribe />
-          </PrivateRoute>
-        ),
+        element: <Subscribe />,
       },
       {
         path: "/checkout",
@@ -153,7 +160,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/explore/:id",
-        element: <ExploreDetails></ExploreDetails>,
+        element: <ExploreDetails />,
       },
       {
         path: "/:username",
@@ -161,8 +168,16 @@ const router = createBrowserRouter([
       },
       {
         path: "/allMenuFooter",
-        element: <FooterSection />
-      }
+        element: <FooterSection />,
+      },
+      {
+        path: "/about",
+        element: <FlexCodeAbout />,
+      },
+      {
+        path: "/faq",
+        element: <FlexCodeFAQ />,
+      },
     ],
   },
   {

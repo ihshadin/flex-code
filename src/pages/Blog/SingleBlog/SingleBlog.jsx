@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigation, useParams } from "react-router-dom";
-import useAxiosNormal from "../../../hooks/useAxiosNormal";
+import { Link, useParams } from "react-router-dom";
+import useAxiosNormal from "../../../Hooks/useAxiosNormal";
+import 'quill/dist/quill.snow.css';
 import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading";
+import useAllBlogs from "../../../Hooks/useAllBlogs";
 
 const SingleBlog = () => {
   const { id } = useParams();
   const [axiosNormal] = useAxiosNormal();
-  const [blogs, setBlogs] = useState([]);
   const [singleBlog, setSingleBlog] = useState({});
   const [isloading, setIsLoading] = useState(true);
+  const { allBlogs, isLoading } = useAllBlogs()
 
   useEffect(() => {
     axiosNormal.get(`/blog/${id}`)
@@ -18,14 +20,6 @@ const SingleBlog = () => {
       })
   }, [id]);
 
-  useEffect(() => {
-    axiosNormal.get('/blog')
-      .then((data) => {
-        setBlogs(data.data);
-        setIsLoading(false);
-      })
-  }, []);
-
 
   if (isloading) {
     return <FlexcodeLoading />;
@@ -33,7 +27,7 @@ const SingleBlog = () => {
 
   return (
     <section>
-      <div className="flexcode-container">
+      <div className="flexcode-container !pt-16 md:!pt-10">
         <div className="lg:flex">
 
           {/* Single Blog details side */}
@@ -65,26 +59,50 @@ const SingleBlog = () => {
                   </p>
                 </div>
               </div>
-              <p className=" text-white mt-5 text-justify mb-5">
-                {singleBlog?.details}
-              </p>
+              <p className=" text-white mt-5 text-justify mb-5" dangerouslySetInnerHTML={{ __html: singleBlog?.details }} />
             </div>
           </div>
 
           {/* List of Blog Side side */}
           <div className="mt-8 lg:w-[30%] lg:mt-0 lg:px-6">
             <h2 className="text-2xl font-semibold pb-5">Recent Blogs</h2>
-            {blogs?.slice(0, 5).map((blog) => (
-              <div key={blog._id}>
-                <Link to={`/blog/${blog._id}`}>
-                  <h2 className="block mt-2 font-medium text-white hover:underline hover:text-[#0fcda1]">
-                    {blog?.title}
-                  </h2>
-                </Link>
-                <p className="text-sm text-slate-400 pt-1">{blog.details.length > 50 ? blog.details.slice(0, 50) : blog.details}</p>
-                <hr className="my-6 border border-[#0fcda18c]" />
-              </div>
-            ))}
+
+            {
+              isLoading ? (
+                <>
+                  <div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-4 w-[80%] rounded"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-2 w-full rounded mt-3"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-2 w-1/2 rounded mt-2"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-1 w-full rounded my-7"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-4 w-[80%] rounded"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-2 w-full rounded mt-3"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-2 w-1/2 rounded mt-2"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-1 w-full rounded my-7"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-4 w-[80%] rounded"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-2 w-full rounded mt-3"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-2 w-1/2 rounded mt-2"></div>
+                    <div className="bg-slate-500 animate-pulse bg-opacity-50 h-1 w-full rounded my-7"></div>
+                  </div>
+                </>
+              ) : (
+                allBlogs?.slice(0, 5).map((blog) => (
+                  <div key={blog._id}>
+                    <Link to={`/blog/${blog._id}`}>
+                      <h2 className="block mt-2 font-medium text-white hover:underline hover:text-[#0fcda1]">
+                        {blog?.title}
+                      </h2>
+                    </Link>
+                    <p className="text-sm text-slate-300 mb-5" dangerouslySetInnerHTML={{
+                      __html: blog.details.length > 50
+                        ? blog.details.slice(0, 50) + "..."
+                        : blog.details
+                    }} />
+                    <hr className="my-6 border border-[#0fcda18c]" />
+                  </div>
+                ))
+              )
+            }
           </div>
         </div>
       </div>

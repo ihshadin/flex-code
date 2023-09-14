@@ -1,18 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading";
 import { toast } from "react-hot-toast";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAllUsers from "../../../Hooks/useAllUsers";
+import { motion } from "framer-motion";
 
 const ManageUser = () => {
   const [loading, setLoading] = useState(true);
   const [axiosSecure] = useAxiosSecure();
-  const [allUsers] = useAllUsers();
+  const [allUsers, setAllUsers] = useAllUsers();
+
+  useEffect(() => {
+    if (allUsers.length > 0) {
+      setLoading(false);
+    }
+  }, [allUsers]);
 
   const handleMakeAdmin = async (email) => {
     try {
       const res = await axiosSecure.post(`/users/all/admin/${email}`);
       if (res.data.user.modifiedCount > 0) {
+        const updatedUsers = allUsers.map((user) => {
+          if (user.email === email) {
+            return {
+              ...user,
+              userRole: "admin",
+            };
+          }
+          return user;
+        });
+        setAllUsers(updatedUsers);
         toast.success("User role updated to admin!", {
           position: "top-center",
           autoClose: 10000,
@@ -34,6 +51,16 @@ const ManageUser = () => {
       const res = await axiosSecure.post(`/users/all/genarel/${email}`);
 
       if (res.data.user.modifiedCount > 0) {
+        const updatedUsers = allUsers.map((user) => {
+          if (user.email === email) {
+            return {
+              ...user,
+              userRole: "general",
+            };
+          }
+          return user;
+        });
+        setAllUsers(updatedUsers);
         toast.success("Admin role updated to user!", {
           position: "top-center",
           autoClose: 10000,
@@ -50,10 +77,15 @@ const ManageUser = () => {
     }
   };
 
-  console.log(allUsers);
-
   return (
-    <section className="text-white md:mx-7 md:my-5">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 2 }}
+      key="flex_046445"
+      className="text-white md:mx-7 md:my-5"
+    >
       <div className="border-b-2 border-[#0fcda185] pb-3 mb-8 ">
         <h1 className="text-white text-2xl md:text-4xl tracking-wider font-semibold">
           All user
@@ -112,7 +144,7 @@ const ManageUser = () => {
           </div>
         </div>
       )}
-    </section>
+    </motion.div>
   );
 };
 

@@ -1,0 +1,40 @@
+.img-polygon {
+    -webkit-clip-path: polygon(50% 0%, 100% 20%, 100% 80%, 50% 100%, 0% 80%, 0% 20%);
+            clip-path: polygon(50% 0%, 100% 20%, 100% 80%, 50% 100%, 0% 80%, 0% 20%);
+            /* position: relative; */
+}
+.polygon-shadow {
+    -webkit-filter: drop-shadow(0 2px 30px rgba(255, 255, 255, 0.5));
+            filter: drop-shadow(0 2px 30px rgba(255, 255, 255, 0.5));
+}
+.polygon-shadow:hover {
+    -webkit-filter: drop-shadow(0 2px 30px rgba(15, 205, 161, 0.5));
+            filter: drop-shadow(0 2px 30px rgba(15, 205, 161, 0.5));
+}
+.polygon-animate {
+    -webkit-animation: polygonPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            animation: polygonPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+.animate-delay-1s {
+    -webkit-animation-delay: 1s;
+            animation-delay: 1s;
+}
+.animate-delay-2s {
+    -webkit-animation-delay: 2s;
+            animation-delay: 2s;
+}
+.animate-delay-3s {
+    -webkit-animation-delay: 3s;
+            animation-delay: 3s;
+}
+
+@-webkit-keyframes polygonPulse {
+    50% {
+        opacity: 0.6;
+    }
+}
+@keyframes polygonPulse {
+    50% {
+        opacity: 0.6;
+    }
+}

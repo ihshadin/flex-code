@@ -4,6 +4,7 @@ import "codemirror/lib/codemirror.css";
 import "codemirror/mode/javascript/javascript";
 import "codemirror/theme/dracula.css";
 import "./CodeEditor.css";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
 const CodeEditor = () => {
   const [code, setCode] = useState('console.log("Hello, world!");');
@@ -34,12 +35,10 @@ const CodeEditor = () => {
 
   return (
     <div className="flexcode-container relative md:mb-4">
-      <h2 className="text-3xl md:text-5xl text-center text-white font-bold">
-        Flex Your Knowledge
-      </h2>
-      <p className="max-w-xl w-full text-center mx-auto mt-2 mb-10 text-white">
-        Unlock the power of problem solving
-      </p>
+      <SectionTitle
+        title=" Flex Your Knowledge"
+        descrition="Unlock the power of problem solving"
+      />
       <div className="relative md:flex gap-5">
         {/* start editor  */}
         <div className="md:w-1/2 rounded-lg overflow-hidden border border-gray-500 hover:border-[#0fcda1] transition-all drop-shadow-md">
@@ -82,10 +81,12 @@ const CodeEditor = () => {
         </div>
         {/* end editor  */}
 
-        <button onClick={runCode} className="relative mt-2 md:mt-0 md:absolute left-1/2 bottom-0 md:-bottom-20 -translate-x-1/2 flexcode-button py-2 md:py-3 px-5 md:px-6 text-xs md:text-base">
+        <button
+          onClick={runCode}
+          className="relative mt-2 md:mt-0 md:absolute left-1/2 bottom-0 md:-bottom-20 -translate-x-1/2 flexcode-button py-2 md:py-3 px-5 md:px-6 text-xs md:text-base"
+        >
           Run Your Code
         </button>
-
 
         {/* start preview  */}
         <div className="md:w-1/2 rounded-lg overflow-hidden border border-gray-500 hover:border-[#0fcda1] transition-all drop-shadow-md mt-4 md:mt-0">

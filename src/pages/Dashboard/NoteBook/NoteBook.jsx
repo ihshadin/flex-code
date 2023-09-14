@@ -1,31 +1,30 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import './NoteBook.css'
-import { AuthContext } from '../../../providers/AuthProvider';
-import useAxiosNormal from '../../../Hooks/useAxiosNormal';
-import handWithPen from '../../../assets/images/hand-with-pen.png'
-import PageBannerTitle from '../../../components/BannerTitle/PageBannerTitle';
-import ExploreCardLoading from '../../../components/FlexcodeLoading/ExploreCardLoading';
+import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import "./NoteBook.css";
+import { AuthContext } from "../../../providers/AuthProvider";
+import handWithPen from "../../../assets/images/hand-with-pen.png";
+import PageBannerTitle from "../../../components/BannerTitle/PageBannerTitle";
+import ExploreCardLoading from "../../../components/FlexcodeLoading/ExploreCardLoading";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const NoteBook = () => {
     const { user } = useContext(AuthContext);
-    const [notes, setNotes] = useState([])
-    const [axiosNormal] = useAxiosNormal();
+    const [notes, setNotes] = useState([]);
+    const [axiosSecure] = useAxiosSecure();
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        axiosNormal.get(`/notebooks?email=${user?.email}`)
-            .then(data => {
-                setNotes(data)
-                setTimeout(() => {
-                    setIsLoading(false);
-                }, 1000);
-            })
-    }, [user?.email])
+        axiosSecure.get(`/notebooks?email=${user?.email}`).then((data) => {
+            setNotes(data.data);
+            setTimeout(() => {
+                setIsLoading(false);
+            }, 1000);
+        });
+    }, [user?.email]);
 
     return (
         <section>
-            <div className='flexcode-container'>
+            <div className='flexcode-container !pt-16 md:!pt-10'>
                 <PageBannerTitle
                     title='My NoteBooks'
                     shortDesc='A notebook is a blank book that you can write in and save it.'
@@ -67,8 +66,8 @@ const NoteBook = () => {
                             </div>
                         ) : (
                             notes?.map(note => (
-                                <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-12'>
-                                    <div key={note._id} className="flex flex-col border gap-2 p-5 rounded-xl border-gray-500 hover:border-[#0fcda1] transition-all bg-[#1e2d40]">
+                                <div key={note._id} className='grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-12'>
+                                    <div className="flex flex-col border gap-2 p-5 rounded-xl border-gray-500 hover:border-[#0fcda1] transition-all bg-[#1e2d40]">
                                         <h1 className="text-lg font-semibold text-white">
                                             {note.title}
                                         </h1>

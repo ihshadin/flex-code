@@ -5,10 +5,32 @@ import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
 import CardLoading from "../../components/FlexcodeLoading/CardLoading";
 import ProblemCard from "./ProblemCard";
 import useAllProblems from "../../Hooks/useAllProblems";
+import { motion } from "framer-motion";
 
 const Problems = () => {
-  const { allProblems, currentPage, totalPages, setCurrentPage, isLoading, searchText, setSearchText, filterLevel, setFilterLevel } = useAllProblems()
-  const problemsLanguage = ['JavaScript', 'Python', 'Java', 'C++', 'Ruby', 'Swift', 'PHP', 'Go', 'TypeScript']
+  const {
+    allProblems,
+    currentPage,
+    totalPages,
+    setCurrentPage,
+    isLoading,
+    searchText,
+    setSearchText,
+    filterLevel,
+    setFilterLevel,
+  } = useAllProblems();
+
+  const problemsLanguage = [
+    "JavaScript",
+    "Python",
+    "Java",
+    "C++",
+    "Ruby",
+    "Swift",
+    "PHP",
+    "Go",
+    "TypeScript",
+  ];
 
   const navigation = useNavigation();
   if (navigation.state === "loading") {
@@ -17,11 +39,17 @@ const Problems = () => {
 
   return (
     <section>
-      <div className="flexcode-container ">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 2 }}
+        className="flexcode-container !pt-16 md:!pt-10"
+        key="flex_2"
+      >
         <PageBannerTitle
           title="Most Popular languages"
           shortDesc="A collection of most popular problems."
-
         />
 
         {/* Filter language */}
@@ -30,11 +58,14 @@ const Problems = () => {
             <Link
               to={`${problem.toLowerCase()}`}
               key={index}
-              className={`${problemsLanguage.reduce((total, i) => total + index, 0) - 3 <= index
-                ? "border-b"
-                : ""
-                } ${[6, 7, 8].includes(index) ? "" : "border-b"} ${[1, 4, 7, 10, 13].includes(index) ? "border-x" : ""
-                } cursor-pointer border-[#0fcda1] hover:bg-[#0fcda1] hover:text-[#17181b] transition-all flex justify-center items-center`}
+              className={`${
+                problemsLanguage.reduce((total, i) => total + index, 0) - 3 <=
+                index
+                  ? "border-b"
+                  : ""
+              } ${[6, 7, 8].includes(index) ? "" : "border-b"} ${
+                [1, 4, 7, 10, 13].includes(index) ? "border-x" : ""
+              } cursor-pointer border-[#0fcda1] hover:bg-[#0fcda1] hover:text-[#17181b] transition-all flex justify-center items-center`}
             >
               <p className="md:text-lg font-medium text-center py-5">
                 {problem}
@@ -93,19 +124,21 @@ const Problems = () => {
         </div>
         {/* Program filtering and search design*/}
 
-        {
-          isLoading ? (
-            <CardLoading />
-          ) : (
-            <div className="grid md:grid-cols-2 gap-6">
-              {allProblems?.map((problem) => (
-                <ProblemCard key={problem._id} problem={problem} />
-              ))}
-            </div>
-          )
-        }
-        <Pagination currentPage={currentPage} totalPage={totalPages} setCurrentPage={setCurrentPage} />
-      </div>
+        {isLoading ? (
+          <CardLoading />
+        ) : (
+          <div className="grid md:grid-cols-2 gap-6">
+            {allProblems?.map((problem) => (
+              <ProblemCard key={problem._id} problem={problem} />
+            ))}
+          </div>
+        )}
+        <Pagination
+          currentPage={currentPage}
+          totalPage={totalPages}
+          setCurrentPage={setCurrentPage}
+        />
+      </motion.div>
     </section>
   );
 };
