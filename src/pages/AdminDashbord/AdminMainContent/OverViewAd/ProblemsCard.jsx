@@ -18,7 +18,7 @@ const ProblemsCard = () => {
 					Total Problems
 				</p>
 				<p className="flex items-center gap-1 mt-5 text-sm font-medium primary-color">
-					0.43%
+					0.78%
 					<FaArrowUp />
 				</p>
 			</div>
