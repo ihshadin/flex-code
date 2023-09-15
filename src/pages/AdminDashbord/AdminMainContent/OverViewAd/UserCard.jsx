@@ -14,7 +14,7 @@ const UserCard = () => {
 				</h4>
 				<p className="text-sm font-medium text-slate-400 mt-1">Total Users</p>
 				<p className="flex items-center gap-1 mt-5 text-sm font-medium primary-color">
-					0.43%
+					0.18%
 					<FaArrowUp />
 				</p>
 			</div>

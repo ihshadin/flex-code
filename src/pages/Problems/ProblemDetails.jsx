@@ -319,7 +319,7 @@ const ProblemDetails = () => {
                       <button
                         onClick={() => {
                           Swal.fire({
-                            title: "Want to Export?",
+                            title: "Want to Solve problems?",
                             text: "You need to login first!",
                             icon: "warning",
                             showCancelButton: true,

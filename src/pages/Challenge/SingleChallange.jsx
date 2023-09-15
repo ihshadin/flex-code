@@ -32,9 +32,9 @@ const Single = () => {
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [axiosSecure] = useAxiosSecure();
-  const {state} = useLocation()
+  const { state } = useLocation()
   console.log(state?.username, flexUser?.username, time, state?.timeStamp);
-  
+
   // check user is here or not
   useEffect(() => {
     if (user) {
@@ -100,7 +100,7 @@ const Single = () => {
 
       //   Output Message
       if (userOutput == singleProblem.examples[0].output) {
-       
+
 
         // if (!showFeedback) {
         //   sessionStorage.setItem("showFeedback", true);
@@ -108,82 +108,81 @@ const Single = () => {
         //     setIsOpen(true);
         //   }, 5000);
         // }
-console.log(challenge);
+        console.log(challenge);
 
-if(!state?.timeStamp){
-  setIsExplosion(true);
-  axiosNormal.post('/challenge', challenge).then(() => {
-  setIsRunning(false);
-  setOutputMessage(
-          <div>
-            <span className="primary-color text-2xl text-center font-semibold block">
-              Congratulations! Problem solved.
-            </span>
-            <p className="text-center mt-1">
-              Your time is{" "}
-              <span className="px-2 border border-[#0fcda1] text-white font-medium rounded-md">
-                {time}
-              </span>{" "}
-              seconds
-            </p>
-          </div>
-        );
-})
+        if (!state?.timeStamp) {
+          setIsExplosion(true);
+          axiosNormal.post('/challenge', challenge).then(() => {
+            setIsRunning(false);
+            setOutputMessage(
+              <div>
+                <span className="primary-color text-2xl text-center font-semibold block">
+                  Congratulations! Problem solved.
+                </span>
+                <p className="text-center mt-1">
+                  Your time is{" "}
+                  <span className="px-2 border border-[#0fcda1] text-white font-medium rounded-md">
+                    {time}
+                  </span>{" "}
+                  seconds
+                </p>
+              </div>
+            );
+          })
 
-}else{
-  
-  const winner = state?.timeStamp > time ? flexUser?.username : state?.username;
-  const winnerTime = state?.timeStamp > time ? time : state?.timeStamp;
-  console.log(winner, winnerTime);
+        } else {
+          const winner = state?.timeStamp > time ? flexUser?.username : state?.username;
+          const winnerTime = state?.timeStamp > time ? time : state?.timeStamp;
+          console.log(winner, winnerTime);
 
-  axiosNormal.put(`/challenge/one/${state?.id}`, {
-    winner, winnerTime
-  }).then(data => {
-    {state?.timeStamp > time ? 
-  
-      Swal.fire({
-        title: "You Win",
-        icon: "success",
-        confirmButtonText: "OK",
-      })
-      : 
-      Swal.fire({
-        title: "You Lose",
-        icon: "error",
-        confirmButtonText: "OK",
-      })
-      }
-    console.log('winner --->', data);
-  })
-  
-
-  
-  if(state?.timeStamp > time){
-    setIsExplosion(true);
-  }
-  setIsRunning(false);
+          axiosNormal.put(`/challenge/one/${state?.id}/${state?.ownId}`, {
+            winner, winnerTime
+          }).then(data => {
+            {
+              state?.timeStamp > time ?
+                Swal.fire({
+                  title: "You Win",
+                  icon: "success",
+                  confirmButtonText: "OK",
+                })
+                :
+                Swal.fire({
+                  title: "You Lose",
+                  icon: "error",
+                  confirmButtonText: "OK",
+                })
+            }
+            console.log('winner --->', data);
+          })
 
 
-  setOutputMessage(
-    <div>
-      <span className="primary-color text-2xl text-center font-semibold block">
-        Congratulations! Problem solved.
-      </span>
-      <p className="text-center mt-1">
-        Your time is{" "}
-        <span className="px-2 border border-[#0fcda1] text-white font-medium rounded-md">
-          {time}
-        </span>{" "}
-        seconds
-      </p>
-    </div>
-  );
-}
-// socket.emit("sendNotification", notification);
 
-         
+          if (state?.timeStamp > time) {
+            setIsExplosion(true);
+          }
+          setIsRunning(false);
+
+
+          setOutputMessage(
+            <div>
+              <span className="primary-color text-2xl text-center font-semibold block">
+                Congratulations! Problem solved.
+              </span>
+              <p className="text-center mt-1">
+                Your time is{" "}
+                <span className="px-2 border border-[#0fcda1] text-white font-medium rounded-md">
+                  {time}
+                </span>{" "}
+                seconds
+              </p>
+            </div>
+          );
+        }
+        // socket.emit("sendNotification", notification);
+
+
         // -----------------------
-       
+
       } else {
         setOutputMessage(
           <div>
@@ -239,7 +238,7 @@ if(!state?.timeStamp){
   return (
     <section id="problemDetails">
       <div className="flexcode-container">
-        
+
         {isLoading ? (
           <SinProbLoading />
         ) : (
@@ -302,11 +301,11 @@ if(!state?.timeStamp){
             <div className="problem-exmaple w-1/2 flex flex-col md:overflow-y-scroll">
 
 
-            {/* Timer    */}
+              {/* Timer    */}
 
-            <div className="flex flex-row-reverse mr-6 mb-2">
-                <Timer setTime={setTime} setIsRunning={setIsRunning} isRunning={isRunning}/>
-            </div>
+              <div className="flex flex-row-reverse mr-6 mb-2">
+                <Timer setTime={setTime} setIsRunning={setIsRunning} isRunning={isRunning} />
+              </div>
 
 
               <Split
@@ -328,7 +327,7 @@ if(!state?.timeStamp){
                       <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
                       <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                     </div>
-                 
+
                   </div>
                   <CodeMirror
                     value={code || defaultCode}
@@ -411,7 +410,7 @@ if(!state?.timeStamp){
           </Split>
         )}
       </div>
-  
+
     </section>
   );
 };

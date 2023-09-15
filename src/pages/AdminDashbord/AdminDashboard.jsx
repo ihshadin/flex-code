@@ -41,7 +41,7 @@ const AdminDashboard = () => {
             <Outlet />
           </motion.div>
         </div>
-        <div className="drawer-side">
+        <div className="drawer-side sticky top-[77px]">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
 
           <div className="flexcode-banner-bg backdrop-blur-sm md:backdrop-blur-0 w-80 text-white px-4 py-5 pt-16 md:pt-0 rounded-lg h-screen">
