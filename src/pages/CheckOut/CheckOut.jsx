@@ -8,11 +8,9 @@ import {
   FaUser,
 } from "react-icons/fa";
 import useAuth from "../../Hooks/useAuth";
-import useAxiosNormal from "../../Hooks/useAxiosNormal";
 
 const CheckOut = () => {
   const { user, loading } = useAuth();
-  const [axiosNormal] = useAxiosNormal();
   const {
     register,
     handleSubmit,
@@ -26,7 +24,14 @@ const CheckOut = () => {
     data.number = number;
     data.currency = "BDT";
 
-    axiosNormal.post("/payment", data)
+    fetch("https://flex-code-server.vercel.app/payment", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
       .then((data) => {
         window.location.replace(data?.url);
       });

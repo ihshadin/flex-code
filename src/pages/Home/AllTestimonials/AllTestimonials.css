@@ -1,7 +1,7 @@
 .test1 {
     margin: 0 auto;
-    -moz-columns: 4;
-         columns: 4;
+    -moz-columns: 3;
+         columns: 3;
     -moz-column-gap: 15px;
          column-gap: 15px;
 }
