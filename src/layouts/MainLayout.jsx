@@ -4,7 +4,6 @@ import NavBar from "../pages/Shared/NavBar/NavBar";
 import Footer from "../pages/Shared/Footer/Footer";
 import FlexcodeLoading from "../components/FlexcodeLoading/FlexcodeLoading";
 import premiumlogo from "/premiumlogo.png";
-import normallogo from "/20230810_125620.png";
 import { AuthContext } from "../providers/AuthProvider";
 import useAxiosNormal from "../Hooks/useAxiosNormal";
 import { Helmet } from "react-helmet";

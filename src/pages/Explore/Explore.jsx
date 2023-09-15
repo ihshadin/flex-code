@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Feedback from "../../components/Feedback/Feedback";
 import ExploreCard from "./ExploreCard";
 import About from "./About";
 import useAxiosNormal from "../../Hooks/useAxiosNormal";
 import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
 import ExploreCardLoading from "../../components/FlexcodeLoading/ExploreCardLoading";
-import OurTeam from "./OurTeam";
 
 import { motion } from "framer-motion";
+import OurTeam from "./OurTeam/OurTeam";
 const Explore = () => {
   const [axiosNormal] = useAxiosNormal();
   const [technologies, setTechnologies] = useState([]);
@@ -36,13 +36,7 @@ const Explore = () => {
         />
         <About />
 
-        <div className="my-8 md:my-16">
-          <PageBannerTitle
-            title="Our Team"
-            shortDesc="Explore our genius team members "
-          />
-          <OurTeam />
-        </div>
+        <OurTeam />
 
         <div className="my-8 md:my-16">
           <PageBannerTitle

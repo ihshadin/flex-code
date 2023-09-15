@@ -1,3 +1,4 @@
+import React from 'react';
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import Login from "../pages/Login/Login";
@@ -37,6 +38,11 @@ import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 import SendEmail from "../pages/AdminDashbord/SendEmail/SendEmail";
 import PreProject from "../pages/MyPlayGround/PreProject/PreProject";
 import FooterSection from "../pages/Shared/FooterSection/FooterSection";
+import FlexCodeAbout from "../pages/FlexCodeDetails/FlexCodeAbout/FlexCodeAbout";
+import FlexCodeFAQ from "../pages/FlexCodeDetails/FlexCodeFAQ/FlexCodeFAQ";
+import Challenge from "../pages/Challenge/Challenge";
+import SingleChallenge from "../pages/Challenge/SingleChallange";
+import AllChallenges from "../pages/Challenge/AllChallenges";
 
 const router = createBrowserRouter([
   {
@@ -49,12 +55,20 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/login",
-        element: <Login />,
+        path: "/about",
+        element: <FlexCodeAbout />,
       },
       {
-        path: "/signup",
-        element: <SignUp />,
+        path: "/add-note",
+        element: <AddNote />,
+      },
+      {
+        path: "/allMenuFooter",
+        element: <FooterSection />,
+      },
+      {
+        path: "/allTestimonials",
+        element: <AllTestimonials />,
       },
       {
         path: "/blog",
@@ -65,52 +79,60 @@ const router = createBrowserRouter([
         element: <SingleBlog />,
       },
       {
-        path: "add-note",
-        element: <AddNote />,
+        path: "/checkout",
+        element: (
+          <PrivateRoute>
+            <CheckOut />
+          </PrivateRoute>
+        ),
       },
       {
-        path: "/problems",
-        element: <Problems />,
+        path: "/challenge",
+        element: <Challenge />
       },
       {
-        path: "/problems/:languages",
-        element: <LangBasedProblems />,
+        path: "/AllChallenges",
+        element: <AllChallenges />
       },
       {
-        path: "/problem/:id",
-        element: <ProblemDetails />,
+        path: "/challenge/:id",
+        element: <SingleChallenge />
       },
       {
         path: "/explore",
         element: <Explore />,
       },
       {
-        path: "/feedback",
-        element: <PrivateRoute><Feedback /></PrivateRoute>,
+        path: "/explore/:id",
+        element: <ExploreDetails />,
       },
       {
-        path: "/profile",
-        element: <ProfileEdit />,
+        path: "/faq",
+        element: <FlexCodeFAQ />,
+      },
+      {
+        path: "/feedback",
+        element: (
+          <PrivateRoute>
+            <Feedback />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/leader-board",
+        element: <LeaderBoard />,
+      },
+      {
+        path: "/problems/:languages",
+        element: <LangBasedProblems />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
       {
         path: "/My-playground",
         element: <MyPlayGround />,
-      },
-      {
-        path: "/pre-project/:id",
-        element: <PreProject />,
-      },
-      {
-        path: "/playground",
-        element: <PlayGround />,
-      },
-      {
-        path: "/notebooks",
-        element: <NoteBook />,
-      },
-      {
-        path: "/notebook/:id",
-        element: <SingleNote />,
       },
       {
         path: "/my-submittions",
@@ -121,46 +143,67 @@ const router = createBrowserRouter([
         element: <ComingSoon />,
       },
       {
-        path: "/subscribe",
-        element: <Subscribe />,
+        path: "/notebook/:id",
+        element: <SingleNote />,
       },
       {
-        path: "/checkout",
-        element: <PrivateRoute><CheckOut /></PrivateRoute>,
-      },
-      {
-        path: "/payment/success/:tranId",
-        element: <PaymentSuccess />,
+        path: "/notebooks",
+        element: <NoteBook />,
       },
       {
         path: "/payment/fail/:tranId",
         element: <PaymentFail />,
       },
       {
+        path: "/payment/success/:tranId",
+        element: <PaymentSuccess />,
+      },
+      {
+        path: "/playground",
+        element: <PlayGround />,
+      },
+      {
+        path: "/pre-project/:id",
+        element: <PreProject />,
+      },
+      {
+        path: "/problems",
+        element: <Problems />,
+      },
+      {
+        path: "/problem/:id",
+        element: <ProblemDetails />,
+      },
+      {
+        path: "/profile",
+        element: <ProfileEdit />,
+      },
+      {
+        path: "/signup",
+        element: <SignUp />,
+      },
+      {
+        path: "/singleBlog",
+        element: <SingleBlog />,
+      },
+      {
         path: "/submissions",
         element: <ComingSoon />,
       },
       {
-        path: "/leader-board",
-        element: <LeaderBoard />,
+        path: "/subscribe",
+        element: <Subscribe />,
       },
       {
-        path: "/allTestimonials",
-        element: <AllTestimonials />,
-      },
-      {
-        path: "/explore/:id",
-        element: <ExploreDetails />,
+        path: "/username",
+        element: <DashboardHome />,
       },
       {
         path: "/:username",
         element: <DashboardHome />,
       },
-      {
-        path: "/allMenuFooter",
-        element: <FooterSection />
-      }
     ],
+
   },
   {
     path: "/dashboard",

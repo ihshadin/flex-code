@@ -1,25 +1,12 @@
+import React from 'react';
 import { FaCrown } from "react-icons/fa6";
-import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../Subscribe/Subscribe.css";
-import useAuth from "../../Hooks/useAuth";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
-const ProblemCard = ({ problem }) => {
-  const { user } = useAuth();
-  const [flexUser, setFlexUser] = useState(null);
-  const [axiosSecure] = useAxiosSecure();
+import useFlexUser from "../../Hooks/useFlexUser";
 
-  useEffect(() => {
-    if (user) {
-      axiosSecure.get(`/users?email=${user?.email}`).then((data) => {
-        setFlexUser(data.data);
-      });
-    } else {
-      setFlexUser(null);
-    }
-  }, [user]);
-
+const ProblemCard = ({ problem, challenger }) => {
+  const [flexUser] = useFlexUser();
   const isPremium = flexUser?.isPremium;
 
   return (
@@ -63,6 +50,7 @@ const ProblemCard = ({ problem }) => {
         {problem?.isPremium === true && isPremium === true && (
           <Link
             to={`/problem/${problem._id}`}
+            
             className="flexcode-button text-xs py-2 px-3"
           >
             Solve Problem
@@ -70,7 +58,8 @@ const ProblemCard = ({ problem }) => {
         )}
         {problem?.isPremium !== true && (
           <Link
-            to={`/problem/${problem._id}`}
+          state={{username: challenger}}
+            to={challenger ? `/challenge/${problem._id}` : `/problem/${problem._id}`}
             className="flexcode-button text-xs py-2 px-3"
           >
             Solve Problem
