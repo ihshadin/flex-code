@@ -177,6 +177,7 @@ const NavBar = () => {
                   Blogs
                 </Link>
               </li>
+            
               <li>
                 <Link
                   to="/explore"
@@ -301,6 +302,17 @@ const NavBar = () => {
                             </span>
                             <span>Profile</span>
                           </Link>
+                        
+              <Link
+                              to="/AllChallenges"
+                              className="flex items-center px-4 py-2 text-white hover:bg-[#00ffc3] hover:bg-opacity-40"
+                            >
+                              <span className="mr-2  flex">
+                                <span className="inline-block h-2 w-2 rounded-full bg-red-500"></span>
+                              </span>
+                              <span>Challenges</span>
+                            </Link>
+              
                           <Link
                             to="/leader-board"
                             className="flex items-center px-4 py-2 text-white hover:bg-[#00ffc3] hover:bg-opacity-40"
