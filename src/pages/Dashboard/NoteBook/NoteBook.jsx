@@ -6,6 +6,7 @@ import handWithPen from "../../../assets/images/hand-with-pen.png";
 import PageBannerTitle from "../../../components/BannerTitle/PageBannerTitle";
 import ExploreCardLoading from "../../../components/FlexcodeLoading/ExploreCardLoading";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const NoteBook = () => {
   const { user } = useContext(AuthContext);
@@ -21,6 +22,54 @@ const NoteBook = () => {
       }, 1000);
     });
   }, [user?.email]);
+
+  const HandelDeleteNote = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await axiosSecure.delete(`/notebooks?delete=${id}`);
+
+          if (response.data.success === true) {
+            setNotes((prevNotes) =>
+              prevNotes.filter((note) => note._id !== id)
+            );
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Your Note Boot has been Delete!",
+              showConfirmButton: false,
+              timer: 1500,
+              customClass: {
+                popup: "flex items-center justify-center",
+                content: "bg-white p-4 rounded-lg",
+                title: "text-center text-xl font-semibold mb-2",
+              },
+            });
+          } else {
+            Swal.fire(
+              "Error!",
+              "An error occurred while deleting the note.",
+              "error"
+            );
+          }
+        } catch (error) {
+          Swal.fire(
+            "Error!",
+            "An error occurred while deleting the note.",
+            "error"
+          );
+        }
+      }
+    });
+  };
 
   return (
     <section>
@@ -80,7 +129,7 @@ const NoteBook = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-12">
             {notes?.map((note) => (
-              <div key={note._id}>
+              <div key={note?._id}>
                 <div className="flex flex-col border gap-2 p-5 rounded-xl border-gray-500 hover:border-[#0fcda1] transition-all bg-[#1e2d40]">
                   <h1 className="text-lg font-semibold text-white">
                     {note.title}
@@ -90,12 +139,19 @@ const NoteBook = () => {
                       ? note.details.slice(0, 180) + "..."
                       : note.details}
                   </p>
-                  <Link
-                    to={`/notebook/${note._id}`}
-                    className="text-sm transition-all duration-300 primary-color ms-auto mt-auto tracking-wider btn-effect"
-                  >
-                    Read More
-                  </Link>
+                  <div className="flex justify-end items-center">
+                    <Link to={`/notebook/${note._id}`}>
+                      <button className="text-sm transition-all duration-300 primary-color ms-auto mt-auto tracking-wider btn-effect">
+                        Read More
+                      </button>
+                    </Link>
+                    <button
+                      onClick={() => HandelDeleteNote(note?._id)}
+                      className="text-sm transition-all duration-300 primary-color ms-auto mt-auto tracking-wider btn-effect ml-5"
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
