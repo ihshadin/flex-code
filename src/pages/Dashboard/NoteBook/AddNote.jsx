@@ -33,6 +33,7 @@ const AddNode = () => {
 
 	return (
 		<section>
+			<Helmet title="Flex Code | Add Note"/>
 			<div className="flexcode-container !pt-16 md:!pt-10">
 				<PageBannerTitle
 					title='Write your Notes Notes'

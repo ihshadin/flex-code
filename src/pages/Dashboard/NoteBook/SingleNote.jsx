@@ -29,6 +29,7 @@ const SingleNote = () => {
 
     return (
         <section>
+            <Helmet title={`Flex Code | ${note?.title || 'Note Book'}`}/>
             <div className="flexcode-container">
                 <PageBannerTitle
                     title={note.title}

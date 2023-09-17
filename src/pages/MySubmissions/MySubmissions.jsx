@@ -55,7 +55,7 @@ const MySubmissions = () => {
       className="flexcode-banner-bg pt-16 overflow-x-auto"
     >
       <div className="flexcode-container">
-      <Helmet title="FlexCode || My Submissions"/>
+      <Helmet title="Flex Code | My Submissions"/>
         <div className="border-b-2 border-[#0fcda185] pb-3">
           <h1 className="text-white text-2xl md:text-4xl tracking-wider font-semibold">
             My Submissions

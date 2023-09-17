@@ -3,6 +3,7 @@ import useAxiosNormal from "../../../Hooks/useAxiosNormal";
 import { key } from "localforage";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 const SendEmail = () => {
   const [messages, setMessages] = useState([]);
@@ -23,6 +24,7 @@ const SendEmail = () => {
       key="flex_046445"
       className="text-white md:mx-7 md:my-5"
     >
+      <Helmet title="Flex Code | Emails"/>
       {/* Heading */}
       <div className="border-b-2 border-[#0fcda185] pb-3 mb-8 ">
         <h1 className="text-white text-2xl md:text-4xl tracking-wider font-semibold">

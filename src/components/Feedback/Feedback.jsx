@@ -8,6 +8,8 @@ import useAxiosNormal from "../../Hooks/useAxiosNormal";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
+import { Helmet } from "react-helmet";
+import { useLocation } from "react-router-dom";
 
 const Feedback = () => {
   const [rating, setRating] = useState(0);
@@ -18,7 +20,10 @@ const Feedback = () => {
   const { user } = useAuth();
   const [flexUser, setFlexUser] = useState(null);
   const [axiosSecure] = useAxiosSecure();
+  const location = useLocation();
 
+  console.log(location);
+  
   // check user is here or not 
   useEffect(() => {
     if (user) {
@@ -48,6 +53,10 @@ const Feedback = () => {
 
   return (
     <>
+    {
+      location.pathname === "/feedback" && <Helmet title="Flex Code | Add Feedback"/>
+    }
+    
       {flexUser && (
         <section className="flexcode-container">
           <PageBannerTitle

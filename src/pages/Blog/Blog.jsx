@@ -14,7 +14,7 @@ const Blog = () => {
 
   return (
     <section>
-      <Helmet title="FlexCode || Blog"/>
+      <Helmet title="Flex Code | Blogs"/>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

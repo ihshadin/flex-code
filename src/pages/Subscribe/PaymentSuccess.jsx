@@ -3,6 +3,7 @@ import { FaRegCheckCircle } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import useAxiosNormal from "../../Hooks/useAxiosNormal";
 import ConfettiExplosion from "react-confetti-explosion";
+import { Helmet } from "react-helmet";
 
 const PaymentSuccess = () => {
   const { tranId } = useParams();
@@ -18,6 +19,7 @@ const PaymentSuccess = () => {
   return (
     
       <div className=" relative flex justify-center mt-4 md:mt-9 mb-6 md:mb-12">
+        <Helmet title="FlexCode | Payment success"/>
         <div className=" absolute top-5 right-1/2 ">
           <ConfettiExplosion />
         </div>

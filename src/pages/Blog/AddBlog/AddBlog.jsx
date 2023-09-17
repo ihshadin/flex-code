@@ -9,6 +9,7 @@ import PageBannerTitle from "../../../components/BannerTitle/PageBannerTitle";
 import toast from 'react-hot-toast';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 const AddBlog = () => {
   const { user } = useContext(AuthContext);
@@ -70,6 +71,7 @@ const AddBlog = () => {
       key="flex_046445"
       className="py-5 px-10"
     >
+      <Helmet title="Flex Code | Add A Blog"/>
       <div>
         <PageBannerTitle
           title="Add Blogs"

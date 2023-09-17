@@ -14,7 +14,7 @@ console.log(state?.username);
     const nonPremiumProblems = allProblems.filter(problem => problem.isPremium === false);
     return (
         <div className="flexcode-container">
-          <Helmet title="FlexCode || Challenge"/>
+          <Helmet title="Flex Code | Challenges"/>
 
               <PageBannerTitle
                     title={`Challenge Now !`}

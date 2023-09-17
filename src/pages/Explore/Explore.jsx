@@ -23,7 +23,7 @@ const Explore = () => {
 
   return (
     <section>
-      <Helmet title="FlexCode || Explore us"/>
+      <Helmet title="Flex Code | Explore us"/>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -50,7 +50,9 @@ const Explore = () => {
               <ExploreCardLoading />
             ) : (
               technologies?.map((technology, index) => (
-                <ExploreCard key={index} technology={technology} />
+                <ExploreCard key={index} 
+                
+                technology={technology} />
               ))
             )}
           </div>

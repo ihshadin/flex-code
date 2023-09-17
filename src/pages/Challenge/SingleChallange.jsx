@@ -16,6 +16,7 @@ import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import Timer from "../../components/Timer/Timer";
+import { Helmet } from "react-helmet";
 
 const Single = () => {
   const { id } = useParams();
@@ -237,6 +238,7 @@ const Single = () => {
 
   return (
     <section id="problemDetails">
+      <Helmet title={`Flex Code | ${singleProblem?.title || 'Challenge'}`}/>
       <div className="flexcode-container">
 
         {isLoading ? (
@@ -256,7 +258,7 @@ const Single = () => {
           >
             <div className="problem-exmaple w-1/2 mb-10 md:mb-0 md:overflow-y-scroll">
               <h2 className="text-2xl font-bold mb-2 primary-color">
-                {singleProblem.title}
+                {singleProblem?.title}
               </h2>
               <p className="leading-loose">
                 {singleProblem?.problemsDetails

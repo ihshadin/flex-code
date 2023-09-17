@@ -34,7 +34,7 @@ const PreProject = () => {
 
   return (
     <div>
-      <Helmet title="FlexCode || My Project"/>
+      <Helmet title="Flex Code | My Project"/>
       {
         Object.keys(project).length === 0 ? (
           <div className='bg-slate-500 animate-pulse bg-opacity-50 h-screen w-[100%] rounded-lg'>

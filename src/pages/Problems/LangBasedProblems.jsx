@@ -6,6 +6,7 @@ import Pagination from "../../components/Pagination/Pagination";
 import CardLoading from "../../components/FlexcodeLoading/CardLoading";
 import ComingSoon from "../../components/ComingSoon/ComingSoon";
 import ProblemCard from "./ProblemCard";
+import { Helmet } from "react-helmet";
 
 const LangBasedProblems = () => {
     const { languages } = useParams()
@@ -28,6 +29,7 @@ const LangBasedProblems = () => {
 
     return (
         <section>
+            <Helmet title={`Flex Code | ${languages}`}/>
             <div className="flexcode-container">
                 <PageBannerTitle
                     title={`All ${languages} Problems`}
