@@ -1,9 +1,11 @@
+import { Helmet } from "react-helmet";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 // import { faqImg } from "../../../assets/faq1.png";
 
 const FlexCodeFAQ = () => {
   return (
     <section className="w-full">
+      <Helmet title="Flex Code | FAQ"/>
       <div className="flexcode-container relative bg-[#17181b] ring-1 ring-gray-900/5  text-white">
         <div className="">
           <SectionTitle

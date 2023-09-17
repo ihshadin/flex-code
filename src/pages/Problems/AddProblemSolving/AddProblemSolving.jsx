@@ -8,6 +8,7 @@ import { FaPlus } from "react-icons/fa";
 import useAxiosNormal from "../../../Hooks/useAxiosNormal";
 import PageBannerTitle from "../../../components/BannerTitle/PageBannerTitle";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 const AddProblemSolving = () => {
   const { user } = useContext(AuthContext);
   const [axiosNormal] = useAxiosNormal();
@@ -76,6 +77,7 @@ const AddProblemSolving = () => {
       key="flex_046445"
       className="flexcode-container"
     >
+      <Helmet title="Flex Code | Add A Problem"/>
       <section className="py-6">
         <PageBannerTitle
           title="Add Problems"

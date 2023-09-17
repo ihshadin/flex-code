@@ -5,6 +5,7 @@ import './AllTestimonials.css';
 import FlexcodeLoading from '../../../components/FlexcodeLoading/FlexcodeLoading';
 import useAxiosNormal from '../../../Hooks/useAxiosNormal';
 import PageBannerTitle from '../../../components/BannerTitle/PageBannerTitle';
+import { Helmet } from 'react-helmet';
 
 const AllTestimonials = () => {
     const [feedback, setFeedback] = useState([]);
@@ -20,6 +21,7 @@ const AllTestimonials = () => {
     if (feedback.length > 0) {
         return (
             <section className='flexcode-container'>
+                <Helmet title="Flex Code | All Testimonials"/>
                 <PageBannerTitle
                     title='All Testimonials'
                     shortDesc='A testimonial is a statement from a past customer that describes how a product or service helped them.'

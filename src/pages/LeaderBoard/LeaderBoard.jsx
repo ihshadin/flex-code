@@ -20,7 +20,7 @@ const LeaderBoard = () => {
       key="flex_090"
     >
       <div className="flexcode-container !pt-16 md:!pt-10">
-      <Helmet title="FlexCode || Leader Board"/>
+      <Helmet title="Flex Code | Leader Board"/>
         <PageBannerTitle
           title="Top Problem Solvers"
           shortDesc="Meet the Brilliant Minds Behind the Solutions"

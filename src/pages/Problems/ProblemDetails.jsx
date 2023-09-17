@@ -16,6 +16,7 @@ import ConfettiExplosion from "react-confetti-explosion";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const ProblemDetails = () => {
   const { id } = useParams();
@@ -197,6 +198,7 @@ const ProblemDetails = () => {
 
   return (
     <section id="problemDetails">
+      <Helmet title={`Flex Code | ${singleProblem?.title || 'Problems'}`}/>
       <div className="flexcode-container">
         {isLoading ? (
           <SinProbLoading />

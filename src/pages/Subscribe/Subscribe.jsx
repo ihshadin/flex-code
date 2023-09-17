@@ -75,7 +75,7 @@ const Subscribe = () => {
         </div>
       </div> */}
       <section>
-      <Helmet title="FlexCode || Subscription"/>
+      <Helmet title="Flex Code | Subscription"/>
         <div className="flexcode-container -mt-10 max-h-screen mb-16">
           <div className="flex justify-center items-center ">
             <div className="text-center">

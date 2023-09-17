@@ -7,7 +7,7 @@ const ErrorPage = () => {
 
   return (
     <section>
-      <Helmet title="FlexCode || 404"/>
+      <Helmet title="Flex Code | 404 Not Found"/>
       <div className="wrapper">
         <div className="er-container">
           <div id="scene" className="scene" data-hover-only="false">

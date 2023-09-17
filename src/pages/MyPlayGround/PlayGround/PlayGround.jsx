@@ -176,7 +176,7 @@ const PlayGround = () => {
         cursor="col-resize"
       >
         <div className="flex flex-col md:flex-row w-full gap-3">
-        <Helmet title="FlexCode || My play ground"/>
+        <Helmet title="Flex Code | Play ground"/>
           <div className="w-full h-[16rem] md:h-full bg-slate-600 bg-opacity-10 rounded-xl overflow-hidden border border-gray-500 hover:border-[#0fcda1]">
             <div className="bg-secondary-color flex items-end">
               <div className="flex items-center gap-2 px-4 py-3">

@@ -7,6 +7,7 @@ import PageBannerTitle from "../../../components/BannerTitle/PageBannerTitle";
 import ExploreCardLoading from "../../../components/FlexcodeLoading/ExploreCardLoading";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const NoteBook = () => {
   const { user } = useContext(AuthContext);
@@ -73,6 +74,7 @@ const NoteBook = () => {
 
   return (
     <section>
+      <Helmet title="FlexCode | Note Book"/>
       <div className="flexcode-container !pt-16 md:!pt-10">
         <PageBannerTitle
           title="My NoteBooks"

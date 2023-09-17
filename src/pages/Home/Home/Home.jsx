@@ -18,7 +18,7 @@ const Home = () => {
   }
   return (
     <>
-    <Helmet title="Welcome to FlexCode"/>
+    <Helmet title="Welcome to Flex Code"/>
       <motion.div
         key="flex_5"
         initial={{ opacity: 0 }}

@@ -40,7 +40,7 @@ const Problems = () => {
 
   return (
     <section>
-      <Helmet title="FlexCode || Problems"/>
+      <Helmet title="Flex Code | Problems"/>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

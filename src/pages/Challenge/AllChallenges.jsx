@@ -4,6 +4,7 @@ import useFlexUser from "../../Hooks/useFlexUser";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import ChallengeCard from "./ChallengeCard";
 import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
+import { Helmet } from "react-helmet";
 
 const AllChallenges = () => {
 
@@ -32,6 +33,7 @@ const AllChallenges = () => {
     console.log(challenges);
     return (
       <div className="flexcode-container  flexcode-banner-bg min-h-screen">
+        <Helmet title="Flex Code | Challenges"/>
         <SectionTitle title={'Your Challenges'} descrition={'participate to strong your knowledge !'} />
 
         <div className="grid md:grid-cols-2 gap-6">
