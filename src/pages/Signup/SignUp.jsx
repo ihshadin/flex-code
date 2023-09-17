@@ -9,6 +9,7 @@ import "./Signup.css";
 import { toast } from "react-hot-toast";
 import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
 import useAxiosNormal from "../../Hooks/useAxiosNormal";
+import { Helmet } from "react-helmet";
 const SignUp = () => {
   const { createUser, loading, setLoading, updateUserProfile, setReload } =
     useContext(AuthContext);
@@ -93,6 +94,7 @@ const SignUp = () => {
 
   return (
     <div className="flexcode-container">
+      <Helmet title="FlexCode || Sign-up"/>
       <div className="bg-secondary-color shadow-2xl md:w-2/4 max-w-md mx-auto rounded-xl px-7 my-5">
         <div className="flex justify-center py-8">
           <img className="w-44 md:w-48" src="/flex-codelogo.png" alt="logo" />

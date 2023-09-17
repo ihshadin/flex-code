@@ -4,6 +4,7 @@ import useAllProblems from "../../Hooks/useAllProblems";
 import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
 import ProblemCard from "../Problems/ProblemCard";
 import { useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const Challenge = () => {
 
@@ -13,6 +14,7 @@ console.log(state?.username);
     const nonPremiumProblems = allProblems.filter(problem => problem.isPremium === false);
     return (
         <div className="flexcode-container">
+          <Helmet title="FlexCode || Challenge"/>
 
               <PageBannerTitle
                     title={`Challenge Now !`}

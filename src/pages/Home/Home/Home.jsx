@@ -9,6 +9,7 @@ import { useNavigation } from "react-router-dom";
 import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading";
 import BlogSection from "../BlogSection/BlogSection";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
   const navigation = useNavigation();
@@ -17,6 +18,7 @@ const Home = () => {
   }
   return (
     <>
+    <Helmet title="Welcome to FlexCode"/>
       <motion.div
         key="flex_5"
         initial={{ opacity: 0 }}
