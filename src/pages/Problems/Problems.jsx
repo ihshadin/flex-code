@@ -6,6 +6,7 @@ import CardLoading from "../../components/FlexcodeLoading/CardLoading";
 import ProblemCard from "./ProblemCard";
 import useAllProblems from "../../Hooks/useAllProblems";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 const Problems = () => {
   const {
@@ -39,6 +40,7 @@ const Problems = () => {
 
   return (
     <section>
+      <Helmet title="FlexCode || Problems"/>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

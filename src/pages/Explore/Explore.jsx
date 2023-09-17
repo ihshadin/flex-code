@@ -8,6 +8,7 @@ import ExploreCardLoading from "../../components/FlexcodeLoading/ExploreCardLoad
 
 import { motion } from "framer-motion";
 import OurTeam from "./OurTeam/OurTeam";
+import { Helmet } from "react-helmet";
 const Explore = () => {
   const [axiosNormal] = useAxiosNormal();
   const [technologies, setTechnologies] = useState([]);
@@ -22,6 +23,7 @@ const Explore = () => {
 
   return (
     <section>
+      <Helmet title="FlexCode || Explore us"/>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

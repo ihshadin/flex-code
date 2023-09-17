@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './ErrorPage.css'
+import { Helmet } from 'react-helmet';
 
 const ErrorPage = () => {
 
   return (
     <section>
+      <Helmet title="FlexCode || 404"/>
       <div className="wrapper">
         <div className="er-container">
           <div id="scene" className="scene" data-hover-only="false">

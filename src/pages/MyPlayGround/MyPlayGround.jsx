@@ -5,7 +5,6 @@ import { SiAirplayaudio } from "react-icons/si";
 import { FaTrashAlt } from "react-icons/fa";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useFlexUser from "../../Hooks/useFlexUser";
-import { Helmet } from "react-helmet";
 import images from "../../assets/playground2.png";
 import Swal from "sweetalert2";
 
@@ -74,7 +73,6 @@ const MyPlayGround = () => {
 
   return (
     <div className="flexcode-container !pt-16 md:!pt-10">
-      <Helmet title="Flex-Code || My Play Ground" />
       <PageBannerTitle
         title="My PlayGround"
         shortDesc="Flex Your Knowledge In this PlayGround And Proved Yourself"
