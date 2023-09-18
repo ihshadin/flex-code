@@ -46,7 +46,6 @@ const AddBlog = () => {
   }, []);
 
   const onSubmit = (data) => {
-    console.log(editorState);
     const blogDetails = {
       ...data,
       details: editorState,
@@ -54,10 +53,10 @@ const AddBlog = () => {
       userName: user?.displayName,
     };
     axiosSecure.post("/blog", blogDetails).then((data) => {
-      if (data.message === "success") {
+      if (data.data.message === "success") {
         toast.success("Submitted your blog successfully");
-        reset();
       }
+      reset();
     });
   };
 
@@ -70,7 +69,7 @@ const AddBlog = () => {
       transition={{ duration: 2 }}
       className="py-5 px-10"
     >
-      <Helmet title="Flex Code | Add A Blog"/>
+      <Helmet title="Flex Code | Add A Blog" />
       <div>
         <PageBannerTitle
           title="Add Blogs"
