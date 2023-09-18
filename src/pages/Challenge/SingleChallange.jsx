@@ -141,7 +141,7 @@ const Single = () => {
           const winnerTime = state?.timeStamp > time ? time : state?.timeStamp;
           console.log(winner, winnerTime);
 
-          axiosNormal.put(`/challenge/one/${state?.id}/${state?.ownId}`, {
+          axiosNormal.put(`/challenge/update/${state?.ownId}`, {
             winner, winnerTime
           }).then(data => {
             {
