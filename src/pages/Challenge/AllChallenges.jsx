@@ -12,11 +12,12 @@ const AllChallenges = () => {
   const [axiosNormal] = useAxiosNormal();
   const [flexUser] = useFlexUser();
   const [challenges, setChallenges] = useState([]);
+  const [challenged, setChallenged] = useState([]);
   const [isLoading, setIsLoading] = useState(true)
 
   console.log(flexUser?.username);
   useEffect(() => {
-    axiosNormal.get(`/challenge/${flexUser?.username}`).then((data) => {
+    axiosNormal.get(`/challenge/receiver/${flexUser?.username}`).then((data) => {
       setChallenges(data);
       setTimeout(() => {
         setIsLoading(false);
@@ -24,7 +25,16 @@ const AllChallenges = () => {
     });
   }, [flexUser]);
 
-  const HandleDeleteChallenge = (id) => {
+  useEffect(() => {
+    axiosNormal.get(`/challenge/sender/${flexUser?.username}`).then((data) => {
+      setChallenged(data);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
+    });
+  }, [flexUser]);
+console.log(challenged);
+  const HandleDeleteChallenge = (id, from) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -38,7 +48,7 @@ const AllChallenges = () => {
         try {
           const response = await axiosNormal.delete(`/challenge?delete=${id}`);
 
-          if (response.success === true) {
+          if (response.success === true && from === 'receiver') {
             setChallenges((prevChallenges) =>
               prevChallenges.filter((challenge) => challenge._id !== id)
             );
@@ -54,7 +64,25 @@ const AllChallenges = () => {
                 title: "text-center text-xl font-semibold mb-2",
               },
             });
-          } else {
+          }
+          else if (response.success === true && from === 'sender') {
+            setChallenged((prevChallenges) =>
+              prevChallenges.filter((challenge) => challenge._id !== id)
+            );
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Challeange has been Denied!",
+              showConfirmButton: false,
+              timer: 1500,
+              customClass: {
+                popup: "flex items-center justify-center",
+                content: "bg-white p-4 rounded-lg",
+                title: "text-center text-xl font-semibold mb-2",
+              },
+            });
+          }
+          else {
             Swal.fire(
               "Error!",
               "An error occurred while deleting the note.",
@@ -97,17 +125,31 @@ const AllChallenges = () => {
             return (
               <div key={challenge?._id}>
                 <ChallengeCard
-                  ownId={challenge?._id}
-                  id={challenge?.problemId}
-                  challengeName={challenge?.problem}
-                  sender={challenge?.sender}
-                  senderImg={challenge?.senderImg}
-                  receiver={challenge?.receiver}
-                  winner={challenge?.winner}
-                  winnerTime={challenge?.winnerTime}
-                  time={challenge?.timeStamp}
-                  senderName={challenge?.senderName}
-                  HandleDeleteChallenge={HandleDeleteChallenge}
+                 challenges={challenge}
+                 HandleDeleteChallenge={HandleDeleteChallenge}
+                />
+              </div>
+            );
+          })}
+        </div>
+
+        <hr />
+
+        <div className="flexcode-container !pt-16 md:!pt-10">
+        <Helmet title="Flex Code | Challenges" />
+        <PageBannerTitle
+          title="You Challenged"
+          shortDesc="See your opponent accept the challenge or not."
+        />
+        </div>
+        <div className="grid md:grid-cols-2 gap-6">
+          {challenged?.map((challenge) => {
+            return (
+              <div key={challenge?._id}>
+                <ChallengeCard
+                fromSender='sender'
+                 challenges={challenge}
+                 HandleDeleteChallenge={HandleDeleteChallenge}
                 />
               </div>
             );
