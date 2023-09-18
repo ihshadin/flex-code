@@ -277,12 +277,7 @@ const ProblemDetails = () => {
                       <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
                       <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                     </div>
-                    {/* <div className="relative h-[30px] w-[200px]">
-                    <span className="absolute left-0 bottom-0 w-[200px] block border-b-[30px] border-b-[#0fcda1] opacity-50 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent "></span>
-                    <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-sm font-medium text-white">
-                      Your Code
-                    </span>
-                  </div> */}
+                   
                   </div>
                   <CodeMirror
                     value={code || defaultCode}
