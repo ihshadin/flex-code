@@ -144,11 +144,11 @@ const PlayGround = () => {
 
   return (
     <motion.div
+      key="flex_899h3hhgsoggh1"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 2 }}
-      key="flex_8"
       className="relative p-4 overflow-hidden "
     >
       <Split

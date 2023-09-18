@@ -46,11 +46,11 @@ const MySubmissions = () => {
 
   return (
     <motion.div
+      key="flex_098g9djniy76"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 2 }}
-      key="flex_0989"
       className="flexcode-banner-bg pt-16 overflow-x-auto"
     >
       <div className="flexcode-container">

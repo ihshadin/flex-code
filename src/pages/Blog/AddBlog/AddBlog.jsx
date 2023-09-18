@@ -6,15 +6,15 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../providers/AuthProvider";
 import PageBannerTitle from "../../../components/BannerTitle/PageBannerTitle";
-import toast from 'react-hot-toast';
-import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import toast from "react-hot-toast";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { motion } from "framer-motion";
 
 const AddBlog = () => {
   const { user } = useContext(AuthContext);
   const { register, handleSubmit, reset } = useForm();
-  const [editorState, setEditorState] = useState('');
-  const [axiosSecure] = useAxiosSecure()
+  const [editorState, setEditorState] = useState("");
+  const [axiosSecure] = useAxiosSecure();
 
   const handleEditorChange = (content, delta, source, editor) => {
     setEditorState(content);
@@ -52,22 +52,21 @@ const AddBlog = () => {
       userImage: user?.photoURL,
       userName: user?.displayName,
     };
-    axiosSecure.post("/blog", blogDetails)
-      .then((data) => {
-        if (data.message === "success") {
-          toast.success("Submitted your blog successfully");
-          reset();
-        }
-      });
+    axiosSecure.post("/blog", blogDetails).then((data) => {
+      if (data.message === "success") {
+        toast.success("Submitted your blog successfully");
+        reset();
+      }
+    });
   };
 
   return (
     <motion.div
+      key="flex_0473hdblnvk33"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 2 }}
-      key="flex_046445"
       className="py-5 px-10"
     >
       <div>

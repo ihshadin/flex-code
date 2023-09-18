@@ -16,7 +16,7 @@ const AdminDashboard = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 2 }}
-      key="flex_046445"
+      key="flex_04dft5"
     >
       <NavBar />
       <div className="drawer lg:drawer-open flexcode-container !pt-16 !pb-5 md:!py-2">
@@ -35,7 +35,7 @@ const AdminDashboard = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 2 }}
-            key="flex_046445"
+            key="flex_0467sadhfi12"
             className="w-full"
           >
             <Outlet />

@@ -14,6 +14,7 @@ const Blog = () => {
   return (
     <section>
       <motion.div
+        key="flex_834jsd55gvhj548"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
