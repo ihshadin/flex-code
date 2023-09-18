@@ -5,6 +5,7 @@ import handWithPen from '../../../assets/images/hand-with-pen4.png'
 import useAxiosNormal from "../../../Hooks/useAxiosNormal";
 import { AuthContext } from "../../../providers/AuthProvider";
 import PageBannerTitle from "../../../components/BannerTitle/PageBannerTitle";
+import { Helmet } from "react-helmet";
 
 const AddNode = () => {
 	const { user } = useContext(AuthContext);
@@ -33,7 +34,7 @@ const AddNode = () => {
 
 	return (
 		<section>
-			<Helmet title="Flex Code | Add Note"/>
+			<Helmet title="Flex Code | Add Note" />
 			<div className="flexcode-container !pt-16 md:!pt-10">
 				<PageBannerTitle
 					title='Write your Notes Notes'

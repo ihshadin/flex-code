@@ -22,8 +22,6 @@ const Feedback = () => {
   const [axiosSecure] = useAxiosSecure();
   const location = useLocation();
 
-  console.log(location);
-  
   // check user is here or not 
   useEffect(() => {
     if (user) {
@@ -53,10 +51,10 @@ const Feedback = () => {
 
   return (
     <>
-    {
-      location.pathname === "/feedback" && <Helmet title="Flex Code | Add Feedback"/>
-    }
-    
+      {
+        location.pathname === "/feedback" && <Helmet title="Flex Code | Add Feedback" />
+      }
+
       {flexUser && (
         <section className="flexcode-container">
           <PageBannerTitle

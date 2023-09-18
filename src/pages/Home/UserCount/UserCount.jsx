@@ -23,7 +23,7 @@ const UserCount = () => {
     fontWeight: 700,
     fontColor: '#ffffff',
     textPosition: "23px",
-    unit: false,
+    unit: "",
     speed: 40
   }
   return (

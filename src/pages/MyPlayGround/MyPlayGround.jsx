@@ -76,7 +76,7 @@ const MyPlayGround = () => {
 
   return (
     <div className="flexcode-container !pt-16 md:!pt-10">
-      <Helmet title="Flex Code | My Play Ground"/>
+      <Helmet title="Flex Code | My Play Ground" />
       <PageBannerTitle
         title="My PlayGround"
         shortDesc="Flex Your Knowledge In this PlayGround And Proved Yourself"
@@ -140,24 +140,28 @@ const MyPlayGround = () => {
           {projectsCode?.map((projectCode) => (
             <div
               key={projectCode?._id}
-              className="flex flex-col justify-between border gap-3 p-5 rounded-xl border-slate-500 hover:border-[#0fcda156] transition-all exploreCard drop-shadow-md "
+              className="flex flex-col items-start justify-center border gap-3 p-5 rounded-xl border-slate-500 hover:border-[#0fcda156] transition-all duration-300 exploreCard group overflow-hidden relative"
             >
-              <Link to={`/pre-project/${projectCode?._id}`}>
+              <Link className="btn-effect" to={`/pre-project/${projectCode?._id}`}>
                 <p className="flex gap-2 text-[0.85rem] tracking-wide font-thin items-center text-[#0fcda1] cursor-pointer">
                   Click For Preview
                 </p>
               </Link>
-              <div className="flex gap-5">
+              <div className="flex gap-3">
                 <p className="text-[0.9rem] text-gray-400 mt-1 tracking-wider">
                   Project Name:
                 </p>
-                <h1 className="text-[1.2rem] text-white capitalize font-semibold tracking-wider">
-                  {projectCode?.projectName}
-                </h1>
+                <Link to={`/pre-project/${projectCode?._id}`}>
+                  <h1 className="text-[1.2rem] text-white capitalize font-semibold tracking-wider">
+                    {projectCode?.projectName}
+                  </h1>
+                </Link>
               </div>
-              <button onClick={() => HandelProjectDelete(projectCode?._id)}>
-                <FaTrashAlt fontSize={20} color="#0fcda16" className="block " />
-              </button>
+              <div className="flex flex-col items-center justify-center absolute right-0 group-hover:right-0 top-0 bottom-0 z-10 translate-x-20 group-hover:translate-x-0 transition-all duration-300 pl-10 pr-5 bg-gradient-to-l from-[#cd0f0f56] to-[#00000000]">
+                <button onClick={() => HandelProjectDelete(projectCode?._id)}>
+                  <FaTrashAlt fontSize={20} color="#0fcda16" className="inline" />
+                </button>
+              </div>
             </div>
           ))}
         </div>
