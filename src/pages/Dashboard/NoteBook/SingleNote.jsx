@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import PageBannerTitle from '../../../components/BannerTitle/PageBannerTitle';
 import useAuth from '../../../Hooks/useAuth';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet';
 
 const SingleNote = () => {
     const { id } = useParams();
@@ -29,7 +30,7 @@ const SingleNote = () => {
 
     return (
         <section>
-            <Helmet title={`Flex Code | ${note?.title || 'Note Book'}`}/>
+            <Helmet title={`Flex Code | ${note?.title || 'Note Book'}`} />
             <div className="flexcode-container">
                 <PageBannerTitle
                     title={note.title}

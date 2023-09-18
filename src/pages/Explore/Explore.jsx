@@ -5,10 +5,10 @@ import About from "./About";
 import useAxiosNormal from "../../Hooks/useAxiosNormal";
 import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
 import ExploreCardLoading from "../../components/FlexcodeLoading/ExploreCardLoading";
-
 import { motion } from "framer-motion";
 import OurTeam from "./OurTeam/OurTeam";
 import { Helmet } from "react-helmet";
+
 const Explore = () => {
   const [axiosNormal] = useAxiosNormal();
   const [technologies, setTechnologies] = useState([]);
@@ -23,7 +23,7 @@ const Explore = () => {
 
   return (
     <section>
-      <Helmet title="Flex Code | Explore us"/>
+      <Helmet title="Flex Code | Explore us" />
       <motion.div
         key="flex_468855gsdf11df"
         initial={{ opacity: 0 }}
@@ -50,9 +50,7 @@ const Explore = () => {
               <ExploreCardLoading />
             ) : (
               technologies?.map((technology, index) => (
-                <ExploreCard key={index} 
-                
-                technology={technology} />
+                <ExploreCard key={index} technology={technology} />
               ))
             )}
           </div>

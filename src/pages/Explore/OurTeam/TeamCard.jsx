@@ -8,8 +8,8 @@ const TeamCard = ({ imgLink, name, title, index }) => {
                     <img className='img-polygon cursor-pointer mx-auto h-40 w-40 object-cover' src={imgLink} alt="" />
                 </span>
             </div>
-            <h1 className='text-2xl font-bold tracking-wider mt-5'>{name}</h1>
-            <h5 className='text-base font-semibold text-gray-400'>{title}</h5>
+            <h1 className='text-xl md:text-2xl font-bold tracking-wider mt-5'>{name}</h1>
+            <h5 className='text-sm md:text-base font-semibold text-gray-400'>{title}</h5>
         </div>
     );
 };
