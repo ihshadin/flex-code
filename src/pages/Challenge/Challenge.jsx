@@ -9,11 +9,11 @@ import { Helmet } from "react-helmet";
 const Challenge = () => {
 
 const {state} = useLocation()
-console.log(state?.username);
+// console.log(state?.username);
     const {allProblems} = useAllProblems();
     const nonPremiumProblems = allProblems.filter(problem => problem.isPremium === false);
     return (
-        <div className="flexcode-container">
+        <div className="flexcode-container !pt-16 md:!pt-10">
           <Helmet title="Flex Code | Challenges"/>
 
               <PageBannerTitle
