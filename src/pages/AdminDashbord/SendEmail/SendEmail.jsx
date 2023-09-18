@@ -17,11 +17,11 @@ const SendEmail = () => {
 
   return (
     <motion.div
+      key="flex_04896dffhj15sdf"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 2 }}
-      key="flex_046445"
       className="text-white md:mx-7 md:my-5"
     >
       <Helmet title="Flex Code | Emails"/>

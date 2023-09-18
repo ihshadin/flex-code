@@ -20,7 +20,7 @@ const MainLayout = () => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 2 }}
-          key="main-content"
+          key="main943573hfkfhgd0"
         >
           <main className="min-h-[calc(100vh-515px)]">
             <Outlet />

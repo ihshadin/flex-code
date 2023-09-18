@@ -16,6 +16,7 @@ const Blog = () => {
     <section>
       <Helmet title="Flex Code | Blogs"/>
       <motion.div
+        key="flex_834jsd55gvhj548"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}

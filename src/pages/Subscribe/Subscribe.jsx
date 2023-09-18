@@ -9,6 +9,7 @@ import { Helmet } from "react-helmet";
 const Subscribe = () => {
   return (
     <motion.div
+    key="flex_779dhtytdidy23"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}

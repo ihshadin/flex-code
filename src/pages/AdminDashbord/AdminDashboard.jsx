@@ -17,7 +17,7 @@ const AdminDashboard = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 2 }}
-      key="flex_046445"
+      key="flex_04dft5"
     >
       
       <NavBar />
@@ -38,7 +38,7 @@ const AdminDashboard = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 2 }}
-            key="flex_046445"
+            key="flex_0467sadhfi12"
             className="w-full"
           >
             <Outlet />

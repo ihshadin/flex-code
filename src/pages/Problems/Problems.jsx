@@ -42,12 +42,12 @@ const Problems = () => {
     <section>
       <Helmet title="Flex Code | Problems"/>
       <motion.div
+        key="flex_ftr474kdho4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 2 }}
         className="flexcode-container !pt-16 md:!pt-10"
-        key="flex_2"
       >
         <PageBannerTitle
           title="Most Popular languages"

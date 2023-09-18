@@ -13,11 +13,11 @@ const LeaderBoard = () => {
 
   return (
     <motion.div
+      key="flex_0ggg3456dfg"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 2 }}
-      key="flex_090"
     >
       <div className="flexcode-container !pt-16 md:!pt-10">
       <Helmet title="Flex Code | Leader Board"/>
