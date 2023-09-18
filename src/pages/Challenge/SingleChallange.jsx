@@ -65,11 +65,16 @@ const Single = () => {
 
   const handleCodeChange = (editor, data, value) => {
     setCode(value);
+    if (value) {
+      setIsRunning(true);
+    }
     setOutputMessage("");
   };
 
   const challenge = {
+    senderName: flexUser?.name,
     sender: flexUser?.username,
+    senderImg: flexUser?.userPhotoUrl,
     receiver: state?.username,
     message: `You got a challenge from ${flexUser?.username}`,
     problem: singleProblem?.title,
@@ -109,7 +114,7 @@ const Single = () => {
         //     setIsOpen(true);
         //   }, 5000);
         // }
-        console.log(challenge);
+        console.log('singleChallagnge-----112',challenge);
 
         if (!state?.timeStamp) {
           setIsExplosion(true);

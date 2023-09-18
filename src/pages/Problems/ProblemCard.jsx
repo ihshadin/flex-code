@@ -10,7 +10,7 @@ const ProblemCard = ({ problem, challenger }) => {
   const isPremium = flexUser?.isPremium;
 
   return (
-    <div className="flexcode-banner-bg flex flex-col md:flex-row md:items-center justify-between border border-slate-500 hover:border-[#0fcda18c] px-5 py-6 rounded-xl">
+    <div className=" flex flex-col md:flex-row md:items-center justify-between border border-slate-500 hover:border-[#0fcda18c] px-5 py-6 rounded-xl">
       <div>
         <span className="flex items-center mb-2 md:mb-5 gap-2">
           <h1 className="text-base text-white font-semibold">
