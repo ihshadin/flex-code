@@ -6,19 +6,21 @@ import { LiaAngleDoubleRightSolid } from "react-icons/lia";
 import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
 import useTopperData from "../../Hooks/useTopperData";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 const LeaderBoard = () => {
   const [topperData] = useTopperData();
 
   return (
     <motion.div
+      key="flex_0ggg3456dfg"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 2 }}
-      key="flex_090"
     >
       <div className="flexcode-container !pt-16 md:!pt-10">
+      <Helmet title="Flex Code | Leader Board"/>
         <PageBannerTitle
           title="Top Problem Solvers"
           shortDesc="Meet the Brilliant Minds Behind the Solutions"

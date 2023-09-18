@@ -4,10 +4,12 @@ import "./Subscribe.css";
 import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
 import { motion } from "framer-motion";
 import preLogo from "../../../public/premiumlogo.png";
+import { Helmet } from "react-helmet";
 
 const Subscribe = () => {
   return (
     <motion.div
+    key="flex_779dhtytdidy23"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -74,6 +76,7 @@ const Subscribe = () => {
         </div>
       </div> */}
       <section>
+      <Helmet title="Flex Code | Subscription"/>
         <div className="flexcode-container -mt-10 max-h-screen mb-16">
           <div className="flex justify-center items-center ">
             <div className="text-center">

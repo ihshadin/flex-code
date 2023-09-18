@@ -8,6 +8,7 @@ import { FaPlus } from "react-icons/fa";
 import useAxiosNormal from "../../../Hooks/useAxiosNormal";
 import PageBannerTitle from "../../../components/BannerTitle/PageBannerTitle";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 const AddProblemSolving = () => {
   const { user } = useContext(AuthContext);
   const [axiosNormal] = useAxiosNormal();
@@ -69,13 +70,14 @@ const AddProblemSolving = () => {
 
   return (
     <motion.div
+      key="flex_fgf93hlfhjdl9"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 2 }}
-      key="flex_046445"
       className="flexcode-container"
     >
+      <Helmet title="Flex Code | Add A Problem"/>
       <section className="py-6">
         <PageBannerTitle
           title="Add Problems"

@@ -212,6 +212,7 @@ const NavBar = () => {
                 </li>
               )}
 
+              {/* user photo in navBar  */}
               {user?.email ? (
                 <li className="absolute top-3 md:top-auto right-14 md:right-auto md:relative">
                   <button

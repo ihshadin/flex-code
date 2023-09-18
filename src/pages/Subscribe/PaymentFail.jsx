@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import { FaTimes } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 
@@ -7,6 +8,7 @@ const PaymentFail = () => {
 
   return (
     <div className="flexcode-container flex justify-center mb-12">
+      <Helmet title="FlexCode | Payment fail"/>
       <div className="bg-[#1E2D40] rounded-md">
         <h1 className="flex justify-center pt-8  pb-1">
           <FaTimes

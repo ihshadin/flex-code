@@ -6,6 +6,7 @@ import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
 import BlogCardLoading from "../../components/FlexcodeLoading/BlogCardLoading";
 import useAllBlogs from "../../Hooks/useAllBlogs";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 const Blog = () => {
   const { allBlogs, currentPage, setCurrentPage, totalPages, isLoading } =
@@ -13,7 +14,9 @@ const Blog = () => {
 
   return (
     <section>
+      <Helmet title="Flex Code | Blogs"/>
       <motion.div
+        key="flex_834jsd55gvhj548"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}

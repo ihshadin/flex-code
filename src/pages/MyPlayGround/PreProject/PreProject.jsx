@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const PreProject = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -33,6 +34,7 @@ const PreProject = () => {
 
   return (
     <div>
+      <Helmet title="Flex Code | My Project"/>
       {
         Object.keys(project).length === 0 ? (
           <div className='bg-slate-500 animate-pulse bg-opacity-50 h-screen w-[100%] rounded-lg'>

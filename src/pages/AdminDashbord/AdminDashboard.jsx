@@ -6,6 +6,7 @@ import useAuth from "../../Hooks/useAuth";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
 import "./AdminDashboard.css";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 const AdminDashboard = () => {
   const { user } = useAuth();
@@ -16,10 +17,12 @@ const AdminDashboard = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 2 }}
-      key="flex_046445"
+      key="flex_04dft5"
     >
+      
       <NavBar />
       <div className="drawer lg:drawer-open flexcode-container !pt-16 !pb-5 md:!py-2">
+      <Helmet title="FlexCode | Admin dashboard"/>
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
 
         <div className="drawer-content flex flex-col items-center mb-10 overflow-x-auto">
@@ -35,7 +38,7 @@ const AdminDashboard = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 2 }}
-            key="flex_046445"
+            key="flex_0467sadhfi12"
             className="w-full"
           >
             <Outlet />

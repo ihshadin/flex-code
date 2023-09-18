@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import useAxiosNormal from "../../Hooks/useAxiosNormal";
 import useFlexUser from "../../Hooks/useFlexUser";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 const MySubmissions = () => {
   const [flexUser] = useFlexUser();
@@ -46,14 +47,15 @@ const MySubmissions = () => {
 
   return (
     <motion.div
+      key="flex_098g9djniy76"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 2 }}
-      key="flex_0989"
       className="flexcode-banner-bg pt-16 overflow-x-auto"
     >
       <div className="flexcode-container">
+      <Helmet title="Flex Code | My Submissions"/>
         <div className="border-b-2 border-[#0fcda185] pb-3">
           <h1 className="text-white text-2xl md:text-4xl tracking-wider font-semibold">
             My Submissions

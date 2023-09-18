@@ -4,6 +4,7 @@ import useAxiosNormal from "../../../Hooks/useAxiosNormal";
 import 'quill/dist/quill.snow.css';
 import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading";
 import useAllBlogs from "../../../Hooks/useAllBlogs";
+import { Helmet } from "react-helmet";
 
 const SingleBlog = () => {
   const { id } = useParams();
@@ -27,6 +28,7 @@ const SingleBlog = () => {
 
   return (
     <section>
+      <Helmet title={`Flex Code | ${singleBlog?.title}`}/>
       <div className="flexcode-container !pt-16 md:!pt-10">
         <div className="lg:flex">
 
