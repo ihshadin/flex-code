@@ -29,22 +29,13 @@ function Timer({ setTime, isRunning, setIsRunning}) {
         };
       
       
-        const handleRestart = () => {
-          setTime(seconds + (minutes*60))
-          setIsRunning(false);
-          setSeconds(0);
-          setMinutes(0);
-        };
   return (
-    <div className="flex items-center gap-8">
-      <button className="md:-mr-5 py-2 min-w-[6.5rem] px-5 border-2 border-[#ffbc2ab5] rounded-lg font-semibold text-xl flex items-center gap-1">{minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}</button>
+    <div className="flex items-center gap-2 mr-3">
+      <button className="font-semibold text-xl flex items-center">{minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}</button>
 
       {!isRunning && (
-        <button className="md:-mr-5 py-3 px-3 border border-[#ffbc2ab5] rounded-full font-semibold text-lg flex items-center gap-1" onClick={handleStart}><FaPlay/></button>
+        <button className="py-1 px-1 font-semibold text-lg flex items-center" onClick={handleStart}><FaPlay className="text-[#0fcda1]"/></button>
       )}
-     {isRunning && (
-         <button className="md:-mr-5 py-3 px-3 border border-[#ffbc2ab5] rounded-full font-semibold text-lg flex items-center gap-1" onClick={handleRestart}><FaReplyAll/></button>
-     )}
     </div>
   );
 }

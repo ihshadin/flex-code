@@ -15,7 +15,6 @@ const AllChallenges = () => {
   const [challenged, setChallenged] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log(flexUser?.username);
   useEffect(() => {
     axiosNormal
       .get(`/challenge/receiver/${flexUser?.username}`)
@@ -36,7 +35,6 @@ const AllChallenges = () => {
     });
   }, [flexUser]);
 
-  console.log("allChallenges---------37", challenged);
 
   const HandleDeleteChallenge = (id, from) => {
     Swal.fire({
