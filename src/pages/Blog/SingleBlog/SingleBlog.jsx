@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import useAxiosNormal from "../../../Hooks/useAxiosNormal";
 import 'quill/dist/quill.snow.css';
@@ -28,7 +28,7 @@ const SingleBlog = () => {
 
   return (
     <section>
-      <Helmet title={`Flex Code | ${singleBlog?.title}`}/>
+      <Helmet title={`Flex Code | ${singleBlog?.title}`} />
       <div className="flexcode-container !pt-16 md:!pt-10">
         <div className="lg:flex">
 

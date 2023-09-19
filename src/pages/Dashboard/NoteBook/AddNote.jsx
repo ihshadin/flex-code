@@ -1,20 +1,53 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import handWithPen from '../../../assets/images/hand-with-pen4.png'
 import useAxiosNormal from "../../../Hooks/useAxiosNormal";
 import { AuthContext } from "../../../providers/AuthProvider";
 import PageBannerTitle from "../../../components/BannerTitle/PageBannerTitle";
-import { Helmet } from "react-helmet";
+import Quill from "quill";
+import "quill/dist/quill.snow.css";
+import { motion } from "framer-motion";
+import "../../Blog/AddBlog/AddBlog.css";
 
 const AddNode = () => {
 	const { user } = useContext(AuthContext);
 	const { register, handleSubmit, reset } = useForm();
 	const [axiosNormal] = useAxiosNormal();
+	const [editorState, setEditorState] = useState('');
+
+	const handleEditorChange = (content, delta, source, editor) => {
+		setEditorState(content);
+	};
+
+	useEffect(() => {
+		const quill = new Quill("#editor", {
+			modules: {
+				toolbar: [
+					[{ header: [1, 2, 3] }],
+					["bold", "italic", "underline"],
+					[{ color: [] }, { background: [] }],
+					[{ align: [] }],
+					[{ list: "ordered" }, { list: "bullet" }],
+					["link"],
+					[{ code: "inline" }],
+					["clean"],
+				],
+			},
+			theme: "snow",
+			formats: {
+				fontSize: "58px",
+			},
+		});
+		quill.on("text-change", (delta, oldDelta, source) => {
+			handleEditorChange(quill.root.innerHTML, delta, source, quill);
+		});
+	}, []);
 
 	const onSubmit = (data) => {
 		const nodeInfo = {
 			...data,
+			details: editorState,
 			date: new Date(),
 			userEmail: user?.email
 		};
@@ -33,8 +66,14 @@ const AddNode = () => {
 	};
 
 	return (
-		<section>
-			<Helmet title="Flex Code | Add Note" />
+		<motion.div
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
+			transition={{ duration: 2 }}
+			key="flex_046445"
+			className="py-5 px-10"
+		>
 			<div className="flexcode-container !pt-16 md:!pt-10">
 				<PageBannerTitle
 					title='Write your Notes Notes'
@@ -59,16 +98,15 @@ const AddNode = () => {
 									placeholder="Title"
 								/>
 							</div>
-							<div className="w-full mb-5">
+							<div className="w-full mb-12">
 								<label htmlFor="" className="font-medium p-1">
 									Save Nodebook info
 								</label>
-								<textarea
-									rows={7}
-									className="w-full px-8 py-2 bg-secondary-color rounded-lg border-2 text-white border-gray-500 outline-none focus:border-[#0fcda1]"
-									placeholder="Write your notes in details"
-									{...register("details", { required: true })}
-								/>
+								<div className="flex">
+									<div className="w-full h-64 rounded-xl overflow-hidden border border-slate-500 hover:border-[#0fcda156]">
+										<div id="editor" style={{ height: "100%" }} />
+									</div>
+								</div>
 							</div>
 							<div className="text-center">
 								<button
@@ -85,7 +123,7 @@ const AddNode = () => {
 					</div>
 				</div>
 			</div>
-		</section>
+		</ motion.div>
 	);
 };
 
