@@ -34,7 +34,7 @@ const Single = () => {
   const [isRunning, setIsRunning] = useState(false);
   const [axiosSecure] = useAxiosSecure();
   const { state } = useLocation()
-  console.log(state?.username, flexUser?.username, time, state?.timeStamp);
+  // console.log(state?.username, flexUser?.username, time, state?.timeStamp);
 
   // check user is here or not
   useEffect(() => {
@@ -75,12 +75,16 @@ const Single = () => {
     senderName: flexUser?.name,
     sender: flexUser?.username,
     senderImg: flexUser?.userPhotoUrl,
-    receiver: state?.username,
+    receiver: state?.challenger.username,
+    receiverImg: state?.challenger.userImg,
+    receiverName: state?.challenger.name,
     message: `You got a challenge from ${flexUser?.username}`,
     problem: singleProblem?.title,
     problemId: singleProblem?._id,
-    timeStamp: time
+    timeStamp: time,
   }
+
+  // console.log("sChallenge------------87",challenge);
   // Submit Code---------------------
   const submitCode = () => {
     try {

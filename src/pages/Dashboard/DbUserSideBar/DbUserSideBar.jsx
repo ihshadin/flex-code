@@ -149,7 +149,7 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
           }
           {
          userEmail !== flexUserEmail && (<div>
-  <Link to={'/challenge'} state={{username: mainUserName}}>
+  <Link to={'/challenge'} state={{username: mainUserName, userImg: fullUserDetails?.userPhotoUrl, name: fullUserDetails?.name}}>
   <button className="flexcode-button w-5/6 ml-7 mx-auto py-1 text-sm">Challenge</button>
   </Link>
 </div>    )

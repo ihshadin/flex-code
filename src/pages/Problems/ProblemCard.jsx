@@ -58,7 +58,7 @@ const ProblemCard = ({ problem, challenger }) => {
         )}
         {problem?.isPremium !== true && (
           <Link
-          state={{username: challenger}}
+          state={{challenger}}
             to={challenger ? `/challenge/${problem._id}` : `/problem/${problem._id}`}
             className="flexcode-button text-xs py-2 px-3"
           >

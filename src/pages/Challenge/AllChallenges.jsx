@@ -13,16 +13,18 @@ const AllChallenges = () => {
   const [flexUser] = useFlexUser();
   const [challenges, setChallenges] = useState([]);
   const [challenged, setChallenged] = useState([]);
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
 
   console.log(flexUser?.username);
   useEffect(() => {
-    axiosNormal.get(`/challenge/receiver/${flexUser?.username}`).then((data) => {
-      setChallenges(data);
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 2000);
-    });
+    axiosNormal
+      .get(`/challenge/receiver/${flexUser?.username}`)
+      .then((data) => {
+        setChallenges(data);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 2000);
+      });
   }, [flexUser]);
 
   useEffect(() => {
@@ -33,7 +35,9 @@ const AllChallenges = () => {
       }, 2000);
     });
   }, [flexUser]);
-console.log(challenged);
+
+  console.log("allChallenges---------37", challenged);
+
   const HandleDeleteChallenge = (id, from) => {
     Swal.fire({
       title: "Are you sure?",
@@ -48,7 +52,7 @@ console.log(challenged);
         try {
           const response = await axiosNormal.delete(`/challenge?delete=${id}`);
 
-          if (response.success === true && from === 'receiver') {
+          if (response.success === true && from === "receiver") {
             setChallenges((prevChallenges) =>
               prevChallenges.filter((challenge) => challenge._id !== id)
             );
@@ -64,8 +68,7 @@ console.log(challenged);
                 title: "text-center text-xl font-semibold mb-2",
               },
             });
-          }
-          else if (response.success === true && from === 'sender') {
+          } else if (response.success === true && from === "sender") {
             setChallenged((prevChallenges) =>
               prevChallenges.filter((challenge) => challenge._id !== id)
             );
@@ -81,8 +84,7 @@ console.log(challenged);
                 title: "text-center text-xl font-semibold mb-2",
               },
             });
-          }
-          else {
+          } else {
             Swal.fire(
               "Error!",
               "An error occurred while deleting the note.",
@@ -102,7 +104,7 @@ console.log(challenged);
 
   if (isLoading) {
     return <FlexcodeLoading />;
-  } else if (challenges.length === 0) {
+  } else if (challenges.length === 0 && challenged.length === 0) {
     return (
       <div className="flexcode-container flex items-center justify-center !pt-10 !pb-0 md:!pt-10 min-h-screen">
         <SectionTitle
@@ -115,46 +117,50 @@ console.log(challenged);
     return (
       <div className="flexcode-container !pt-16 md:!pt-10 min-h-screen">
         <Helmet title="Flex Code | Challenges" />
-        <PageBannerTitle
-          title="Your Challenges"
-          shortDesc="participate to strong your knowledge !"
-        />
+        {challenges.length !== 0 && (
+          <div>
+            <PageBannerTitle
+              title="Received Challenges"
+              shortDesc="participate to strong your knowledge !"
+            />
 
-        <div className="grid md:grid-cols-2 gap-6 py-10">
-          {challenges?.map((challenge) => {
-            return (
-              <div key={challenge?._id}>
-                <ChallengeCard
-                 challenges={challenge}
-                 HandleDeleteChallenge={HandleDeleteChallenge}
-                />
-              </div>
-            );
-          })}
-        </div>
+            <div className="grid md:grid-cols-2 gap-6 py-10">
+              {challenges?.map((challenge) => {
+                return (
+                  <div key={challenge?._id}>
+                    <ChallengeCard
+                      challenges={challenge}
+                      HandleDeleteChallenge={HandleDeleteChallenge}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
-        <hr />
+        {challenged.length !== 0 && (
+          <div className={`${challenges.length === 0 ? 'mt-0' : 'mt-10'}`}>
+            <PageBannerTitle
+              title="Send Challenges"
+              shortDesc="See your opponent accept the challenge or not."
+            />
 
-        <div className="flexcode-container !pt-16 md:!pt-10">
-        <Helmet title="Flex Code | Challenges" />
-        <PageBannerTitle
-          title="You Challenged"
-          shortDesc="See your opponent accept the challenge or not."
-        />
-        </div>
-        <div className="grid md:grid-cols-2 gap-6">
-          {challenged?.map((challenge) => {
-            return (
-              <div key={challenge?._id}>
-                <ChallengeCard
-                fromSender='sender'
-                 challenges={challenge}
-                 HandleDeleteChallenge={HandleDeleteChallenge}
-                />
-              </div>
-            );
-          })}
-        </div>
+            <div className="grid md:grid-cols-2 gap-6 py-10">
+              {challenged?.map((challenge) => {
+                return (
+                  <div key={challenge?._id}>
+                    <ChallengeCard
+                      fromSender="sender"
+                      challenges={challenge}
+                      HandleDeleteChallenge={HandleDeleteChallenge}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </div>
     );
   }
