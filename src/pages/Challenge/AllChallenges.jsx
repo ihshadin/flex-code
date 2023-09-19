@@ -44,9 +44,14 @@ const AllChallenges = () => {
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "transparent",
+      cancelButtonColor: " red",
       confirmButtonText: "Yes, delete it!",
+      background: "#1e2d40",
+      color: "white",
+      customClass: {
+        confirmButton: "flexcode-button",
+      },
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
@@ -59,7 +64,9 @@ const AllChallenges = () => {
             Swal.fire({
               position: "center",
               icon: "success",
-              title: "Challeange has been Denied!",
+              background: "#1e2d40",
+              color: "white",
+              title: "Your Challenge has been Delete!",
               showConfirmButton: false,
               timer: 1500,
               customClass: {
@@ -75,7 +82,9 @@ const AllChallenges = () => {
             Swal.fire({
               position: "center",
               icon: "success",
-              title: "Challeange has been Denied!",
+              background: "#1e2d40",
+              color: "white",
+              title: "Your challeng has been Delete!",
               showConfirmButton: false,
               timer: 1500,
               customClass: {
@@ -85,18 +94,30 @@ const AllChallenges = () => {
               },
             });
           } else {
-            Swal.fire(
-              "Error!",
-              "An error occurred while deleting the note.",
-              "error"
-            );
+            Swal.fire({
+              title: "Error!",
+              text: "An error occurred while deleting the project.",
+              icon: "error",
+              confirmButtonColor: "transparent",
+              background: "#1e2d40",
+              color: "white",
+              customClass: {
+                confirmButton: "flexcode-button",
+              },
+            });
           }
         } catch (error) {
-          Swal.fire(
-            "Error!",
-            "An error occurred while deleting the note.",
-            "error"
-          );
+          Swal.fire({
+            title: "Error!",
+            text: "An error occurred while deleting the project.",
+            icon: "error",
+            confirmButtonColor: "transparent",
+            background: "#1e2d40",
+            color: "white",
+            customClass: {
+              confirmButton: "flexcode-button",
+            },
+          });
         }
       }
     });
@@ -140,7 +161,7 @@ const AllChallenges = () => {
         )}
 
         {challenged.length !== 0 && (
-          <div className={`${challenges.length === 0 ? 'mt-0' : 'mt-10'}`}>
+          <div className={`${challenges.length === 0 ? "mt-0" : "mt-10"}`}>
             <PageBannerTitle
               title="Send Challenges"
               shortDesc="See your opponent accept the challenge or not."
