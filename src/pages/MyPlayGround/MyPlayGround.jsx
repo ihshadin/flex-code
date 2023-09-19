@@ -32,9 +32,14 @@ const MyPlayGround = () => {
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "transparent",
+      cancelButtonColor: " red",
       confirmButtonText: "Yes, delete it!",
+      background: "#1e2d40",
+      color: "white",
+      customClass: {
+        confirmButton: "flexcode-button",
+      },
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
@@ -47,6 +52,8 @@ const MyPlayGround = () => {
             Swal.fire({
               position: "center",
               icon: "success",
+              background: "#1e2d40",
+              color: "white",
               title: "Your Project has been Delete!",
               showConfirmButton: false,
               timer: 1500,
@@ -57,25 +64,37 @@ const MyPlayGround = () => {
               },
             });
           } else {
-            Swal.fire(
-              "Error!",
-              "An error occurred while deleting the project.",
-              "error"
-            );
+            Swal.fire({
+              title: "Error!",
+              text: "An error occurred while deleting the project.",
+              icon: "error",
+              confirmButtonColor: "transparent",
+              background: "#1e2d40",
+              color: "white",
+              customClass: {
+                confirmButton: "flexcode-button",
+              },
+            });
           }
         } catch (error) {
-          Swal.fire(
-            "Error!",
-            "An error occurred while deleting the project.",
-            "error"
-          );
+          Swal.fire({
+            title: "Error!",
+            text: "An error occurred while deleting the project.",
+            icon: "error",
+            confirmButtonColor: "transparent",
+            background: "#1e2d40",
+            color: "white",
+            customClass: {
+              confirmButton: "flexcode-button",
+            },
+          });
         }
       }
     });
   };
 
   return (
-    <div className="flexcode-container !pt-16 md:!pt-10">
+    <div className="flexcode-container !pt-16 md:!pt-10 ">
       <Helmet title="Flex Code | My Play Ground" />
       <PageBannerTitle
         title="My PlayGround"
@@ -142,7 +161,10 @@ const MyPlayGround = () => {
               key={projectCode?._id}
               className="flex flex-col items-start justify-center border gap-3 p-5 rounded-xl border-slate-500 hover:border-[#0fcda156] transition-all duration-300 exploreCard group overflow-hidden relative"
             >
-              <Link className="btn-effect" to={`/pre-project/${projectCode?._id}`}>
+              <Link
+                className="btn-effect"
+                to={`/pre-project/${projectCode?._id}`}
+              >
                 <p className="flex gap-2 text-[0.85rem] tracking-wide font-thin items-center text-[#0fcda1] cursor-pointer">
                   Click For Preview
                 </p>
@@ -159,7 +181,11 @@ const MyPlayGround = () => {
               </div>
               <div className="flex flex-col items-center justify-center absolute right-0 group-hover:right-0 top-0 bottom-0 z-10 translate-x-20 group-hover:translate-x-0 transition-all duration-300 pl-10 pr-5 bg-gradient-to-l from-[#cd0f0f56] to-[#00000000]">
                 <button onClick={() => HandelProjectDelete(projectCode?._id)}>
-                  <FaTrashAlt fontSize={20} color="#0fcda16" className="inline" />
+                  <FaTrashAlt
+                    fontSize={20}
+                    color="#0fcda16"
+                    className="inline"
+                  />
                 </button>
               </div>
             </div>

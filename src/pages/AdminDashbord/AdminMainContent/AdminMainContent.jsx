@@ -23,7 +23,6 @@ const AdminMainContent = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 2 }}
-      className="px-4 grid gap-3"
     >
       <OverViewAd />
       <UserRationChart />

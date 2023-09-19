@@ -24,7 +24,7 @@ const PreUserCard = () => {
         </p>
       </div>
       <svg
-        className="h-32 -mr-7 md:mr-0 fill-[#ffffff56] group-hover:fill-[#0fcda1b1]"
+        className="h-[120px] -mr-5 md:mr-0 fill-[#ffffff56] group-hover:fill-[#0fcda1b1]"
         viewBox="0 0 682.8 690.5"
       >
         <path

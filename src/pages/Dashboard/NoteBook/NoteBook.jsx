@@ -30,9 +30,14 @@ const NoteBook = () => {
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "transparent",
+      cancelButtonColor: " red",
       confirmButtonText: "Yes, delete it!",
+      background: "#1e2d40",
+      color: "white",
+      customClass: {
+        confirmButton: "flexcode-button",
+      },
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
@@ -45,7 +50,9 @@ const NoteBook = () => {
             Swal.fire({
               position: "center",
               icon: "success",
-              title: "Your Note Boot has been Delete!",
+              background: "#1e2d40",
+              color: "white",
+              title: "Your Note has been Delete!",
               showConfirmButton: false,
               timer: 1500,
               customClass: {
@@ -55,18 +62,30 @@ const NoteBook = () => {
               },
             });
           } else {
-            Swal.fire(
-              "Error!",
-              "An error occurred while deleting the note.",
-              "error"
-            );
+            Swal.fire({
+              title: "Error!",
+              text: "An error occurred while deleting the project.",
+              icon: "error",
+              confirmButtonColor: "transparent",
+              background: "#1e2d40",
+              color: "white",
+              customClass: {
+                confirmButton: "flexcode-button",
+              },
+            });
           }
         } catch (error) {
-          Swal.fire(
-            "Error!",
-            "An error occurred while deleting the note.",
-            "error"
-          );
+          Swal.fire({
+            title: "Error!",
+            text: "An error occurred while deleting the project.",
+            icon: "error",
+            confirmButtonColor: "transparent",
+            background: "#1e2d40",
+            color: "white",
+            customClass: {
+              confirmButton: "flexcode-button",
+            },
+          });
         }
       }
     });

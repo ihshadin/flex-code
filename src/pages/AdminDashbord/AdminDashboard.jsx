@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "../Shared/NavBar/NavBar";
 import Footer from "../Shared/Footer/Footer";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
 import "./AdminDashboard.css";
@@ -19,10 +19,9 @@ const AdminDashboard = () => {
       transition={{ duration: 2 }}
       key="flex_04dft5"
     >
-      
       <NavBar />
+      <Helmet title="FlexCode | Admin dashboard" />
       <div className="drawer lg:drawer-open flexcode-container !pt-16 !pb-5 md:!py-2">
-      <Helmet title="FlexCode | Admin dashboard"/>
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
 
         <div className="drawer-content flex flex-col items-center mb-10 overflow-x-auto">
@@ -44,10 +43,10 @@ const AdminDashboard = () => {
             <Outlet />
           </motion.div>
         </div>
-        <div className="drawer-side sticky top-[77px]">
+        <div className="drawer-side lg:sticky lg:top-[77px]">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
 
-          <div className="flexcode-banner-bg backdrop-blur-sm md:backdrop-blur-0 w-80 text-white px-4 py-5 pt-16 md:pt-0 rounded-lg h-screen">
+          <div className=" flexcode-banner-bg  backdrop-blur-2xl md:backdrop-blur-0 w-80 text-white px-4 py-5 pt-16 md:pt-0 rounded-lg h-screen">
             <div className="pt-8 pb-6 mb-4 border-b-2 border-[#0fcda185]">
               <div className="flex justify-center items-center mb-4">
                 <img
