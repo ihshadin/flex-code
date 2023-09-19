@@ -18,12 +18,11 @@ const AdminMainContent = () => {
   }, []);
   return (
     <motion.div
+      key="flex_04673hdlhsk22"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 2 }}
-      key="flex_046445"
-      className="px-4 grid gap-3"
     >
       <OverViewAd />
       <UserRationChart />

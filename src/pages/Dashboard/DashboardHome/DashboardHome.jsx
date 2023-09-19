@@ -11,6 +11,7 @@ import NavBar from "../../Shared/NavBar/NavBar";
 import Footer from "../../Shared/Footer/Footer";
 import DbUserSideBar from "../DbUserSideBar/DbUserSideBar";
 import useFlexUser from "../../../Hooks/useFlexUser";
+import { Helmet } from "react-helmet";
 
 const DashboardHome = () => {
   const { username } = useParams()
@@ -44,8 +45,8 @@ const DashboardHome = () => {
   return (
     <section>
       {username ? <></> : <NavBar />}
-
       <div className="flexcode-container !pt-16 md:!pt-10 md:-mt-5 flex flex-col md:flex-row gap-3 md:gap-5">
+      <Helmet title="Flex Code | Dashboard"/>
         <div className="md:w-[30%]">
           <DbUserSideBar username={mainUserName} mySolvedProblems={mySolvedProblems} />
         </div>

@@ -1,6 +1,9 @@
+import { Helmet } from "react-helmet";
+
 const FooterSection = () => {
   return (
     <section className="flexcode-container flexcode-banner-bg">
+      <Helmet title="Flex Code | Privacy Policy"/>
       <div className="px-4">
         <h1 className="text-2xl pb-4">Flex Code Privacy Policy</h1>
         <p>last update September 9, 2023</p>

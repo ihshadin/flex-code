@@ -1,24 +1,24 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Controlled as CodeMirror } from "react-codemirror2";
 import "codemirror/lib/codemirror.css";
 import "codemirror/mode/javascript/javascript";
 import "codemirror/theme/dracula.css";
 import Split from "react-split";
-import "./ProblemDetails.css";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import "../Problems/ProblemDetails.css";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import "codemirror/addon/hint/show-hint.css";
 import "codemirror/addon/hint/show-hint";
 import "codemirror/addon/hint/javascript-hint";
 import useAxiosNormal from "../../Hooks/useAxiosNormal";
 import SinProbLoading from "../../components/FlexcodeLoading/SinProbLoading";
-import { toast } from "react-hot-toast";
 import ConfettiExplosion from "react-confetti-explosion";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import Timer from "../../components/Timer/Timer";
 import { Helmet } from "react-helmet";
 
-const ProblemDetails = () => {
+const Single = () => {
   const { id } = useParams();
   const [code, setCode] = useState("");
   const [consoleOutput, setConsoleOutput] = useState([]);
@@ -26,13 +26,15 @@ const ProblemDetails = () => {
   const [singleProblem, setSingleProblems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isExplosion, setIsExplosion] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-  const showFeedback = sessionStorage.getItem("showFeedback");
   const [axiosNormal] = useAxiosNormal();
   const { user } = useAuth();
-  const [flexUser, setFlexUser] = useState(null);
+  const [flexUser, setFlexUser] = useState([]);
   const navigate = useNavigate();
+  const [time, setTime] = useState(0);
+  const [isRunning, setIsRunning] = useState(false);
   const [axiosSecure] = useAxiosSecure();
+  const { state } = useLocation()
+  // console.log(state?.username, flexUser?.username, time, state?.timeStamp);
 
   // check user is here or not
   useEffect(() => {
@@ -63,21 +65,26 @@ const ProblemDetails = () => {
 
   const handleCodeChange = (editor, data, value) => {
     setCode(value);
+    if (value) {
+      setIsRunning(true);
+    }
     setOutputMessage("");
   };
 
-  const userSubmission = {
-    userEmail: flexUser?.email,
-    username: flexUser?.username,
-    date: new Date(),
-    title: singleProblem.title,
-    functionName: singleProblem.functionName,
-    level: singleProblem.level,
-    language: singleProblem.language,
-    functionId: singleProblem.id,
-    points: 10,
-  };
+  const challenge = {
+    senderName: flexUser?.name,
+    sender: flexUser?.username,
+    senderImg: flexUser?.userPhotoUrl,
+    receiver: state?.challenger.username,
+    receiverImg: state?.challenger.userImg,
+    receiverName: state?.challenger.name,
+    message: `You got a challenge from ${flexUser?.username}`,
+    problem: singleProblem?.title,
+    problemId: singleProblem?._id,
+    timeStamp: time,
+  }
 
+  // console.log("sChallenge------------87",challenge);
   // Submit Code---------------------
   const submitCode = () => {
     try {
@@ -98,52 +105,94 @@ const ProblemDetails = () => {
         userOutput = JSON.stringify(userOutput);
       }
 
-      console.log("isOPen", isOpen);
+      // console.log("isOPen", isOpen);
+
+
       //   Output Message
       if (userOutput == singleProblem.examples[0].output) {
-        setIsExplosion(true);
 
-        if (!showFeedback) {
-          sessionStorage.setItem("showFeedback", true);
-          setTimeout(() => {
-            setIsOpen(true);
-          }, 5000);
-        }
 
-        // -----------------------
-        axiosNormal
-          .post("/solvedProblems", userSubmission)
-          .then(() => {
+        // if (!showFeedback) {
+        //   sessionStorage.setItem("showFeedback", true);
+        //   setTimeout(() => {
+        //     setIsOpen(true);
+        //   }, 5000);
+        // }
+        console.log('singleChallagnge-----112',challenge);
+
+        if (!state?.timeStamp) {
+          setIsExplosion(true);
+          axiosNormal.post('/challenge', challenge).then(() => {
+            setIsRunning(false);
             setOutputMessage(
               <div>
                 <span className="primary-color text-2xl text-center font-semibold block">
                   Congratulations! Problem solved.
                 </span>
                 <p className="text-center mt-1">
-                  You get{" "}
+                  Your time is{" "}
                   <span className="px-2 border border-[#0fcda1] text-white font-medium rounded-md">
-                    10
+                    {time}
                   </span>{" "}
-                  points
+                  seconds
                 </p>
               </div>
             );
-            // console.log(data)
           })
-          .catch((err) => {
-            console.log("My error =====>", err?.message);
-            if (err?.response.status === 403) {
-              setOutputMessage(
-                <div>
-                  <span className="primary-color text-2xl text-center font-semibold block">
-                    Congratulations! <br /> You again solved it 🔥.
-                  </span>
-                </div>
-              );
 
-              toast.success("Congrats ! You solved the problem.");
+        } else {
+          const winner = state?.timeStamp > time ? flexUser?.username : state?.username;
+          const winnerTime = state?.timeStamp > time ? time : state?.timeStamp;
+          console.log(winner, winnerTime);
+
+          axiosNormal.put(`/challenge/update/${state?.ownId}`, {
+            winner, winnerTime
+          }).then(data => {
+            {
+              state?.timeStamp > time ?
+                Swal.fire({
+                  title: "You Win",
+                  icon: "success",
+                  confirmButtonText: "OK",
+                })
+                :
+                Swal.fire({
+                  title: "You Lose",
+                  icon: "error",
+                  confirmButtonText: "OK",
+                })
             }
-          });
+            console.log('winner --->', data);
+          })
+
+
+
+          if (state?.timeStamp > time) {
+            setIsExplosion(true);
+          }
+          setIsRunning(false);
+
+
+          setOutputMessage(
+            <div>
+              <span className="primary-color text-2xl text-center font-semibold block">
+                Congratulations! Problem solved.
+              </span>
+              <p className="text-center mt-1">
+                Your time is{" "}
+                <span className="px-2 border border-[#0fcda1] text-white font-medium rounded-md">
+                  {time}
+                </span>{" "}
+                seconds
+              </p>
+            </div>
+          );
+        }
+        // socket.emit("sendNotification", notification);
+
+
+        // -----------------------
+
       } else {
         setOutputMessage(
           <div>
@@ -198,8 +247,9 @@ const ProblemDetails = () => {
 
   return (
     <section id="problemDetails">
-      <Helmet title={`Flex Code | ${singleProblem?.title || 'Problems'}`}/>
+      <Helmet title={`Flex Code | ${singleProblem?.title || 'Challenge'}`}/>
       <div className="flexcode-container">
+
         {isLoading ? (
           <SinProbLoading />
         ) : (
@@ -217,12 +267,12 @@ const ProblemDetails = () => {
           >
             <div className="problem-exmaple w-1/2 mb-10 md:mb-0 md:overflow-y-scroll">
               <h2 className="text-2xl font-bold mb-2 primary-color">
-                {singleProblem.title}
+                {singleProblem?.title}
               </h2>
               <p className="leading-loose">
                 {singleProblem?.problemsDetails
                   ?.split(/(\s+|,|\.)/)
-                  .map((word, index, arr) => (
+                  .map((word, index) => (
                     <React.Fragment key={index}>
                       {singleProblem?.highlightWords.includes(
                         word.toLowerCase()
@@ -260,6 +310,15 @@ const ProblemDetails = () => {
 
             {isExplosion && <ConfettiExplosion />}
             <div className="problem-exmaple w-1/2 flex flex-col md:overflow-y-scroll">
+
+
+              {/* Timer    */}
+
+              <div className="flex flex-row-reverse mr-6 mb-2">
+                <Timer setTime={setTime} setIsRunning={setIsRunning} isRunning={isRunning} />
+              </div>
+
+
               <Split
                 className="flex flex-col h-screen"
                 direction="vertical"
@@ -279,7 +338,7 @@ const ProblemDetails = () => {
                       <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
                       <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                     </div>
-                   
+
                   </div>
                   <CodeMirror
                     value={code || defaultCode}
@@ -308,7 +367,7 @@ const ProblemDetails = () => {
                     {user ? (
                       <button
                         onClick={submitCode}
-                        className="flexcode-button text-xs py-1 px-3"
+                        className={`flexcode-button text-xs py-1 px-3 ${isRunning <= 0 && 'btn-disabled opacity-30'}`}
                       >
                         Submit
                       </button>
@@ -316,7 +375,7 @@ const ProblemDetails = () => {
                       <button
                         onClick={() => {
                           Swal.fire({
-                            title: "Want to Solve problems?",
+                            title: "Want to Export?",
                             text: "You need to login first!",
                             icon: "warning",
                             showCancelButton: true,
@@ -363,32 +422,8 @@ const ProblemDetails = () => {
         )}
       </div>
 
-      <div
-        className={`modal ${isOpen === true && "modal-open"}`}
-        id="subscribeFirst"
-      >
-        <div className="modal-box bg-black flexcode-banner-bg min-h-64 flex flex-col justify-center items-center border border-slate-600 hover:border-[#0fcda156]">
-          <a
-            href="#"
-            onClick={() => setIsOpen(false)}
-            className="ml-auto hover:text-[#0fcda1] text-[#0fcda1] mb-8 border-[#0fcda18c] bg-transparent"
-          >
-            X
-          </a>
-          <div>
-            <h3 className="text-xl text-center mb-10">
-              Share your experience with us. <br />
-              Give your valuable{" "}
-              <span className="text-amber-400">Feedback</span>.
-            </h3>
-            <Link to={"/feedback"} className="flexcode-button py-2 px-3 ml-14">
-              Give Feedback
-            </Link>
-          </div>
-        </div>
-      </div>
     </section>
   );
 };
 
-export default ProblemDetails;
+export default Single;

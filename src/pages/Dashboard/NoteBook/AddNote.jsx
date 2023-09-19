@@ -98,17 +98,6 @@ const AddNode = () => {
 									placeholder="Title"
 								/>
 							</div>
-							{/* <div className="w-full mb-5">
-								<label htmlFor="" className="font-medium p-1">
-									Save Nodebook info
-								</label>
-								<textarea
-									rows={7}
-									className="w-full px-8 py-2 bg-secondary-color rounded-lg border-2 text-white border-gray-500 outline-none focus:border-[#0fcda1]"
-									placeholder="Write your notes in details"
-									{...register("details", { required: true })}
-								/>
-							</div> */}
 							<div className="w-full mb-12">
 								<label htmlFor="" className="font-medium p-1">
 									Save Nodebook info

@@ -1,10 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, } from 'react-router-dom';
 
 const SpeLangButton = ({ language, link, bgColor, icon }) => {
-    console.log(icon);
+    console.log(language);
+    
+    console.log(id);
     return (
         <div>
+           
+            
             <div className='relative w-16 h-16 group transition-all duration-300 rotate-[-30deg] skew-x-[25deg]'>
                 <Link to={link} className={`[&>*]:absolute [&>*]:top-0 [&>*]:left-0 [&>*]:w-16 [&>*]:h-16 [&>*]:duration-300 [&>*]:flex [&>*]:justify-center [&>*]:items-center [&>*]:bg-[${bgColor ? bgColor : '#EED94E'}]`}>
                     <span className='group-hover:translate-y-0 group-hover:translate-x-0 group-hover:opacity-20'></span>

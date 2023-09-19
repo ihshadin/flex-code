@@ -6,6 +6,7 @@ import { useContext, useRef } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import SocialLogin from "../Shared/Social/SocialLogin";
 import { toast } from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
   const { signIn, resetPassword, loading, setLoading } = useContext(AuthContext);
@@ -53,6 +54,7 @@ const Login = () => {
 
   return (
     <div className="flexcode-container">
+      <Helmet title="Flex Code | Login"/>
       <div className="bg-secondary-color shadow-2xl md:w-2/4 max-w-md mx-auto rounded-xl px-7 my-5">
         <div className="flex justify-center py-8">
           <img

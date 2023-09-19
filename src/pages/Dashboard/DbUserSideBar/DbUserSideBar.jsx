@@ -8,12 +8,9 @@ import {
   FaBirthdayCake,
   FaCrown,
   FaFacebook,
-  FaFemale,
   FaGithub,
-  FaGithubAlt,
   FaHome,
   FaLinkedin,
-  FaMale,
   FaUser,
 } from "react-icons/fa";
 import { FaGlobe } from "react-icons/fa6";
@@ -45,10 +42,7 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
   const lastWeekDate = new Date();
   lastWeekDate.setDate(currentDate.getDate() - 7);
   const formattedDate = fullUserDetails?.dateOfBirth?.slice(0, 10);
-  // const parts = date?.split("-"); // ["2005", "08", "31"]
-  // console.log(parts);
-  // const formattedDate = `${parts[2] || 'dd'}/ ${parts[1] || 'mm'}/ ${parts[0] || 'yyyy'}` || 'la la laaa';
-  // const formattedDate = '31/08/2005'
+  
   // Last week solutions
   const lastWeekSolvedProblems = mySolvedProblems.filter(
     (problem) => new Date(problem.date) >= lastWeekDate
@@ -114,6 +108,7 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
                   <a
                     className="hover:text[#ffc306]"
                     target="_blank"
+                    rel="noreferrer"
                     href={fullUserDetails?.fbLinks}
                   >
                     <FaFacebook />
@@ -123,6 +118,7 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
                   <a
                     className="hover:text[#ffc306]"
                     target="_blank"
+                    rel="noreferrer"
                     href={fullUserDetails?.github}
                   >
                     <FaGithub />
@@ -132,6 +128,7 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
                   <a
                     className="hover:text[#ffc306]"
                     target="_blank"
+                    rel="noreferrer"
                     href={fullUserDetails?.LinkLinks}
                   >
                     <FaLinkedin />
@@ -141,6 +138,7 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
                   <a
                     className="hover:text[#ffc306]"
                     target="_blank"
+                    rel="noreferrer"
                     href={fullUserDetails?.webSiteLink}
                   >
                     <FaGlobe />
@@ -149,8 +147,16 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
               </div>
             )
           }
+          {
+         userEmail !== flexUserEmail && (<div>
+  <Link to={'/challenge'} state={{username: mainUserName, userImg: fullUserDetails?.userPhotoUrl, name: fullUserDetails?.name}}>
+  <button className="flexcode-button w-5/6 ml-7 mx-auto py-1 text-sm">Challenge</button>
+  </Link>
+</div>    )
+          }
 
         </div>
+
         {/* User Info */}
 
         <div className="mt-4 mb-4 h-px w-full border-b border-[#0fcda189] border-divider-3"></div>

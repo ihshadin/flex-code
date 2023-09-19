@@ -19,12 +19,12 @@ const PreUserCard = () => {
           Total Premium Users
         </p>
         <p className="flex items-center gap-1 mt-5 text-sm font-medium primary-color">
-          0.43%
+          0.22%
           <FaArrowUp />
         </p>
       </div>
       <svg
-        className="h-32 -mr-7 md:mr-0 fill-[#ffffff56] group-hover:fill-[#0fcda1b1]"
+        className="h-[120px] -mr-5 md:mr-0 fill-[#ffffff56] group-hover:fill-[#0fcda1b1]"
         viewBox="0 0 682.8 690.5"
       >
         <path

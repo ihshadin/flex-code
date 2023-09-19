@@ -5,10 +5,13 @@ import AdminDashboard from "../pages/AdminDashbord/AdminDashboard";
 import FlexcodeLoading from "../components/FlexcodeLoading/FlexcodeLoading";
 import { motion } from "framer-motion";
 
+
+
 const Dashboard = () => {
   const [flexUser] = useFlexUser();
 
   return (
+    <>
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -26,6 +29,7 @@ const Dashboard = () => {
         <FlexcodeLoading />
       )}
     </motion.div>
+    </>
   );
 };
 

@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import Rating from "react-rating";
-import reviewImg1 from "../../../public/20230810_120154.png";
+import reviewImg1 from "/20230810_120154.png";
 import PageBannerTitle from "../BannerTitle/PageBannerTitle";
 import useAxiosNormal from "../../Hooks/useAxiosNormal";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
+import { Helmet } from "react-helmet";
+import { useLocation } from "react-router-dom";
 
 const Feedback = () => {
   const [rating, setRating] = useState(0);
@@ -18,6 +20,7 @@ const Feedback = () => {
   const { user } = useAuth();
   const [flexUser, setFlexUser] = useState(null);
   const [axiosSecure] = useAxiosSecure();
+  const location = useLocation();
 
   // check user is here or not 
   useEffect(() => {
@@ -48,6 +51,10 @@ const Feedback = () => {
 
   return (
     <>
+      {
+        location.pathname === "/feedback" && <Helmet title="Flex Code | Add Feedback" />
+      }
+
       {flexUser && (
         <section className="flexcode-container">
           <PageBannerTitle

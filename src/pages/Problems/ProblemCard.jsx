@@ -1,15 +1,16 @@
+import React from 'react';
 import { FaCrown } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import "../Subscribe/Subscribe.css";
 
 import useFlexUser from "../../Hooks/useFlexUser";
 
-const ProblemCard = ({ problem }) => {
+const ProblemCard = ({ problem, challenger }) => {
   const [flexUser] = useFlexUser();
   const isPremium = flexUser?.isPremium;
 
   return (
-    <div className="flexcode-banner-bg flex flex-col md:flex-row md:items-center justify-between border border-slate-500 hover:border-[#0fcda18c] px-5 py-6 rounded-xl">
+    <div className=" flex flex-col md:flex-row md:items-center justify-between border border-slate-500 hover:border-[#0fcda18c] px-5 py-6 rounded-xl">
       <div>
         <span className="flex items-center mb-2 md:mb-5 gap-2">
           <h1 className="text-base text-white font-semibold">
@@ -49,6 +50,7 @@ const ProblemCard = ({ problem }) => {
         {problem?.isPremium === true && isPremium === true && (
           <Link
             to={`/problem/${problem._id}`}
+            
             className="flexcode-button text-xs py-2 px-3"
           >
             Solve Problem
@@ -56,7 +58,8 @@ const ProblemCard = ({ problem }) => {
         )}
         {problem?.isPremium !== true && (
           <Link
-            to={`/problem/${problem._id}`}
+          state={{challenger}}
+            to={challenger ? `/challenge/${problem._id}` : `/problem/${problem._id}`}
             className="flexcode-button text-xs py-2 px-3"
           >
             Solve Problem
