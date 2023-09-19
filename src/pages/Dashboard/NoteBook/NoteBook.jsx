@@ -12,6 +12,7 @@ const NoteBook = () => {
     const [notes, setNotes] = useState([]);
     const [axiosSecure] = useAxiosSecure();
     const [isLoading, setIsLoading] = useState(true);
+    console.log(notes);
 
     useEffect(() => {
         axiosSecure.get(`/notebooks?email=${user?.email}`).then((data) => {
@@ -73,7 +74,7 @@ const NoteBook = () => {
                                         </h1>
                                         <p className="text-sm text-slate-400">
                                             {
-                                                note.details.length > 180 ? note.details.slice(0, 180) + "..." : note.details
+                                                note?.details?.length > 180 ? note.details?.slice(0, 50) + "..." : note?.details
                                             }
                                         </p>
                                         <Link to={`/notebook/${note._id}`} className="text-sm transition-all duration-300 primary-color ms-auto mt-auto tracking-wider btn-effect">

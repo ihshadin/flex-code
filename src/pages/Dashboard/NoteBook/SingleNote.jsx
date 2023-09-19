@@ -56,7 +56,7 @@ const SingleNote = () => {
                                     <h2 className='text-md primary-color font-medium mb-1'>{note.title}</h2>
                                     <p className="text-xs text-slate-400">
                                         {
-                                            note.details.length > 100 ? note.details.slice(0, 100) + "..." : note.details
+                                            note?.details?.length > 100 ? note?.details.slice(0, 50) + "..." : note?.details
                                         }
                                     </p>
                                 </Link>
