@@ -22,7 +22,7 @@ const {state} = useLocation()
                 />
            <div className="grid md:grid-cols-2 gap-6 mt-5">
             {nonPremiumProblems?.map((problem) => (
-              <ProblemCard key={problem._id} problem={problem} challenger={state.username}/>
+              <ProblemCard key={problem._id} problem={problem} challenger={state}/>
             ))}
           </div>
         </div>
