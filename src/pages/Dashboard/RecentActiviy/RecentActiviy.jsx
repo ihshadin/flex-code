@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FaAngleRight, FaRegListAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const RecentActiviy = ({ mySolvedProblems }) => {
-
   function formatDateDifference(solvedDate) {
     const currentDate = new Date();
     const solvedDateObj = new Date(solvedDate);
@@ -14,18 +13,22 @@ const RecentActiviy = ({ mySolvedProblems }) => {
     const millisecondsPerYear = 365 * millisecondsPerDay;
 
     const years = Math.floor(timeDifference / millisecondsPerYear);
-    const months = Math.floor((timeDifference % millisecondsPerYear) / millisecondsPerMonth);
-    const days = Math.floor((timeDifference % millisecondsPerMonth) / millisecondsPerDay);
+    const months = Math.floor(
+      (timeDifference % millisecondsPerYear) / millisecondsPerMonth
+    );
+    const days = Math.floor(
+      (timeDifference % millisecondsPerMonth) / millisecondsPerDay
+    );
 
     if (years > 0) {
-      return `${years} year${years > 1 ? 's' : ''} ago`;
+      return `${years} year${years > 1 ? "s" : ""} ago`;
     } else if (months > 0) {
-      return `${months} month${months > 1 ? 's' : ''} ago`;
+      return `${months} month${months > 1 ? "s" : ""} ago`;
     } else if (days > 0) {
-      return `${days} day${days > 1 ? 's' : ''} ago`;
+      return `${days} day${days > 1 ? "s" : ""} ago`;
     }
 
-    return 'Today';
+    return "Today";
   }
 
   return (
@@ -37,28 +40,35 @@ const RecentActiviy = ({ mySolvedProblems }) => {
           </div>
         </div>
         <div className="flex gap-x-1 items-center self-end">
-          <Link to={'/my-submittions'}>View My Submissions</Link> <FaAngleRight />
+          <Link to={"/my-submittions"}>View My Submissions</Link>{" "}
+          <FaAngleRight />
         </div>
       </div>
       <div>
-        {mySolvedProblems ?
-          mySolvedProblems.slice(0, 3).map((problem) => (
-            <div key={problem._id} className="flex justify-between border-b-[2px] duration-300 border-[#0fcda1] hover:border-white px-6 pb-2 pt-7 rounded-3xl">
-              <h3>{problem.title}</h3>
-              <p>{formatDateDifference(problem.date)}</p>
-            </div>
-          )).sort((a, b) => {
-            if (a.props.children[1].props.children.includes("Today")) {
-              return -1;
-            } else if (b.props.children[1].props.children.includes("Today")) {
-              return 1;
-            } else {
-              return 0;
-            }
-          }) : (
-            <p>No Solutions</p>
-          )
-        }
+        {mySolvedProblems ? (
+          mySolvedProblems
+            .slice(0, 3)
+            .map((problem) => (
+              <div
+                key={problem._id}
+                className="flex justify-between border-b-[2px] duration-300 border-[#0fcda1] hover:border-white px-6 pb-2 pt-7 rounded-3xl"
+              >
+                <h3>{problem.title}</h3>
+                <p>{formatDateDifference(problem.date)}</p>
+              </div>
+            ))
+            .sort((a, b) => {
+              if (a.props.children[1].props.children.includes("Today")) {
+                return -1;
+              } else if (b.props.children[1].props.children.includes("Today")) {
+                return 1;
+              } else {
+                return 0;
+              }
+            })
+        ) : (
+          <p>No Solutions</p>
+        )}
       </div>
     </div>
   );
