@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaRegEnvelope, FaSpinner } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
@@ -10,7 +10,8 @@ import { toast } from "react-hot-toast";
 import { Helmet } from "react-helmet";
 
 const Login = () => {
-  const { signIn, resetPassword, loading, setLoading } = useContext(AuthContext);
+  const { signIn, resetPassword, loading, setLoading } =
+    useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -26,7 +27,6 @@ const Login = () => {
     const password = data?.password;
     signIn(email, password)
       .then(() => {
-        // const user = result.user;
         toast.success("Login Successfull!");
         navigate(from, { replace: true });
         setLoading(false);
@@ -55,14 +55,10 @@ const Login = () => {
 
   return (
     <div className="flexcode-container">
-      <Helmet title="Flex Code | Login"/>
+      <Helmet title="Flex Code | Login" />
       <div className="bg-secondary-color shadow-2xl md:w-2/4 max-w-md mx-auto rounded-xl px-7 my-5">
         <div className="flex justify-center py-8">
-          <img
-            className="w-44 md:w-48"
-            src="/flex-codelogo.png"
-            alt="logo"
-          />
+          <img className="w-44 md:w-48" src="/flex-codelogo.png" alt="logo" />
         </div>
         <SocialLogin />
         <div className="max-w-[150px] flex justify-center border-2 border-[#0fcda1] rounded mx-auto my-8"></div>
@@ -80,7 +76,9 @@ const Login = () => {
                 placeholder="Email"
               />
               {errors?.email && (
-                <span className="text-red-500 text-xs mt-1">Email is required</span>
+                <span className="text-red-500 text-xs mt-1">
+                  Email is required
+                </span>
               )}
             </div>
             <div className="w-full flex items-center gap-2 border border-slate-500 hover:border-[#0fcda18c] px-2 rounded-lg hover:bg-[#17181B] cursor-pointer">
@@ -95,7 +93,9 @@ const Login = () => {
                 placeholder="Password"
               />
               {errors?.password?.type === "required" && (
-                <p className="text-red-500 text-xs mt-1">Password is required</p>
+                <p className="text-red-500 text-xs mt-1">
+                  Password is required
+                </p>
               )}
             </div>
           </div>
@@ -121,7 +121,10 @@ const Login = () => {
           </button>
         </form>
         <div className="text-center pb-10 text-sm text-slate-300">
-          <Link to="/signup" className="cursor-pointer link hover:text-blue-500 mr-1">
+          <Link
+            to="/signup"
+            className="cursor-pointer link hover:text-blue-500 mr-1"
+          >
             Sign up
           </Link>
           if you don&apos;t have an account yet.

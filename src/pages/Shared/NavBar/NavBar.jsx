@@ -271,8 +271,8 @@ const NavBar = () => {
                               />
                             ) : (
                               <FaUser
-                                className={`h-8 w-8 rounded-full p-1 border-2 border-[#00ffc3] mr-2`}
-                              ></FaUser>
+                                className="h-8 w-8 rounded-full p-1 border-2 border-[#00ffc3] mr-2"
+                              />
                             )}
 
                             <div>

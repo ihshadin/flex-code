@@ -2,8 +2,6 @@ import React from "react";
 import {
   FaFrown,
   FaGrinAlt,
-  FaHandPaper,
-  FaTrashAlt,
   FaUser,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -17,7 +15,7 @@ const ChallengeCard = ({ challenges, HandleDeleteChallenge, fromSender }) => {
     receiverName,
     timeStamp,
     _id,
-    id,
+    problemId,
     winner,
     winnerTime,
     senderImg,
@@ -30,33 +28,33 @@ const ChallengeCard = ({ challenges, HandleDeleteChallenge, fromSender }) => {
       <h1 className="text-xl font-bold text-white mt-2 -pb-2"># {problem}</h1>
       <div className="flex flex-col md:flex-row md:items-center justify-between">
         {/* <div> */}
-        <div className="w-[80%]">
+        <div className="md:w-[80%]">
           <p className="text-sm text-white tracking-wider mt-1 mb-1">
             {
               fromSender ? "Receiver:" : "Challenger:"
             }
             {/* Challenger: */}
             </p>
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-5 md:mb-0 mb-3">
             <div className="flex items-center gap-3 w-full">
-              <div className="h-10 w-10  rounded">
+              <div className="h-12 w-12 md:h-10 md:w-10 border border-[#0fcda1] rounded">
                 {fromSender ? (
-                  <img src={receiverImg} alt="img" className=" rounded " />
+                  <img src={receiverImg} alt="img" className=" rounded h-12 w-12 md:h-10 md:w-10" />
                 ) : sender ? (
-                  <img src={senderImg} alt="img" className=" rounded " />
+                  <img src={senderImg} alt="img" className=" rounded h-12 w-12 md:h-10 md:w-10" />
                 ) : (
                   <FaUser className="h-10 w-10 p-1" />
                 )}
               </div>
-              <div className="flex flex-col grow mr-5">
+              <div className="flex flex-col grow md:mr-5">
                 <p className="font-semibold">
                   {fromSender ? receiverName : senderName}
                 </p>
-                <div className="flex justify-between items-center">
+                <div className="md:flex justify-between items-center">
                   <p className="text-xs text-gray-400">
                     @{fromSender ? receiver : sender}
                   </p>
-                  <p className="text-sm text-gray-400 tracking-wider">
+                  <p className="text-sm text-gray-400 md:tracking-wider">
                     Time:{" "}
                     <span className="text-white">
                       {!winnerTime ? timeStamp : winnerTime} seconds
@@ -70,21 +68,21 @@ const ChallengeCard = ({ challenges, HandleDeleteChallenge, fromSender }) => {
           </div>
         </div>
 
-        <div className="relative w-[20%]">
-          {winner && (
+        <div className="relative md:w-[20%]">
+          {/* {winner && (
             <FaTrashAlt
               title="delete"
               onClick={() => HandleDeleteChallenge(_id, "receiver")}
               className="absolute -top-8 -right-2 text-gray-500 cursor-pointer"
             />
-          )}
-          {fromSender && (
+          )} */}
+          {/* {fromSender && (
             <FaTrashAlt
               title="delete"
               onClick={() => HandleDeleteChallenge(_id, "sender")}
               className="absolute -top-8 -right-2 text-gray-500 cursor-pointer"
             />
-          )}
+          )} */}
           {sender === winner ? (
             <div>
               <FaFrown className="w-8 h-8 mx-auto text-[#cd0f0fd4] mb-1" />
@@ -92,13 +90,12 @@ const ChallengeCard = ({ challenges, HandleDeleteChallenge, fromSender }) => {
             </div>
           ) : receiver === winner ? (
             <div>
-              <FaGrinAlt className="w-8 h-8 mx-auto text-amber-400 mb-1" />
-              <p className="text-amber-400 text-center">You Won</p>
+              <FaGrinAlt className="w-8 h-8 mx-auto text-[#0fcda1] mb-1" />
+              <p className="text-[#0fcda1] text-center">You Won</p>
             </div>
           ) : !winner && fromSender ? (
             <div>
-              <FaHandPaper className="w-8 h-8 mx-auto text-amber-400 mb-1" />
-              <p className="text-amber-400 text-center">Not Accepted Yet.</p>
+              <p className="text-amber-400 md:text-center">Pending</p>
             </div>
           ) : (
             <div className="flex flex-col gap-3">
@@ -109,11 +106,11 @@ const ChallengeCard = ({ challenges, HandleDeleteChallenge, fromSender }) => {
                 Reject
               </button>
               <Link
-                to={`/challenge/${id}`}
+                to={`/challenge/${problemId}`}
                 state={{
                   username: sender,
                   timeStamp: timeStamp,
-                  id: id,
+                  id: problemId,
                   ownId: _id,
                 }}
                 className="flexcode-button text-xs py-1 text-center"

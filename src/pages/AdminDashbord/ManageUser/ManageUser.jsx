@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading";
 import { toast } from "react-hot-toast";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
@@ -87,7 +87,7 @@ const ManageUser = () => {
       transition={{ duration: 2 }}
       className="text-white md:mx-7 md:my-5"
     >
-      <Helmet title="Flex Code | Manage User"/>
+      <Helmet title="Flex Code | Manage User" />
       <div className="border-b-2 border-[#0fcda185] pb-3 mb-8 ">
         <h1 className="text-white text-2xl md:text-4xl tracking-wider font-semibold">
           All user

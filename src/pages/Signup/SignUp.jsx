@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaRegEnvelope, FaSpinner, FaUser } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
@@ -92,7 +92,7 @@ const SignUp = () => {
 
   return (
     <div className="flexcode-container">
-      <Helmet title="FlexCode | Sign-up"/>
+      <Helmet title="FlexCode | Sign-up" />
       <div className="bg-secondary-color shadow-2xl md:w-2/4 max-w-md mx-auto rounded-xl px-7 my-5">
         <div className="flex justify-center py-8">
           <img className="w-44 md:w-48" src="/flex-codelogo.png" alt="logo" />

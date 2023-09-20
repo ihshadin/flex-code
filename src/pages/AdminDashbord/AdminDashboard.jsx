@@ -68,7 +68,7 @@ const AdminDashboard = () => {
                 className="flex items-center gap-2 px-4 py-2 text-white hover:text-white hover:bg-[#0fcda1] hover:bg-opacity-40"
               >
                 <span className="inline-block h-2 w-2 rounded-full bg-teal-300"></span>
-                <span>Dashboard Home</span>
+                <span>Admin Home</span>
               </NavLink>
               <NavLink
                 to="/dashboard/manageuser"
