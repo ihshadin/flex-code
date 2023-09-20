@@ -81,7 +81,7 @@ const Testimonials = () => {
                 </span>
                 <div className="w-16 h-16 object-cover rounded-full border-[#0fcda1] bg-secondary-color border absolute bottom-0">
                   {feedback?.image ? (
-                    <img src={feedback.image} className="rounded-full p-1" alt="" />
+                    <img src={feedback.image} className="w-full rounded-full p-1" alt="" />
                   ) : (
                     <FaUser className=" text-[#0fcda1] w-full h-full p-1 rounded-full" />
                   )}

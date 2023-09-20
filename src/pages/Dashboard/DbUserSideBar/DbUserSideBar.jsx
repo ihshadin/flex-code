@@ -33,24 +33,22 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
     });
   }, [mainUserName]);
 
-  // console.log("dbuserSbar---oneuser--fullUserDetails", fullUserDetails);
-  // console.log("dbuserSbar---oneuser--name", flexUser);
-  // console.log("dbuserSbar---oneuser--userEmail", userEmail);
-
   // Calculate last week
   const currentDate = new Date();
   const lastWeekDate = new Date();
   lastWeekDate.setDate(currentDate.getDate() - 7);
   const formattedDate = fullUserDetails?.dateOfBirth?.slice(0, 10);
-  
+
   // Last week solutions
   const lastWeekSolvedProblems = mySolvedProblems.filter(
     (problem) => new Date(problem.date) >= lastWeekDate
   );
+
   // Last week points
   const lastWeekTotalPoints = mySolvedProblems
     .filter((problem) => new Date(problem.date) >= lastWeekDate)
     .reduce((total, problem) => total + problem.points, 0);
+
   // User Rank
   const myRank = topperData?.find((problem) => problem.username === username);
 
@@ -62,8 +60,6 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
     }, {});
     setProblemsByLanguage(problemsCount);
   }, [mySolvedProblems]);
-
-  useEffect(() => { });
 
   return (
     <section>
@@ -148,11 +144,11 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
             )
           }
           {
-         userEmail !== flexUserEmail && (<div>
-  <Link to={'/challenge'} state={{username: mainUserName, userImg: fullUserDetails?.userPhotoUrl, name: fullUserDetails?.name}}>
-  <button className="flexcode-button w-5/6 ml-7 mx-auto py-1 text-sm">Challenge</button>
-  </Link>
-</div>    )
+            userEmail !== flexUserEmail && (<div>
+              <Link to={'/challenge'} state={{ username: mainUserName, userImg: fullUserDetails?.userPhotoUrl, name: fullUserDetails?.name }}>
+                <button className="bg-[#0fcda1] bg-opacity-50 text-[#b0c9ec] border border-[#0fcda1] border-transparent hover:bg-transparent hover:border hover:border-[#0fcda1] hover:text-[#0fcda1] hover:transition-all hover:duration-500 w-full rounded-lg py-[7px] text-center font-medium">Challenge</button>
+              </Link>
+            </div>)
           }
 
         </div>
