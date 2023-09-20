@@ -75,9 +75,9 @@ const Single = () => {
     senderName: flexUser?.name,
     sender: flexUser?.username,
     senderImg: flexUser?.userPhotoUrl,
-    receiver: state?.challenger.username,
-    receiverImg: state?.challenger.userImg,
-    receiverName: state?.challenger.name,
+    receiver: state?.challenger?.username,
+    receiverImg: state?.challenger?.userImg,
+    receiverName: state?.challenger?.name,
     message: `You got a challenge from ${flexUser?.username}`,
     problem: singleProblem?.title,
     problemId: singleProblem?._id,
@@ -314,9 +314,9 @@ const Single = () => {
 
               {/* Timer    */}
 
-              <div className="flex flex-row-reverse mr-6 mb-2">
+              {/* <div className="flex flex-row-reverse mr-6 mb-2">
                 <Timer setTime={setTime} setIsRunning={setIsRunning} isRunning={isRunning} />
-              </div>
+              </div> */}
 
 
               <Split
@@ -332,13 +332,13 @@ const Single = () => {
                 cursor="col-resize"
               >
                 <div className="bg-slate-600 bg-opacity-10 rounded-xl overflow-hidden border border-gray-700 hover:border-[#0fcda1]">
-                  <div className="bg-secondary-color flex items-end">
+                  <div className="bg-secondary-color flex items-center justify-between">
                     <div className="flex items-center gap-2 px-4 py-3">
                       <div className="w-3 h-3 bg-red-500 rounded-full"></div>
                       <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
                       <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                     </div>
-
+                    <Timer setTime={setTime} setIsRunning={setIsRunning} isRunning={isRunning} />
                   </div>
                   <CodeMirror
                     value={code || defaultCode}
