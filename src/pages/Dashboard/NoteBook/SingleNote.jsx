@@ -45,9 +45,7 @@ const SingleNote = () => {
                         <h1 className="text-xl md:text-2xl font-semibold leading-tight primary-color">
                             {note?.title}
                         </h1>
-                        <p className="text-white mt-5 text-justify">
-                            {note?.details}
-                        </p>
+                        <p className="line-clamp-4" dangerouslySetInnerHTML={{ __html: note?.details }} />
                     </div>
                     {/* List of Blog Side side */}
                     <div className="w-full lg:w-[30%] flex flex-col bg-secondary-color py-5 px-3 md:px-5 rounded-xl divide-y-2 divide-[#0fcda156]">
@@ -56,11 +54,11 @@ const SingleNote = () => {
                             notes?.slice(0, 5).map((note) => (
                                 <Link to={`/notebook/${note._id}`} key={note._id} className='py-4'>
                                     <h2 className='text-md primary-color font-medium mb-1'>{note.title}</h2>
-                                    <p className="text-xs text-slate-400">
-                                        {
-                                            note.details.length > 100 ? note.details.slice(0, 100) + "..." : note.details
-                                        }
-                                    </p>
+                                    <p className=" text-sm text-slate-400 line-clamp-4" dangerouslySetInnerHTML={{
+                                        __html: note?.details?.length > 140
+                                            ? note?.details?.slice(0, 100) + "..."
+                                            : note?.details
+                                    }} />
                                 </Link>
                             ))
                         }
