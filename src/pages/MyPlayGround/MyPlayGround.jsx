@@ -136,7 +136,7 @@ const MyPlayGround = () => {
           </div>
           <div className="text-center">
             <h1 className="text-2xl md:text-3xl font-semibold tracking-wider">
-              You don't have a any project
+              You don&apos;t have any project
             </h1>
             <p className="text-sm md:text-base text-slate-200 mb-5 mt-2">
               Your saved projct will apear here and you can access anytime.
