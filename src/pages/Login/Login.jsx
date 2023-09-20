@@ -1,8 +1,9 @@
+import React from 'react';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaRegEnvelope, FaSpinner } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
 import { useForm } from "react-hook-form";
-import { useContext, useRef } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import SocialLogin from "../Shared/Social/SocialLogin";
 import { toast } from "react-hot-toast";
@@ -24,8 +25,8 @@ const Login = () => {
     const email = data?.email;
     const password = data?.password;
     signIn(email, password)
-      .then((result) => {
-        const user = result.user;
+      .then(() => {
+        // const user = result.user;
         toast.success("Login Successfull!");
         navigate(from, { replace: true });
         setLoading(false);
@@ -123,7 +124,7 @@ const Login = () => {
           <Link to="/signup" className="cursor-pointer link hover:text-blue-500 mr-1">
             Sign up
           </Link>
-          if you don't have an account yet.
+          if you don&apos;t have an account yet.
         </div>
       </div>
     </div>

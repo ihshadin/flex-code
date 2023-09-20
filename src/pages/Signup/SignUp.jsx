@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaRegEnvelope, FaSpinner, FaUser } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
@@ -7,7 +8,6 @@ import { AuthContext } from "../../providers/AuthProvider";
 import SocialLogin from "../Shared/Social/SocialLogin";
 import "./Signup.css";
 import { toast } from "react-hot-toast";
-import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
 import useAxiosNormal from "../../Hooks/useAxiosNormal";
 import { Helmet } from "react-helmet";
 const SignUp = () => {
@@ -24,8 +24,6 @@ const SignUp = () => {
     reset,
     formState: { errors },
   } = useForm();
-
-  // "You clicked the button!", "success";
 
   // Step 2: Event Handler
   const handleCheckboxChange = () => {
@@ -178,7 +176,7 @@ const SignUp = () => {
                 />
                 <span>I agree to</span>
               </div>
-              <Link className="text-right inline-block cursor-pointer hover:link text-blue-400 ">
+              <Link to="allMenuFooter" className="text-right inline-block cursor-pointer hover:link text-blue-400 ">
                 Terms and conditions?
               </Link>
             </div>
@@ -189,10 +187,6 @@ const SignUp = () => {
                   ? " px-6 py-[6px] flexcode-button cursor-pointer mt-3 mb-6"
                   : " px-6 py-[6px] flexcode-button opacity-40 mt-3 mb-6 cursor-not-allowed"
               }`}
-              onClick={() => {
-                if (isChecked) {
-                }
-              }}
             >
               {loading ? (
                 <FaSpinner className="m-auto animate-spin" size={24} />
