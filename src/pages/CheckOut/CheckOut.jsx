@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   FaPhone,
@@ -8,9 +9,11 @@ import {
   FaUser,
 } from "react-icons/fa";
 import useAuth from "../../Hooks/useAuth";
+import { Helmet } from "react-helmet";
 
 const CheckOut = () => {
-  const { user, loading } = useAuth();
+  const { user } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -18,8 +21,9 @@ const CheckOut = () => {
   } = useForm();
 
   const onSubmit = (data) => {
+    console.log("button okay");
+    setIsLoading(true);
     const number = parseInt(data.number);
-    console.log(number);
     data.amount = 13.25 * 86;
     data.number = number;
     data.currency = "BDT";
@@ -34,15 +38,18 @@ const CheckOut = () => {
       .then((res) => res.json())
       .then((data) => {
         window.location.replace(data?.url);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 500);
       });
   };
 
   return (
     <div className="flexcode-container !pt-16 md:!pt-10 text-white flex flex-col md:flex-row items-stretch gap-y-5 md:gap-x-6">
-      <Helmet title="Flex Code | Checkout"/>
+      <Helmet title="Flex Code | Checkout" />
       <div className="exploreCard border border-slate-500 hover:border-[#0fcda156] transition-all p-5 md:p-10 rounded-2xl md:w-[60%]">
         <div>
-          <div className="flex flex-col md:flex-row gap-y-2 justify-between mb-6">
+          <div className="flex flex-col md:flex-row gap-y-2 justify-between mb-14">
             <h1 className="text-base font-semibold">
               <span className="text-4xl font-extrabold text-[#0fcda1]">
                 Yearly{" "}
@@ -57,7 +64,7 @@ const CheckOut = () => {
               Most popular plan
             </h1>
           </div>
-          <p className="text-xl">
+          <p className="text-xl font-normal ">
             Our most
             <span className="text-[#0fcda1] font-semibold"> popular plan </span>
             previously sold for
@@ -67,7 +74,7 @@ const CheckOut = () => {
             /Life time. This plan saves you over 60% in comparison to the yearly
             plan.
           </p>
-          <div className="flex flex-col md:flex-row justify-between md:items-center mt-10">
+          <div className="flex flex-col md:flex-row justify-between md:items-center mt-12">
             <h1 className="text-xl">
               <span className="text-3xl md:text-4xl font-semibold">
                 $13.25{" "}
@@ -144,7 +151,7 @@ const CheckOut = () => {
 
           <div className="w-full">
             <button type="submit" className="flexcode-button py-3 px-16 w-full">
-              {loading ? (
+              {isLoading ? (
                 <FaSpinner className="m-auto animate-spin" size={24} />
               ) : (
                 "  Pay Now"
