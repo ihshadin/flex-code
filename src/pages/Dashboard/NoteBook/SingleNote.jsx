@@ -45,7 +45,7 @@ const SingleNote = () => {
                         <h1 className="text-xl md:text-2xl font-semibold leading-tight primary-color">
                             {note?.title}
                         </h1>
-                        <p className="line-clamp-4" dangerouslySetInnerHTML={{ __html: note?.details }} />
+                        <p dangerouslySetInnerHTML={{ __html: note?.details }} />
                     </div>
                     {/* List of Blog Side side */}
                     <div className="w-full lg:w-[30%] flex flex-col bg-secondary-color py-5 px-3 md:px-5 rounded-xl divide-y-2 divide-[#0fcda156]">

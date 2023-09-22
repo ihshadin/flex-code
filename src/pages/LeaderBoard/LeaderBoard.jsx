@@ -20,7 +20,7 @@ const LeaderBoard = () => {
       transition={{ duration: 2 }}
     >
       <div className="flexcode-container !pt-16 md:!pt-10">
-      <Helmet title="Flex Code | Leader Board"/>
+        <Helmet title="Flex Code | Leader Board" />
         <PageBannerTitle
           title="Top Problem Solvers"
           shortDesc="Meet the Brilliant Minds Behind the Solutions"
@@ -142,7 +142,6 @@ const LeaderBoard = () => {
                       )}
                       <div>
                         <h2 className="font-medium whitespace-nowrap overflow-hidden text-ellipsis md:text-clip max-w-[19ch] md:max-w-full">
-                          {/* {solveProblem?.displayName.length > 17 ? solveProblem.displayName.slice(0, 17) + ".." : solveProblem.displayName} */}
                           {solveProblem.displayName}
                         </h2>
                         <p className="text-sm text-slate-400">
