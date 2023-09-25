@@ -25,8 +25,6 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
 
-  // "You clicked the button!", "success";
-
   // Step 2: Event Handler
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked); // Toggle the checkbox value
@@ -178,7 +176,7 @@ const SignUp = () => {
                 />
                 <span>I agree to</span>
               </div>
-              <Link className="text-right inline-block cursor-pointer hover:link text-blue-400 ">
+              <Link to="allMenuFooter" className="text-right inline-block cursor-pointer hover:link text-blue-400 ">
                 Terms and conditions?
               </Link>
             </div>

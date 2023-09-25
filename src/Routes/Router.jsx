@@ -163,6 +163,10 @@ const router = createBrowserRouter([
         element: <PlayGround />,
       },
       {
+        path: "/new",
+        element: <PlayGround />,
+      },
+      {
         path: "/pre-project/:id",
         element: <PreProject />,
       },

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link, useNavigation } from "react-router-dom";
 import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
 import Pagination from "../../components/Pagination/Pagination";
@@ -15,7 +16,6 @@ const Problems = () => {
     totalPages,
     setCurrentPage,
     isLoading,
-    searchText,
     setSearchText,
     filterLevel,
     setFilterLevel,
@@ -61,7 +61,7 @@ const Problems = () => {
               to={`${problem.toLowerCase()}`}
               key={index}
               className={`${
-                problemsLanguage.reduce((total, i) => total + index, 0) - 3 <=
+                problemsLanguage.reduce((total) => total + index, 0) - 3 <=
                 index
                   ? "border-b"
                   : ""

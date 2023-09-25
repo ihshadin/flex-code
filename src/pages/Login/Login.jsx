@@ -26,7 +26,7 @@ const Login = () => {
     const email = data?.email;
     const password = data?.password;
     signIn(email, password)
-      .then((result) => {
+      .then(() => {
         toast.success("Login Successfull!");
         navigate(from, { replace: true });
         setLoading(false);
@@ -127,7 +127,7 @@ const Login = () => {
           >
             Sign up
           </Link>
-          if you don't have an account yet.
+          if you don&apos;t have an account yet.
         </div>
       </div>
     </div>
