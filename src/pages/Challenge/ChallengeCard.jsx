@@ -21,7 +21,7 @@ const ChallengeCard = ({ challenges, HandleDeleteChallenge, fromSender }) => {
     senderImg,
     senderName,
   } = challenges;
-  // console.log(challengeName, sender, time);
+
   return (
     <div className="border border-slate-500 hover:border-[#0fcda18c] px-5 pb-4 pt-2 rounded-xl exploreCard">
 
@@ -34,10 +34,10 @@ const ChallengeCard = ({ challenges, HandleDeleteChallenge, fromSender }) => {
               fromSender ? "Receiver:" : "Challenger:"
             }
             {/* Challenger: */}
-            </p>
+          </p>
           <div className="flex items-center gap-5 md:mb-0 mb-3">
             <div className="flex items-center gap-3 w-full">
-              <div className="h-12 w-12 md:h-10 md:w-10 border border-[#0fcda1] rounded">
+              <div className="h-12 w-12 md:h-10 md:w-10 rounded">
                 {fromSender ? (
                   <img src={receiverImg} alt="img" className=" rounded h-12 w-12 md:h-10 md:w-10" />
                 ) : sender ? (
@@ -64,25 +64,10 @@ const ChallengeCard = ({ challenges, HandleDeleteChallenge, fromSender }) => {
                 </div>
               </div>
             </div>
-            {/* </div> */}
           </div>
         </div>
 
         <div className="relative md:w-[20%]">
-          {/* {winner && (
-            <FaTrashAlt
-              title="delete"
-              onClick={() => HandleDeleteChallenge(_id, "receiver")}
-              className="absolute -top-8 -right-2 text-gray-500 cursor-pointer"
-            />
-          )} */}
-          {/* {fromSender && (
-            <FaTrashAlt
-              title="delete"
-              onClick={() => HandleDeleteChallenge(_id, "sender")}
-              className="absolute -top-8 -right-2 text-gray-500 cursor-pointer"
-            />
-          )} */}
           {sender === winner ? (
             <div>
               <FaFrown className="w-8 h-8 mx-auto text-[#cd0f0fd4] mb-1" />

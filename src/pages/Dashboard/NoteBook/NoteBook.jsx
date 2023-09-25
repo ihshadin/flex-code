@@ -155,9 +155,6 @@ const NoteBook = () => {
                                     <h1 className="text-lg font-semibold text-white line-clamp-1">
                                         {note.title}
                                     </h1>
-                                    {/* <p className="text-sm text-slate-400 line-clamp-4">
-                    {note.details}
-                  </p> */}
                                     <p className=" text-sm text-slate-400 line-clamp-4" dangerouslySetInnerHTML={{
                                         __html: note?.details?.length > 140
                                             ? note?.details?.slice(0, 100) + "..."
