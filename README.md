@@ -1,4 +1,4 @@
-# FlexCode - Unlock the Power of Problem Solving
+# [FlexCode - Unlock the Power of Problem Solving](https://flex-code-6541d.web.app/)
 
 <p align="center">
   <img src="./public/20230810_120154.png" alt="FlexCode Logo" width="250" height="250">
@@ -8,48 +8,102 @@ FlexCode is an online platform designed to host and manage coding challenges and
 
 ## Table of Contents
 
-- [Overview](#overview)
-- [Key Features](#key-features)
-- [Unique Features](#unique-features)
-- [Technology Stack](#technology-stack)
-- [Project Structure](#project-structure)
-- [Development Plan](#development-plan)
-- [Potential Enhancements](#potential-enhancements)
-- [Getting Started](#getting-started)
-- [Deployment](#deployment)
-- [Contributing](#contributing)
-- [License](#license)
+1. [Overview](#overview)
+2. [Key Features](#key-features)
+3. [Unique Features](#unique-features)
+4. [Technology Stack](#technology-stack)
+5. [Project Structure](#project-structure)
+6. [Development Plan](#development-plan)
+7. [Potential Enhancements](#potential-enhancements)
+8. [Creators](#creators)
+9. [Conclusion](#conclusion)
 
 ## Overview
 
-FlexCode is an online platform that provides a flexible and interactive environment for coding enthusiasts to showcase their coding skills and solve challenges. It is built using a modern tech stack, combining React.js for the frontend, Express.js for the backend, Firebase for user authentication, MongoDB with Mongoose for contest data storage, and JWT for secure authentication.
+FlexCode is an online platform designed to host and manage coding challenges and problem-solving activities for coding enthusiasts, developers, and programmers. This platform provides a flexible and interactive environment where participants can showcase their coding skills and solve challenges. FlexCode is built using modern technologies, including React.js for the frontend, Express.js for the backend, Firebase for user authentication, MongoDB with Mongoose for contest data storage, and JWT for secure authentication.
+
 
 ## Key Features
 
-- **User Authentication**: Secure user registration, login, and password reset using Firebase Authentication with JWT integration.
-- **Challenge Management**: Admin users can create and manage coding challenges with input, output, and test case specifications.
-- **User Dashboard**: Participants can access their user dashboard, view upcoming contests, participation history, and leaderboard rankings.
-- **Real-time Submissions**: Participants can submit their code solutions, and FlexCode will evaluate, score, and display real-time results.
-- **Leaderboard**: The platform displays leaderboard rankings for each contest based on users' performance.
-- **Code Editor**: A feature-rich code editor with syntax highlighting is provided for writing and submitting code solutions.
-- **Blogs**: A blog router is available with interesting articles related to programming.
-- **Users Counter**: Tracks how many users visited the website.
-- **Problem of the Day**: Features a random problem of the day in an individual section.
+- **User Authentication:** Secure user registration, login, and password reset using Firebase Authentication with JWT integration.
+- **Challenge Management:** Admin users can create and manage coding challenges with input, output, and test case specifications.
+- **User Dashboard:** Participants can access their user dashboard, view upcoming contests, participation history, and leaderboard rankings.
+- **Real-time Submissions:** Participants can submit code solutions, and FlexCode will evaluate, score, and display real-time results.
+- **Leaderboard:** The platform displays leaderboard rankings for each contest based on user performance.
+- **Code Editor:** A feature-rich code editor with syntax highlighting for writing and submitting code solutions.
+- **Blogs:** Users can read and explore programming-related articles.
+- **User Counter:** Track the number of users visiting the website.
+- **Problem of the Day:** Present a daily coding challenge on an individual section.
 
 ## Unique Features
 
-- **Blogs**: Access a blog router with interesting articles related to programming.
-- **Users Counter**: Track the number of users who visited the website.
-- **Problem of the Day**: Solve a random problem of the day presented in an individual section.
+- **Blogs:** Explore programming-related articles.
+- **User Counter:** Track the number of users visiting the website.
+- **Problem of the Day:** Daily coding challenges to engage users.
+
 
 ## Technology Stack
 
-- **Frontend**: React.js, HTML, CSS, JavaScript, Tailwind CSS, Axios
-- **Backend**: Express.js, Node.js
-- **Database**: MongoDB with Mongoose
-- **Authentication**: Firebase Authentication with JWT integration
-- **Code Evaluation**: CodeMirror environment for securely executing user-submitted code
-- **Hosting**: Deployment on a cloud platform like Firebase and Vercel
+**Frontend:**
+- React.js
+- HTML
+- CSS
+- JavaScript
+- Tailwind CSS
+- Axios
+
+**Backend:**
+- Express.js
+- Node.js
+
+**Database:**
+- MongoDB with Mongoose
+
+**Authentication:**
+- Firebase Authentication with JWT integration
+
+**Code Evaluation:**
+- Code Mirror environment for securely executing user-submitted code
+
+**Hosting:**
+- Deployment on a cloud platform like Firebase and Vercel
+
+### Here are the main dependencies and devDependencies used in the project:
+
+### Dependencies
+
+| Package                                   | Version    |
+| ----------------------------------------- | ---------- |
+| `@emailjs/browser`                        | ^3.11.0    |
+| `@tomickigrzegorz/react-circular-progress-bar` | ^1.1.2     |
+| `aos`                                     | ^2.3.4     |
+| `framer-motion`                           | ^10.12.17  |
+| `localforage`                             | ^1.10.0    |
+| `match-sorter`                            | ^6.3.1     |
+| `react`                                   | ^18.2.0    |
+| `react-dom`                               | ^18.2.0    |
+| `react-icons`                             | ^4.9.0     |
+| `react-router-dom`                        | ^6.13.0    |
+| `react-tilt`                              | ^1.0.2     |
+| `sort-by`                                 | ^1.2.0     |
+| `typed.js`                                | ^2.0.16    |
+
+### Dev Dependencies
+
+| Package                              | Version    |
+| ------------------------------------ | ---------- |
+| `@types/react`                       | ^18.0.37   |
+| `@types/react-dom`                   | ^18.0.11   |
+| `@vitejs/plugin-react`               | ^4.0.0     |
+| `autoprefixer`                       | ^10.4.14   |
+| `eslint`                             | ^8.38.0    |
+| `eslint-plugin-react`                | ^7.32.2    |
+| `eslint-plugin-react-hooks`          | ^4.6.0     |
+| `eslint-plugin-react-refresh`        | ^0.3.4     |
+| `postcss`                            | ^8.4.24    |
+| `tailwindcss`                        | ^3.3.2     |
+| `vite`                               | ^4.3.9     |
+
 
 ## Project Structure
 
@@ -75,26 +129,11 @@ The development process can be divided into the following milestones:
 
 ## Potential Enhancements
 
-After completing the primary features, consider adding the following enhancements to further improve FlexCode:
+After completing the primary features, consider adding these enhancements:
 
-- **Notifications**: Implement real-time notifications for contest updates and announcements.
-- **Code Sharing**: Allow participants to share and discuss their solutions with other users.
-- **Code Review**: Introduce a code review feature where users can provide feedback on each other's solutions.
-
-## Getting Started
-
-To get started with FlexCode, follow these steps:
-
-1. Clone this repository.
-2. Install the necessary dependencies for the frontend and backend.
-3. Configure Firebase and MongoDB for authentication and data storage.
-4. Run the application locally for development.
-
-Detailed instructions for each step can be found in the project's documentation.
-
-## Deployment
-
-You can deploy FlexCode to a cloud platform such as Firebase or Vercel for public access. Ensure that you follow the deployment guidelines in the documentation to set up a production environment.
+- **Notifications:** Implement real-time notifications for contest updates and announcements.
+- **Code Sharing:** Allow participants to share and discuss their solutions.
+- **Code Review:** Introduce a code review feature for feedback on solutions.
 
 ## Creators
 
@@ -108,5 +147,8 @@ Meet the DevGenius team behind FlexCode:
 - [Nur Mohammad Chowdhury](https://github.com/nmcsakib)
 
 
-#### Thank you 💝
+## Conclusion
+
+FlexCode is an exciting problem-solving website built with React.js, Firebase, MongoDB, Mongoose, JWT, and Express.js. The platform aims to provide a flexible and interactive environment for coding enthusiasts to participate in problem-solving challenges. Throughout the development process, prioritize user experience, data security, and scalability to deliver a robust and user-friendly platform. Happy coding!
+
 
