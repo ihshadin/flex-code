@@ -203,7 +203,7 @@ const router = createBrowserRouter([
         element: <DashboardHome />,
       },
       {
-        path: "/:username",
+        path: "/:username/*",
         element: <DashboardHome />,
       },
     ],
