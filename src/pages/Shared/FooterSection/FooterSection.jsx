@@ -1,32 +1,48 @@
+import { Helmet } from "react-helmet";
+
 const FooterSection = () => {
   return (
     <section className="flexcode-container flexcode-banner-bg">
+      <Helmet title="Flex Code | Privacy Policy"/>
       <div className="px-4">
-        <h1 className="text-2xl font-semibold mb-4">Privacy Policy</h1>
+        <h1 className="text-2xl pb-4">Flex Code Privacy Policy</h1>
+        <p>last update September 9, 2023</p>
 
-        <p className="mb-4">
+        <p className="mb-12">
           This privacy policy sets out how our website uses and protects any
           information that you give us when you use this website.
         </p>
 
-        <h2 className="text-2xl font-bold mb-2">Information We Collect</h2>
+        <h2 className="text-2xl mb-4">
+          What do we mean by "personal information?"
+        </h2>
 
-        <p className="mb-4">We may collect the following information:</p>
+        {/* <p className="mb-2">#We may collect the following information:</p> */}
+        <p className="pb-4">
+          For us, "personal information" means information which either directly
+          identifies you (like your name, email address, or billing information)
+          or can be reasonably linked or combined to identify you (like an
+          account identification number or IP address). We’ll always tell you
+          what personal information we’re collecting from you. See each
+          product’s Privacy Notice for specific details.
+        </p>
 
-        <ul className="list-disc list-inside mb-4">
+        <ul className="list-disc list-inside mb-4 pl-8">
           <li>Your name and contact information</li>
           <li>Demographic information</li>
           <li>Other information relevant to customer surveys and/or offers</li>
         </ul>
 
-        <h2 className="text-2xl font-bold mb-2">How We Use the Information</h2>
+        <h2 className="text-2xl mb-4 mt-14">
+          What do we do with your information once we have it?
+        </h2>
 
         <p className="mb-4">
           We require this information to understand your needs and provide you
           with a better service, and in particular for the following reasons:
         </p>
 
-        <ul className="list-disc list-inside mb-4">
+        <ul className="list-disc list-inside mb-4 pl-8">
           <li>Internal record keeping</li>
           <li>Improving our products and services</li>
           <li>
@@ -41,94 +57,40 @@ const FooterSection = () => {
           </li>
         </ul>
 
-        <h2 className="text-2xl font-bold mb-2">Security</h2>
-
-        <p className="mb-4">
-          We are committed to ensuring that your information is secure. In order
-          to prevent unauthorized access or disclosure, we have put in place
-          suitable physical, electronic, and managerial procedures to safeguard
-          and secure the information we collect online.
-        </p>
-
-        <h2 className="text-2xl font-bold mb-2">Cookies</h2>
-
-        <p className="mb-4">
-          A cookie is a small file that asks permission to be placed on your
-          computer's hard drive. Once you agree, the file is added, and the
-          cookie helps analyze web traffic or lets you know when you visit a
-          particular site. Cookies allow web applications to respond to you as
-          an individual. The web application can tailor its operations to your
-          needs, likes, and dislikes by gathering and remembering information
-          about your preferences.
-        </p>
-
-        <p className="mb-4">
-          Overall, cookies help us provide you with a better website by enabling
-          us to monitor which pages you find useful and which you do not. A
-          cookie in no way gives us access to your computer or any information
-          about you, other than the data you choose to share with us.
-        </p>
-
-        <h2 className="text-2xl font-bold mb-2">Links to Other Websites</h2>
-
-        <p className="mb-4">
-          Our website may contain links to other websites of interest. However,
-          once you have used these links to leave our site, you should note that
-          we do not have any control over that other website. Therefore, we
-          cannot be responsible for the protection and privacy of any
-          information which you provide whilst visiting such sites and such
-          sites are not governed by this privacy statement. You should exercise
-          caution and look at the privacy statement applicable to the website in
-          question.
-        </p>
-
-        <h1 className="text-3xl font-bold mb-4">FlexCode About</h1>
-
-        <p className="mb-4">
-          If "FlexCode About" is a specific company, product, service, or
-          concept that has emerged after that date, I would recommend searching
-          for it on the internet or referring to the official website or
-          documentation associated with it for more detailed information.
-        </p>
-
-        <h2 className="text-2xl font-bold mb-2">
-          Controlling Your Personal Information
+        <h2 className="text-2xl  mb-4 mt-14">
+          How do we store and protect your personal information?
         </h2>
 
         <p className="mb-4">
-          You may choose to restrict the collection or use of your personal
-          information in the following ways:
+          We are committed to protecting your personal information once we have
+          it. We implement physical, business and technical security measures.
+          Despite our efforts, if we learn of a security breach, we'll notify
+          you so that you can take appropriate protective steps.
+        </p>
+        <p>
+          We also don't want your personal information for any longer than we
+          need it, so we only keep it long enough to do what we collected it
+          for. Once we don't need it, we take steps to destroy it unless we are
+          required by law to keep it longer.
         </p>
 
-        <ul className="list-disc list-inside mb-4">
-          <li>
-            If you have previously agreed to us using your personal information
-            for direct marketing purposes, you may change your mind at any time
-            by writing to or emailing us at [email protected]
-          </li>
-          <li>
-            We will not sell, distribute, or lease your personal information to
-            third parties unless we have your permission or are required by law
-            to do so. We may use your personal information to send you
-            promotional information about third parties which we think you may
-            find interesting if you tell us that you wish this to happen.
-          </li>
-          <li>
-            You may request details of personal information which we hold about
-            you. If you would like a copy of the information held on you, please
-            write to [Your Company Name, Address, City, State, Zip Code] or
-            email [email protected]
-          </li>
-          <li>
-            If you believe that any information we are holding on you is
-            incorrect or incomplete, please write to or email us as soon as
-            possible at the above address. We will promptly correct any
-            information found to be incorrect.
-          </li>
-        </ul>
+        <h2 className="text-2xl mb-4 mt-16">
+          Websites, Communications & Cookies Privacy Notice
+        </h2>
 
-        <p className="mb-20">
-          This privacy policy is subject to change without notice.
+        <p className="mb-3">
+          We care about your privacy. When Mozilla (that's us) collects
+          information about you, our Flex Code Privacy Policy describes how we
+          handle that information.
+        </p>
+
+        <p className="mb-4">
+          This privacy notice applies to Mozilla operated websites and mobile
+          apps, which include the domains mozillians.org, mozilla.org, and
+          firefox.com, among others. This includes, for example,
+          foundation.mozilla.org, bugzilla.mozilla.org, reps.mozilla.org,
+          careers.mozilla.org, developer.mozilla.org, support.mozilla.org,
+          addons.mozilla.org, and wiki.mozilla.org.
         </p>
       </div>
     </section>

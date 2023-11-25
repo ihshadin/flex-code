@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import paper from "../../../../public/pen-and-paper.svg";
+import paper from "/pen-and-paper.svg";
 
 const AddProblemCTA = () => {
     return (

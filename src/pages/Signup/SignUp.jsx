@@ -1,3 +1,4 @@
+import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaRegEnvelope, FaSpinner, FaUser } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
@@ -7,8 +8,8 @@ import { AuthContext } from "../../providers/AuthProvider";
 import SocialLogin from "../Shared/Social/SocialLogin";
 import "./Signup.css";
 import { toast } from "react-hot-toast";
-import FlexcodeLoading from "../../components/FlexcodeLoading/FlexcodeLoading";
 import useAxiosNormal from "../../Hooks/useAxiosNormal";
+import { Helmet } from "react-helmet";
 const SignUp = () => {
   const { createUser, loading, setLoading, updateUserProfile, setReload } =
     useContext(AuthContext);
@@ -23,8 +24,6 @@ const SignUp = () => {
     reset,
     formState: { errors },
   } = useForm();
-
-  // "You clicked the button!", "success";
 
   // Step 2: Event Handler
   const handleCheckboxChange = () => {
@@ -93,6 +92,7 @@ const SignUp = () => {
 
   return (
     <div className="flexcode-container">
+      <Helmet title="FlexCode | Sign-up" />
       <div className="bg-secondary-color shadow-2xl md:w-2/4 max-w-md mx-auto rounded-xl px-7 my-5">
         <div className="flex justify-center py-8">
           <img className="w-44 md:w-48" src="/flex-codelogo.png" alt="logo" />
@@ -176,7 +176,7 @@ const SignUp = () => {
                 />
                 <span>I agree to</span>
               </div>
-              <Link className="text-right inline-block cursor-pointer hover:link text-blue-400 ">
+              <Link to="allMenuFooter" className="text-right inline-block cursor-pointer hover:link text-blue-400 ">
                 Terms and conditions?
               </Link>
             </div>
@@ -187,10 +187,6 @@ const SignUp = () => {
                   ? " px-6 py-[6px] flexcode-button cursor-pointer mt-3 mb-6"
                   : " px-6 py-[6px] flexcode-button opacity-40 mt-3 mb-6 cursor-not-allowed"
               }`}
-              onClick={() => {
-                if (isChecked) {
-                }
-              }}
             >
               {loading ? (
                 <FaSpinner className="m-auto animate-spin" size={24} />

@@ -10,7 +10,7 @@ const OurTeam = () => {
                 title="Our Team"
                 shortDesc="Explore our genius team members"
             />
-            <div className='grid md:grid-cols-2 lg:grid-cols-3 justify-between items-center gap-x-10 gap-y-16 my-10 md:my-12'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between items-center gap-x-10 gap-y-16 my-10 md:my-12'>
                 <TeamCard
                     imgLink="https://i.ibb.co/0CJygjy/Profile-2.png"
                     name="Imam Hossain"
@@ -48,8 +48,6 @@ const OurTeam = () => {
                     index={2}
                 />
             </div>
-
-
         </div>
     );
 };

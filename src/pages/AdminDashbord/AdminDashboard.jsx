@@ -1,11 +1,12 @@
 import React from "react";
 import NavBar from "../Shared/NavBar/NavBar";
 import Footer from "../Shared/Footer/Footer";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
 import "./AdminDashboard.css";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 const AdminDashboard = () => {
   const { user } = useAuth();
@@ -16,10 +17,11 @@ const AdminDashboard = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 2 }}
-      key="flex_046445"
+      key="flex_04dft5"
     >
       <NavBar />
-      <div className="drawer lg:drawer-open flexcode-container !pt-16 !pb-5 md:!py-2">
+      <Helmet title="FlexCode | Admin dashboard" />
+      <div className="drawer md:gap-5 lg:drawer-open flexcode-container !pt-16 !pb-5 md:!py-2">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
 
         <div className="drawer-content flex flex-col items-center mb-10 overflow-x-auto">
@@ -35,16 +37,16 @@ const AdminDashboard = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 2 }}
-            key="flex_046445"
+            key="flex_0467sadhfi12"
             className="w-full"
           >
             <Outlet />
           </motion.div>
         </div>
-        <div className="drawer-side">
+        <div className="drawer-side lg:sticky lg:top-[77px]">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
 
-          <div className="flexcode-banner-bg backdrop-blur-sm md:backdrop-blur-0 w-80 text-white px-4 py-5 pt-16 md:pt-0 rounded-lg h-screen">
+          <div className="flexcode-banner-bg backdrop-blur-2xl md:backdrop-blur-0 w-80 text-white px-4 py-5 pt-16 md:pt-0 rounded-lg h-screen">
             <div className="pt-8 pb-6 mb-4 border-b-2 border-[#0fcda185]">
               <div className="flex justify-center items-center mb-4">
                 <img
@@ -66,7 +68,7 @@ const AdminDashboard = () => {
                 className="flex items-center gap-2 px-4 py-2 text-white hover:text-white hover:bg-[#0fcda1] hover:bg-opacity-40"
               >
                 <span className="inline-block h-2 w-2 rounded-full bg-teal-300"></span>
-                <span>Dashboard Home</span>
+                <span>Admin Home</span>
               </NavLink>
               <NavLink
                 to="/dashboard/manageuser"

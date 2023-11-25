@@ -8,12 +8,9 @@ import {
   FaBirthdayCake,
   FaCrown,
   FaFacebook,
-  FaFemale,
   FaGithub,
-  FaGithubAlt,
   FaHome,
   FaLinkedin,
-  FaMale,
   FaUser,
 } from "react-icons/fa";
 import { FaGlobe } from "react-icons/fa6";
@@ -36,27 +33,22 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
     });
   }, [mainUserName]);
 
-  // console.log("dbuserSbar---oneuser--fullUserDetails", fullUserDetails);
-  // console.log("dbuserSbar---oneuser--name", flexUser);
-  // console.log("dbuserSbar---oneuser--userEmail", userEmail);
-
   // Calculate last week
   const currentDate = new Date();
   const lastWeekDate = new Date();
   lastWeekDate.setDate(currentDate.getDate() - 7);
   const formattedDate = fullUserDetails?.dateOfBirth?.slice(0, 10);
-  // const parts = date?.split("-"); // ["2005", "08", "31"]
-  // console.log(parts);
-  // const formattedDate = `${parts[2] || 'dd'}/ ${parts[1] || 'mm'}/ ${parts[0] || 'yyyy'}` || 'la la laaa';
-  // const formattedDate = '31/08/2005'
+
   // Last week solutions
   const lastWeekSolvedProblems = mySolvedProblems.filter(
     (problem) => new Date(problem.date) >= lastWeekDate
   );
+
   // Last week points
   const lastWeekTotalPoints = mySolvedProblems
     .filter((problem) => new Date(problem.date) >= lastWeekDate)
     .reduce((total, problem) => total + problem.points, 0);
+
   // User Rank
   const myRank = topperData?.find((problem) => problem.username === username);
 
@@ -68,8 +60,6 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
     }, {});
     setProblemsByLanguage(problemsCount);
   }, [mySolvedProblems]);
-
-  useEffect(() => { });
 
   return (
     <section>
@@ -114,6 +104,7 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
                   <a
                     className="hover:text[#ffc306]"
                     target="_blank"
+                    rel="noreferrer"
                     href={fullUserDetails?.fbLinks}
                   >
                     <FaFacebook />
@@ -123,6 +114,7 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
                   <a
                     className="hover:text[#ffc306]"
                     target="_blank"
+                    rel="noreferrer"
                     href={fullUserDetails?.github}
                   >
                     <FaGithub />
@@ -132,6 +124,7 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
                   <a
                     className="hover:text[#ffc306]"
                     target="_blank"
+                    rel="noreferrer"
                     href={fullUserDetails?.LinkLinks}
                   >
                     <FaLinkedin />
@@ -141,6 +134,7 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
                   <a
                     className="hover:text[#ffc306]"
                     target="_blank"
+                    rel="noreferrer"
                     href={fullUserDetails?.webSiteLink}
                   >
                     <FaGlobe />
@@ -149,8 +143,16 @@ const DbUserSideBar = ({ mySolvedProblems, username }) => {
               </div>
             )
           }
+          {
+            userEmail !== flexUserEmail && (<div>
+              <Link to={'/challenge'} state={{ username: mainUserName, userImg: fullUserDetails?.userPhotoUrl, name: fullUserDetails?.name }}>
+                <button className="bg-[#0fcda1] bg-opacity-50 text-[#b0c9ec] border border-[#0fcda1] border-transparent hover:bg-transparent hover:border hover:border-[#0fcda1] hover:text-[#0fcda1] hover:transition-all hover:duration-500 w-full rounded-lg py-[7px] text-center font-medium">Challenge</button>
+              </Link>
+            </div>)
+          }
 
         </div>
+
         {/* User Info */}
 
         <div className="mt-4 mb-4 h-px w-full border-b border-[#0fcda189] border-divider-3"></div>

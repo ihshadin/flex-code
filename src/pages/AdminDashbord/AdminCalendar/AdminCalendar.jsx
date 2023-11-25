@@ -18,11 +18,11 @@ const AdminCalendar = () => {
 
   return (
     <motion.div
+      key="flex_046yu89df"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 2 }}
-      key="flex_046445"
       className="mt-14"
     >
       <h1 className="text-2xl md:text-3xl font-semibold mb-4 text-center">

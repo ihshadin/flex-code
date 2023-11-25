@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import FlexcodeLoading from "../../../components/FlexcodeLoading/FlexcodeLoading";
 import { toast } from "react-hot-toast";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAllUsers from "../../../Hooks/useAllUsers";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 const ManageUser = () => {
   const [loading, setLoading] = useState(true);
@@ -79,13 +80,14 @@ const ManageUser = () => {
 
   return (
     <motion.div
+      key="flex_0464dt6fgfg23dv"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 2 }}
-      key="flex_046445"
       className="text-white md:mx-7 md:my-5"
     >
+      <Helmet title="Flex Code | Manage User" />
       <div className="border-b-2 border-[#0fcda185] pb-3 mb-8 ">
         <h1 className="text-white text-2xl md:text-4xl tracking-wider font-semibold">
           All user

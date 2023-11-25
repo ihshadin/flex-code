@@ -10,6 +10,7 @@ import PageBannerTitle from "../../../components/BannerTitle/PageBannerTitle";
 import useAxiosNormal from "../../../Hooks/useAxiosNormal";
 import useFlexUser from "../../../Hooks/useFlexUser";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 const ProfileEdit = () => {
   const { user } = useContext(AuthContext);
@@ -92,14 +93,15 @@ const ProfileEdit = () => {
 
   return (
     <motion.div
+      key="flex_0904hjdfoh2477"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 2 }}
-      key="flex_09009"
       className="-mt-10"
     >
       <div className="flexcode-container">
+      <Helmet title="FlexCode | Edit Profile"/>
         <div className="flex gap-10">
           <div className="flexcode-banner-bg sticky top-24 p-4 w-80 text-white py-5 rounded-lg h-screen">
             <div className="pt-8 pb-6 mb-4 border-b-2 border-[#0fcda185]">

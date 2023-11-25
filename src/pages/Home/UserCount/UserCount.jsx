@@ -14,6 +14,7 @@ const UserCount = () => {
   useEffect(() => {
     axiosNormal.get("/users/count").then((data) => {
       setUserCount(data);
+      console.log("userCount-----17--",data);
     });
   }, []);
   const props = {
@@ -23,7 +24,7 @@ const UserCount = () => {
     fontWeight: 700,
     fontColor: '#ffffff',
     textPosition: "23px",
-    unit: false,
+    unit: "",
     speed: 40
   }
   return (
@@ -34,7 +35,7 @@ const UserCount = () => {
             <h2 className="text-5xl flex items-center gap-5 md:text-7xl font-bold">
               <CircularProgressBar
                 {...props}
-                percent={userCount || 0}
+                percent={100}
               />
               <span className="-ml-8 group-hover:text-[#0fcda1] duration-300">
                 &#43;

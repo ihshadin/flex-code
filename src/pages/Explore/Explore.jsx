@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Feedback from "../../components/Feedback/Feedback";
 import ExploreCard from "./ExploreCard";
 import About from "./About";
 import useAxiosNormal from "../../Hooks/useAxiosNormal";
 import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
 import ExploreCardLoading from "../../components/FlexcodeLoading/ExploreCardLoading";
-
 import { motion } from "framer-motion";
 import OurTeam from "./OurTeam/OurTeam";
+import { Helmet } from "react-helmet";
+
 const Explore = () => {
   const [axiosNormal] = useAxiosNormal();
   const [technologies, setTechnologies] = useState([]);
@@ -22,12 +23,13 @@ const Explore = () => {
 
   return (
     <section>
+      <Helmet title="Flex Code | Explore us" />
       <motion.div
+        key="flex_468855gsdf11df"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 2 }}
-        key="flex_4"
         className="flexcode-container !pt-16 md:!pt-10"
       >
         <PageBannerTitle

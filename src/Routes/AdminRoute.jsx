@@ -2,6 +2,7 @@ import React from "react";
 import { Navigate, useLocation } from "react-router";
 import useAuth from "../Hooks/useAuth";
 import FlexcodeLoading from "../components/FlexcodeLoading/FlexcodeLoading";
+import useAdmin from "../Hooks/useAdmin";
 
 const AdminRoute = ({ children }) => {
   const loaction = useLocation();

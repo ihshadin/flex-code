@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link, useNavigation } from "react-router-dom";
 import PageBannerTitle from "../../components/BannerTitle/PageBannerTitle";
 import Pagination from "../../components/Pagination/Pagination";
@@ -6,6 +7,7 @@ import CardLoading from "../../components/FlexcodeLoading/CardLoading";
 import ProblemCard from "./ProblemCard";
 import useAllProblems from "../../Hooks/useAllProblems";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 const Problems = () => {
   const {
@@ -14,7 +16,6 @@ const Problems = () => {
     totalPages,
     setCurrentPage,
     isLoading,
-    searchText,
     setSearchText,
     filterLevel,
     setFilterLevel,
@@ -39,13 +40,14 @@ const Problems = () => {
 
   return (
     <section>
+      <Helmet title="Flex Code | Problems"/>
       <motion.div
+        key="flex_ftr474kdho4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 2 }}
         className="flexcode-container !pt-16 md:!pt-10"
-        key="flex_2"
       >
         <PageBannerTitle
           title="Most Popular languages"
@@ -59,7 +61,7 @@ const Problems = () => {
               to={`${problem.toLowerCase()}`}
               key={index}
               className={`${
-                problemsLanguage.reduce((total, i) => total + index, 0) - 3 <=
+                problemsLanguage.reduce((total) => total + index, 0) - 3 <=
                 index
                   ? "border-b"
                   : ""

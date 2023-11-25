@@ -15,8 +15,9 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 import useAuth from "../../../Hooks/useAuth";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const PlayGround = () => {
   const [htmlCode, setHtmlCode] = useState("");
@@ -32,6 +33,17 @@ const PlayGround = () => {
   const { user } = useAuth();
   const [flexUser, setFlexUser] = useState(null);
   const navigate = useNavigate();
+
+  // checkUser are here or not 
+  useEffect(() => {
+    if (user) {
+      axiosSecure.get(`/users?email=${user?.email}`).then((data) => {
+        setFlexUser(data.data);
+      });
+    } else {
+      setFlexUser(null);
+    }
+  }, [user]);
 
   //responsive spit for small devices
   useEffect(() => {
@@ -144,11 +156,11 @@ const PlayGround = () => {
 
   return (
     <motion.div
+      key="flex_899h3hhgsoggh1"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 2 }}
-      key="flex_8"
       className="relative p-4 overflow-hidden "
     >
       <Split
@@ -164,6 +176,7 @@ const PlayGround = () => {
         cursor="col-resize"
       >
         <div className="flex flex-col md:flex-row w-full gap-3">
+        <Helmet title="Flex Code | Play ground"/>
           <div className="w-full h-[16rem] md:h-full bg-slate-600 bg-opacity-10 rounded-xl overflow-hidden border border-gray-500 hover:border-[#0fcda1]">
             <div className="bg-secondary-color flex items-end">
               <div className="flex items-center gap-2 px-4 py-3">
