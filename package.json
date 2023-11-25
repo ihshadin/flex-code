@@ -31,6 +31,7 @@
     "react-calendar": "^4.6.0",
     "react-codemirror2": "^7.2.1",
     "react-confetti-explosion": "^2.1.2",
+    "react-countup": "^6.5.0",
     "react-dom": "^18.2.0",
     "react-fast-marquee": "^1.6.0",
     "react-helmet": "^6.1.0",

@@ -68,7 +68,7 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         axios
-          .post("http://localhost:5000/jwt", {
+          .post("https://flex-code-server.vercel.app/jwt", {
             email: currentUser.email,
           })
           .then((data) => {
@@ -78,10 +78,9 @@ const AuthProvider = ({ children }) => {
           });
       } else {
         localStorage.removeItem("access-token");
-        setLoading(false)
+        setLoading(false);
         setUser(currentUser);
       }
-
     });
     return () => {
       return unsubscribe();
