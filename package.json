@@ -21,7 +21,7 @@
     "@vitejs/plugin-react": "^4.0.4",
     "axios": "^1.4.0",
     "codemirror": "^5.65.14",
-    "firebase": "^10.1.0",
+    "firebase": "^10.6.0",
     "framer-motion": "^10.16.4",
     "gsap": "^3.12.2",
     "localforage": "^1.10.0",
